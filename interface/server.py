@@ -25,8 +25,9 @@ from ms_llama import (
     list_models, list_personas, list_tts_engines,
     load_persona_by_name, init_tts,
     _load_users, _save_users, _get_view, _find_candidates,
-    _add_fact_to_slot, _create_slot, _hash_fact,
+    _add_fact_to_slot, _create_slot, _hash_fact, _default_user_id,
     MEMORY_NAME_CATEGORIES, MEMORY_LIST_CATEGORIES,
+    MULTI_USER_MODE,
     verify_and_advance,
 )
 
@@ -136,9 +137,21 @@ def _load_memory() -> list[dict]:
 
 
 def _memory_as_prompt(items: list[dict]) -> str:
-    """Render the unlocked slot as a compact block for the system prompt."""
+    """Render the bound slot as a compact block for the system prompt.
+    Header text differs between simple mode and multi-user mode; the body
+    is the same list of facts in both.
+
+    Anti-confabulation guardrail is included in BOTH headers — Yuki must only
+    reference facts that are actually listed below, never invent shared history
+    (past meetings, haikus, inside jokes) that aren't in the list."""
     if not items:
-        return ""
+        header = (
+            f"{MEMORY_MARKER} — you have no stored facts about this user yet. "
+            "Do NOT invent or imply any past shared history, prior conversations, "
+            "inside jokes, or things you remember — there is nothing to remember. "
+            "Meet them with warm first-time energy.]"
+        )
+        return header
     grouped: dict[str, list[str]] = {}
     for it in items:
         grouped.setdefault(it["category"], []).append(it["content"])
@@ -149,11 +162,25 @@ def _memory_as_prompt(items: list[dict]) -> str:
         else:
             lines.append(f"- {cat}: {', '.join(vals)}")
     body = "\n".join(lines)
-    return (
-        f"{MEMORY_MARKER} — this person has passed the vibe check this session, "
-        "so you can reference and build on these facts naturally. Stay in-persona.]\n"
-        f"{body}"
-    )
+    if MULTI_USER_MODE:
+        header = (
+            f"{MEMORY_MARKER} — this person has passed the vibe check this session, "
+            "so you can reference and build on these facts naturally. Stay in-persona. "
+            "IMPORTANT: only reference facts that are actually listed below. Do NOT "
+            "invent shared past events, prior conversations, inside jokes, or things "
+            "'you remember together' that aren't in the list.]"
+        )
+    else:
+        header = (
+            f"{MEMORY_MARKER} — these are facts you know about the user you're "
+            "talking with. Reference them naturally when relevant. IMPORTANT: only "
+            "reference facts that are actually listed below. Do NOT invent shared "
+            "past events, prior conversations, inside jokes, haikus you wrote "
+            "together, or things 'you remember together' that aren't in the list. "
+            "If the user brings up something that isn't here, say you don't "
+            "remember that specifically rather than inventing.]"
+        )
+    return f"{header}\n{body}"
 
 
 def _locked_stub(store: dict) -> str:
@@ -217,7 +244,12 @@ def _load_chat_raw(chat_id: str) -> dict | None:
 
 def _chat_accessible(data: dict) -> bool:
     """A chat is accessible iff: it's owned by the currently-unlocked user, or
-    it's unowned AND is the active session chat (the pending pre-vibe-check one)."""
+    it's unowned AND is the active session chat (the pending pre-vibe-check one).
+
+    In simple mode (MULTI_USER_MODE=False), every chat is accessible — the
+    ownership gate is off so all chats show in the sidebar regardless of user_id."""
+    if not MULTI_USER_MODE:
+        return True
     owner = data.get("user_id")
     if owner is None:
         return data.get("id") == current_chat_id
@@ -233,15 +265,19 @@ def _load_chat(chat_id: str) -> dict | None:
 
 def _list_chats() -> list[dict]:
     _ensure_dirs()
-    # Locked session sees nothing. Unlocked session sees only its own chats.
-    if bot is None or bot.unlocked_user_id is None:
-        return []
-    uid = bot.unlocked_user_id
+    # Simple mode: no ownership filter, every chat is visible.
+    # Multi-user mode: locked session sees nothing, unlocked sees only its own chats.
+    if MULTI_USER_MODE:
+        if bot is None or bot.unlocked_user_id is None:
+            return []
+        uid = bot.unlocked_user_id
+    else:
+        uid = None  # sentinel: return everything
     chats = []
     for f in CHATS_DIR.glob("*.json"):
         try:
             data = json.loads(f.read_text())
-            if data.get("user_id") != uid:
+            if uid is not None and data.get("user_id") != uid:
                 continue
             chats.append({"id": data["id"], "title": data["title"], "updated": data["updated"]})
         except Exception:
@@ -662,12 +698,17 @@ async def api_debug_relock():
 
 
 def _reset_session_lock(b: VoiceChatBot) -> None:
-    """Clear all per-session lock state. Called on /api/chats/new and on relock."""
-    b.unlocked_user_id = None
+    """Clear all per-session lock state. Called on /api/chats/new and on relock.
+    In simple mode, re-bind to the default user instead of leaving locked."""
     b.session_fact_hashes = set()
     b.candidate_uuids = None
     b.session_non_name_match = False
     b.pending_new_user_facts = []
+    if MULTI_USER_MODE:
+        b.unlocked_user_id = None
+    else:
+        store = _load_users()
+        b.unlocked_user_id = _default_user_id(store)
 
 
 def _inject_memory(b: VoiceChatBot):

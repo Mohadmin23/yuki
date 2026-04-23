@@ -582,6 +582,17 @@ MEMORY_FILE = MEMORY_DIR / "memory.json"
 MEMORY_BACKUP_FILE = MEMORY_DIR / "memory.json.old"
 MEMORY_MAX_CHARS = 500
 
+# Feature flag: when False, the whole lock/unlock/ownership system is bypassed
+# and Yuki runs in single-user mode — memory is always injected, all chats are
+# visible, no vibe check. The slot data structure stays intact so flipping this
+# back to True restores the multi-user behavior once the design rework lands.
+# See TODO-memory-security.md for context.
+MULTI_USER_MODE = False
+
+# Name preferred by _default_user_id when MULTI_USER_MODE is False. If no slot
+# matches, falls back to the first slot in the store, then creates a new one.
+SIMPLE_MODE_PREFERRED_NAME = "stardustv2.0"
+
 # Categories that behave as lists (append + dedupe). Everything else is
 # single-value-overwrite (name, age, location, etc.).
 MEMORY_LIST_CATEGORIES = {"names", "loves", "hates", "hobbies", "notes",
@@ -736,6 +747,22 @@ def _find_candidates(store: dict, fact_hashes_seen: set) -> list[str]:
         if fact_hashes_seen.issubset(slot_hashes):
             matches.append(uid)
     return matches
+
+
+def _default_user_id(store: dict) -> str:
+    """Return the UUID of the slot to use as the single user in simple mode.
+    Order of preference: slot named SIMPLE_MODE_PREFERRED_NAME → first slot →
+    a freshly created empty slot (persisted). Never returns None."""
+    users = store.get("users", {})
+    preferred = SIMPLE_MODE_PREFERRED_NAME.lower()
+    for uid, slot in users.items():
+        if any((n or "").lower() == preferred for n in slot.get("names", [])):
+            return uid
+    if users:
+        return next(iter(users))
+    new_uuid = _create_slot(store, [])
+    _save_users(store)
+    return new_uuid
 
 
 def _add_fact_to_slot(store: dict, user_id: str, category: str, value: str) -> bool:
@@ -1787,6 +1814,18 @@ class VoiceChatBot:
         self.candidate_uuids: list[str] | None = None
         self.session_non_name_match: bool = False
         self.pending_new_user_facts: list[tuple[str, str]] = []
+
+        # Simple mode: bind straight to the default user. No vibe check,
+        # no narrowing — facts extracted during the session write directly
+        # into this slot via the post-unlock path in verify_and_advance.
+        # Wrapped in try/except so test isolation (patched MEMORY_FILE with
+        # no data) or first-run edge cases don't crash construction.
+        if not MULTI_USER_MODE:
+            try:
+                store = _load_users()
+                self.unlocked_user_id = _default_user_id(store)
+            except Exception:
+                pass
 
         # Module-global pointer so slot-aware tools (tool_remember) can see
         # the bound user without threading bot state through every call site.
