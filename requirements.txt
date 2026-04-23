@@ -1,0 +1,12 @@
+torch
+transformers
+bitsandbytes
+kokoro
+soundfile
+numpy
+mlx-lm
+fastapi
+uvicorn
+openai
+duckduckgo-search
+psutil
