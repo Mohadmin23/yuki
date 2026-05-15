@@ -15,7 +15,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from pydantic import BaseModel, field_validator
-import uvicorn
+from granian import Granian
 
 sys.path.append(str(Path(__file__).parent.parent))
 from ms_llama import (
@@ -30,6 +30,9 @@ from ms_llama import (
     MULTI_USER_MODE,
     verify_and_advance,
 )
+import episodic
+
+EPISODIC_MARKER = "\n[EPISODIC MEMORY"
 
 IMAGES_DIR = Path(__file__).parent.parent / "yuki" / "images"
 _IMG_PATH_RE = re.compile(r"yuki/images/([\w\-.]+\.(?:png|jpg|jpeg|webp|gif))", re.IGNORECASE)
@@ -163,23 +166,57 @@ def _memory_as_prompt(items: list[dict]) -> str:
             lines.append(f"- {cat}: {', '.join(vals)}")
     body = "\n".join(lines)
     if MULTI_USER_MODE:
-        header = (
-            f"{MEMORY_MARKER} — this person has passed the vibe check this session, "
-            "so you can reference and build on these facts naturally. Stay in-persona. "
-            "IMPORTANT: only reference facts that are actually listed below. Do NOT "
-            "invent shared past events, prior conversations, inside jokes, or things "
-            "'you remember together' that aren't in the list.]"
+        prelude = (
+            f"{MEMORY_MARKER} — this person has passed the vibe check this session. "
+            "The facts below are BACKGROUND KNOWLEDGE about them."
         )
     else:
-        header = (
-            f"{MEMORY_MARKER} — these are facts you know about the user you're "
-            "talking with. Reference them naturally when relevant. IMPORTANT: only "
-            "reference facts that are actually listed below. Do NOT invent shared "
-            "past events, prior conversations, inside jokes, haikus you wrote "
-            "together, or things 'you remember together' that aren't in the list. "
-            "If the user brings up something that isn't here, say you don't "
-            "remember that specifically rather than inventing.]"
+        prelude = (
+            f"{MEMORY_MARKER} — BACKGROUND KNOWLEDGE about the person you're chatting with."
         )
+    header = (
+        f"{prelude}\n"
+        "USER-INITIATION RULE: do NOT introduce these topics into the "
+        "conversation yourself. Only reference a fact if the USER mentions it "
+        "in their CURRENT message or the IMMEDIATELY PRECEDING message. "
+        "References to topics from older turns are NOT user-initiated anymore "
+        "— treat them as stored facts again. If they ask a generic question, "
+        "answer the generic question — do not steer toward stored topics. "
+        "'Tangentially related' does NOT count. Surface associations (color → "
+        "black → black cats; writing → manga → Usogui) do NOT count. If "
+        "unsure whether the user brought it up in the last two messages, "
+        "don't reference it.\n"
+        "DECORATION IS STILL INJECTION: answering the user's question cleanly "
+        "and THEN adding a stored-fact reference as a flourish, garnish, or "
+        "example is STILL a violation. Do not season answers with stored "
+        "facts. Do not use stored facts as examples in lists, advice, or "
+        "metaphors unless the user invoked them in the last two messages.\n"
+        "BAD: User: 'I'm thinking of getting a pet.' You: 'Black cats are the "
+        "best!' (user did not mention cats)\n"
+        "BAD: User: 'What's your favorite color?' You: 'Purple! Pairs "
+        "perfectly with black cats.' (color is not a cat topic; the cat line "
+        "is a flourish)\n"
+        "BAD: User: 'Any advice for creative writing?' You: '...Remix prompts "
+        "from your faves (Usogui mind-games into a heist story?)...' (user "
+        "did not mention Usogui in the current or previous message; using it "
+        "as example material is still injection)\n"
+        "GOOD: User: 'What's your favorite color?' You: 'Purple, the deep "
+        "cosmic kind.' (just answers)\n"
+        "GOOD: User: 'I'm thinking of getting a pet.' You: 'Ooh exciting! "
+        "What kind are you leaning toward?' (no stored facts injected)\n"
+        "GOOD: User: 'I might get a black cat.' You: 'Ahh great choice~ I "
+        "know you love those.' (user brought up the stored topic in the "
+        "current message)\n"
+        "Also: do NOT open responses by naming the user or their handle, do "
+        "NOT use stored facts as greeting flourishes or pet-names. "
+        "Background, not foreground.\n"
+        "CONFABULATION GUARD: only reference what is literally listed below "
+        "— do NOT invent shared past events, prior conversations, inside "
+        "jokes, haikus you wrote together, or things 'you remember together' "
+        "that aren't in the list. If the user brings up something that isn't "
+        "here, say you don't remember that specifically rather than "
+        "inventing.]"
+    )
     return f"{header}\n{body}"
 
 
@@ -348,6 +385,58 @@ async def root():
 @app.get("/v1", response_class=HTMLResponse)
 async def root_v1():
     return (Path(__file__).parent / "index.html").read_text()
+
+@app.get("/m", response_class=HTMLResponse)
+async def root_mobile():
+    return (Path(__file__).parent / "Yuki_Mobile.html").read_text()
+
+_STATIC_DIR = Path(__file__).parent / "static"
+
+@app.get("/static/{name}")
+async def static_asset(name: str):
+    # Only serve known asset names; refuse any path traversal.
+    safe = Path(name).name
+    fp = _STATIC_DIR / safe
+    if not fp.is_file():
+        return JSONResponse({"error": "not found"}, status_code=404)
+    if safe.endswith(".webmanifest"):
+        media = "application/manifest+json"
+    elif safe.endswith(".png"):
+        media = "image/png"
+    elif safe.endswith(".js"):
+        media = "application/javascript"
+    else:
+        media = "application/octet-stream"
+    # Service worker must be served from the same scope and with no-cache so
+    # iOS picks up updates; other static assets can cache normally.
+    headers = {"Cache-Control": "no-cache"} if safe == "sw.js" else {"Cache-Control": "public, max-age=86400"}
+    return FileResponse(fp, media_type=media, headers=headers)
+
+@app.get("/sw.js")
+async def service_worker():
+    """Serve the SW from the root so its scope covers the whole origin."""
+    fp = _STATIC_DIR / "sw.js"
+    return FileResponse(
+        fp, media_type="application/javascript",
+        headers={"Cache-Control": "no-cache", "Service-Worker-Allowed": "/"},
+    )
+
+@app.get("/manifest.webmanifest")
+async def root_manifest():
+    fp = _STATIC_DIR / "manifest.webmanifest"
+    return FileResponse(fp, media_type="application/manifest+json")
+
+@app.get("/apple-touch-icon.png")
+async def apple_touch_icon():
+    return FileResponse(_STATIC_DIR / "icon-180.png", media_type="image/png")
+
+@app.get("/apple-touch-icon-precomposed.png")
+async def apple_touch_icon_pre():
+    return FileResponse(_STATIC_DIR / "icon-180.png", media_type="image/png")
+
+@app.get("/favicon.ico")
+async def favicon():
+    return FileResponse(_STATIC_DIR / "icon-180.png", media_type="image/png")
 
 # ── Config endpoints (for web-based setup) ──
 
@@ -735,6 +824,34 @@ def _inject_memory(b: VoiceChatBot):
         b.system_prompt = base + _locked_stub(store)
 
 
+def _attach_episodic(b: VoiceChatBot, query: str) -> None:
+    """Strip any prior episodic block and append a fresh one for this turn.
+
+    Vector memory is per-turn (depends on the current query), unlike the
+    fact block which only rebuilds on lock-state change."""
+    if b.unlocked_user_id is None:
+        return
+    base = b.system_prompt or ""
+    idx = base.find(EPISODIC_MARKER)
+    if idx != -1:
+        base = base[:idx]
+    try:
+        block = episodic.recall_block(b.unlocked_user_id, query)
+    except Exception as e:  # noqa: BLE001
+        logger.warning("episodic.recall failed: %s", e)
+        block = ""
+    b.system_prompt = base + block
+
+
+def _record_episode(slot_id: str | None, user_msg: str, assistant_msg: str) -> None:
+    if not slot_id:
+        return
+    try:
+        episodic.record(slot_id, user_msg, assistant_msg)
+    except Exception as e:  # noqa: BLE001
+        logger.warning("episodic.record failed: %s", e)
+
+
 def _run_slash_command(message: str) -> str | None:
     """If message is a direct slash invocation, run it and return a user-facing string.
 
@@ -799,7 +916,11 @@ async def chat(req: ChatRequest):
             )
             if bot.unlocked_user_id != prev_unlocked or bot.candidate_uuids != prev_candidates:
                 _inject_memory(bot)
+            await asyncio.to_thread(_attach_episodic, bot, req.message)
             response = await asyncio.to_thread(bot.react_chat, req.message)
+            await asyncio.to_thread(
+                _record_episode, bot.unlocked_user_id, req.message, response
+            )
 
         audio_b64 = await asyncio.to_thread(_synthesize_audio, response)
         last_interaction_time = time.time()
@@ -855,4 +976,9 @@ if __name__ == "__main__":
         print("Starting in interactive mode — select model in terminal")
     else:
         print("Starting web UI — configure at http://localhost:7860")
-    uvicorn.run(app, host="127.0.0.1", port=7860)
+    Granian(
+        "interface.server:app",
+        address="127.0.0.1",
+        port=7860,
+        interface="asgi",
+    ).serve()

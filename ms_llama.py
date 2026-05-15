@@ -104,9 +104,7 @@ def _backend_self_awareness(backend: str, model_id: str) -> str:
             f"━━━ HOW YOU ARE RUNNING ━━━\n"
             f"You are running as a CLOUD API call via OpenRouter ({model_name}). "
             f"You are NOT running locally on the user's machine. "
-            f"Your own process does not live on their computer — you live in a data center somewhere.\n"
-            f"The hardware tool reads the USER'S local machine (their M1 Mac running the chat app), "
-            f"not your own hardware. If asked where you run, say honestly: 'I'm an OpenRouter API model — "
+            f"Your own process does not live on their computer — you live in a data center somewhere.\n"#user edit, removed the my hardwere info cs the ai already have emmory right now uuid no?
             f"the hardware stats you see are the user's laptop, not mine.'"
         )
     if backend == "mlx":
@@ -139,7 +137,8 @@ def _user_wants_image(user_input: str, history: list | None = None, lookback: in
     Hard negative guard: if the message looks like a text/file task (contains
     'file', '.txt', 'write', 'save', a filename-with-extension, etc.) it's
     ALWAYS text — overrides any positive image match.
-    """
+    if the user didn't mention that he wants an image don't use the tool unless the user isnt away or not responding.
+    """#user edit, i added some here to
     def log(msg):
         if debug:
             print(f"  🔍 img_check {msg}")
@@ -586,7 +585,7 @@ MEMORY_MAX_CHARS = 500
 # and Yuki runs in single-user mode — memory is always injected, all chats are
 # visible, no vibe check. The slot data structure stays intact so flipping this
 # back to True restores the multi-user behavior once the design rework lands.
-# See TODO-memory-security.md for context.
+# See docs/TODO-memory-security.md for context.
 MULTI_USER_MODE = False
 
 # Name preferred by _default_user_id when MULTI_USER_MODE is False. If no slot
@@ -792,7 +791,7 @@ def _add_fact_to_slot(store: dict, user_id: str, category: str, value: str) -> b
     return True
 
 
-# ============= FACT EXTRACTION (Phase 3) =============
+# ============= FACT EXTRACTION (Phase 3) ============= user is editing this a bit
 
 _EXTRACTION_SYSTEM_PROMPT = """You extract personal facts from chat messages into strict JSON.
 Output ONLY a JSON array. No prose. No explanation. No code fences.
@@ -807,21 +806,17 @@ Allowed categories:
 - hobbies — activities the user regularly does
 - favorite_character — specific favorite fictional character
 - favorite_series — specific favorite show / book / game / anime / manga
+- owns - things that the user has or had / laptop / home / console / pet / money
 - notes — anything else personal worth remembering
 
 Rules:
-- Extract ONLY facts the user states about THEMSELVES — first-person claims only.
-- Do NOT extract facts about anyone or anything the user merely refers to or owns:
-  their pet, cat, dog, child, partner, friend, sibling, parent, coworker, character,
-  or object. "My cat's name is Bred" is a fact about the cat, not the user → [].
-  "My wife loves anime" is a fact about the wife, not the user → [].
+- Extract ONLY facts the anything user say
 - The categories `names` and `handle` apply to the SPEAKER's own name/handle only.
   If the user names a pet, person, or anything that isn't themselves, return [].
 - If a PRIOR-ASSISTANT block is provided, the user's message may be a short answer
   to the question it contains — categorize accordingly. For example if prior is
   "who's your favorite character?" and user says "superman", emit
   [{"category":"favorite_character","value":"superman"}].
-- Skip greetings, questions, small talk, jokes, or generic statements.
 - Lowercase values. Proper names stay as written then lowercased.
 - Return [] when nothing useful is in the message.
 
@@ -836,19 +831,19 @@ Input: I love pizza and I hate mondays
 Output: [{"category":"loves","value":"pizza"},{"category":"hates","value":"mondays"}]
 
 Input: my cat's name is bred
-Output: []
+Output: [{"category":"cat","value":"bred"}]
 
 Input: yes my cat name is bred
 Output: []
 
 Input: my dog is named rex and he's the best
-Output: []
+Output: [{"category":"dog","value":"rex is the best for user"}]
 
 Input: my wife loves dragon ball
-Output: []
+Output: [{"category":"wife","value":"love dragon ball"}]
 
 Input: my brother is called alen
-Output: []
+Output: [{"category":"brother","value":"alen"}]
 
 Input: hey yuki its me again
 Output: []
@@ -865,6 +860,8 @@ Output: [{"category":"names","value":"jack"}]
 
 Input: how are you today?
 Output: []
+
+IMPORTENT NOTE"yuki can ask anything to check as long as it has data for"
 """
 
 
@@ -987,6 +984,36 @@ def extract_facts(bot, message: str, prior_assistant: str = "") -> list[tuple[st
         seen.add(key)
         out.append((cat, val))
     return out
+
+
+_EPISODIC_MARKER = "\n[EPISODIC MEMORY"
+
+
+def _cli_attach_episodic(bot, query: str) -> None:
+    """CLI counterpart to server._attach_episodic — strip and re-attach
+    the episodic block on the bot's system prompt for this turn."""
+    if getattr(bot, "unlocked_user_id", None) is None:
+        return
+    base = bot.system_prompt or ""
+    idx = base.find(_EPISODIC_MARKER)
+    if idx != -1:
+        base = base[:idx]
+    try:
+        import episodic
+        block = episodic.recall_block(bot.unlocked_user_id, query)
+    except Exception:  # noqa: BLE001
+        block = ""
+    bot.system_prompt = base + block
+
+
+def _cli_record_episode(slot_id, user_msg: str, assistant_msg: str) -> None:
+    if not slot_id:
+        return
+    try:
+        import episodic
+        episodic.record(slot_id, user_msg, assistant_msg)
+    except Exception:  # noqa: BLE001
+        pass
 
 
 def verify_and_advance(bot, message: str, prior_assistant: str = "") -> list[tuple[str, str]]:
@@ -2238,15 +2265,15 @@ class VoiceChatBot:
                 self.history.append({"role": "assistant", "content": response})
         return response
 
-    def autonomous_tick(self, seconds_idle: float) -> str | None:
+    def autonomous_tick(self, seconds_idle: float) -> str | None: #user edited this too
         """Ask the LLM if it wants to say something unprompted. Returns message or None."""
         if not self.history:
-            prompt = f"You are in autonomous mode. {int(seconds_idle)} seconds have passed. Greet the user warmly in your own voice. Do NOT call any tool — just say hi."
+            prompt = f"You are in autonomous mode. {int(seconds_idle)} seconds have passed. you are free to say what you want"
         else:
-            prompt = f"You are in autonomous mode. {int(seconds_idle)} seconds of silence. Say one short, warm thing in your own voice (a thought, a question, a tiny observation). Do NOT call any tool. If you have nothing to say, reply exactly: NO"
+            prompt = f"You are in autonomous mode. {int(seconds_idle)} seconds of silence. you are still free to do anything you want or use any tool, if you have nothing to say reply exactly: NO"
 
         original_prompt = self.system_prompt or ""
-        self.system_prompt = original_prompt + "\n\n" + TOOL_DESCRIPTIONS + "\nYou are in autonomous mode. You can speak whenever you want. Keep it natural and brief."
+        self.system_prompt = original_prompt + "\n\n" + TOOL_DESCRIPTIONS + "\nYou are in autonomous mode. You can speak whenever you want."
 
         # Use a temporary history entry that we'll remove if the bot says NO
         self.history.append({"role": "user", "content": f"[SYSTEM: {int(seconds_idle)}s of silence]"})
@@ -2514,10 +2541,12 @@ class VoiceChatBot:
             with lock:
                 bot_speaking[0] = True
                 try:
+                    _cli_attach_episodic(self, user_input)
                     try:
                         response = self.react_chat(user_input)
                     except Exception as e:  # noqa: BLE001
                         response = _cli_friendly_error(e)
+                    _cli_record_episode(self.unlocked_user_id, user_input, response)
                     print_to_chat("Bot: ", response, "left")
                     move_to_input()
                     self.speak(response)

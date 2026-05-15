@@ -378,13 +378,19 @@ def main():
     mode, args = _parse_args(sys.argv)
 
     if mode == "serve":
-        import uvicorn
+        from granian import Granian
         print(f"\n  Pony Diffusion API v2")
         print(f"  Backend:  {'ModelsLab' if MODELSLAB_KEY else 'HF Spaces'}")
         print(f"  Model:    {DEFAULT_MODEL}")
         print(f"  LoRA:     {DEFAULT_LORA}")
         print(f"  Docs:     http://localhost:8899/docs\n")
-        uvicorn.run(create_app(), host="0.0.0.0", port=8899)
+        Granian(
+            "tests.test_image_gen:create_app",
+            factory=True,
+            address="0.0.0.0",
+            port=8899,
+            interface="asgi",
+        ).serve()
         return
 
     prompt = args["prompt"]
