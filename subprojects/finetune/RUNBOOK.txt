@@ -1,0 +1,136 @@
+YUKI FINE-TUNE RUNBOOK
+======================
+Qwen3-32B + QLoRA on Thunder Compute A100 80GB.
+Dataset: yuki_clean_v2.jsonl (432 rows).
+Expected wall-clock: ~30-45 min training + ~10 min setup + ~10 min uploads.
+Expected cost: ~$1.50-2.50 total on A100 (varies with Thunder pricing).
+
+
+STEP 0 -- ONE-TIME LOCAL SETUP (on the M1 Air)
+-----------------------------------------------
+0.1  Install the Thunder CLI (it's a Go binary, distributed via Homebrew):
+         brew tap Thunder-Compute/tnr
+         brew install tnr
+
+0.2  Log in (you have the key, paste it when prompted, or pass it inline):
+         tnr login --token YOUR_THUNDER_API_TOKEN
+
+0.3  Verify it worked:
+         tnr status
+     Should print "no instances" or an empty table. Good.
+
+
+STEP 1 -- PROVISION THE GPU BOX
+-------------------------------
+1.1  Edit finetune/launch.sh, line ~38, swap "h100" for "a100":
+         tnr create --gpu a100 --vcpus 16 --primary-disk 250 --mode production
+
+1.2  Run the provision step. This creates the box AND uploads train.py,
+     requirements.txt, remote_setup.sh, and yuki_clean_v2.jsonl:
+         cd ~/llama-voice-assist
+         ./finetune/launch.sh provision
+
+1.3  Wait until `tnr status` shows the instance as RUNNING.
+     Note the instance ID (probably 0 since it's your first).
+
+
+STEP 2 -- SET UP THE REMOTE BOX
+--------------------------------
+2.1  SSH in:
+         ./finetune/launch.sh connect
+
+2.2  Start tmux so a dropped SSH won't kill training:
+         tmux new -s yuki
+
+2.3  Run the remote setup. Installs Unsloth, torch, bitsandbytes, etc.
+     Takes ~5 min:
+         cd ~/yuki-finetune
+         bash remote_setup.sh
+
+2.4  When it finishes you'll see a torch+cuda sanity line like:
+         torch 2.5.1 cuda True NVIDIA A100-SXM4-80GB
+     If cuda is False or no device name -- stop, something's wrong.
+
+
+STEP 3 -- TRAIN
+---------------
+3.1  Still on the remote box, still inside tmux:
+         source ~/yuki-finetune/.venv/bin/activate
+         python train.py \
+             --dataset ~/yuki-finetune/yuki_clean_v2.jsonl \
+             --output ~/yuki-finetune/output \
+             --epochs 3
+
+3.2  First-run downloads the 4-bit Qwen3-32B (~18GB). Takes ~5-10 min
+     depending on Thunder's network. Training itself is ~30-45 min on A100.
+
+3.3  You can detach from tmux anytime with: Ctrl-b then d
+     Reattach later with: tmux attach -t yuki
+
+3.4  When you see "saved LoRA adapter to ..." you're done.
+
+
+STEP 4 -- (OPTIONAL) EXPORT GGUF FOR LOCAL USE
+-----------------------------------------------
+Only do this if you want to run Yuki locally via ms_llama.py's GGUF
+backend. Adds ~10-15 min on the remote box.
+
+4.1  Re-run train.py with the export flag (it reuses the adapter):
+         python train.py \
+             --dataset ~/yuki-finetune/yuki_clean_v2.jsonl \
+             --output ~/yuki-finetune/output \
+             --epochs 0 \
+             --export-gguf q4_k_m
+
+     (epochs=0 trick won't actually skip training -- if you want to
+     skip retraining, just add --export-gguf to the original step 3.1
+     command BEFORE running it.)
+
+
+STEP 5 -- PULL RESULTS BACK
+---------------------------
+5.1  Detach from tmux (Ctrl-b d), exit SSH (type `exit`).
+
+5.2  From the M1 Air:
+         ./finetune/launch.sh pull
+     Copies finetune/output/yuki-qwen3-32b-lora/ down. Adapter is ~300MB.
+
+5.3  If you exported GGUF, also pull it manually:
+         tnr scp 0:/home/ubuntu/yuki-finetune/output/yuki-qwen3-32b-gguf ./finetune/output/
+
+
+STEP 6 -- KILL THE INSTANCE (IMPORTANT)
+----------------------------------------
+6.1  Thunder bills per-minute while the instance exists. Delete it:
+         ./finetune/launch.sh stop
+     Type DELETE when prompted.
+
+6.2  Confirm it's gone:
+         tnr status
+     Should be empty.
+
+
+TROUBLESHOOTING
+---------------
+- OOM during training:
+    drop --batch-size to 1, or --max-seq-len in train.py to 2048.
+- Download hangs on Qwen3-32B:
+    Thunder box may rate-limit HF. Re-run train.py, it resumes.
+- "torch.cuda.is_available() False":
+    Wrong CUDA. Run: nvidia-smi -- if that works but torch doesn't,
+    you got a non-CUDA image. tnr delete and re-provision.
+- SSH drops mid-train and you forgot tmux:
+    Training is dead. Always use tmux. Re-run -- HF cache + checkpoint
+    saves let it resume from last epoch save.
+- Forgot to delete the instance:
+    Run `tnr status` daily until you're sure no instances are alive.
+    Set a phone reminder if needed -- the bill builds quietly.
+
+
+WHAT YOU END UP WITH
+--------------------
+finetune/output/yuki-qwen3-32b-lora/   <- LoRA adapter (~300MB)
+                                          merge with base Qwen3-32B to
+                                          serve via vLLM/TGI, OR
+finetune/output/yuki-qwen3-32b-gguf/   <- if you exported, drop into
+                                          ms_llama.py GGUF backend

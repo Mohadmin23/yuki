@@ -382,10 +382,6 @@ def _synthesize_audio(text: str) -> str:
 async def root():
     return (Path(__file__).parent / "Yuki_Chat_v2-2.html").read_text()
 
-@app.get("/v1", response_class=HTMLResponse)
-async def root_v1():
-    return (Path(__file__).parent / "index.html").read_text()
-
 @app.get("/m", response_class=HTMLResponse)
 async def root_mobile():
     return (Path(__file__).parent / "Yuki_Mobile.html").read_text()

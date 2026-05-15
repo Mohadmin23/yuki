@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>img2img Studio</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0b15;--bg-card:#111120;--bg-input:#181828;--bg-hover:#20203a;
+  --accent:#7c3aed;--accent-l:#9f72f7;--accent2:#2563eb;
+  --ok:#10b981;--warn:#f59e0b;--err:#ef4444;
+  --text:#e2e8f0;--muted:#6b7280;--border:#252540;--radius:8px;
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden;font-size:13px}
+
+/* ── header ── */
+header{background:var(--bg-card);border-bottom:1px solid var(--border);padding:10px 18px;display:flex;align-items:center;gap:14px;flex-shrink:0;z-index:10}
+.logo{font-size:17px;font-weight:700;background:linear-gradient(135deg,var(--accent-l),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.tabs{display:flex;gap:3px}
+.tab{padding:5px 14px;border-radius:6px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:13px;font-weight:500;transition:.15s}
+.tab.active{background:var(--accent);color:#fff}
+.tab:hover:not(.active){background:var(--bg-hover);color:var(--text)}
+.status-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:10px;font-size:12px;font-weight:500;margin-left:auto}
+.s-idle{background:var(--bg-hover);color:var(--muted)}
+.s-run{background:rgba(124,58,237,.2);color:var(--accent-l)}
+.s-done{background:rgba(16,185,129,.2);color:var(--ok)}
+.s-err{background:rgba(239,68,68,.2);color:var(--err)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:12px;height:12px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;animation:spin .6s linear infinite;display:inline-block}
+
+/* ── layout ── */
+.main{display:flex;flex:1;overflow:hidden}
+
+/* ── sidebar ── */
+.sidebar{width:300px;background:var(--bg-card);border-right:1px solid var(--border);overflow-y:auto;flex-shrink:0;padding:12px;display:flex;flex-direction:column;gap:10px}
+
+/* ── content ── */
+.content{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:14px}
+
+/* ── panels ── */
+.panel{background:var(--bg-input);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.ph{padding:9px 12px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+.ph:hover{color:var(--text)}
+.pb{padding:11px 12px;display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--border)}
+
+/* ── form ── */
+label{font-size:11px;color:var(--muted);display:block;margin-bottom:3px}
+input[type=text],input[type=number],select,textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:7px 9px;font-size:13px;outline:none;transition:border-color .15s;font-family:inherit}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+textarea{resize:vertical;min-height:64px;line-height:1.5}
+select option{background:var(--bg-card)}
+
+/* ── range ── */
+.rrow{display:flex;align-items:center;gap:7px}
+input[type=range]{flex:1;accent-color:var(--accent)}
+.rv{font-size:12px;color:var(--accent-l);min-width:32px;text-align:right}
+
+/* ── buttons ── */
+.btn{padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-size:13px;font-weight:500;transition:.15s;display:inline-flex;align-items:center;gap:5px}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-l)}
+.btn-secondary{background:var(--bg-hover);color:var(--text);border:1px solid var(--border)}.btn-secondary:hover{border-color:var(--accent);color:var(--accent-l)}
+.btn-sm{padding:4px 10px;font-size:12px}
+.gen-btn{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:13px;border-radius:10px;font-size:15px;font-weight:600;border:none;cursor:pointer;width:100%;transition:.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.gen-btn:hover{opacity:.88;transform:translateY(-1px)}
+.gen-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* ── mode tabs ── */
+.mode-tabs{display:flex;background:var(--bg);border-radius:7px;padding:3px;gap:2px}
+.mode-tab{flex:1;padding:6px;border-radius:5px;border:none;background:transparent;color:var(--muted);cursor:pointer;font-size:12px;font-weight:500;text-align:center;transition:.15s}
+.mode-tab.active{background:var(--accent);color:#fff}
+
+/* ── angle grid ── */
+.angle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.abtn{padding:5px 3px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--muted);cursor:pointer;font-size:11px;text-align:center;transition:.15s}
+.abtn.active{border-color:var(--accent);color:var(--accent-l);background:rgba(124,58,237,.12)}
+.abtn:hover:not(.active){border-color:var(--accent);color:var(--text)}
+
+/* ── upload ── */
+.zone{border:2px dashed var(--border);border-radius:7px;padding:14px;text-align:center;cursor:pointer;transition:.15s;position:relative}
+.zone:hover,.zone.drag{border-color:var(--accent);background:rgba(124,58,237,.05)}
+.zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.zone-icon{font-size:20px;margin-bottom:4px}
+.zone-txt{font-size:11px;color:var(--muted)}
+.prev-grid{display:flex;flex-wrap:wrap;gap:7px;margin-top:7px}
+.prev-item{position:relative;width:60px;height:60px}
+.prev-item img{width:100%;height:100%;object-fit:cover;border-radius:5px;border:1px solid var(--border)}
+.prev-rm{position:absolute;top:-4px;right:-4px;background:var(--err);color:#fff;border:none;border-radius:50%;width:15px;height:15px;font-size:9px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* ── model button ── */
+.model-btn{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:7px 9px;color:var(--text);cursor:pointer;font-size:13px;text-align:left;display:flex;align-items:center;gap:6px;transition:.15s}
+.model-btn:hover{border-color:var(--accent)}
+.model-btn .mname{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500}
+.model-btn .mico{color:var(--muted);font-size:13px;flex-shrink:0}
+
+/* ── toggle ── */
+.trow{display:flex;align-items:center;justify-content:space-between}
+.tlabel{font-size:13px}
+.toggle{position:relative;width:36px;height:19px;display:inline-block}
+.toggle input{opacity:0;width:0;height:0}
+.tslider{position:absolute;inset:0;background:var(--bg-hover);border-radius:10px;cursor:pointer;transition:.2s}
+.tslider::after{content:'';position:absolute;top:2px;left:2px;width:15px;height:15px;background:#fff;border-radius:50%;transition:.2s}
+.toggle input:checked+.tslider{background:var(--accent)}
+.toggle input:checked+.tslider::after{transform:translateX(17px)}
+
+/* ── progress ── */
+.pbar{height:5px;background:var(--bg-hover);border-radius:3px;overflow:hidden}
+.pfill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .35s ease}
+.logbox{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px;font-family:'SF Mono',monospace;font-size:11px;color:var(--muted);max-height:110px;overflow-y:auto;line-height:1.6;margin-top:8px}
+
+/* ── gallery ── */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.gitem{position:relative;border-radius:9px;overflow:hidden;border:1px solid var(--border);background:var(--bg-card);aspect-ratio:1;cursor:pointer}
+.gitem img{width:100%;height:100%;object-fit:cover;transition:transform .2s}
+.gitem:hover img{transform:scale(1.03)}
+.gactions{position:absolute;bottom:0;left:0;right:0;padding:7px;background:linear-gradient(transparent,rgba(0,0,0,.8));display:flex;gap:5px;opacity:0;transition:opacity .2s}
+.gitem:hover .gactions{opacity:1}
+
+/* ── modal ── */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:200}
+.overlay.open{display:flex}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;width:540px;max-width:95vw;max-height:82vh;display:flex;flex-direction:column}
+.mhead{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.mtitle{font-size:15px;font-weight:600}
+.mclose{background:none;border:none;color:var(--muted);cursor:pointer;font-size:17px;padding:3px 6px;border-radius:4px}
+.mclose:hover{color:var(--text);background:var(--bg-hover)}
+.msearch{padding:10px 18px;border-bottom:1px solid var(--border)}
+.mlist{overflow-y:auto;flex:1}
+.mitem{padding:11px 18px;cursor:pointer;border-bottom:1px solid var(--border);transition:background .1s}
+.mitem:hover{background:var(--bg-hover)}
+.mitem.sel{background:rgba(124,58,237,.1);border-left:3px solid var(--accent)}
+.miname{font-weight:500;font-size:14px}
+.miid{font-size:11px;color:var(--muted);margin-top:2px;font-family:monospace}
+.mitags{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap}
+.tag{background:var(--bg-hover);color:var(--muted);padding:2px 7px;border-radius:10px;font-size:10px}
+.mfooter{padding:10px 18px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center}
+.mfooter input{flex:1}
+
+/* ── utils ── */
+.hidden{display:none!important}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.frow{display:flex;gap:7px;align-items:center}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">✦ img2img Studio</div>
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('generate',this)">Generate</button>
+    <button class="tab" onclick="switchTab('gallery',this)">Gallery</button>
+  </div>
+  <span id="badge" class="status-badge s-idle">Idle</span>
+</header>
+
+<div class="main">
+<!-- ════ SIDEBAR ════ -->
+<div class="sidebar">
+
+  <!-- Mode -->
+  <div class="panel">
+    <div class="ph">Mode</div>
+    <div class="pb">
+      <div class="mode-tabs">
+        <button class="mode-tab active" onclick="setMode('single',this)">Single</button>
+        <button class="mode-tab" onclick="setMode('character',this)">Character</button>
+        <button class="mode-tab" onclick="setMode('pose',this)">Pose</button>
+      </div>
+
+      <!-- single -->
+      <div id="up-single">
+        <label>Source Image</label>
+        <div class="zone" id="zone-single">
+          <input type="file" accept="image/*" onchange="doUpload(event,'single')" id="fi-single">
+          <div class="zone-icon">🖼️</div>
+          <div class="zone-txt">Drop or click</div>
+        </div>
+        <div class="prev-grid" id="pv-single"></div>
+      </div>
+
+      <!-- character -->
+      <div id="up-character" class="hidden">
+        <label>Character Ref(s)</label>
+        <div class="zone">
+          <input type="file" accept="image/*" multiple onchange="doUpload(event,'characters')">
+          <div class="zone-icon">👤</div>
+          <div class="zone-txt">Multi-select OK</div>
+        </div>
+        <div class="prev-grid" id="pv-characters"></div>
+      </div>
+
+      <!-- pose -->
+      <div id="up-pose" class="hidden">
+        <label>Character Ref(s)</label>
+        <div class="zone">
+          <input type="file" accept="image/*" multiple onchange="doUpload(event,'characters')">
+          <div class="zone-icon">👤</div><div class="zone-txt">Character image(s)</div>
+        </div>
+        <div class="prev-grid" id="pv-characters-pose"></div>
+        <label style="margin-top:8px">Pose Reference</label>
+        <div class="zone">
+          <input type="file" accept="image/*" onchange="doUpload(event,'pose')">
+          <div class="zone-icon">🤸</div><div class="zone-txt">Pose image</div>
+        </div>
+        <div class="prev-grid" id="pv-pose"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAL model -->
+  <div class="panel">
+    <div class="ph">FAL Model</div>
+    <div class="pb">
+      <button class="model-btn" onclick="openModal('fal')">
+        <span class="mname" id="falName">FLUX Pro Kontext</span>
+        <span class="mico">🔍</span>
+      </button>
+      <input type="text" id="falId" value="fal-ai/flux-pro/kontext" placeholder="or type model ID" style="font-family:monospace;font-size:11px">
+      <div class="g2">
+        <div>
+          <label>Guidance</label>
+          <div class="rrow"><input type="range" min="1" max="20" step=".5" value="4.5" id="guidance" oninput="rv('guidance')"><span class="rv" id="rv-guidance">4.5</span></div>
+        </div>
+        <div>
+          <label>Steps</label>
+          <div class="rrow"><input type="range" min="1" max="100" value="50" id="steps" oninput="rv('steps')"><span class="rv" id="rv-steps">50</span></div>
+        </div>
+      </div>
+      <div class="g2">
+        <div><label>Images</label><input type="number" id="numImages" value="1" min="1" max="4"></div>
+        <div><label>Seed</label><input type="number" id="seed" placeholder="random"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Angle -->
+  <div class="panel">
+    <div class="ph">Camera Angle</div>
+    <div class="pb">
+      <div class="angle-grid">
+        <button class="abtn" onclick="setAngle('front',this)">Front</button>
+        <button class="abtn" onclick="setAngle('back',this)">Back</button>
+        <button class="abtn" onclick="setAngle('side-left',this)">Left</button>
+        <button class="abtn" onclick="setAngle('side-right',this)">Right</button>
+        <button class="abtn" onclick="setAngle('three-quarter',this)">3/4</button>
+        <button class="abtn" onclick="setAngle('low',this)">Low</button>
+        <button class="abtn" onclick="setAngle('high',this)">High</button>
+        <button class="abtn" onclick="setAngle('closeup',this)">Closeup</button>
+      </div>
+      <button class="btn btn-secondary btn-sm" style="width:100%" onclick="clearAngle()">✕ Clear Angle</button>
+    </div>
+  </div>
+
+  <!-- Refinement -->
+  <div class="panel">
+    <div class="ph">
+      Refinement (ModelsLab)
+      <label class="toggle" style="margin:0">
+        <input type="checkbox" id="refineOn" onchange="toggleRefine()">
+        <span class="tslider"></span>
+      </label>
+    </div>
+    <div class="pb hidden" id="refinePb">
+      <label>Model</label>
+      <button class="model-btn" onclick="openModal('modelslab')">
+        <span class="mname" id="mlName">anything-v5</span>
+        <span class="mico">🔍</span>
+      </button>
+      <input type="text" id="mlId" value="anything-v5" placeholder="model ID" style="font-family:monospace;font-size:11px">
+      <div>
+        <label>Strength</label>
+        <div class="rrow"><input type="range" min=".05" max="1" step=".05" value=".2" id="rstr" oninput="rv('rstr')"><span class="rv" id="rv-rstr">0.2</span></div>
+      </div>
+      <div class="g2">
+        <div>
+          <label>Steps</label>
+          <div class="rrow"><input type="range" min="10" max="80" value="40" id="rsteps" oninput="rv('rsteps')"><span class="rv" id="rv-rsteps">40</span></div>
+        </div>
+        <div>
+          <label>Guidance</label>
+          <div class="rrow"><input type="range" min="1" max="15" step=".5" value="7" id="rguid" oninput="rv('rguid')"><span class="rv" id="rv-rguid">7</span></div>
+        </div>
+      </div>
+      <label>Scheduler</label>
+      <select id="scheduler">
+        <option value="UniPCMultistepScheduler">UniPC Multistep</option>
+        <option value="DPMSolverMultistepScheduler">DPM Solver Multistep</option>
+        <option value="DDIMScheduler">DDIM</option>
+        <option value="EulerAncestralDiscreteScheduler">Euler Ancestral</option>
+        <option value="EulerDiscreteScheduler">Euler</option>
+        <option value="PNDMScheduler">PNDM</option>
+        <option value="HeunDiscreteScheduler">Heun</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- LoRA -->
+  <div class="panel">
+    <div class="ph">LoRA</div>
+    <div class="pb">
+      <label>LoRA Model</label>
+      <div class="frow">
+        <input type="text" id="loraId" placeholder="Search or enter LoRA ID" style="flex:1">
+        <button class="btn btn-secondary btn-sm" onclick="openModal('lora')">🔍</button>
+      </div>
+      <div>
+        <label>Strength</label>
+        <div class="rrow"><input type="range" min="0" max="1" step=".05" value=".8" id="loraStr" oninput="rv('loraStr')"><span class="rv" id="rv-loraStr">0.8</span></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /sidebar -->
+
+<!-- ════ CONTENT ════ -->
+<div class="content">
+
+  <!-- Generate tab -->
+  <div id="tab-generate">
+    <div class="panel">
+      <div class="pb" style="padding:13px">
+        <label>Prompt</label>
+        <textarea id="prompt" rows="3" placeholder="Describe what you want…"></textarea>
+        <label style="margin-top:7px">Negative Prompt</label>
+        <textarea id="negPrompt" rows="2" placeholder="What to avoid…"></textarea>
+      </div>
+    </div>
+
+    <button class="gen-btn" id="genBtn" onclick="generate()">✦ Generate</button>
+
+    <div class="panel hidden" id="progPanel">
+      <div class="pb">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+          <span id="progLabel" style="color:var(--muted)">Running…</span>
+          <span id="progPct" style="font-weight:600;color:var(--accent-l)">0%</span>
+        </div>
+        <div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+        <div class="logbox" id="logbox"></div>
+      </div>
+    </div>
+
+    <div class="hidden" id="outSec">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+        <span style="font-weight:600;font-size:14px">Output</span>
+      </div>
+      <div class="gallery" id="outGrid"></div>
+    </div>
+  </div>
+
+  <!-- Gallery tab -->
+  <div id="tab-gallery" class="hidden">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+      <span style="font-size:17px;font-weight:600">Gallery</span>
+      <button class="btn btn-secondary btn-sm" onclick="loadGallery()">↻ Refresh</button>
+    </div>
+    <div class="gallery" id="galGrid"></div>
+  </div>
+
+</div><!-- /content -->
+</div><!-- /main -->
+
+<!-- ════ MODALS ════ -->
+
+<!-- FAL -->
+<div class="overlay" id="modal-fal" onclick="maybeClose(event,'fal')">
+  <div class="modal">
+    <div class="mhead"><span class="mtitle">FAL Model</span><button class="mclose" onclick="closeModal('fal')">✕</button></div>
+    <div class="msearch"><input type="text" id="falSearch" placeholder="Search by name or tag…" oninput="filterFal(this.value)" style="width:100%"></div>
+    <div class="mlist" id="falList"></div>
+    <div class="mfooter">
+      <input type="text" id="falCustom" placeholder="Custom model ID (fal-ai/…)">
+      <button class="btn btn-primary btn-sm" onclick="useFalCustom()">Use</button>
+    </div>
+  </div>
+</div>
+
+<!-- ModelsLab -->
+<div class="overlay" id="modal-modelslab" onclick="maybeClose(event,'modelslab')">
+  <div class="modal">
+    <div class="mhead"><span class="mtitle">ModelsLab Model</span><button class="mclose" onclick="closeModal('modelslab')">✕</button></div>
+    <div class="msearch">
+      <div class="frow">
+        <input type="text" id="mlSearch" placeholder="Search…" style="flex:1" onkeydown="if(event.key==='Enter')searchML()">
+        <button class="btn btn-secondary btn-sm" onclick="searchML()">Search</button>
+      </div>
+    </div>
+    <div class="mlist" id="mlList"><div style="padding:18px;text-align:center;color:var(--muted)">Click Search to load models</div></div>
+    <div class="mfooter">
+      <input type="text" id="mlCustom" placeholder="Custom model ID">
+      <button class="btn btn-primary btn-sm" onclick="useMLCustom()">Use</button>
+    </div>
+  </div>
+</div>
+
+<!-- LoRA -->
+<div class="overlay" id="modal-lora" onclick="maybeClose(event,'lora')">
+  <div class="modal">
+    <div class="mhead"><span class="mtitle">LoRA Model</span><button class="mclose" onclick="closeModal('lora')">✕</button></div>
+    <div class="msearch">
+      <div class="frow">
+        <input type="text" id="loraSearch" placeholder="Search LoRAs…" style="flex:1" onkeydown="if(event.key==='Enter')searchLora()">
+        <button class="btn btn-secondary btn-sm" onclick="searchLora()">Search</button>
+      </div>
+    </div>
+    <div class="mlist" id="loraList"><div style="padding:18px;text-align:center;color:var(--muted)">Click Search to load LoRAs</div></div>
+    <div class="mfooter">
+      <input type="text" id="loraCustom" placeholder="Custom LoRA ID">
+      <button class="btn btn-primary btn-sm" onclick="useLoraCustom()">Use</button>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="overlay" id="lightbox" onclick="closeLB()">
+  <div onclick="event.stopPropagation()" style="max-width:90vw;max-height:90vh;display:flex;flex-direction:column;gap:8px;align-items:center">
+    <img id="lbImg" style="max-width:90vw;max-height:82vh;border-radius:9px;display:block">
+    <div style="display:flex;gap:8px">
+      <a id="lbDl" class="btn btn-secondary btn-sm" download>⬇ Download</a>
+      <button class="btn btn-secondary btn-sm" onclick="closeLB()">✕ Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── state ───────────────────────────────────────────────────
+let mode = 'single';
+let angle = null;
+let uploads = { single: null, characters: [], pose: null };
+let falCatalog = [];
+
+// ─── init ────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  ['guidance','steps','rstr','rsteps','rguid','loraStr'].forEach(rv);
+  fetchFalCatalog();
+  setupDrag();
+});
+
+// ─── tabs ────────────────────────────────────────────────────
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-generate').classList.toggle('hidden', name !== 'generate');
+  document.getElementById('tab-gallery').classList.toggle('hidden', name !== 'gallery');
+  if (name === 'gallery') loadGallery();
+}
+
+// ─── mode ────────────────────────────────────────────────────
+function setMode(m, btn) {
+  mode = m;
+  document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['single','character','pose'].forEach(k =>
+    document.getElementById('up-'+k).classList.toggle('hidden', k !== m)
+  );
+}
+
+// ─── angle ───────────────────────────────────────────────────
+function setAngle(a, btn) {
+  angle = a;
+  document.querySelectorAll('.abtn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function clearAngle() {
+  angle = null;
+  document.querySelectorAll('.abtn').forEach(b => b.classList.remove('active'));
+}
+
+// ─── range display ───────────────────────────────────────────
+function rv(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  document.getElementById('rv-'+id).textContent = el.value;
+}
+
+// ─── toggle refine ───────────────────────────────────────────
+function toggleRefine() {
+  document.getElementById('refinePb').classList.toggle('hidden',
+    !document.getElementById('refineOn').checked);
+}
+
+// ─── drag & drop ─────────────────────────────────────────────
+function setupDrag() {
+  document.querySelectorAll('.zone').forEach(z => {
+    z.addEventListener('dragover', e => { e.preventDefault(); z.classList.add('drag'); });
+    z.addEventListener('dragleave', () => z.classList.remove('drag'));
+    z.addEventListener('drop', e => {
+      e.preventDefault(); z.classList.remove('drag');
+      const inp = z.querySelector('input[type=file]');
+      const t = inp.multiple ? 'characters' : (inp.id === 'fi-single' ? 'single' : 'pose');
+      uploadFiles(Array.from(e.dataTransfer.files), t);
+    });
+  });
+}
+
+async function doUpload(ev, type) {
+  await uploadFiles(Array.from(ev.target.files), type);
+}
+
+async function uploadFiles(files, type) {
+  const fd = new FormData();
+  if (type === 'characters') files.forEach(f => fd.append('characters', f));
+  else fd.append(type, files[0]);
+  const res = await fetch('/api/upload', { method: 'POST', body: fd });
+  const data = await res.json();
+  if (type === 'characters') {
+    uploads.characters = [...uploads.characters, ...(data.characters || [])];
+    renderPrev('characters', uploads.characters);
+    renderPrev('characters-pose', uploads.characters);
+  } else if (type === 'single') {
+    uploads.single = data.image;
+    renderPrev('single', uploads.single ? [uploads.single] : []);
+  } else if (type === 'pose') {
+    uploads.pose = data.pose;
+    renderPrev('pose', uploads.pose ? [uploads.pose] : []);
+  }
+}
+
+function renderPrev(type, paths) {
+  const c = document.getElementById('pv-'+type);
+  if (!c) return;
+  c.innerHTML = paths.map((p, i) => `
+    <div class="prev-item">
+      <img src="/api/preview?path=${encodeURIComponent(p)}" alt="">
+      <button class="prev-rm" onclick="rmPrev('${type}',${i})">✕</button>
+    </div>`).join('');
+}
+
+function rmPrev(type, i) {
+  if (type === 'characters' || type === 'characters-pose') {
+    uploads.characters.splice(i, 1);
+    renderPrev('characters', uploads.characters);
+    renderPrev('characters-pose', uploads.characters);
+  } else if (type === 'single') {
+    uploads.single = null; renderPrev('single', []);
+  } else if (type === 'pose') {
+    uploads.pose = null; renderPrev('pose', []);
+  }
+}
+
+// ─── generate ────────────────────────────────────────────────
+async function generate() {
+  // validate
+  if (mode === 'single' && !uploads.single) return alert('Upload an image first.');
+  if ((mode === 'character' || mode === 'pose') && !uploads.characters.length) return alert('Upload character image(s).');
+  if (mode === 'pose' && !uploads.pose) return alert('Upload a pose reference image.');
+
+  const config = {
+    mode,
+    fal_model: document.getElementById('falId').value.trim() || 'fal-ai/flux-pro/kontext',
+    prompt: document.getElementById('prompt').value,
+    neg_prompt: document.getElementById('negPrompt').value,
+    guidance_scale: +document.getElementById('guidance').value,
+    steps: +document.getElementById('steps').value,
+    num_images: +document.getElementById('numImages').value,
+    seed: document.getElementById('seed').value || null,
+    angle,
+    refine: document.getElementById('refineOn').checked,
+    ml_model: document.getElementById('mlId').value.trim(),
+    refine_strength: +document.getElementById('rstr').value,
+    refine_steps: +document.getElementById('rsteps').value,
+    refine_guidance: +document.getElementById('rguid').value,
+    scheduler: document.getElementById('scheduler').value,
+    lora: document.getElementById('loraId').value.trim() || null,
+    lora_strength: +document.getElementById('loraStr').value,
+  };
+
+  document.getElementById('genBtn').disabled = true;
+  document.getElementById('progPanel').classList.remove('hidden');
+  document.getElementById('outSec').classList.add('hidden');
+  document.getElementById('outGrid').innerHTML = '';
+  document.getElementById('logbox').innerHTML = '';
+  setProgress(0, 'Submitting…');
+  setBadge('run');
+
+  const res = await fetch('/api/generate', {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ config, images: uploads }),
+  });
+  const { job_id } = await res.json();
+
+  const es = new EventSource(`/api/jobs/${job_id}/stream`);
+  es.onmessage = e => onEvent(JSON.parse(e.data), es);
+  es.onerror = () => { es.close(); setBadge('err'); appendLog('Connection lost.'); enableGen(); };
+}
+
+function onEvent(msg, es) {
+  if (msg.type === 'log') {
+    if (msg.text.startsWith('progress:')) {
+      setProgress(+msg.text.split(':')[1], document.getElementById('progLabel').textContent);
+    } else {
+      appendLog(msg.text);
+    }
+  } else if (msg.type === 'phase') {
+    setProgress(msg.phase === 'refine' ? 55 : 5, msg.phase === 'refine' ? 'Refining…' : 'Generating…');
+  } else if (msg.type === 'image') {
+    addImage(msg.filename);
+    document.getElementById('outSec').classList.remove('hidden');
+  } else if (msg.type === 'done') {
+    es.close(); setProgress(100, 'Done!'); setBadge('done'); enableGen();
+  } else if (msg.type === 'error') {
+    es.close(); appendLog('Error: '+msg.message); setBadge('err'); enableGen();
+  }
+}
+
+function enableGen() { document.getElementById('genBtn').disabled = false; }
+
+function setProgress(pct, label) {
+  document.getElementById('pfill').style.width = pct+'%';
+  document.getElementById('progPct').textContent = pct+'%';
+  document.getElementById('progLabel').textContent = label;
+}
+
+function appendLog(t) {
+  const b = document.getElementById('logbox');
+  b.innerHTML += `<div>${t}</div>`;
+  b.scrollTop = b.scrollHeight;
+}
+
+function addImage(fname) {
+  const g = document.getElementById('outGrid');
+  const d = document.createElement('div');
+  d.className = 'gitem';
+  d.innerHTML = `
+    <img src="/out/${fname}" loading="lazy" onclick="openLB('/out/${fname}')">
+    <div class="gactions">
+      <a href="/out/${fname}" download="${fname}" class="btn btn-secondary btn-sm">⬇ Save</a>
+      <button class="btn btn-secondary btn-sm" onclick="openLB('/out/${fname}')">⤢ View</button>
+    </div>`;
+  g.appendChild(d);
+}
+
+function setBadge(s) {
+  const b = document.getElementById('badge');
+  b.className = 'status-badge s-'+s;
+  b.innerHTML = {idle:'Idle',run:'<span class="spinner"></span> Running',done:'✓ Done',err:'✕ Error'}[s];
+}
+
+// ─── gallery ─────────────────────────────────────────────────
+async function loadGallery() {
+  const res = await fetch('/api/images');
+  const imgs = await res.json();
+  document.getElementById('galGrid').innerHTML = imgs.map(f => `
+    <div class="gitem" onclick="openLB('/out/${f}')">
+      <img src="/out/${f}" loading="lazy">
+      <div class="gactions">
+        <a href="/out/${f}" download="${f}" class="btn btn-secondary btn-sm" onclick="event.stopPropagation()">⬇ Save</a>
+      </div>
+    </div>`).join('');
+}
+
+// ─── lightbox ────────────────────────────────────────────────
+function openLB(src) {
+  document.getElementById('lbImg').src = src;
+  document.getElementById('lbDl').href = src;
+  document.getElementById('lbDl').download = src.split('/').pop();
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLB() { document.getElementById('lightbox').classList.remove('open'); }
+
+// ─── FAL catalog ─────────────────────────────────────────────
+async function fetchFalCatalog() {
+  const res = await fetch('/api/search/fal');
+  falCatalog = await res.json();
+  renderFalList(falCatalog);
+}
+
+function filterFal(q) {
+  const lq = q.toLowerCase();
+  renderFalList(q ? falCatalog.filter(m =>
+    m.id.toLowerCase().includes(lq) ||
+    m.name.toLowerCase().includes(lq) ||
+    (m.tags||[]).some(t => t.includes(lq))
+  ) : falCatalog);
+}
+
+function renderFalList(models) {
+  document.getElementById('falList').innerHTML = models.map(m => `
+    <div class="mitem" onclick="pickFal('${m.id}','${m.name.replace(/'/g,"\\'")}')">
+      <div class="miname">${m.name}</div>
+      <div class="miid">${m.id}</div>
+      <div class="mitags">${(m.tags||[]).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    </div>`).join('');
+}
+
+function pickFal(id, name) {
+  document.getElementById('falId').value = id;
+  document.getElementById('falName').textContent = name;
+  closeModal('fal');
+}
+
+function useFalCustom() {
+  const id = document.getElementById('falCustom').value.trim();
+  if (id) { document.getElementById('falId').value = id; document.getElementById('falName').textContent = id; closeModal('fal'); }
+}
+
+// ─── ModelsLab search ────────────────────────────────────────
+async function searchML() {
+  const q = document.getElementById('mlSearch').value;
+  const list = document.getElementById('mlList');
+  list.innerHTML = '<div style="padding:18px;text-align:center;color:var(--muted)">Loading…</div>';
+  const res = await fetch(`/api/search/modelslab?q=${encodeURIComponent(q)}`);
+  const data = await res.json();
+  const models = data.models || [];
+  if (!models.length) {
+    list.innerHTML = `<div style="padding:18px;text-align:center;color:var(--muted)">${data.error || 'No results'}</div>`;
+    return;
+  }
+  list.innerHTML = models.map(m => {
+    const id = typeof m === 'string' ? m : (m.model_id || m.id || String(m));
+    const name = typeof m === 'string' ? m : (m.name || m.title || m.model_name || id);
+    return `<div class="mitem" onclick="pickML('${id.replace(/'/g,"\\'")}')">
+      <div class="miname">${name}</div><div class="miid">${id}</div>
+    </div>`;
+  }).join('');
+}
+
+function pickML(id) {
+  document.getElementById('mlId').value = id;
+  document.getElementById('mlName').textContent = id;
+  closeModal('modelslab');
+}
+
+function useMLCustom() {
+  const id = document.getElementById('mlCustom').value.trim();
+  if (id) { document.getElementById('mlId').value = id; document.getElementById('mlName').textContent = id; closeModal('modelslab'); }
+}
+
+// ─── LoRA search ─────────────────────────────────────────────
+async function searchLora() {
+  const q = document.getElementById('loraSearch').value;
+  const list = document.getElementById('loraList');
+  list.innerHTML = '<div style="padding:18px;text-align:center;color:var(--muted)">Loading…</div>';
+  const res = await fetch(`/api/search/lora?q=${encodeURIComponent(q)}`);
+  const data = await res.json();
+  const loras = data.loras || [];
+  if (!loras.length) {
+    list.innerHTML = `<div style="padding:18px;text-align:center;color:var(--muted)">${data.error || 'No results'}</div>`;
+    return;
+  }
+  list.innerHTML = loras.map(l => {
+    const id = typeof l === 'string' ? l : (l.model_id || l.id || String(l));
+    const name = typeof l === 'string' ? l : (l.name || l.title || id);
+    return `<div class="mitem" onclick="pickLora('${id.replace(/'/g,"\\'")}')">
+      <div class="miname">${name}</div><div class="miid">${id}</div>
+    </div>`;
+  }).join('');
+}
+
+function pickLora(id) {
+  document.getElementById('loraId').value = id;
+  closeModal('lora');
+}
+
+function useLoraCustom() {
+  const id = document.getElementById('loraCustom').value.trim();
+  if (id) { document.getElementById('loraId').value = id; closeModal('lora'); }
+}
+
+// ─── modals ──────────────────────────────────────────────────
+function openModal(type) { document.getElementById('modal-'+type).classList.add('open'); }
+function closeModal(type) { document.getElementById('modal-'+type).classList.remove('open'); }
+function maybeClose(e, type) { if (e.target === e.currentTarget) closeModal(type); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape')
+    document.querySelectorAll('.overlay.open').forEach(o => o.classList.remove('open'));
+});
+</script>
+</body>
+</html>

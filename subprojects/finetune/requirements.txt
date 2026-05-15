@@ -1,0 +1,18 @@
+# Installed in stages by remote_setup.sh. Order matters because Unsloth
+# needs torch to be importable before it builds. Do NOT use this file
+# with a plain `pip install -r` — go through remote_setup.sh.
+
+# stage 2 (after torch + xformers are installed):
+bitsandbytes>=0.44.0
+transformers>=4.46.0,<5
+trl>=0.12.0,<0.25
+peft>=0.13.0
+accelerate>=1.1.0
+datasets>=3.0.0,<4
+sentencepiece
+protobuf
+hf_transfer
+
+# stage 3 (last, depends on torch already being importable):
+unsloth
+unsloth_zoo

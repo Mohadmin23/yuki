@@ -89,6 +89,6 @@ llama-voice-assist/
 ├── subprojects/         # Side workflows kept out of the main tree
 │   ├── img2img/         # FLUX Kontext + Counterfeit refine
 │   ├── finetune/        # LoRA training pipeline (Thunder Compute)
-│   └── Fine-tune-Dataset-Quality-Scorer/
+│   └── Fine-tune-Dataset-Quality-Scorer/ # small test to test the dataset qulity
 └── yuki/                # Bot's personal file storage (images, scratch)
 ```

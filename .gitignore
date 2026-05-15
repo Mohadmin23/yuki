@@ -8,3 +8,6 @@ test_generated/
 data/
 .venv/
 yuki/
+
+# Third-party tool cloned locally — not vendored
+subprojects/Fine-tune-Dataset-Quality-Scorer/
