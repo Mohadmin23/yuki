@@ -87,6 +87,7 @@ llama-voice-assist/
 ├── tests/               # Pytest suite (run with `llama test`)
 ├── docs/                # Design notes (TODO-memory-security, system-note)
 ├── subprojects/         # Side workflows kept out of the main tree
+│   ├── image_gen/       # txt2img CLI/API (ModelsLab + HF Spaces fallback)
 │   ├── img2img/         # FLUX Kontext + Counterfeit refine
 │   ├── finetune/        # LoRA training pipeline (Thunder Compute)
 │   └── Fine-tune-Dataset-Quality-Scorer/ # small test to test the dataset qulity

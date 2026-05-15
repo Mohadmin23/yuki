@@ -385,7 +385,7 @@ def main():
         print(f"  LoRA:     {DEFAULT_LORA}")
         print(f"  Docs:     http://localhost:8899/docs\n")
         Granian(
-            "tests.test_image_gen:create_app",
+            "image_gen:create_app",
             factory=True,
             address="0.0.0.0",
             port=8899,
