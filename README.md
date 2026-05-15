@@ -16,7 +16,7 @@ A local voice assistant running entirely on your machine using Qwen2.5-1.5B (MLX
 llama setup
 ```
 
-This creates a Python 3.12 venv and installs all dependencies automatically.
+This runs `uv sync` to create a `.venv` and install all dependencies. Requires [`uv`](https://docs.astral.sh/uv/) and Python 3.12.
 
 ## Usage
 
@@ -42,7 +42,7 @@ llama test
 
 ### All Commands
 ```
-llama setup   — Create Python 3.12 venv and install all dependencies
+llama setup   — Run 'uv sync' to install all dependencies into .venv
 llama cli     — Launch the terminal chatbot (select model, persona, TTS)
 llama web     — Launch the web UI with animated bubble on port 7860
 llama test    — Run the test suite with pytest
@@ -53,11 +53,12 @@ llama help    — Show help
 
 - **Token stats** — shows tokens/s after every LLM response
 - **MLX warmup** — pre-compiles the compute graph so first response is fast
-- **Multi-backend** — supports GGUF (llama-cpp), MLX (Apple Silicon), and Transformers
+- **Multi-backend** — supports MLX (Apple Silicon), Transformers, and OpenRouter cloud models
 - **Auto model discovery** — searches external drive and `~/.cache/huggingface/hub`
 - **Personas** — choose a character (Yuki, Coder, Therapist) or go default
 - **ReAct tools** — LLM can search the web, check weather/time, read/write files, run safe shell commands
 - **Autonomous mode** — bot speaks unprompted after silence
+- **Dual memory** — hash-based fact memory (`data/memory.json`) for names/preferences + sqlite-vec episodic memory (`data/episodic_v2.db`) for conversational vibes, embedded via OpenRouter `text-embedding-3-small`
 
 ## Web Interface Features
 
@@ -75,7 +76,7 @@ llama-voice-assist/
 ├── ms_llama.py          # Core voice chatbot engine
 ├── episodic.py          # Episodic vector memory (sqlite-vec + OpenRouter)
 ├── interface/
-│   ├── server.py        # FastAPI backend (port 7860)
+│   ├── server.py        # FastAPI + Granian backend (port 7860)
 │   └── *.html           # Web UI
 ├── personas/
 │   ├── yuki.txt         # Playful anime character
