@@ -1,8 +1,10 @@
 .DS_Store
 __pycache__/
+.pytest_cache/
+*.log
+*.bak
 output/
 test_generated/
 data/
 .venv/
 yuki/
-yuki-run.log

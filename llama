@@ -10,9 +10,6 @@ set -euo pipefail
 
 SCRIPT_PATH="$(readlink -f "$0" 2>/dev/null || python3 -c "import os; print(os.path.realpath('$0'))")"
 PROJECT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
-VENV_DIR="$PROJECT_DIR/.venv"
-PYTHON_BIN="python3.12"
-REQUIREMENTS="$PROJECT_DIR/requirements.txt"
 
 # ---------- colors ----------
 RED='\033[0;31m'
@@ -29,80 +26,43 @@ err()   { printf "${RED}[error]${RESET} %s\n" "$*" >&2; }
 
 # ---------- helpers ----------
 
-ensure_python312() {
-    if ! command -v "$PYTHON_BIN" &>/dev/null; then
-        err "Python 3.12 is required but '$PYTHON_BIN' was not found."
-        err "Install it via: brew install python@3.12"
+ensure_uv() {
+    if ! command -v uv &>/dev/null; then
+        err "uv is required but was not found."
+        err "Install it via: brew install uv"
         exit 1
     fi
-}
-
-ensure_venv() {
-    if [ ! -d "$VENV_DIR" ]; then
-        warn "Virtual environment not found at $VENV_DIR"
-        info "Creating venv with $PYTHON_BIN ..."
-        ensure_python312
-        "$PYTHON_BIN" -m venv "$VENV_DIR"
-        ok "venv created at $VENV_DIR"
-        install_deps
-    fi
-}
-
-activate_venv() {
-    # shellcheck disable=SC1091
-    source "$VENV_DIR/bin/activate"
-}
-
-install_deps() {
-    info "Installing dependencies from requirements.txt ..."
-    activate_venv
-    pip install --upgrade pip -q
-    pip install -r "$REQUIREMENTS"
-    ok "Dependencies installed."
 }
 
 # ---------- commands ----------
 
 cmd_setup() {
-    info "Setting up llama-voice-assist ..."
-    ensure_python312
-    if [ -d "$VENV_DIR" ]; then
-        warn "venv already exists at $VENV_DIR"
-        info "Reinstalling dependencies ..."
-        install_deps
-    else
-        info "Creating venv with $PYTHON_BIN ..."
-        "$PYTHON_BIN" -m venv "$VENV_DIR"
-        ok "venv created at $VENV_DIR"
-        install_deps
-    fi
-    echo ""
+    info "Setting up llama-voice-assist with uv ..."
+    ensure_uv
+    (cd "$PROJECT_DIR" && uv sync)
     ok "Setup complete! Run 'llama cli' or 'llama web' to start."
 }
 
 cmd_cli() {
-    ensure_venv
-    activate_venv
+    ensure_uv
     info "Launching CLI chatbot ..."
     echo ""
-    python "$PROJECT_DIR/ms_llama.py" "$@"
+    (cd "$PROJECT_DIR" && uv run python ms_llama.py "$@")
 }
 
 cmd_web() {
-    ensure_venv
-    activate_venv
+    ensure_uv
     info "Launching web UI on http://localhost:7860 ..."
     info "Configure model, API key, and persona in the browser"
     echo ""
-    python "$PROJECT_DIR/interface/server.py" "$@"
+    (cd "$PROJECT_DIR" && uv run python interface/server.py "$@")
 }
 
 cmd_test() {
-    ensure_venv
-    activate_venv
+    ensure_uv
     info "Running tests ..."
     echo ""
-    python -m pytest "$PROJECT_DIR/test_ms_llama.py" -v "$@"
+    (cd "$PROJECT_DIR" && uv run pytest tests/ -v "$@")
 }
 
 cmd_help() {
@@ -112,7 +72,7 @@ cmd_help() {
     printf "  ${BOLD}Usage:${RESET} llama <command>\n"
     echo ""
     printf "  ${BOLD}Commands:${RESET}\n"
-    printf "    ${GREEN}setup${RESET}   Create Python 3.12 venv and install all dependencies\n"
+    printf "    ${GREEN}setup${RESET}   Run 'uv sync' to install all dependencies into .venv\n"
     printf "    ${GREEN}cli${RESET}     Launch the terminal chatbot (select model, persona, TTS)\n"
     printf "    ${GREEN}web${RESET}     Launch the web UI with animated bubble on port 7860\n"
     printf "    ${GREEN}test${RESET}    Run the test suite with pytest\n"

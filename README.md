@@ -71,21 +71,23 @@ llama help    — Show help
 ```
 llama-voice-assist/
 ├── llama                # CLI launcher (symlinked to PATH)
-├── requirements.txt     # Python dependencies
+├── pyproject.toml       # Python deps (managed with uv)
 ├── ms_llama.py          # Core voice chatbot engine
-├── test_ms_llama.py     # Pytest test suite
+├── episodic.py          # Episodic vector memory (sqlite-vec + OpenRouter)
 ├── interface/
 │   ├── server.py        # FastAPI backend (port 7860)
-│   └── index.html       # Web UI
-├── scripts/
-│   ├── run-cli.sh       # Shortcut: launch terminal chatbot
-│   ├── run-web.sh       # Shortcut: launch web UI
-│   └── run-test.sh      # Shortcut: run tests
-├── output/
-│   └── response.wav     # Generated TTS audio (gitignored)
+│   └── *.html           # Web UI
 ├── personas/
 │   ├── yuki.txt         # Playful anime character
 │   ├── coder.txt        # Senior engineer persona
 │   └── therapist.txt    # Empathetic therapist persona
-└── yuki/                # Bot's personal file storage
+├── data/                # Runtime state (memory.json, episodic_v2.db, chats/)
+│   └── archive/         # Old memory backups
+├── tests/               # Pytest suite (run with `llama test`)
+├── docs/                # Design notes (TODO-memory-security, system-note)
+├── subprojects/         # Side workflows kept out of the main tree
+│   ├── img2img/         # FLUX Kontext + Counterfeit refine
+│   ├── finetune/        # LoRA training pipeline (Thunder Compute)
+│   └── Fine-tune-Dataset-Quality-Scorer/
+└── yuki/                # Bot's personal file storage (images, scratch)
 ```
