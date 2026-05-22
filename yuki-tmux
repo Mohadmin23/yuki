@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# yuki-tmux — spin up a 3-pane tmux session for Yuki + Claude bridge.
+#
+# Layout:
+#   ┌──────────────────┬─────────────────┐
+#   │                  │   logs (tail)   │
+#   │   yuki cli       ├─────────────────┤
+#   │   (pane 0)       │   claude code   │
+#   │                  │   (target pane) │
+#   └──────────────────┴─────────────────┘
+#
+# Yuki's ask_claude tool sends questions into the claude pane via
+# `tmux send-keys`, captures the reply, and hands it back to Yuki so
+# she can paraphrase to you in pane 0.
+
+set -euo pipefail
+
+SESSION="yuki"
+PROJECT_DIR="$(cd "$(dirname "$(readlink -f "$0" 2>/dev/null || echo "$0")")" && pwd)"
+
+if ! command -v tmux >/dev/null; then
+    echo "tmux not installed. brew install tmux" >&2
+    exit 1
+fi
+
+if tmux has-session -t "$SESSION" 2>/dev/null; then
+    echo "Session '$SESSION' already exists — attaching."
+    exec tmux attach -t "$SESSION"
+fi
+
+# Use pane IDs (%N) so this works regardless of base-index settings.
+P_YUKI=$(tmux new-session -d -s "$SESSION" -n main -c "$PROJECT_DIR" -P -F '#{pane_id}')
+P_LOGS=$(tmux split-window -h -t "$P_YUKI" -c "$PROJECT_DIR" -P -F '#{pane_id}')
+P_CLAUDE=$(tmux split-window -v -t "$P_LOGS" -c "$PROJECT_DIR" -P -F '#{pane_id}')
+
+# Balance horizontals so the left (yuki) gets ~60%.
+tmux resize-pane -t "$P_YUKI" -x 60%
+
+# Pane 0: Yuki CLI. Export the claude pane ID so ask_claude knows where to send.
+tmux send-keys -t "$P_YUKI" "export YUKI_CLAUDE_PANE='$P_CLAUDE'" C-m
+tmux send-keys -t "$P_YUKI" "clear && llama cli" C-m
+
+# Pane 1: logs. memory.json is the closest thing to a live activity stream —
+# new facts and chat state changes land here. Swap for any file you'd rather watch.
+tmux send-keys -t "$P_LOGS" "clear && echo '[watching data/memory.json — edit yuki-tmux to change target]' && tail -F data/memory.json" C-m
+
+# Pane 2: Claude Code, ready to receive questions from Yuki.
+tmux send-keys -t "$P_CLAUDE" "clear && claude" C-m
+
+# Park focus on the Yuki pane.
+tmux select-pane -t "$P_YUKI"
+
+exec tmux attach -t "$SESSION"
