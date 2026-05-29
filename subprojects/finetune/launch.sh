@@ -7,7 +7,7 @@
 #   tnr login --token $THUNDER_API_TOKEN   # or: tnr login (opens browser)
 #
 # Usage:
-#   ./launch.sh provision   # create H100, upload files, print connect cmd
+#   ./launch.sh provision   # create A100, upload files, print connect cmd
 #   ./launch.sh upload      # re-upload code/dataset to instance 0
 #   ./launch.sh connect     # SSH in
 #   ./launch.sh pull        # copy adapter back to ./output/
@@ -17,7 +17,7 @@ set -euo pipefail
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "${HERE}/../.." && pwd)"
-DATASET="${HERE}/datasets/yuki_clean_v2.jsonl"
+DATASET="${HERE}/datasets/yuki_clean_v4.jsonl"
 INSTANCE_ID="${INSTANCE_ID:-0}"
 REMOTE_DIR="/home/ubuntu/yuki-finetune"
 
@@ -30,8 +30,8 @@ require_dataset() {
 
 cmd_provision() {
     require_dataset
-    echo "[launch] creating H100 instance..."
-    tnr create --gpu h100 --vcpus 16 --primary-disk 250 --mode production
+    echo "[launch] creating A100 instance..."
+    tnr create --gpu a100 --vcpus 16 --primary-disk 250 --mode production
     echo "[launch] waiting for instance to come up..."
     tnr status
     cmd_upload
@@ -51,9 +51,10 @@ cmd_upload() {
     echo "[launch] uploading to instance ${INSTANCE_ID}:${REMOTE_DIR}/ ..."
     echo "[launch] (if scp fails with 'No such file', SSH in and mkdir -p ${REMOTE_DIR})"
     tnr scp "${HERE}/train.py"          "${INSTANCE_ID}:${REMOTE_DIR}/train.py"
+    tnr scp "${HERE}/chat.py"           "${INSTANCE_ID}:${REMOTE_DIR}/chat.py"
     tnr scp "${HERE}/requirements.txt"  "${INSTANCE_ID}:${REMOTE_DIR}/requirements.txt"
     tnr scp "${HERE}/remote_setup.sh"   "${INSTANCE_ID}:${REMOTE_DIR}/remote_setup.sh"
-    tnr scp "${DATASET}"                "${INSTANCE_ID}:${REMOTE_DIR}/yuki_clean_v2.jsonl"
+    tnr scp "${DATASET}"                "${INSTANCE_ID}:${REMOTE_DIR}/yuki_clean_v4.jsonl"
 }
 
 cmd_connect() {

@@ -12,6 +12,7 @@ datasets>=3.0.0,<4
 sentencepiece
 protobuf
 hf_transfer
+prompt_toolkit>=3.0.0  # chat.py TUI tester (not needed for training)
 
 # stage 3 (last, depends on torch already being importable):
 unsloth

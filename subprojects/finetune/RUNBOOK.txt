@@ -1,8 +1,9 @@
 YUKI FINE-TUNE RUNBOOK
 ======================
 Qwen3-32B + QLoRA on Thunder Compute A100 80GB.
-Dataset: yuki_clean_v2.jsonl (432 rows).
-Expected wall-clock: ~30-45 min training + ~10 min setup + ~10 min uploads.
+Dataset: yuki_clean_v4.jsonl (731 rows).
+Expected wall-clock: ~5-15 min training + ~10 min setup + ~10 min uploads.
+  (train.py uses MAX_SEQ_LEN=1024 + packing=True; dataset p99 is ~700 tok.)
 Expected cost: ~$1.50-2.50 total on A100 (varies with Thunder pricing).
 
 
@@ -22,11 +23,12 @@ STEP 0 -- ONE-TIME LOCAL SETUP (on the M1 Air)
 
 STEP 1 -- PROVISION THE GPU BOX
 -------------------------------
-1.1  Edit finetune/launch.sh, line ~38, swap "h100" for "a100":
+1.1  launch.sh now defaults to A100. If you want to switch GPU, edit the
+     `tnr create` line in launch.sh:
          tnr create --gpu a100 --vcpus 16 --primary-disk 250 --mode production
 
 1.2  Run the provision step. This creates the box AND uploads train.py,
-     requirements.txt, remote_setup.sh, and yuki_clean_v2.jsonl:
+     requirements.txt, remote_setup.sh, and yuki_clean_v4.jsonl:
          cd ~/llama-voice-assist
          ./finetune/launch.sh provision
 
@@ -57,7 +59,7 @@ STEP 3 -- TRAIN
 3.1  Still on the remote box, still inside tmux:
          source ~/yuki-finetune/.venv/bin/activate
          python train.py \
-             --dataset ~/yuki-finetune/yuki_clean_v2.jsonl \
+             --dataset ~/yuki-finetune/yuki_clean_v4.jsonl \
              --output ~/yuki-finetune/output \
              --epochs 3
 
@@ -77,7 +79,7 @@ backend. Adds ~10-15 min on the remote box.
 
 4.1  Re-run train.py with the export flag (it reuses the adapter):
          python train.py \
-             --dataset ~/yuki-finetune/yuki_clean_v2.jsonl \
+             --dataset ~/yuki-finetune/yuki_clean_v4.jsonl \
              --output ~/yuki-finetune/output \
              --epochs 0 \
              --export-gguf q4_k_m

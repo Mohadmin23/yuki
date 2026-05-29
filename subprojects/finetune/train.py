@@ -1,12 +1,12 @@
 """
 Yuki fine-tune: Qwen3-32B + QLoRA via Unsloth.
 
-Runs on the Thunder Compute H100 (80GB). Do not run on the M1 Air.
+Runs on the Thunder Compute A100/H100 (80GB). Do not run on the M1 Air.
 
 Usage on the remote box:
     cd /home/ubuntu/yuki-finetune
     python train.py \
-        --dataset /home/ubuntu/yuki-finetune/yuki_clean_v2.jsonl \
+        --dataset /home/ubuntu/yuki-finetune/yuki_clean_v4.jsonl \
         --output /home/ubuntu/yuki-finetune/output \
         --epochs 3
 
@@ -33,7 +33,7 @@ from unsloth.chat_templates import get_chat_template
 
 
 MODEL_NAME = "unsloth/Qwen3-32B-bnb-4bit"  # pre-quantized 4-bit, faster download
-MAX_SEQ_LEN = 4096
+MAX_SEQ_LEN = 1024
 
 
 def load_dataset(path: Path) -> Dataset:
@@ -108,7 +108,7 @@ def main():
             output_dir=str(args.output / "checkpoints"),
             dataset_text_field="text",
             max_seq_length=MAX_SEQ_LEN,
-            packing=False,
+            packing=True,
             per_device_train_batch_size=args.batch_size,
             gradient_accumulation_steps=args.grad_accum,
             num_train_epochs=args.epochs,
