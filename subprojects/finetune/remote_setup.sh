@@ -11,7 +11,12 @@ echo "[remote_setup] python: $(python3 --version)"
 echo "[remote_setup] nvidia-smi:"
 nvidia-smi || { echo "no GPU visible"; exit 1; }
 
-# uv: fast installer + venv manager. Bootstrap it if the box doesn't have it
+# Refresh the dynamic linker cache so Triton can find libcuda.so.1. Without
+# this, the model loads fine but the FIRST generate() call crashes with
+# "libcuda.so cannot found" when Triton JIT-compiles its kernels. (Unsloth
+# warns about this on import; ldconfig is the actual fix.)
+echo "[remote_setup] refreshing linker cache for libcuda..."
+sudo ldconfig
 # (Thunder's base image doesn't). The installer drops uv in ~/.local/bin.
 if ! command -v uv >/dev/null 2>&1; then
     echo "[remote_setup] installing uv..."
@@ -51,6 +56,6 @@ echo "[remote_setup] sanity check unsloth:"
 python -c "from unsloth import FastLanguageModel; print('unsloth ok')"
 
 echo
-echo "[remote_setup] ready. To start training:"
-echo "  source ${WORKDIR}/.venv/bin/activate"
-echo "  python train.py --dataset ${WORKDIR}/yuki_clean_v4.jsonl --output ${WORKDIR}/output --epochs 3"
+echo "[remote_setup] ready. run.sh activates the venv for you, so just:"
+echo "  bash run.sh train --epochs 3     # fine-tune"
+echo "  bash run.sh chat                 # test the adapter in the TUI"

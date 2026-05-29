@@ -7,11 +7,12 @@
 #   tnr login --token $THUNDER_API_TOKEN   # or: tnr login (opens browser)
 #
 # Usage:
-#   ./launch.sh provision   # create A100, upload files, print connect cmd
-#   ./launch.sh upload      # re-upload code/dataset to instance 0
-#   ./launch.sh connect     # SSH in
-#   ./launch.sh pull        # copy adapter back to ./output/
-#   ./launch.sh stop        # delete instance (STOPS BILLING)
+#   ./launch.sh provision      # create A100, upload files, print connect cmd
+#   ./launch.sh upload         # re-upload code/dataset to instance 0
+#   ./launch.sh push-adapter   # upload local adapter to test without retraining
+#   ./launch.sh connect        # SSH in
+#   ./launch.sh pull           # copy adapter back to ./output/
+#   ./launch.sh stop           # delete instance (STOPS BILLING)
 
 set -euo pipefail
 
@@ -40,6 +41,7 @@ cmd_provision() {
     echo "  ./launch.sh connect"
     echo "  # on the remote box:"
     echo "  cd ${REMOTE_DIR} && bash remote_setup.sh"
+    echo "  bash run.sh train --epochs 3     # or: bash run.sh chat"
 }
 
 cmd_upload() {
@@ -52,6 +54,7 @@ cmd_upload() {
     echo "[launch] (if scp fails with 'No such file', SSH in and mkdir -p ${REMOTE_DIR})"
     tnr scp "${HERE}/train.py"          "${INSTANCE_ID}:${REMOTE_DIR}/train.py"
     tnr scp "${HERE}/chat.py"           "${INSTANCE_ID}:${REMOTE_DIR}/chat.py"
+    tnr scp "${HERE}/run.sh"            "${INSTANCE_ID}:${REMOTE_DIR}/run.sh"
     tnr scp "${HERE}/requirements.txt"  "${INSTANCE_ID}:${REMOTE_DIR}/requirements.txt"
     tnr scp "${HERE}/remote_setup.sh"   "${INSTANCE_ID}:${REMOTE_DIR}/remote_setup.sh"
     tnr scp "${DATASET}"                "${INSTANCE_ID}:${REMOTE_DIR}/yuki_clean_v4.jsonl"
@@ -67,6 +70,20 @@ cmd_pull() {
     tnr scp "${INSTANCE_ID}:${REMOTE_DIR}/output/yuki-qwen3-32b-lora" "${HERE}/output/"
 }
 
+# Upload an already-trained adapter to test it without retraining (e.g. a box
+# you spun up just to run `run.sh chat`). The remote output dir must exist:
+#   ./launch.sh connect ; mkdir -p ${REMOTE_DIR}/output ; exit
+cmd_push_adapter() {
+    local adapter="${HERE}/output/yuki-qwen3-32b-lora"
+    if [[ ! -d "${adapter}" ]]; then
+        echo "no local adapter at ${adapter} -- train + pull first" >&2
+        exit 1
+    fi
+    echo "[launch] uploading adapter to instance ${INSTANCE_ID} (for testing)..."
+    echo "[launch] (if this fails, SSH in and: mkdir -p ${REMOTE_DIR}/output)"
+    tnr scp "${adapter}" "${INSTANCE_ID}:${REMOTE_DIR}/output/"
+}
+
 cmd_stop() {
     echo "[launch] deleting instance ${INSTANCE_ID} (this stops billing)..."
     read -r -p "type DELETE to confirm: " ans
@@ -75,13 +92,21 @@ cmd_stop() {
 }
 
 case "${1:-}" in
-    provision) cmd_provision ;;
-    upload)    cmd_upload ;;
-    connect)   cmd_connect ;;
-    pull)      cmd_pull ;;
-    stop)      cmd_stop ;;
+    provision)     cmd_provision ;;
+    upload)        cmd_upload ;;
+    push-adapter)  cmd_push_adapter ;;
+    connect)       cmd_connect ;;
+    pull)          cmd_pull ;;
+    stop)          cmd_stop ;;
     *)
-        echo "usage: $0 {provision|upload|connect|pull|stop}"
+        echo "usage: $0 {provision|upload|push-adapter|connect|pull|stop}"
+        echo
+        echo "  provision     create box + upload code/dataset"
+        echo "  upload        re-upload code/dataset to instance ${INSTANCE_ID}"
+        echo "  push-adapter  upload local adapter to test it (no retrain)"
+        echo "  connect       SSH in"
+        echo "  pull          copy trained adapter back to ./output/"
+        echo "  stop          delete instance (STOPS BILLING)"
         exit 1
         ;;
 esac

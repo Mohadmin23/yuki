@@ -1,10 +1,19 @@
 YUKI FINE-TUNE RUNBOOK
 ======================
-Qwen3-32B + QLoRA on Thunder Compute A100 80GB.
-Dataset: yuki_clean_v4.jsonl (731 rows).
-Expected wall-clock: ~5-15 min training + ~10 min setup + ~10 min uploads.
+Qwen3-32B + QLoRA on Thunder Compute (A100 80GB ideal; A6000 48GB works too,
+just slower). Dataset: yuki_clean_v4.jsonl (816 rows).
+Expected wall-clock: ~5-15 min training (A100) + ~5 min setup + ~5 min uploads.
   (train.py uses MAX_SEQ_LEN=1024 + packing=True; dataset p99 is ~700 tok.)
 Expected cost: ~$1.50-2.50 total on A100 (varies with Thunder pricing).
+
+NOTE: run.sh activates the venv for you -- always launch via `bash run.sh ...`
+so you don't hit "No module named unsloth". remote_setup.sh now runs ldconfig
+itself, so the old "libcuda.so cannot found" crash is handled automatically.
+
+JUST TESTING AN ADAPTER YOU ALREADY TRAINED? You don't need to retrain:
+  ./launch.sh connect ; mkdir -p ~/yuki-finetune/output ; exit
+  ./launch.sh upload && ./launch.sh push-adapter   # ships code + the adapter
+  ./launch.sh connect ; cd ~/yuki-finetune ; bash remote_setup.sh ; bash run.sh chat
 
 
 STEP 0 -- ONE-TIME LOCAL SETUP (on the M1 Air)
@@ -30,7 +39,7 @@ STEP 1 -- PROVISION THE GPU BOX
 1.2  Run the provision step. This creates the box AND uploads train.py,
      requirements.txt, remote_setup.sh, and yuki_clean_v4.jsonl:
          cd ~/llama-voice-assist
-         ./finetune/launch.sh provision
+         ./subprojects/finetune/launch.sh provision
 
 1.3  Wait until `tnr status` shows the instance as RUNNING.
      Note the instance ID (probably 0 since it's your first).
@@ -39,7 +48,7 @@ STEP 1 -- PROVISION THE GPU BOX
 STEP 2 -- SET UP THE REMOTE BOX
 --------------------------------
 2.1  SSH in:
-         ./finetune/launch.sh connect
+         ./subprojects/finetune/launch.sh connect
 
 2.2  Start tmux so a dropped SSH won't kill training:
          tmux new -s yuki
@@ -56,12 +65,10 @@ STEP 2 -- SET UP THE REMOTE BOX
 
 STEP 3 -- TRAIN
 ---------------
-3.1  Still on the remote box, still inside tmux:
-         source ~/yuki-finetune/.venv/bin/activate
-         python train.py \
-             --dataset ~/yuki-finetune/yuki_clean_v4.jsonl \
-             --output ~/yuki-finetune/output \
-             --epochs 3
+3.1  Still on the remote box, still inside tmux. run.sh activates the venv
+     and points at the right dataset/output for you:
+         cd ~/yuki-finetune
+         bash run.sh train --epochs 3
 
 3.2  First-run downloads the 4-bit Qwen3-32B (~18GB). Takes ~5-10 min
      depending on Thunder's network. Training itself is ~30-45 min on A100.
@@ -94,7 +101,7 @@ STEP 5 -- PULL RESULTS BACK
 5.1  Detach from tmux (Ctrl-b d), exit SSH (type `exit`).
 
 5.2  From the M1 Air:
-         ./finetune/launch.sh pull
+         ./subprojects/finetune/launch.sh pull
      Copies finetune/output/yuki-qwen3-32b-lora/ down. Adapter is ~300MB.
 
 5.3  If you exported GGUF, also pull it manually:
@@ -104,7 +111,7 @@ STEP 5 -- PULL RESULTS BACK
 STEP 6 -- KILL THE INSTANCE (IMPORTANT)
 ----------------------------------------
 6.1  Thunder bills per-minute while the instance exists. Delete it:
-         ./finetune/launch.sh stop
+         ./subprojects/finetune/launch.sh stop
      Type DELETE when prompted.
 
 6.2  Confirm it's gone:
@@ -121,6 +128,13 @@ TROUBLESHOOTING
 - "torch.cuda.is_available() False":
     Wrong CUDA. Run: nvidia-smi -- if that works but torch doesn't,
     you got a non-CUDA image. tnr delete and re-provision.
+- "libcuda.so cannot found!" on the first message/step:
+    Triton can't find the driver lib. remote_setup.sh runs `sudo ldconfig`
+    now, but if it still happens: sudo find / -name 'libcuda.so.1' then
+    `sudo ldconfig <that-dir>` and re-run.
+- "No module named unsloth":
+    You forgot the venv. Use `bash run.sh chat/train` (it activates it), or
+    `source ~/yuki-finetune/.venv/bin/activate` first.
 - SSH drops mid-train and you forgot tmux:
     Training is dead. Always use tmux. Re-run -- HF cache + checkpoint
     saves let it resume from last epoch save.
