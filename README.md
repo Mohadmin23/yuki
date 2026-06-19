@@ -44,6 +44,7 @@ llama test
 ```
 llama setup   — Run 'uv sync' to install all dependencies into .venv
 llama cli     — Launch the terminal chatbot (select model, persona, TTS)
+llama tui     — Launch the Textual TUI workspace (sessions sidebar, markdown chat)
 llama web     — Launch the web UI with animated bubble on port 7860
 llama test    — Run the test suite with pytest
 llama help    — Show help
@@ -55,7 +56,7 @@ llama help    — Show help
 - **MLX warmup** — pre-compiles the compute graph so first response is fast
 - **Multi-backend** — supports MLX (Apple Silicon), Transformers, and OpenRouter cloud models
 - **Auto model discovery** — searches external drive and `~/.cache/huggingface/hub`
-- **Personas** — choose a character (Yuki, Coder, Therapist) or go default
+- **Personas** — load the Yuki character, or go default
 - **ReAct tools** — LLM can search the web, check weather/time, read/write files, run safe shell commands
 - **Autonomous mode** — bot speaks unprompted after silence
 - **Dual memory** — hash-based fact memory (`data/memory.json`) for names/preferences + sqlite-vec episodic memory (`data/episodic_v2.db`) for conversational vibes, embedded via OpenRouter `text-embedding-3-small`
@@ -77,11 +78,11 @@ llama-voice-assist/
 ├── episodic.py          # Episodic vector memory (sqlite-vec + OpenRouter)
 ├── interface/
 │   ├── server.py        # FastAPI + Granian backend (port 7860)
+│   ├── tui.py           # Textual TUI workspace
 │   └── *.html           # Web UI
+├── tools/               # One tool per subfolder; registry built in tools/__init__.py
 ├── personas/
-│   ├── yuki.txt         # Playful anime character
-│   ├── coder.txt        # Senior engineer persona
-│   └── therapist.txt    # Empathetic therapist persona
+│   └── yuki.txt         # Playful anime character (the default persona)
 ├── data/                # Runtime state (memory.json, episodic_v2.db, chats/)
 │   └── archive/         # Old memory backups
 ├── tests/               # Pytest suite (run with `llama test`)
