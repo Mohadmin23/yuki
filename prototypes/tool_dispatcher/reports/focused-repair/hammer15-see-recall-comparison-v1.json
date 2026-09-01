@@ -1,0 +1,148 @@
+{
+  "version": "hammer15-see-recall-comparison-v1",
+  "date": "2026-08-21",
+  "status": "experiment_a_complete_and_frozen",
+  "model": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+  "frozen_qwen_delegations_sha256": "13018fdc482ebf9d1617b7f6ec5b53c384b317b78ca4cc20094a9e86b48fda44",
+  "variants": {
+    "a0_frozen_baseline": {
+      "see": {
+        "tool_selection_accuracy": 0.4,
+        "strict_argument_accuracy": 0.36,
+        "preservation_aware_argument_accuracy": 0.36,
+        "strict_exact_call_accuracy": 0.36,
+        "preservation_aware_exact_call_accuracy": 0.36,
+        "schema_valid_rate": 0.48,
+        "rejection_count": 13,
+        "malformed_count": 0,
+        "average_latency_ms": 1527.3532,
+        "tokens_per_second": 23.4076,
+        "peak_mlx_memory_gb": 3.4611
+      },
+      "recall": {
+        "tool_selection_accuracy": 0.52,
+        "strict_argument_accuracy": 0.44,
+        "preservation_aware_argument_accuracy": 0.44,
+        "strict_exact_call_accuracy": 0.44,
+        "preservation_aware_exact_call_accuracy": 0.44,
+        "schema_valid_rate": 0.56,
+        "rejection_count": 11,
+        "malformed_count": 0,
+        "average_latency_ms": 2341.36752,
+        "tokens_per_second": 20.79692,
+        "peak_mlx_memory_gb": 3.4489
+      }
+    },
+    "a1_schema_descriptions_only": {
+      "see": {
+        "tool_selection_accuracy": 0.68,
+        "strict_argument_accuracy": 0.56,
+        "preservation_aware_argument_accuracy": 0.56,
+        "strict_exact_call_accuracy": 0.56,
+        "preservation_aware_exact_call_accuracy": 0.56,
+        "schema_valid_rate": 0.76,
+        "rejection_count": 6,
+        "malformed_count": 0,
+        "average_latency_ms": 1754.73304,
+        "tokens_per_second": 21.77672,
+        "peak_mlx_memory_gb": 3.4589
+      },
+      "recall": {
+        "tool_selection_accuracy": 0.96,
+        "strict_argument_accuracy": 0.76,
+        "preservation_aware_argument_accuracy": 0.8,
+        "strict_exact_call_accuracy": 0.76,
+        "preservation_aware_exact_call_accuracy": 0.8,
+        "schema_valid_rate": 1.0,
+        "rejection_count": 0,
+        "malformed_count": 0,
+        "average_latency_ms": 2049.99368,
+        "tokens_per_second": 19.55824,
+        "peak_mlx_memory_gb": 3.3514
+      }
+    },
+    "a2_schema_plus_rejection_clarification": {
+      "see": {
+        "tool_selection_accuracy": 0.68,
+        "strict_argument_accuracy": 0.56,
+        "preservation_aware_argument_accuracy": 0.56,
+        "strict_exact_call_accuracy": 0.56,
+        "preservation_aware_exact_call_accuracy": 0.56,
+        "schema_valid_rate": 0.72,
+        "rejection_count": 7,
+        "malformed_count": 0,
+        "average_latency_ms": 1713.04608,
+        "tokens_per_second": 22.08776,
+        "peak_mlx_memory_gb": 3.4726
+      },
+      "recall": {
+        "tool_selection_accuracy": 0.96,
+        "strict_argument_accuracy": 0.76,
+        "preservation_aware_argument_accuracy": 0.8,
+        "strict_exact_call_accuracy": 0.76,
+        "preservation_aware_exact_call_accuracy": 0.8,
+        "schema_valid_rate": 1.0,
+        "rejection_count": 0,
+        "malformed_count": 0,
+        "average_latency_ms": 2059.24816,
+        "tokens_per_second": 19.5234,
+        "peak_mlx_memory_gb": 3.3446
+      }
+    }
+  },
+  "selected_variant": "a1_schema_descriptions_only",
+  "selection_reason": "A1 produced the best schema validity and fewest see rejections. A2 added no accuracy benefit and regressed see rejection count and schema validity.",
+  "selected_variant_change_from_baseline_percentage_points": {
+    "see_tool_selection": 28.0,
+    "see_strict_exact_call": 20.0,
+    "see_schema_valid": 28.0,
+    "recall_tool_selection": 44.0,
+    "recall_strict_exact_call": 32.0,
+    "recall_preservation_aware_exact_call": 36.0,
+    "recall_schema_valid": 44.0
+  },
+  "regression_checks": {
+    "image": {
+      "baseline_tool_selection_accuracy": 0.88,
+      "repaired_tool_selection_accuracy": 1.0,
+      "baseline_strict_exact_call_accuracy": 0.48,
+      "repaired_strict_exact_call_accuracy": 0.56,
+      "baseline_schema_valid_rate": 0.88,
+      "repaired_schema_valid_rate": 1.0,
+      "repaired_rejections": 0,
+      "repaired_malformed": 0
+    },
+    "remember": {
+      "baseline_tool_selection_accuracy": 1.0,
+      "repaired_tool_selection_accuracy": 1.0,
+      "baseline_strict_exact_call_accuracy": 0.76,
+      "repaired_strict_exact_call_accuracy": 0.76,
+      "baseline_preservation_aware_exact_call_accuracy": 0.96,
+      "repaired_preservation_aware_exact_call_accuracy": 0.96,
+      "baseline_schema_valid_rate": 1.0,
+      "repaired_schema_valid_rate": 1.0,
+      "repaired_rejections": 0,
+      "repaired_malformed": 0
+    }
+  },
+  "interpretation": {
+    "see": "The original capability description caused a substantial share of rejection behavior, but description repair alone did not reach the encouraging 75-80% strict range. Remaining failures are mostly Hammer rejections plus exact target-form differences.",
+    "recall": "The current-chat and assistant-reply wording was the dominant rejection cause. A capability-only persistent-memory description eliminated all 11 rejections.",
+    "rejection_clarification": "No independent benefit was observed; it slightly harmed see schema validity.",
+    "non_regression": "The selected repair improved image and left remember unchanged."
+  },
+  "safety": {
+    "stateless": true,
+    "one_generation_per_case": true,
+    "yuki_tool_execution_capability": false,
+    "yuki_tool_execution_attempts": 0,
+    "hammer_3b_loaded": false
+  },
+  "artifact_sha256": {
+    "hammer15-see-recall-rejection-diagnosis-v1.json": "203ab33c3593e34c3df986ddbb5d3780a14e4e2b099f585d1483bd908de98f92",
+    "hammer15-see-recall-baseline-v1.json": "e264dbf4b2de53ccfd5b20657e553e010af34a55d8916cdef4071a548242e2b0",
+    "hammer15-see-recall-schema-repair-v1.json": "513df715b51102b4d1ce9aee408f935e6ae78d4e2c42aab9311cf3bf553a0c90",
+    "hammer15-see-recall-schema-rejection-repair-v1.json": "f5cdf418a2ac7841a08237833963063cafb202098ae39334fae2144842263654",
+    "hammer15-see-recall-schema-repair-regression-v1.json": "cd0ebdf148aa480e69601a75017e219a7c46481e8074f6c321ac1375679ff760"
+  }
+}

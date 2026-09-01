@@ -3,6 +3,7 @@
 # Usage: ./llama <command>
 #   setup  — create venv and install dependencies
 #   cli    — launch terminal chatbot
+#   tui    — launch TUI workspace (Odysseus-style)
 #   web    — launch web UI (port 7860)
 #   test   — run test suite
 
@@ -10,6 +11,11 @@ set -euo pipefail
 
 SCRIPT_PATH="$(readlink -f "$0" 2>/dev/null || python3 -c "import os; print(os.path.realpath('$0'))")"
 PROJECT_DIR="$(cd "$(dirname "$SCRIPT_PATH")" && pwd)"
+
+# Centralize bytecode caches outside the source tree so __pycache__/ folders
+# don't pollute the project (15 tool subfolders each generate their own).
+# Scoped to this project via the path suffix.
+export PYTHONPYCACHEPREFIX="${HOME}/.cache/pycache/llama-voice-assist"
 
 # ---------- colors ----------
 RED='\033[0;31m'
@@ -50,6 +56,13 @@ cmd_cli() {
     (cd "$PROJECT_DIR" && uv run python ms_llama.py "$@")
 }
 
+cmd_tui() {
+    ensure_uv
+    info "Launching TUI workspace ..."
+    echo ""
+    (cd "$PROJECT_DIR" && uv run python interface/tui.py "$@")
+}
+
 cmd_web() {
     ensure_uv
     info "Launching web UI on http://localhost:7860 ..."
@@ -74,6 +87,7 @@ cmd_help() {
     printf "  ${BOLD}Commands:${RESET}\n"
     printf "    ${GREEN}setup${RESET}   Run 'uv sync' to install all dependencies into .venv\n"
     printf "    ${GREEN}cli${RESET}     Launch the terminal chatbot (select model, persona, TTS)\n"
+    printf "    ${GREEN}tui${RESET}     Launch the TUI workspace (sessions sidebar, markdown chat)\n"
     printf "    ${GREEN}web${RESET}     Launch the web UI with animated bubble on port 7860\n"
     printf "    ${GREEN}test${RESET}    Run the test suite with pytest\n"
     printf "    ${GREEN}help${RESET}    Show this help message\n"
@@ -91,6 +105,7 @@ shift 2>/dev/null || true
 case "$COMMAND" in
     setup)  cmd_setup ;;
     cli)    cmd_cli "$@" ;;
+    tui)    cmd_tui "$@" ;;
     web)    cmd_web "$@" ;;
     test)   cmd_test "$@" ;;
     help|-h|--help) cmd_help ;;

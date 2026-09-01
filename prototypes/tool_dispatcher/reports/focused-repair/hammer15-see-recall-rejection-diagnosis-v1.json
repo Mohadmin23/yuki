@@ -1,0 +1,1444 @@
+{
+  "version": "hammer15-see-recall-rejection-diagnosis-v1",
+  "source_full_stage_b_sha256": "84b619922e3b24c0080b17b91a5963114f024647112e467a6099ae9fab425f8a",
+  "current_task_instruction": "You are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.",
+  "current_hammer_format_instruction": "The output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.",
+  "current_schemas": {
+    "media": [
+      {
+        "name": "see",
+        "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+        "parameters": {
+          "target": {
+            "type": "string",
+            "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+          }
+        }
+      },
+      {
+        "name": "image",
+        "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+        "parameters": {
+          "prompt": {
+            "type": "string",
+            "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+            "minLength": 1,
+            "required": true
+          }
+        }
+      }
+    ],
+    "memory": [
+      {
+        "name": "remember",
+        "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+        "parameters": {
+          "fact": {
+            "type": "string",
+            "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+            "minLength": 1,
+            "required": true
+          }
+        }
+      },
+      {
+        "name": "recall",
+        "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+        "parameters": {
+          "topic": {
+            "type": "string",
+            "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+            "minLength": 1,
+            "required": true
+          }
+        }
+      }
+    ]
+  },
+  "rejection_counts": {
+    "see": 13,
+    "recall": 11
+  },
+  "all_rejections_were_valid_empty_arrays": true,
+  "diagnosis": {
+    "see": "The description uses assistant/personified webcam language and does not state the existing-visual-input versus generation distinction. Rejections occur with and without target strings, so missing arguments are not the dominant cause.",
+    "recall": "The description asks a stateless dispatcher to reason about current-chat absence and future assistant reply behavior. Frozen requests instead use persistent-memory retrieval language, creating a capability wording mismatch.",
+    "prompt": "The empty-array reject path is presented twice and can amplify uncertainty."
+  },
+  "rejected_cases": [
+    {
+      "case_id": "p2-see-01",
+      "expected_tool": "see",
+      "raw_user_request": "Use the camera to find my keys.",
+      "expected_arguments": {
+        "target": "keys"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use the camera to locate the user's keys",
+        "domain_hint": "media",
+        "verbatim": [
+          "my keys"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse the camera to locate the user's keys\n\nExact user strings to preserve unchanged in arguments:\n[\"my keys\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "ba265d78e193b14f681fc6ff386ff941d405fc660e9760830ba9ef42d77e0d11",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-04",
+      "expected_tool": "see",
+      "raw_user_request": "Check the door with the camera.",
+      "expected_arguments": {
+        "target": "door"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use the camera to inspect the door",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse the camera to inspect the door\n\nExact user strings to preserve unchanged in arguments:\n[]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "7f2841cb9b66216dd157ba689b824b7c173fede49a6aa399970f5d9bbc903eb4",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-05",
+      "expected_tool": "see",
+      "raw_user_request": "Find my red backpack in the room.",
+      "expected_arguments": {
+        "target": "red backpack"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use camera/vision to locate the user's red backpack in the room",
+        "domain_hint": "media",
+        "verbatim": [
+          "red backpack"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse camera/vision to locate the user's red backpack in the room\n\nExact user strings to preserve unchanged in arguments:\n[\"red backpack\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "818ea7fa2e15319b8e0688d7d49d2532dcff9cd3555ce594bb8ae2a254bdfd4d",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-06",
+      "expected_tool": "see",
+      "raw_user_request": "Inspect the whiteboard using vision.",
+      "expected_arguments": {
+        "target": "whiteboard"
+      },
+      "frozen_qwen_delegation": {
+        "request": "inspect the whiteboard using vision",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\ninspect the whiteboard using vision\n\nExact user strings to preserve unchanged in arguments:\n[]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "5bce2f8a8ecab5542be7826a4023fa0df8afc8f5ac700a6d385bd408d804f76d",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-07",
+      "expected_tool": "see",
+      "raw_user_request": "Can the webcam spot my phone?",
+      "expected_arguments": {
+        "target": "phone"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use the webcam to inspect the current scene and determine whether the user's phone is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse the webcam to inspect the current scene and determine whether the user's phone is visible\n\nExact user strings to preserve unchanged in arguments:\n[]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "81b2cbb465f4baecb3dbd6403f098eb6c0620e846251836ef15b693e4cc8ab13",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-09",
+      "expected_tool": "see",
+      "raw_user_request": "Locate my charging cable with the camera.",
+      "expected_arguments": {
+        "target": "charging cable"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use the camera to visually locate the user's charging cable",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse the camera to visually locate the user's charging cable\n\nExact user strings to preserve unchanged in arguments:\n[]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "b10bf9d923f9c41ad74a1178a56e0d42e013a2f781db649235efc8c5c53f21fb",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-12",
+      "expected_tool": "see",
+      "raw_user_request": "Use your eyes and track down my earbuds.",
+      "expected_arguments": {
+        "target": "earbuds"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use camera/vision to locate the user's earbuds",
+        "domain_hint": "media",
+        "verbatim": [
+          "earbuds"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse camera/vision to locate the user's earbuds\n\nExact user strings to preserve unchanged in arguments:\n[\"earbuds\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "f09634771e86e51cadd68f9672eece77451de841f1ccac8c780939ce98ca8761",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-15",
+      "expected_tool": "see",
+      "raw_user_request": "Peek through the webcam for my glasses.",
+      "expected_arguments": {
+        "target": "glasses"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Capture and inspect the current webcam image to check the user's glasses",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nCapture and inspect the current webcam image to check the user's glasses\n\nExact user strings to preserve unchanged in arguments:\n[]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "350a653fc9e14b3b4a1c7e4a575e7e5f5ddb6d48eb98dfc9dca664a1bce37569",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-16",
+      "expected_tool": "see",
+      "raw_user_request": "Scan the room until you find the desk lamp.",
+      "expected_arguments": {
+        "target": "desk lamp"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use camera/vision to scan the room and locate the desk lamp",
+        "domain_hint": "media",
+        "verbatim": [
+          "desk lamp"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse camera/vision to scan the room and locate the desk lamp\n\nExact user strings to preserve unchanged in arguments:\n[\"desk lamp\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "d05e1254449e1c53582cedb04f31e133058982e64d80386ba8604473abb4db27",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-18",
+      "expected_tool": "see",
+      "raw_user_request": "Find the printed image with the camera; do not generate a new image.",
+      "expected_arguments": {
+        "target": "printed image"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use the camera to inspect and locate a printed image in the physical environment",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse the camera to inspect and locate a printed image in the physical environment\n\nExact user strings to preserve unchanged in arguments:\n[]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "8307a6213b5863b3ecefd33ec1a9de8b86e2becdce06441d98e9fef5ce672dfd",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-20",
+      "expected_tool": "see",
+      "raw_user_request": "Visually inspect the terminal window; don't execute its command.",
+      "expected_arguments": {
+        "target": "terminal window"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Visually inspect the terminal window without executing its command",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nVisually inspect the terminal window without executing its command\n\nExact user strings to preserve unchanged in arguments:\n[]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "be21abb07bd04f764ba36f37db77d72794596e988d588cc574ea02551e9701bd",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-21",
+      "expected_tool": "see",
+      "raw_user_request": "Find the notes file lying on my desk; do not read a filesystem file.",
+      "expected_arguments": {
+        "target": "notes file"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.\n\nExact user strings to preserve unchanged in arguments:\n[]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "41d1f0529b03f353fa21783af1630da876dcd56cbd9a816baab2dc67c01de147",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-see-25",
+      "expected_tool": "see",
+      "raw_user_request": "I can't describe it well—camera, find the 'red-ish cable'?",
+      "expected_arguments": {
+        "target": "red-ish cable"
+      },
+      "frozen_qwen_delegation": {
+        "request": "Use the camera to locate a red-ish cable in the current view",
+        "domain_hint": "media",
+        "verbatim": [
+          "red-ish cable"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "see",
+          "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+          "parameters": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          }
+        },
+        {
+          "name": "image",
+          "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+          "parameters": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"see\", \"description\": \"see(\\\"target\\\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\\\"apple\\\") to find and track it. Use when the user asks you to look at something.\", \"parameters\": {\"target\": {\"type\": \"string\", \"description\": \"Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene.\"}}}, {\"name\": \"image\", \"description\": \"image(\\\"prompt\\\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \\\"draw/sketch/paint/generate/make me an image of X\\\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.\", \"parameters\": {\"prompt\": {\"type\": \"string\", \"description\": \"Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nUse the camera to locate a red-ish cable in the current view\n\nExact user strings to preserve unchanged in arguments:\n[\"red-ish cable\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "b96c7d52da940ca6ac1d08716d7c32b9e76f44528cb31f0d0a262c4a71092697",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-03",
+      "expected_tool": "recall",
+      "raw_user_request": "Look up remembered conversations about the garden project.",
+      "expected_arguments": {
+        "topic": "garden project"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information about the garden project",
+        "domain_hint": "memory",
+        "verbatim": [
+          "garden project"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information about the garden project\n\nExact user strings to preserve unchanged in arguments:\n[\"garden project\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "123607e60b4ca524d82d8f5db12424dd1d5b6e5142d17583cf101325e9ead7b7",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-04",
+      "expected_tool": "recall",
+      "raw_user_request": "Recall what we discussed about a laptop upgrade.",
+      "expected_arguments": {
+        "topic": "laptop upgrade"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information about a laptop upgrade",
+        "domain_hint": "memory",
+        "verbatim": [
+          "laptop upgrade"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information about a laptop upgrade\n\nExact user strings to preserve unchanged in arguments:\n[\"laptop upgrade\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "3fb60f5dae371e2d6b84c646bdced6343a217ffbf8ba7379d89a7f08713066ea",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-06",
+      "expected_tool": "recall",
+      "raw_user_request": "What do you remember from the kitchen renovation discussion?",
+      "expected_arguments": {
+        "topic": "kitchen renovation"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information about the kitchen renovation discussion",
+        "domain_hint": "memory",
+        "verbatim": [
+          "kitchen renovation discussion"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information about the kitchen renovation discussion\n\nExact user strings to preserve unchanged in arguments:\n[\"kitchen renovation discussion\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "27c4f146bd7735563d8c1aff347234369235b41397ec091fa63eae17598852c3",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-07",
+      "expected_tool": "recall",
+      "raw_user_request": "Recall the earlier conversation about my travel plans.",
+      "expected_arguments": {
+        "topic": "travel plans"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information about travel plans",
+        "domain_hint": "memory",
+        "verbatim": [
+          "my travel plans"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information about travel plans\n\nExact user strings to preserve unchanged in arguments:\n[\"my travel plans\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "50d330502d3520393f725ae2278cbedca70832b6bc04605399f1310e44809d40",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-09",
+      "expected_tool": "recall",
+      "raw_user_request": "Bring back the past discussion about Nori's vet visit.",
+      "expected_arguments": {
+        "topic": "Nori's vet visit"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information about Nori's vet visit",
+        "domain_hint": "memory",
+        "verbatim": [
+          "Nori's vet visit"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information about Nori's vet visit\n\nExact user strings to preserve unchanged in arguments:\n[\"Nori's vet visit\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "34cc8138548690b0220614664346f03c974773d336e7157ab4523999b35e31ad",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-11",
+      "expected_tool": "recall",
+      "raw_user_request": "What did we previously say about the blue bicycle?",
+      "expected_arguments": {
+        "topic": "blue bicycle"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information about the blue bicycle",
+        "domain_hint": "memory",
+        "verbatim": [
+          "the blue bicycle"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information about the blue bicycle\n\nExact user strings to preserve unchanged in arguments:\n[\"the blue bicycle\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "c73dd8e3855e6b244811c68ea2acefb3eca9d9561776f10f231ddc940fd1853d",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-16",
+      "expected_tool": "recall",
+      "raw_user_request": "What was our earlier thinking around home-office lighting?",
+      "expected_arguments": {
+        "topic": "home-office lighting"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information about home-office lighting",
+        "domain_hint": "memory",
+        "verbatim": [
+          "home-office lighting"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information about home-office lighting\n\nExact user strings to preserve unchanged in arguments:\n[\"home-office lighting\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "c682de0510dbaeb196182c17207916cc850614b6664cb4a736e4bf1978fd799a",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-17",
+      "expected_tool": "recall",
+      "raw_user_request": "Pull the remembered context for my holiday packing list.",
+      "expected_arguments": {
+        "topic": "holiday packing list"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information for the holiday packing list",
+        "domain_hint": "memory",
+        "verbatim": [
+          "holiday packing list"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information for the holiday packing list\n\nExact user strings to preserve unchanged in arguments:\n[\"holiday packing list\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "a36e44fb39118fe55426701c1073c0904c71f580f2e9ff60ad807067d56340dd",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-18",
+      "expected_tool": "recall",
+      "raw_user_request": "Recall weather API planning, not today's weather.",
+      "expected_arguments": {
+        "topic": "weather API planning"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored information about weather API planning",
+        "domain_hint": "memory",
+        "verbatim": [
+          "weather API planning"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored information about weather API planning\n\nExact user strings to preserve unchanged in arguments:\n[\"weather API planning\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "dd9906425c40663ae2350c532ca87316a7ba735ef92ec9ace0a823a1efa9ca4f",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-20",
+      "expected_tool": "recall",
+      "raw_user_request": "Recall our discussion of notes.md; do not read a file.",
+      "expected_arguments": {
+        "topic": "notes.md discussion"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored information about the discussion of notes.md",
+        "domain_hint": "memory",
+        "verbatim": [
+          "notes.md"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored information about the discussion of notes.md\n\nExact user strings to preserve unchanged in arguments:\n[\"notes.md\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "70e8901e03de8293b8755a3ef1e850bff3e676befdd1d882f535e542c2e51b48",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    },
+    {
+      "case_id": "p2-recall-25",
+      "expected_tool": "recall",
+      "raw_user_request": "uh... previous thing about the red-ish cable? recall that topic",
+      "expected_arguments": {
+        "topic": "red-ish cable"
+      },
+      "frozen_qwen_delegation": {
+        "request": "retrieve previously stored user information about the red-ish cable",
+        "domain_hint": "memory",
+        "verbatim": [
+          "red-ish cable"
+        ]
+      },
+      "schemas_shown": [
+        {
+          "name": "remember",
+          "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+          "parameters": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        },
+        {
+          "name": "recall",
+          "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+          "parameters": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1,
+              "required": true
+            }
+          }
+        }
+      ],
+      "exact_native_prompt": "<|im_start|>system\nYou are a dedicated function dispatcher, not an assistant.<|im_end|>\n<|im_start|>user\n[BEGIN OF TASK INSTRUCTION]\nYou are a dedicated function dispatcher, not an assistant.\nA tool is already needed. Select exactly one available tool and extract its arguments from the query.\nNever answer the query, explain the decision, greet the user, or generate any text outside the required JSON.\nIf no offered tool can handle the query or a required argument is missing, return the documented reject form.\nStop immediately after the complete structured call.\n[END OF TASK INSTRUCTION]\n\n[BEGIN OF AVAILABLE TOOLS]\n[{\"name\": \"remember\", \"description\": \"remember(\\\"fact\\\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\\\"I'm vegetarian\\\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\\\"user's dog is named Max\\\", \\\"user prefers dark mode\\\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.\", \"parameters\": {\"fact\": {\"type\": \"string\", \"description\": \"One short sentence about the user phrased as a standalone note, e.g. \\\"user's dog is named Max\\\" or \\\"user prefers dark mode\\\".\", \"minLength\": 1, \"required\": true}}}, {\"name\": \"recall\", \"description\": \"recall(\\\"topic\\\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \\\"remember when we...\\\", \\\"last time we talked about...\\\", \\\"that thing I told you about my X\\\", \\\"did I ever mention...\\\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\\\"server crash debugging\\\", \\\"my sister's wedding\\\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.\", \"parameters\": {\"topic\": {\"type\": \"string\", \"description\": \"A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.\", \"minLength\": 1, \"required\": true}}}]\n[END OF AVAILABLE TOOLS]\n\n[BEGIN OF FORMAT INSTRUCTION]\nThe output MUST strictly adhere to the following JSON format, and no explanatory text may be included.\nHammer's native Markdown wrapper is allowed:\n```\n[{\"name\":\"tool_name\",\"arguments\":{\"parameter\":\"value\"}}]\n```\nThe array must contain exactly one call. If dispatch is impossible or a required argument is missing, output an empty array. Never produce multiple calls.\n[END OF FORMAT INSTRUCTION]\n\n<|im_end|>\n<|im_start|>user\nDelegated semantic action:\nretrieve previously stored user information about the red-ish cable\n\nExact user strings to preserve unchanged in arguments:\n[\"red-ish cable\"]<|im_end|>\n<|im_start|>assistant\n",
+      "exact_native_prompt_sha256": "d4a292807baf6057d29067c0c070bb7d3d8151918edac60932b325e4998acc13",
+      "raw_hammer_generation": "```\n[]",
+      "normalized_hammer_generation": "[]",
+      "parser_result": {
+        "passed": true,
+        "malformed": false,
+        "rejected": true,
+        "decoded": [],
+        "canonical_call": null,
+        "errors": []
+      },
+      "schema_validator_result": {
+        "passed": false,
+        "errors": [
+          "Model rejected the delegated request."
+        ]
+      }
+    }
+  ]
+}

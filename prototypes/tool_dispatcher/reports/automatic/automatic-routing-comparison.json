@@ -1,0 +1,1303 @@
+{
+  "experiment": "Yuki automatic schema selection",
+  "phase": "phase_1_automatic_subset",
+  "safety": {
+    "yuki_tool_execution": false,
+    "execution_capability_in_automatic_runner": false,
+    "network_or_external_service_calls_from_yuki_tools": false,
+    "persistent_yuki_state_changes": false,
+    "one_stateless_dispatcher_generation_per_case": true
+  },
+  "selector": {
+    "strategy": "deterministic-domain-rules-v1",
+    "summary_across_unique_cases": {
+      "unique_cases": 168,
+      "exact_domain_selection_accuracy": 0.9940476190476191,
+      "correct_tool_in_selected_subset_rate": 1.0,
+      "average_selected_domains": 1.005952380952381,
+      "average_offered_schemas": 3.5416666666666665,
+      "minimum_offered_schemas": 1,
+      "maximum_offered_schemas": 8,
+      "selector_latency_measurements": 672,
+      "average_selector_latency_ms": 0.042475447916666666,
+      "p50_selector_latency_ms": 0.0420835,
+      "p95_selector_latency_ms": 0.07397964999999997
+    }
+  },
+  "models": {
+    "hammer21_1_5b": {
+      "label": "Hammer 2.1 1.5B",
+      "datasets": {
+        "broad_72": {
+          "all_18": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer21-1.5b-phase1-native-official-final.json",
+            "exposure": "all_18",
+            "total_cases": 72,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 18,
+            "minimum_offered_schemas": 18,
+            "maximum_offered_schemas": 18,
+            "tool_selection_accuracy": 0.9166666666666666,
+            "strict_argument_accuracy": 0.8888888888888888,
+            "execution_equivalent_argument_accuracy": 0.9027777777777778,
+            "strict_exact_call_accuracy": 0.875,
+            "execution_equivalent_exact_call_accuracy": 0.8888888888888888,
+            "schema_valid_output_rate": 0.9444444444444444,
+            "schema_valid_successful_call_rate": 0.9166666666666666,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 4691.673444444445,
+            "p50_dispatcher_latency_ms": null,
+            "p95_dispatcher_latency_ms": null,
+            "generation_tokens_per_second": 18.473305780556345,
+            "peak_mlx_memory_gb": 3.6235,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "oracle_subset": {
+            "status": "not_run",
+            "reason": "No compatible oracle report exists; not fabricated."
+          },
+          "automatic_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/automatic/hammer21-1.5b-broad-72-automatic.json",
+            "exposure": "automatic_subset",
+            "total_cases": 72,
+            "exact_domain_selection_accuracy": 0.9861111111111112,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_selected_domains": 1.0138888888888888,
+            "average_offered_schemas": 3.8194444444444446,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 8,
+            "average_selector_latency_ms": 0.047897555555555554,
+            "p50_selector_latency_ms": 0.050666,
+            "p95_selector_latency_ms": 0.07646045,
+            "tool_selection_accuracy": 0.9444444444444444,
+            "strict_argument_accuracy": 0.9027777777777778,
+            "execution_equivalent_argument_accuracy": 0.9027777777777778,
+            "strict_exact_call_accuracy": 0.9027777777777778,
+            "execution_equivalent_exact_call_accuracy": 0.9027777777777778,
+            "schema_valid_output_rate": 0.9444444444444444,
+            "schema_valid_successful_call_rate": 0.9444444444444444,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": 2202.1818408055556,
+            "p50_total_latency_ms": 2250.6297080000004,
+            "p95_total_latency_ms": 2734.7253352000002,
+            "average_dispatcher_latency_ms": 2201.382875,
+            "p50_dispatcher_latency_ms": 2249.7934999999998,
+            "p95_dispatcher_latency_ms": 2733.94295,
+            "generation_tokens_per_second": 19.63224063140566,
+            "peak_mlx_memory_gb": 3.4586,
+            "primary_failure_stages": {
+              "tool_selection": 4,
+              "argument_generation": 3
+            },
+            "failed_targeted_families": {
+              "untagged": 6,
+              "confusion": 1
+            },
+            "selector_failures_by_expected_tool": {
+              "yuki_append": {
+                "domain_selection": 1
+              }
+            },
+            "failures_by_expected_tool": {
+              "weather": {
+                "tool_selection": 2
+              },
+              "see": {
+                "tool_selection": 1
+              },
+              "image": {
+                "tool_selection": 1
+              },
+              "read": {
+                "argument_generation": 1
+              },
+              "yuki_append": {
+                "domain_selection": 1,
+                "argument_generation": 1
+              },
+              "ask_claude": {
+                "argument_generation": 1
+              }
+            },
+            "selector_confusion_matrix_by_expected_domain": {
+              "information": {
+                "information": 20
+              },
+              "computer": {
+                "computer": 12
+              },
+              "media": {
+                "media": 8
+              },
+              "yuki_files": {
+                "yuki_files": 19,
+                "computer+yuki_files": 1
+              },
+              "memory": {
+                "memory": 8
+              },
+              "external_agent": {
+                "external_agent": 4
+              }
+            },
+            "dispatcher_confusion_matrix": {
+              "time": {
+                "time": 4
+              },
+              "weather": {
+                "weather": 2,
+                "<none>": 2
+              },
+              "fetch": {
+                "fetch": 4
+              },
+              "search": {
+                "search": 4
+              },
+              "calc": {
+                "calc": 4
+              },
+              "hardware": {
+                "hardware": 4
+              },
+              "see": {
+                "see": 3,
+                "<none>": 1
+              },
+              "image": {
+                "image": 3,
+                "<none>": 1
+              },
+              "read": {
+                "read": 4
+              },
+              "shell": {
+                "shell": 4
+              },
+              "yuki_write": {
+                "yuki_write": 4
+              },
+              "yuki_read": {
+                "yuki_read": 4
+              },
+              "yuki_list": {
+                "yuki_list": 4
+              },
+              "yuki_delete": {
+                "yuki_delete": 4
+              },
+              "yuki_append": {
+                "yuki_append": 4
+              },
+              "remember": {
+                "remember": 4
+              },
+              "recall": {
+                "recall": 4
+              },
+              "ask_claude": {
+                "ask_claude": 4
+              }
+            }
+          }
+        },
+        "targeted_96": {
+          "all_18": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer21-1.5b-targeted-96-final.json",
+            "exposure": "all_18",
+            "total_cases": 96,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 18,
+            "minimum_offered_schemas": 18,
+            "maximum_offered_schemas": 18,
+            "tool_selection_accuracy": 0.75,
+            "strict_argument_accuracy": 0.625,
+            "execution_equivalent_argument_accuracy": 0.6666666666666666,
+            "strict_exact_call_accuracy": 0.625,
+            "execution_equivalent_exact_call_accuracy": 0.6666666666666666,
+            "schema_valid_output_rate": 0.8020833333333334,
+            "schema_valid_successful_call_rate": 0.75,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 4635.728864583333,
+            "p50_dispatcher_latency_ms": null,
+            "p95_dispatcher_latency_ms": null,
+            "generation_tokens_per_second": 18.436383182402935,
+            "peak_mlx_memory_gb": 3.6235,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "oracle_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/oracle/hammer21-1.5b-targeted-logical-domains.json",
+            "exposure": "oracle_subset",
+            "total_cases": 96,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 3.3333333333333335,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 5,
+            "tool_selection_accuracy": 0.8541666666666666,
+            "strict_argument_accuracy": 0.71875,
+            "execution_equivalent_argument_accuracy": 0.7291666666666666,
+            "strict_exact_call_accuracy": 0.71875,
+            "execution_equivalent_exact_call_accuracy": 0.7291666666666666,
+            "schema_valid_output_rate": 0.8645833333333334,
+            "schema_valid_successful_call_rate": 0.8541666666666666,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 2124.471916666667,
+            "p50_dispatcher_latency_ms": 2243.3995,
+            "p95_dispatcher_latency_ms": 2645.2999999999997,
+            "generation_tokens_per_second": 19.43871981579358,
+            "peak_mlx_memory_gb": 3.4541,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "automatic_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/automatic/hammer21-1.5b-targeted-96-automatic.json",
+            "exposure": "automatic_subset",
+            "total_cases": 96,
+            "exact_domain_selection_accuracy": 1.0,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_selected_domains": 1,
+            "average_offered_schemas": 3.3333333333333335,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 5,
+            "average_selector_latency_ms": 0.04020834375,
+            "p50_selector_latency_ms": 0.038271,
+            "p95_selector_latency_ms": 0.069438,
+            "tool_selection_accuracy": 0.8541666666666666,
+            "strict_argument_accuracy": 0.71875,
+            "execution_equivalent_argument_accuracy": 0.7291666666666666,
+            "strict_exact_call_accuracy": 0.71875,
+            "execution_equivalent_exact_call_accuracy": 0.7291666666666666,
+            "schema_valid_output_rate": 0.8645833333333334,
+            "schema_valid_successful_call_rate": 0.8541666666666666,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": 2097.3641576145833,
+            "p50_total_latency_ms": 2219.4987295,
+            "p95_total_latency_ms": 2603.82344775,
+            "average_dispatcher_latency_ms": 2096.567072916667,
+            "p50_dispatcher_latency_ms": 2218.714,
+            "p95_dispatcher_latency_ms": 2602.9497499999998,
+            "generation_tokens_per_second": 19.723728198411763,
+            "peak_mlx_memory_gb": 3.4541,
+            "primary_failure_stages": {
+              "tool_selection": 14,
+              "argument_generation": 12
+            },
+            "failed_targeted_families": {
+              "weather-routing": 4,
+              "see-camera-routing": 9,
+              "read-vs-yuki-read": 1,
+              "search-preservation": 4,
+              "filepath-preservation": 2,
+              "ask-claude-preservation": 6
+            },
+            "selector_failures_by_expected_tool": {},
+            "failures_by_expected_tool": {
+              "weather": {
+                "tool_selection": 4
+              },
+              "see": {
+                "tool_selection": 7,
+                "argument_generation": 2
+              },
+              "read": {
+                "argument_generation": 3
+              },
+              "search": {
+                "argument_generation": 1,
+                "tool_selection": 3
+              },
+              "ask_claude": {
+                "argument_generation": 6
+              }
+            },
+            "selector_confusion_matrix_by_expected_domain": {
+              "information": {
+                "information": 32
+              },
+              "media": {
+                "media": 16
+              },
+              "computer": {
+                "computer": 24
+              },
+              "yuki_files": {
+                "yuki_files": 8
+              },
+              "external_agent": {
+                "external_agent": 16
+              }
+            },
+            "dispatcher_confusion_matrix": {
+              "weather": {
+                "weather": 12,
+                "<none>": 4
+              },
+              "see": {
+                "see": 9,
+                "<none>": 7
+              },
+              "read": {
+                "read": 24
+              },
+              "yuki_read": {
+                "yuki_read": 8
+              },
+              "search": {
+                "search": 13,
+                "<none>": 2,
+                "weather": 1
+              },
+              "ask_claude": {
+                "ask_claude": 16
+              }
+            }
+          }
+        }
+      }
+    },
+    "hammer21_3b": {
+      "label": "Hammer 2.1 3B",
+      "datasets": {
+        "broad_72": {
+          "all_18": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer21-3b-phase1-native-final.json",
+            "exposure": "all_18",
+            "total_cases": 72,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 18,
+            "minimum_offered_schemas": 18,
+            "maximum_offered_schemas": 18,
+            "tool_selection_accuracy": 0.9722222222222222,
+            "strict_argument_accuracy": 0.9166666666666666,
+            "execution_equivalent_argument_accuracy": 0.9305555555555556,
+            "strict_exact_call_accuracy": 0.9166666666666666,
+            "execution_equivalent_exact_call_accuracy": 0.9305555555555556,
+            "schema_valid_output_rate": 0.9861111111111112,
+            "schema_valid_successful_call_rate": 0.9722222222222222,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 11918.511222222221,
+            "p50_dispatcher_latency_ms": null,
+            "p95_dispatcher_latency_ms": null,
+            "generation_tokens_per_second": 9.644098151971479,
+            "peak_mlx_memory_gb": 6.651,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "oracle_subset": {
+            "status": "not_run",
+            "reason": "No compatible oracle report exists; not fabricated."
+          },
+          "automatic_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/automatic/hammer21-3b-broad-72-automatic.json",
+            "exposure": "automatic_subset",
+            "total_cases": 72,
+            "exact_domain_selection_accuracy": 0.9861111111111112,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_selected_domains": 1.0138888888888888,
+            "average_offered_schemas": 3.8194444444444446,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 8,
+            "average_selector_latency_ms": 0.04652775,
+            "p50_selector_latency_ms": 0.04675,
+            "p95_selector_latency_ms": 0.07529405000000002,
+            "tool_selection_accuracy": 0.9861111111111112,
+            "strict_argument_accuracy": 0.9583333333333334,
+            "execution_equivalent_argument_accuracy": 0.9583333333333334,
+            "strict_exact_call_accuracy": 0.9583333333333334,
+            "execution_equivalent_exact_call_accuracy": 0.9583333333333334,
+            "schema_valid_output_rate": 0.9861111111111112,
+            "schema_valid_successful_call_rate": 0.9861111111111112,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": 4415.714769041667,
+            "p50_total_latency_ms": 4412.6812705,
+            "p95_total_latency_ms": 5364.285685750001,
+            "average_dispatcher_latency_ms": 4414.916819444445,
+            "p50_dispatcher_latency_ms": 4411.835,
+            "p95_dispatcher_latency_ms": 5363.3971,
+            "generation_tokens_per_second": 9.836644880308178,
+            "peak_mlx_memory_gb": 6.5189,
+            "primary_failure_stages": {
+              "tool_selection": 1,
+              "argument_generation": 2
+            },
+            "failed_targeted_families": {
+              "untagged": 2,
+              "confusion": 1
+            },
+            "selector_failures_by_expected_tool": {
+              "yuki_append": {
+                "domain_selection": 1
+              }
+            },
+            "failures_by_expected_tool": {
+              "yuki_read": {
+                "tool_selection": 1
+              },
+              "yuki_append": {
+                "domain_selection": 1,
+                "argument_generation": 1
+              },
+              "ask_claude": {
+                "argument_generation": 1
+              }
+            },
+            "selector_confusion_matrix_by_expected_domain": {
+              "information": {
+                "information": 20
+              },
+              "computer": {
+                "computer": 12
+              },
+              "media": {
+                "media": 8
+              },
+              "yuki_files": {
+                "yuki_files": 19,
+                "computer+yuki_files": 1
+              },
+              "memory": {
+                "memory": 8
+              },
+              "external_agent": {
+                "external_agent": 4
+              }
+            },
+            "dispatcher_confusion_matrix": {
+              "time": {
+                "time": 4
+              },
+              "weather": {
+                "weather": 4
+              },
+              "fetch": {
+                "fetch": 4
+              },
+              "search": {
+                "search": 4
+              },
+              "calc": {
+                "calc": 4
+              },
+              "hardware": {
+                "hardware": 4
+              },
+              "see": {
+                "see": 4
+              },
+              "image": {
+                "image": 4
+              },
+              "read": {
+                "read": 4
+              },
+              "shell": {
+                "shell": 4
+              },
+              "yuki_write": {
+                "yuki_write": 4
+              },
+              "yuki_read": {
+                "yuki_read": 3,
+                "<none>": 1
+              },
+              "yuki_list": {
+                "yuki_list": 4
+              },
+              "yuki_delete": {
+                "yuki_delete": 4
+              },
+              "yuki_append": {
+                "yuki_append": 4
+              },
+              "remember": {
+                "remember": 4
+              },
+              "recall": {
+                "recall": 4
+              },
+              "ask_claude": {
+                "ask_claude": 4
+              }
+            }
+          }
+        },
+        "targeted_96": {
+          "all_18": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer21-3b-targeted-96-final.json",
+            "exposure": "all_18",
+            "total_cases": 96,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 18,
+            "minimum_offered_schemas": 18,
+            "maximum_offered_schemas": 18,
+            "tool_selection_accuracy": 0.875,
+            "strict_argument_accuracy": 0.8020833333333334,
+            "execution_equivalent_argument_accuracy": 0.8125,
+            "strict_exact_call_accuracy": 0.8020833333333334,
+            "execution_equivalent_exact_call_accuracy": 0.8125,
+            "schema_valid_output_rate": 0.875,
+            "schema_valid_successful_call_rate": 0.875,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 10952.40609375,
+            "p50_dispatcher_latency_ms": null,
+            "p95_dispatcher_latency_ms": null,
+            "generation_tokens_per_second": 9.405765140628324,
+            "peak_mlx_memory_gb": 6.651,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "oracle_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/oracle/hammer21-3b-targeted-logical-domains.json",
+            "exposure": "oracle_subset",
+            "total_cases": 96,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 3.3333333333333335,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 5,
+            "tool_selection_accuracy": 0.9583333333333334,
+            "strict_argument_accuracy": 0.8541666666666666,
+            "execution_equivalent_argument_accuracy": 0.8645833333333334,
+            "strict_exact_call_accuracy": 0.8541666666666666,
+            "execution_equivalent_exact_call_accuracy": 0.8645833333333334,
+            "schema_valid_output_rate": 0.9583333333333334,
+            "schema_valid_successful_call_rate": 0.9583333333333334,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 4422.4239375,
+            "p50_dispatcher_latency_ms": 4448.961499999999,
+            "p95_dispatcher_latency_ms": 5394.1052500000005,
+            "generation_tokens_per_second": 9.764056346443331,
+            "peak_mlx_memory_gb": 6.5195,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "automatic_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/automatic/hammer21-3b-targeted-96-automatic.json",
+            "exposure": "automatic_subset",
+            "total_cases": 96,
+            "exact_domain_selection_accuracy": 1.0,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_selected_domains": 1,
+            "average_offered_schemas": 3.3333333333333335,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 5,
+            "average_selector_latency_ms": 0.038963541666666664,
+            "p50_selector_latency_ms": 0.036292,
+            "p95_selector_latency_ms": 0.07230249999999999,
+            "tool_selection_accuracy": 0.9583333333333334,
+            "strict_argument_accuracy": 0.8541666666666666,
+            "execution_equivalent_argument_accuracy": 0.8645833333333334,
+            "strict_exact_call_accuracy": 0.8541666666666666,
+            "execution_equivalent_exact_call_accuracy": 0.8645833333333334,
+            "schema_valid_output_rate": 0.9583333333333334,
+            "schema_valid_successful_call_rate": 0.9583333333333334,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": 4541.122144947916,
+            "p50_total_latency_ms": 4562.3235,
+            "p95_total_latency_ms": 5529.8625625,
+            "average_dispatcher_latency_ms": 4540.357322916667,
+            "p50_dispatcher_latency_ms": 4561.502,
+            "p95_dispatcher_latency_ms": 5529.058999999999,
+            "generation_tokens_per_second": 9.626069272819333,
+            "peak_mlx_memory_gb": 6.5195,
+            "primary_failure_stages": {
+              "tool_selection": 4,
+              "argument_generation": 9
+            },
+            "failed_targeted_families": {
+              "see-camera-routing": 3,
+              "read-vs-yuki-read": 2,
+              "search-preservation": 2,
+              "ask-claude-preservation": 6
+            },
+            "selector_failures_by_expected_tool": {},
+            "failures_by_expected_tool": {
+              "see": {
+                "tool_selection": 2,
+                "argument_generation": 1
+              },
+              "read": {
+                "tool_selection": 1
+              },
+              "yuki_read": {
+                "tool_selection": 1
+              },
+              "search": {
+                "argument_generation": 2
+              },
+              "ask_claude": {
+                "argument_generation": 6
+              }
+            },
+            "selector_confusion_matrix_by_expected_domain": {
+              "information": {
+                "information": 32
+              },
+              "media": {
+                "media": 16
+              },
+              "computer": {
+                "computer": 24
+              },
+              "yuki_files": {
+                "yuki_files": 8
+              },
+              "external_agent": {
+                "external_agent": 16
+              }
+            },
+            "dispatcher_confusion_matrix": {
+              "weather": {
+                "weather": 16
+              },
+              "see": {
+                "see": 14,
+                "<none>": 2
+              },
+              "read": {
+                "read": 23,
+                "<none>": 1
+              },
+              "yuki_read": {
+                "yuki_read": 7,
+                "<none>": 1
+              },
+              "search": {
+                "search": 16
+              },
+              "ask_claude": {
+                "ask_claude": 16
+              }
+            }
+          }
+        }
+      }
+    },
+    "xlam_2_3b": {
+      "label": "xLAM-2 3B",
+      "datasets": {
+        "broad_72": {
+          "all_18": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/new-models/xlam-2-3b-broad-72.json",
+            "exposure": "all_18",
+            "total_cases": 72,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 18,
+            "minimum_offered_schemas": 18,
+            "maximum_offered_schemas": 18,
+            "tool_selection_accuracy": 0.9722222222222222,
+            "strict_argument_accuracy": 0.9444444444444444,
+            "execution_equivalent_argument_accuracy": 0.9444444444444444,
+            "strict_exact_call_accuracy": 0.9166666666666666,
+            "execution_equivalent_exact_call_accuracy": 0.9166666666666666,
+            "schema_valid_output_rate": 0.9722222222222222,
+            "schema_valid_successful_call_rate": 0.9583333333333334,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 16133.006819444445,
+            "p50_dispatcher_latency_ms": 16371.8375,
+            "p95_dispatcher_latency_ms": 17100.302200000002,
+            "generation_tokens_per_second": 9.576363314832928,
+            "peak_mlx_memory_gb": 6.6521,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "oracle_subset": {
+            "status": "not_run",
+            "reason": "No compatible oracle report exists; not fabricated."
+          },
+          "automatic_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/automatic/xlam-2-3b-broad-72-automatic.json",
+            "exposure": "automatic_subset",
+            "total_cases": 72,
+            "exact_domain_selection_accuracy": 0.9861111111111112,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_selected_domains": 1.0138888888888888,
+            "average_offered_schemas": 3.8194444444444446,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 8,
+            "average_selector_latency_ms": 0.045502375,
+            "p50_selector_latency_ms": 0.045937,
+            "p95_selector_latency_ms": 0.0774064,
+            "tool_selection_accuracy": 1.0,
+            "strict_argument_accuracy": 0.9305555555555556,
+            "execution_equivalent_argument_accuracy": 0.9305555555555556,
+            "strict_exact_call_accuracy": 0.9305555555555556,
+            "execution_equivalent_exact_call_accuracy": 0.9305555555555556,
+            "schema_valid_output_rate": 0.9861111111111112,
+            "schema_valid_successful_call_rate": 0.9861111111111112,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": 4803.345041597222,
+            "p50_total_latency_ms": 4649.696584,
+            "p95_total_latency_ms": 6430.880028650001,
+            "average_dispatcher_latency_ms": 4802.182569444444,
+            "p50_dispatcher_latency_ms": 4648.4465,
+            "p95_dispatcher_latency_ms": 6429.661250000001,
+            "generation_tokens_per_second": 9.604325495147048,
+            "peak_mlx_memory_gb": 6.6005,
+            "primary_failure_stages": {
+              "schema_validation": 1,
+              "argument_generation": 4
+            },
+            "failed_targeted_families": {
+              "untagged": 4,
+              "confusion": 1
+            },
+            "selector_failures_by_expected_tool": {
+              "yuki_append": {
+                "domain_selection": 1
+              }
+            },
+            "failures_by_expected_tool": {
+              "see": {
+                "schema_validation": 1
+              },
+              "image": {
+                "argument_generation": 2
+              },
+              "read": {
+                "argument_generation": 1
+              },
+              "yuki_append": {
+                "domain_selection": 1
+              },
+              "ask_claude": {
+                "argument_generation": 1
+              }
+            },
+            "selector_confusion_matrix_by_expected_domain": {
+              "information": {
+                "information": 20
+              },
+              "computer": {
+                "computer": 12
+              },
+              "media": {
+                "media": 8
+              },
+              "yuki_files": {
+                "yuki_files": 19,
+                "computer+yuki_files": 1
+              },
+              "memory": {
+                "memory": 8
+              },
+              "external_agent": {
+                "external_agent": 4
+              }
+            },
+            "dispatcher_confusion_matrix": {
+              "time": {
+                "time": 4
+              },
+              "weather": {
+                "weather": 4
+              },
+              "fetch": {
+                "fetch": 4
+              },
+              "search": {
+                "search": 4
+              },
+              "calc": {
+                "calc": 4
+              },
+              "hardware": {
+                "hardware": 4
+              },
+              "see": {
+                "see": 4
+              },
+              "image": {
+                "image": 4
+              },
+              "read": {
+                "read": 4
+              },
+              "shell": {
+                "shell": 4
+              },
+              "yuki_write": {
+                "yuki_write": 4
+              },
+              "yuki_read": {
+                "yuki_read": 4
+              },
+              "yuki_list": {
+                "yuki_list": 4
+              },
+              "yuki_delete": {
+                "yuki_delete": 4
+              },
+              "yuki_append": {
+                "yuki_append": 4
+              },
+              "remember": {
+                "remember": 4
+              },
+              "recall": {
+                "recall": 4
+              },
+              "ask_claude": {
+                "ask_claude": 4
+              }
+            }
+          }
+        },
+        "targeted_96": {
+          "all_18": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/new-models/xlam-2-3b-targeted-96.json",
+            "exposure": "all_18",
+            "total_cases": 96,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 18,
+            "minimum_offered_schemas": 18,
+            "maximum_offered_schemas": 18,
+            "tool_selection_accuracy": 0.9895833333333334,
+            "strict_argument_accuracy": 0.8333333333333334,
+            "execution_equivalent_argument_accuracy": 0.8645833333333334,
+            "strict_exact_call_accuracy": 0.8333333333333334,
+            "execution_equivalent_exact_call_accuracy": 0.8645833333333334,
+            "schema_valid_output_rate": 0.9895833333333334,
+            "schema_valid_successful_call_rate": 0.9895833333333334,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 14216.3925,
+            "p50_dispatcher_latency_ms": 13686.897,
+            "p95_dispatcher_latency_ms": 16829.78825,
+            "generation_tokens_per_second": 9.110564294755333,
+            "peak_mlx_memory_gb": 6.6521,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "oracle_subset": {
+            "status": "not_run",
+            "reason": "No compatible oracle report exists; not fabricated."
+          },
+          "automatic_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/automatic/xlam-2-3b-targeted-96-automatic.json",
+            "exposure": "automatic_subset",
+            "total_cases": 96,
+            "exact_domain_selection_accuracy": 1.0,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_selected_domains": 1,
+            "average_offered_schemas": 3.3333333333333335,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 5,
+            "average_selector_latency_ms": 0.03967053125,
+            "p50_selector_latency_ms": 0.038687,
+            "p95_selector_latency_ms": 0.07029125,
+            "tool_selection_accuracy": 1.0,
+            "strict_argument_accuracy": 0.8229166666666666,
+            "execution_equivalent_argument_accuracy": 0.8541666666666666,
+            "strict_exact_call_accuracy": 0.8229166666666666,
+            "execution_equivalent_exact_call_accuracy": 0.8541666666666666,
+            "schema_valid_output_rate": 1.0,
+            "schema_valid_successful_call_rate": 1.0,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": 4712.657674,
+            "p50_total_latency_ms": 4503.253958,
+            "p95_total_latency_ms": 6021.434083,
+            "average_dispatcher_latency_ms": 4711.54525,
+            "p50_dispatcher_latency_ms": 4502.228999999999,
+            "p95_dispatcher_latency_ms": 6020.2495,
+            "generation_tokens_per_second": 9.6276352804846,
+            "peak_mlx_memory_gb": 6.584,
+            "primary_failure_stages": {
+              "argument_generation": 14
+            },
+            "failed_targeted_families": {
+              "see-camera-routing": 2,
+              "read-vs-yuki-read": 2,
+              "search-preservation": 1,
+              "filepath-preservation": 3,
+              "ask-claude-preservation": 6
+            },
+            "selector_failures_by_expected_tool": {},
+            "failures_by_expected_tool": {
+              "see": {
+                "argument_generation": 2
+              },
+              "read": {
+                "argument_generation": 5
+              },
+              "search": {
+                "argument_generation": 1
+              },
+              "ask_claude": {
+                "argument_generation": 6
+              }
+            },
+            "selector_confusion_matrix_by_expected_domain": {
+              "information": {
+                "information": 32
+              },
+              "media": {
+                "media": 16
+              },
+              "computer": {
+                "computer": 24
+              },
+              "yuki_files": {
+                "yuki_files": 8
+              },
+              "external_agent": {
+                "external_agent": 16
+              }
+            },
+            "dispatcher_confusion_matrix": {
+              "weather": {
+                "weather": 16
+              },
+              "see": {
+                "see": 16
+              },
+              "read": {
+                "read": 24
+              },
+              "yuki_read": {
+                "yuki_read": 8
+              },
+              "search": {
+                "search": 16
+              },
+              "ask_claude": {
+                "ask_claude": 16
+              }
+            }
+          }
+        }
+      }
+    },
+    "arch_agent_3b": {
+      "label": "Arch-Agent 3B",
+      "datasets": {
+        "broad_72": {
+          "all_18": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/new-models/arch-agent-3b-broad-72.json",
+            "exposure": "all_18",
+            "total_cases": 72,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 18,
+            "minimum_offered_schemas": 18,
+            "maximum_offered_schemas": 18,
+            "tool_selection_accuracy": 0.9722222222222222,
+            "strict_argument_accuracy": 0.9027777777777778,
+            "execution_equivalent_argument_accuracy": 0.9305555555555556,
+            "strict_exact_call_accuracy": 0.9027777777777778,
+            "execution_equivalent_exact_call_accuracy": 0.9305555555555556,
+            "schema_valid_output_rate": 0.9861111111111112,
+            "schema_valid_successful_call_rate": 0.9722222222222222,
+            "malformed_output_rate": 0.013888888888888888,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 12718.341430555556,
+            "p50_dispatcher_latency_ms": 12949.449499999999,
+            "p95_dispatcher_latency_ms": 14056.83405,
+            "generation_tokens_per_second": 9.732911892086696,
+            "peak_mlx_memory_gb": 6.6521,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "oracle_subset": {
+            "status": "not_run",
+            "reason": "No compatible oracle report exists; not fabricated."
+          },
+          "automatic_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/automatic/arch-agent-3b-broad-72-automatic.json",
+            "exposure": "automatic_subset",
+            "total_cases": 72,
+            "exact_domain_selection_accuracy": 0.9861111111111112,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_selected_domains": 1.0138888888888888,
+            "average_offered_schemas": 3.8194444444444446,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 8,
+            "average_selector_latency_ms": 0.04630561111111111,
+            "p50_selector_latency_ms": 0.046875,
+            "p95_selector_latency_ms": 0.07351495,
+            "tool_selection_accuracy": 1.0,
+            "strict_argument_accuracy": 0.9305555555555556,
+            "execution_equivalent_argument_accuracy": 0.9583333333333334,
+            "strict_exact_call_accuracy": 0.9305555555555556,
+            "execution_equivalent_exact_call_accuracy": 0.9583333333333334,
+            "schema_valid_output_rate": 1.0,
+            "schema_valid_successful_call_rate": 1.0,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": 4451.039125,
+            "p50_total_latency_ms": 4379.272500499999,
+            "p95_total_latency_ms": 5855.964358,
+            "average_dispatcher_latency_ms": 4449.936027777778,
+            "p50_dispatcher_latency_ms": 4378.1925,
+            "p95_dispatcher_latency_ms": 5854.831950000001,
+            "generation_tokens_per_second": 9.549861297989326,
+            "peak_mlx_memory_gb": 6.5309,
+            "primary_failure_stages": {
+              "argument_generation": 3
+            },
+            "failed_targeted_families": {
+              "untagged": 3
+            },
+            "selector_failures_by_expected_tool": {
+              "yuki_append": {
+                "domain_selection": 1
+              }
+            },
+            "failures_by_expected_tool": {
+              "yuki_write": {
+                "argument_generation": 1
+              },
+              "yuki_append": {
+                "domain_selection": 1,
+                "argument_generation": 1
+              },
+              "recall": {
+                "argument_generation": 1
+              }
+            },
+            "selector_confusion_matrix_by_expected_domain": {
+              "information": {
+                "information": 20
+              },
+              "computer": {
+                "computer": 12
+              },
+              "media": {
+                "media": 8
+              },
+              "yuki_files": {
+                "yuki_files": 19,
+                "computer+yuki_files": 1
+              },
+              "memory": {
+                "memory": 8
+              },
+              "external_agent": {
+                "external_agent": 4
+              }
+            },
+            "dispatcher_confusion_matrix": {
+              "time": {
+                "time": 4
+              },
+              "weather": {
+                "weather": 4
+              },
+              "fetch": {
+                "fetch": 4
+              },
+              "search": {
+                "search": 4
+              },
+              "calc": {
+                "calc": 4
+              },
+              "hardware": {
+                "hardware": 4
+              },
+              "see": {
+                "see": 4
+              },
+              "image": {
+                "image": 4
+              },
+              "read": {
+                "read": 4
+              },
+              "shell": {
+                "shell": 4
+              },
+              "yuki_write": {
+                "yuki_write": 4
+              },
+              "yuki_read": {
+                "yuki_read": 4
+              },
+              "yuki_list": {
+                "yuki_list": 4
+              },
+              "yuki_delete": {
+                "yuki_delete": 4
+              },
+              "yuki_append": {
+                "yuki_append": 4
+              },
+              "remember": {
+                "remember": 4
+              },
+              "recall": {
+                "recall": 4
+              },
+              "ask_claude": {
+                "ask_claude": 4
+              }
+            }
+          }
+        },
+        "targeted_96": {
+          "all_18": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/new-models/arch-agent-3b-targeted-96.json",
+            "exposure": "all_18",
+            "total_cases": 96,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_offered_schemas": 18,
+            "minimum_offered_schemas": 18,
+            "maximum_offered_schemas": 18,
+            "tool_selection_accuracy": 0.9791666666666666,
+            "strict_argument_accuracy": 0.8229166666666666,
+            "execution_equivalent_argument_accuracy": 0.8645833333333334,
+            "strict_exact_call_accuracy": 0.8229166666666666,
+            "execution_equivalent_exact_call_accuracy": 0.8645833333333334,
+            "schema_valid_output_rate": 0.9895833333333334,
+            "schema_valid_successful_call_rate": 0.9791666666666666,
+            "malformed_output_rate": 0.010416666666666666,
+            "average_total_latency_ms": null,
+            "p50_total_latency_ms": null,
+            "p95_total_latency_ms": null,
+            "average_dispatcher_latency_ms": 11983.90371875,
+            "p50_dispatcher_latency_ms": 12667.04,
+            "p95_dispatcher_latency_ms": 13763.842499999999,
+            "generation_tokens_per_second": 9.538800994616158,
+            "peak_mlx_memory_gb": 6.6521,
+            "total_latency_note": "not recorded in the reused baseline; dispatcher inference latency is retained without fabrication"
+          },
+          "oracle_subset": {
+            "status": "not_run",
+            "reason": "No compatible oracle report exists; not fabricated."
+          },
+          "automatic_subset": {
+            "status": "completed",
+            "source_report": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/automatic/arch-agent-3b-targeted-96-automatic.json",
+            "exposure": "automatic_subset",
+            "total_cases": 96,
+            "exact_domain_selection_accuracy": 1.0,
+            "correct_tool_in_selected_subset_rate": 1.0,
+            "average_selected_domains": 1,
+            "average_offered_schemas": 3.3333333333333335,
+            "minimum_offered_schemas": 1,
+            "maximum_offered_schemas": 5,
+            "average_selector_latency_ms": 0.03881075,
+            "p50_selector_latency_ms": 0.0382705,
+            "p95_selector_latency_ms": 0.07084375,
+            "tool_selection_accuracy": 1.0,
+            "strict_argument_accuracy": 0.84375,
+            "execution_equivalent_argument_accuracy": 0.8854166666666666,
+            "strict_exact_call_accuracy": 0.84375,
+            "execution_equivalent_exact_call_accuracy": 0.8854166666666666,
+            "schema_valid_output_rate": 1.0,
+            "schema_valid_successful_call_rate": 1.0,
+            "malformed_output_rate": 0.0,
+            "average_total_latency_ms": 4330.657460104167,
+            "p50_total_latency_ms": 4140.0753545,
+            "p95_total_latency_ms": 5693.51425025,
+            "average_dispatcher_latency_ms": 4329.613,
+            "p50_dispatcher_latency_ms": 4138.9635,
+            "p95_dispatcher_latency_ms": 5692.4775,
+            "generation_tokens_per_second": 9.555985468072205,
+            "peak_mlx_memory_gb": 6.5271,
+            "primary_failure_stages": {
+              "argument_generation": 11
+            },
+            "failed_targeted_families": {
+              "see-camera-routing": 2,
+              "read-vs-yuki-read": 1,
+              "search-preservation": 4,
+              "ask-claude-preservation": 4
+            },
+            "selector_failures_by_expected_tool": {},
+            "failures_by_expected_tool": {
+              "see": {
+                "argument_generation": 2
+              },
+              "yuki_read": {
+                "argument_generation": 1
+              },
+              "search": {
+                "argument_generation": 4
+              },
+              "ask_claude": {
+                "argument_generation": 4
+              }
+            },
+            "selector_confusion_matrix_by_expected_domain": {
+              "information": {
+                "information": 32
+              },
+              "media": {
+                "media": 16
+              },
+              "computer": {
+                "computer": 24
+              },
+              "yuki_files": {
+                "yuki_files": 8
+              },
+              "external_agent": {
+                "external_agent": 16
+              }
+            },
+            "dispatcher_confusion_matrix": {
+              "weather": {
+                "weather": 16
+              },
+              "see": {
+                "see": 16
+              },
+              "read": {
+                "read": 24
+              },
+              "yuki_read": {
+                "yuki_read": 8
+              },
+              "search": {
+                "search": 16
+              },
+              "ask_claude": {
+                "ask_claude": 16
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "notes": [
+    "All-18 and oracle results were reused from compatible completed reports.",
+    "Only automatic-subset inference was newly run.",
+    "Oracle results for xLAM-2 3B and Arch-Agent 3B were not run.",
+    "Broad oracle results were not run for any finalist.",
+    "Reused reports did not record full pipeline latency, so their total latency is null rather than inferred."
+  ]
+}

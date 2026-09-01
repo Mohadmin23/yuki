@@ -1,0 +1,136 @@
+{
+  "version": "qwen3.8-hammer1.5-full450-comparison-v1",
+  "date": "2026-08-21",
+  "status": "completed",
+  "scope": {
+    "main_brain": "qwen/qwen3.8-27b",
+    "main_brain_role": "intended_main_brain",
+    "main_brain_surrogate": false,
+    "dispatcher": "MadeAgents/Hammer2.1-1.5b fp16",
+    "dispatcher_path": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+    "hammer_3b_included": false,
+    "cases": 450,
+    "one_main_brain_generation_per_case": true,
+    "one_dispatcher_generation_per_valid_delegation": true,
+    "conversation_history": false,
+    "yuki_tool_execution": false
+  },
+  "artifacts": {
+    "source_dataset": "production-delegation-source-v1.json",
+    "source_dataset_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "source_phase2_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "stage_a_smoke": "stage-a/production-delegation-mainbrain-qwen3.8-27b-openrouter-smoke18-v1.json",
+    "stage_a_smoke_sha256": "7b80a2cb50ce25631e923aca3518a1e5ca4ae6718703f017174222c589f9d512",
+    "stage_a_full": "stage-a/production-delegation-mainbrain-qwen3.8-27b-openrouter-full450-v1.json",
+    "stage_a_full_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa",
+    "stage_b_full": "stage-b/production-delegation-hammer1.5b-qwen3.8-27b-full450-v1.json",
+    "stage_b_full_sha256": "84b619922e3b24c0080b17b91a5963114f024647112e467a6099ae9fab425f8a",
+    "stage_b_failures": "stage-b/production-delegation-hammer1.5b-qwen3.8-27b-full450-v1-failures.jsonl",
+    "stage_b_failures_sha256": "7d82ec2c4f5721ba56db781d903237ac37d84691638f2cecee97387a6e162de1"
+  },
+  "api_usage": {
+    "pre_run_model_verification_cost_usd": 0.0002668,
+    "smoke_18_cost_usd": 0.0053244,
+    "full_450_cost_usd": 0.13306525,
+    "total_observed_cost_usd": 0.13865645,
+    "user_reported_starting_balance_usd": 1.4,
+    "estimated_remaining_balance_usd": 1.26134355,
+    "reasoning_tokens": 0,
+    "providers_observed": [
+      "Chutes",
+      "CoreWeave",
+      "Reka"
+    ]
+  },
+  "stage_a_qwen": {
+    "valid_delegation_rate": 1.0,
+    "malformed_delegation_rate": 0.0,
+    "domain_hint_accuracy": 0.9911111111111112,
+    "semantic_request_quality_rate_heuristic": 0.6933333333333334,
+    "average_verbatim_recall": 0.9055555555555556,
+    "average_verbatim_precision": 0.7593333333333333,
+    "final_tool_leakage_rate": 0.0022222222222222222,
+    "average_latency_ms": 2144.939282222222,
+    "p50_latency_ms": 1209.7705,
+    "p95_latency_ms": 6976.231999999988,
+    "average_generated_tokens": 28.964444444444446,
+    "average_tokens_per_second": 21.249602222222222,
+    "wrong_domain_cases": 4,
+    "verbatim_recall_failure_cases": 44
+  },
+  "stage_b_hammer_1_5b": {
+    "tool_selection_accuracy": 0.9066666666666666,
+    "strict_argument_accuracy": 0.7955555555555556,
+    "execution_equivalent_argument_accuracy": 0.7977777777777778,
+    "preservation_aware_argument_accuracy": 0.8088888888888889,
+    "strict_exact_call_accuracy": 0.7955555555555556,
+    "execution_equivalent_exact_call_accuracy": 0.7977777777777778,
+    "preservation_aware_exact_call_accuracy": 0.8088888888888889,
+    "schema_valid_rate": 0.9244444444444444,
+    "malformed_output_rate": 0.0044444444444444444,
+    "conversational_output_rate": 0.0,
+    "average_latency_ms": 2486.008855555556,
+    "p50_latency_ms": 2511.8925,
+    "p95_latency_ms": 3197.3309,
+    "average_generation_tokens_per_second": 19.39308,
+    "peak_mlx_memory_gb": 3.4731
+  },
+  "strict_exact_call_by_family": {
+    "information": 0.896,
+    "computer": 0.8933333333333333,
+    "media": 0.42,
+    "yuki_files": 0.904,
+    "memory": 0.6,
+    "external_agent": 0.6
+  },
+  "strict_exact_call_by_dataset_category": {
+    "normal": 0.8514851485148515,
+    "paraphrase": 0.8090909090909091,
+    "confusion": 0.7777777777777778,
+    "preservation": 0.6458333333333334,
+    "adversarial": 0.5555555555555556
+  },
+  "failure_decomposition": {
+    "strict_failures": 92,
+    "main_brain_wrong_domain": 4,
+    "main_brain_lost_verbatim_association": 37,
+    "dispatcher_wrong_tool": 29,
+    "dispatcher_wrong_argument": 14,
+    "dispatcher_argument_rewrite": 6,
+    "dispatcher_malformed_output": 2
+  },
+  "paired_same_180_cases": {
+    "case_ids_identical": true,
+    "qwen3_14b_surrogate_hammer1_5b": {
+      "domain_hint_accuracy": 0.8777777777777778,
+      "tool_selection_accuracy": 0.8388888888888889,
+      "strict_exact_call_accuracy": 0.7333333333333333,
+      "preservation_aware_exact_call_accuracy": 0.7388888888888889,
+      "schema_valid_rate": 0.9
+    },
+    "qwen3_8_27b_hammer1_5b": {
+      "domain_hint_accuracy": 0.9777777777777777,
+      "tool_selection_accuracy": 0.9055555555555556,
+      "strict_exact_call_accuracy": 0.7833333333333333,
+      "preservation_aware_exact_call_accuracy": 0.7944444444444444,
+      "schema_valid_rate": 0.9388888888888889
+    },
+    "percentage_point_change": {
+      "domain_hint_accuracy": 10.0,
+      "tool_selection_accuracy": 6.666666666666665,
+      "strict_exact_call_accuracy": 5.000000000000004,
+      "preservation_aware_exact_call_accuracy": 5.5555555555555465,
+      "schema_valid_rate": 3.888888888888886
+    }
+  },
+  "conclusion": {
+    "domain_router_result": "strong",
+    "hammer_1_5b_overall_result": "promising_but_not_reliable_enough_for_unattended_tool_dispatch",
+    "dominant_weaknesses": [
+      "see rejections and media routing inside the media subset",
+      "recall rejections inside the memory subset",
+      "exact argument preservation for image, search, and ask_claude"
+    ],
+    "recommended_next_step": "Target the observed see, recall, and exact-preservation failures before changing model capacity or adding Hammer 3B back to the experiment."
+  }
+}

@@ -1,0 +1,2701 @@
+{
+  "version": "literal-boundary-binder-v1-predictions",
+  "status": "predictions_frozen_before_scoring",
+  "probe_sha256": "516a1214a68f88be7f4fc2b8fbb2d9711e999cf87a94bf12cf07b1eed2eec560",
+  "binder": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/typed_literal_binder.py",
+    "sha256": "0ca26737b6017f907b46860be30c3770ec5ccfe6ef25d7505130c50b6104d602"
+  },
+  "configuration": {
+    "models_called": false,
+    "annotations_available_to_binder": false,
+    "official_benchmark_gold_used": false,
+    "sacred_450_used": false,
+    "tool_execution_capability": false,
+    "tool_execution_attempts": 0
+  },
+  "status_counts": {
+    "bound": 35,
+    "bound_composite": 4,
+    "unbound": 25
+  },
+  "case_results": [
+    {
+      "case_id": "boundary-ask-01",
+      "family": "ask_scaffolding",
+      "request": "Ask Claude: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 31,
+          "rule": "external_agent_payload",
+          "text": "why does this fail?"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 31,
+            "rule": "external_agent_payload",
+            "text": "why does this fail?"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 31,
+            "rule": "external_agent_payload",
+            "text": "why does this fail?"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "why does this fail?"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-02",
+      "family": "ask_scaffolding",
+      "request": "Ask Claude this exact question: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-03",
+      "family": "ask_scaffolding",
+      "request": "Have Claude answer: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 39,
+          "rule": "external_agent_payload",
+          "text": "answer: why does this fail?"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 39,
+            "rule": "external_agent_payload",
+            "text": "answer: why does this fail?"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 39,
+            "rule": "external_agent_payload",
+            "text": "answer: why does this fail?"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "answer: why does this fail?"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-04",
+      "family": "ask_scaffolding",
+      "request": "Send this to Claude: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-05",
+      "family": "ask_scaffolding",
+      "request": "Claude — check this for me: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-06",
+      "family": "ask_scaffolding",
+      "request": "I need Claude to handle this exact question: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-07",
+      "family": "ask_scaffolding",
+      "request": "Tell Claude: inspect the retry loop.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-08",
+      "family": "ask_scaffolding",
+      "request": "Delegate to Claude: review the parser boundary.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-09",
+      "family": "ask_scaffolding",
+      "request": "Could you ask Claude: does this preserve_case?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-10",
+      "family": "ask_scaffolding",
+      "request": "Please have Claude answer: is Foo.JSON different from foo.json?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-11",
+      "family": "ask_scaffolding",
+      "request": "Send Claude this question: where did the null come from?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-12",
+      "family": "ask_scaffolding",
+      "request": "Pass this to Claude: compare foo_bar() with fooBar().",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-13",
+      "family": "ask_scaffolding",
+      "request": "Consult Claude: check KeyError: city without rewriting it.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 16,
+          "end": 57,
+          "rule": "external_agent_payload",
+          "text": "check KeyError: city without rewriting it"
+        },
+        "source_spans": [
+          {
+            "start": 16,
+            "end": 57,
+            "rule": "external_agent_payload",
+            "text": "check KeyError: city without rewriting it"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 16,
+            "end": 57,
+            "rule": "external_agent_payload",
+            "text": "check KeyError: city without rewriting it"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "check KeyError: city without rewriting it"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-14",
+      "family": "ask_scaffolding",
+      "request": "Claude: explain why x:y stays literal.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-15",
+      "family": "ask_scaffolding",
+      "request": "Claude — why did it output {\"tool\": null}?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-16",
+      "family": "ask_scaffolding",
+      "request": "I want Claude to review: A_B-17 vs a_b-17.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-17",
+      "family": "ask_scaffolding",
+      "request": "Have Claude inspect: /tmp/Foo Bar.txt",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 37,
+          "rule": "external_agent_payload",
+          "text": "inspect: /tmp/Foo Bar.txt"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 37,
+            "rule": "external_agent_payload",
+            "text": "inspect: /tmp/Foo Bar.txt"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 37,
+            "rule": "external_agent_payload",
+            "text": "inspect: /tmp/Foo Bar.txt"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "inspect: /tmp/Foo Bar.txt"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-18",
+      "family": "ask_to_payload",
+      "request": "Ask Claude to check the race condition.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 14,
+          "end": 38,
+          "rule": "external_agent_payload",
+          "text": "check the race condition"
+        },
+        "source_spans": [
+          {
+            "start": 14,
+            "end": 38,
+            "rule": "external_agent_payload",
+            "text": "check the race condition"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 14,
+            "end": 38,
+            "rule": "external_agent_payload",
+            "text": "check the race condition"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "check the race condition"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-19",
+      "family": "verb_payload",
+      "request": "Have Claude review the schema adapter.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 37,
+          "rule": "external_agent_payload",
+          "text": "review the schema adapter"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 37,
+            "rule": "external_agent_payload",
+            "text": "review the schema adapter"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 37,
+            "rule": "external_agent_payload",
+            "text": "review the schema adapter"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "review the schema adapter"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-20",
+      "family": "verb_payload",
+      "request": "Tell Claude to inspect traceback line 42.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-21",
+      "family": "payload_contains_scaffolding",
+      "request": "Ask Claude: handle this exact question: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 59,
+          "rule": "external_agent_payload",
+          "text": "handle this exact question: why does this fail?"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 59,
+            "rule": "external_agent_payload",
+            "text": "handle this exact question: why does this fail?"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 59,
+            "rule": "external_agent_payload",
+            "text": "handle this exact question: why does this fail?"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "handle this exact question: why does this fail?"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-22",
+      "family": "payload_contains_scaffolding",
+      "request": "Ask Claude: Ask Claude to retry after five seconds.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 50,
+          "rule": "external_agent_payload",
+          "text": "Ask Claude to retry after five seconds"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 50,
+            "rule": "external_agent_payload",
+            "text": "Ask Claude to retry after five seconds"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 50,
+            "rule": "external_agent_payload",
+            "text": "Ask Claude to retry after five seconds"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "Ask Claude to retry after five seconds"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-23",
+      "family": "payload_contains_scaffolding",
+      "request": "Send this to Claude: Send this to Claude: preserve both copies.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-24",
+      "family": "payload_contains_scaffolding",
+      "request": "Claude — I need Claude to handle this exact question: why now?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-25",
+      "family": "payload_contains_scaffolding",
+      "request": "Have Claude answer: Have Claude answer: nested text.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 51,
+          "rule": "external_agent_payload",
+          "text": "answer: Have Claude answer: nested text"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 51,
+            "rule": "external_agent_payload",
+            "text": "answer: Have Claude answer: nested text"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 51,
+            "rule": "external_agent_payload",
+            "text": "answer: Have Claude answer: nested text"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "answer: Have Claude answer: nested text"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-26",
+      "family": "outer_quote_delimiter",
+      "request": "Ask Claude this exact question: \"handle this exact question: why?\"",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-27",
+      "family": "outer_quote_delimiter",
+      "request": "Send this to Claude: 'Ask Claude: keep this colon.'",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-28",
+      "family": "outer_quote_delimiter",
+      "request": "Delegate to Claude: `Have Claude answer: yes?`",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-29",
+      "family": "inner_quote_payload",
+      "request": "Ask Claude: explain the phrase \"handle this exact question:\" literally.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 70,
+          "rule": "external_agent_payload",
+          "text": "explain the phrase \"handle this exact question:\" literally"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 70,
+            "rule": "external_agent_payload",
+            "text": "explain the phrase \"handle this exact question:\" literally"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 70,
+            "rule": "external_agent_payload",
+            "text": "explain the phrase \"handle this exact question:\" literally"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "explain the phrase \"handle this exact question:\" literally"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-30",
+      "family": "inner_quote_payload",
+      "request": "Claude — check this for me: keep the words \"check this for me:\" intact.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-31",
+      "family": "inner_colon_payload",
+      "request": "Ask Claude this exact question: why: does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-32",
+      "family": "inner_colon_payload",
+      "request": "Have Claude answer: first: second: third",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 40,
+          "rule": "external_agent_payload",
+          "text": "answer: first: second: third"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 40,
+            "rule": "external_agent_payload",
+            "text": "answer: first: second: third"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 40,
+            "rule": "external_agent_payload",
+            "text": "answer: first: second: third"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "answer: first: second: third"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-33",
+      "family": "structured_payload",
+      "request": "Send this to Claude: JSON {\"message\":\"Ask Claude: hi\"}",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-34",
+      "family": "inner_colon_payload",
+      "request": "I need Claude to handle this exact question: compare A:B with A::B.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-35",
+      "family": "negative_instruction_payload",
+      "request": "Ask Claude: Do not strip \"Ask Claude:\" from this payload.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 56,
+          "rule": "external_agent_payload",
+          "text": "Do not strip \"Ask Claude:\" from this payload"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 56,
+            "rule": "external_agent_payload",
+            "text": "Do not strip \"Ask Claude:\" from this payload"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 56,
+            "rule": "external_agent_payload",
+            "text": "Do not strip \"Ask Claude:\" from this payload"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "Do not strip \"Ask Claude:\" from this payload"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-36",
+      "family": "outer_quote_delimiter",
+      "request": "Claude — \"Ask Claude: why?\"",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-37",
+      "family": "outer_quote_delimiter",
+      "request": "Send this to Claude: `why does foo_bar() fail?`",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "unbound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "candidates": [],
+        "final_call": null,
+        "source_copy_valid": null
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-38",
+      "family": "inner_quote_payload",
+      "request": "Have Claude answer: \"why does this fail?\" exactly as written.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 60,
+          "rule": "external_agent_payload",
+          "text": "answer: \"why does this fail?\" exactly as written"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 60,
+            "rule": "external_agent_payload",
+            "text": "answer: \"why does this fail?\" exactly as written"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 60,
+            "rule": "external_agent_payload",
+            "text": "answer: \"why does this fail?\" exactly as written"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "answer: \"why does this fail?\" exactly as written"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-39",
+      "family": "terminal_colon_payload",
+      "request": "Ask Claude: colon at end -> value:",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 34,
+          "rule": "external_agent_payload",
+          "text": "colon at end -> value:"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 34,
+            "rule": "external_agent_payload",
+            "text": "colon at end -> value:"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 34,
+            "rule": "external_agent_payload",
+            "text": "colon at end -> value:"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "colon at end -> value:"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-40",
+      "family": "terminal_question_payload",
+      "request": "Ask Claude: question mark stays?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "ask_claude",
+        "argument_mode": "literal_source",
+        "argument_name": "question",
+        "source_span": {
+          "start": 12,
+          "end": 32,
+          "rule": "external_agent_payload",
+          "text": "question mark stays?"
+        },
+        "source_spans": [
+          {
+            "start": 12,
+            "end": 32,
+            "rule": "external_agent_payload",
+            "text": "question mark stays?"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 12,
+            "end": 32,
+            "rule": "external_agent_payload",
+            "text": "question mark stays?"
+          }
+        ],
+        "final_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "question mark stays?"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-01",
+      "family": "cross_tool_prefix_text",
+      "request": "Search for handle this exact question: parser behavior.",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "search",
+        "argument_mode": "literal_source",
+        "argument_name": "query",
+        "source_span": {
+          "start": 11,
+          "end": 54,
+          "rule": "search_payload",
+          "text": "handle this exact question: parser behavior"
+        },
+        "source_spans": [
+          {
+            "start": 11,
+            "end": 54,
+            "rule": "search_payload",
+            "text": "handle this exact question: parser behavior"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 11,
+            "end": 54,
+            "rule": "search_payload",
+            "text": "handle this exact question: parser behavior"
+          }
+        ],
+        "final_call": {
+          "tool": "search",
+          "arguments": {
+            "query": "handle this exact question: parser behavior"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-02",
+      "family": "outer_quote_delimiter",
+      "request": "Search the web for \"Ask Claude: why?\"",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "search",
+        "argument_mode": "literal_source",
+        "argument_name": "query",
+        "source_span": {
+          "start": 19,
+          "end": 37,
+          "rule": "search_payload",
+          "text": "\"Ask Claude: why?\""
+        },
+        "source_spans": [
+          {
+            "start": 19,
+            "end": 37,
+            "rule": "search_payload",
+            "text": "\"Ask Claude: why?\""
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 19,
+            "end": 37,
+            "rule": "search_payload",
+            "text": "\"Ask Claude: why?\""
+          }
+        ],
+        "final_call": {
+          "tool": "search",
+          "arguments": {
+            "query": "\"Ask Claude: why?\""
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-03",
+      "family": "inner_quote_payload",
+      "request": "Search query: site:example.com \"exact phrase\"",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "search",
+        "argument_mode": "literal_source",
+        "argument_name": "query",
+        "source_span": {
+          "start": 14,
+          "end": 45,
+          "rule": "search_payload",
+          "text": "site:example.com \"exact phrase\""
+        },
+        "source_spans": [
+          {
+            "start": 14,
+            "end": 45,
+            "rule": "search_payload",
+            "text": "site:example.com \"exact phrase\""
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 14,
+            "end": 45,
+            "rule": "search_payload",
+            "text": "site:example.com \"exact phrase\""
+          }
+        ],
+        "final_call": {
+          "tool": "search",
+          "arguments": {
+            "query": "site:example.com \"exact phrase\""
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-04",
+      "family": "inner_colon_payload",
+      "request": "Look up why:path handling differs.",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "search",
+        "argument_mode": "literal_source",
+        "argument_name": "query",
+        "source_span": {
+          "start": 8,
+          "end": 33,
+          "rule": "search_payload",
+          "text": "why:path handling differs"
+        },
+        "source_spans": [
+          {
+            "start": 8,
+            "end": 33,
+            "rule": "search_payload",
+            "text": "why:path handling differs"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 8,
+            "end": 33,
+            "rule": "search_payload",
+            "text": "why:path handling differs"
+          }
+        ],
+        "final_call": {
+          "tool": "search",
+          "arguments": {
+            "query": "why:path handling differs"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-05",
+      "family": "cross_tool_prefix_text",
+      "request": "Find information online about Send this to Claude: conventions.",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "search",
+        "argument_mode": "literal_source",
+        "argument_name": "query",
+        "source_span": {
+          "start": 30,
+          "end": 62,
+          "rule": "search_payload",
+          "text": "Send this to Claude: conventions"
+        },
+        "source_spans": [
+          {
+            "start": 30,
+            "end": 62,
+            "rule": "search_payload",
+            "text": "Send this to Claude: conventions"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 30,
+            "end": 62,
+            "rule": "search_payload",
+            "text": "Send this to Claude: conventions"
+          }
+        ],
+        "final_call": {
+          "tool": "search",
+          "arguments": {
+            "query": "Send this to Claude: conventions"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-06",
+      "family": "inner_colon_payload",
+      "request": "Search for C++ A::B vs A:B.",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "search",
+        "argument_mode": "literal_source",
+        "argument_name": "query",
+        "source_span": {
+          "start": 11,
+          "end": 26,
+          "rule": "search_payload",
+          "text": "C++ A::B vs A:B"
+        },
+        "source_spans": [
+          {
+            "start": 11,
+            "end": 26,
+            "rule": "search_payload",
+            "text": "C++ A::B vs A:B"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 11,
+            "end": 26,
+            "rule": "search_payload",
+            "text": "C++ A::B vs A:B"
+          }
+        ],
+        "final_call": {
+          "tool": "search",
+          "arguments": {
+            "query": "C++ A::B vs A:B"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-image-01",
+      "family": "outer_quote_delimiter",
+      "request": "Generate an image with this exact prompt: \"Claude — neon rain\"",
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "semantic image prompt"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "image",
+        "argument_mode": "literal_source",
+        "argument_name": "prompt",
+        "source_span": {
+          "start": 42,
+          "end": 62,
+          "rule": "image_payload",
+          "text": "\"Claude — neon rain\""
+        },
+        "source_spans": [
+          {
+            "start": 42,
+            "end": 62,
+            "rule": "image_payload",
+            "text": "\"Claude — neon rain\""
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 42,
+            "end": 62,
+            "rule": "image_payload",
+            "text": "\"Claude — neon rain\""
+          }
+        ],
+        "final_call": {
+          "tool": "image",
+          "arguments": {
+            "prompt": "\"Claude — neon rain\""
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-image-02",
+      "family": "cross_tool_prefix_text",
+      "request": "Create a picture using exactly: handle this exact question: a red fox",
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "semantic image prompt"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "image",
+        "argument_mode": "literal_source",
+        "argument_name": "prompt",
+        "source_span": {
+          "start": 32,
+          "end": 69,
+          "rule": "image_payload",
+          "text": "handle this exact question: a red fox"
+        },
+        "source_spans": [
+          {
+            "start": 32,
+            "end": 69,
+            "rule": "image_payload",
+            "text": "handle this exact question: a red fox"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 32,
+            "end": 69,
+            "rule": "image_payload",
+            "text": "handle this exact question: a red fox"
+          }
+        ],
+        "final_call": {
+          "tool": "image",
+          "arguments": {
+            "prompt": "handle this exact question: a red fox"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-image-03",
+      "family": "inner_quote_payload",
+      "request": "Use the image tool with this exact prompt: text reading \"Ask Claude:\" in neon",
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "semantic image prompt"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "image",
+        "argument_mode": "literal_source",
+        "argument_name": "prompt",
+        "source_span": {
+          "start": 43,
+          "end": 77,
+          "rule": "image_payload",
+          "text": "text reading \"Ask Claude:\" in neon"
+        },
+        "source_spans": [
+          {
+            "start": 43,
+            "end": 77,
+            "rule": "image_payload",
+            "text": "text reading \"Ask Claude:\" in neon"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 43,
+            "end": 77,
+            "rule": "image_payload",
+            "text": "text reading \"Ask Claude:\" in neon"
+          }
+        ],
+        "final_call": {
+          "tool": "image",
+          "arguments": {
+            "prompt": "text reading \"Ask Claude:\" in neon"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-image-04",
+      "family": "inner_colon_payload",
+      "request": "Make artwork from this exact prompt, not a text file: A:B — C::D",
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "semantic image prompt"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "image",
+        "argument_mode": "literal_source",
+        "argument_name": "prompt",
+        "source_span": {
+          "start": 54,
+          "end": 64,
+          "rule": "image_payload",
+          "text": "A:B — C::D"
+        },
+        "source_spans": [
+          {
+            "start": 54,
+            "end": 64,
+            "rule": "image_payload",
+            "text": "A:B — C::D"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 54,
+            "end": 64,
+            "rule": "image_payload",
+            "text": "A:B — C::D"
+          }
+        ],
+        "final_call": {
+          "tool": "image",
+          "arguments": {
+            "prompt": "A:B — C::D"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-read-01",
+      "family": "path_boundary",
+      "request": "Read exactly /tmp/handle this exact question.txt.",
+      "selected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "semantic path"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "read",
+        "argument_mode": "literal_source",
+        "argument_name": "filepath",
+        "source_span": {
+          "start": 13,
+          "end": 48,
+          "rule": "filesystem_path",
+          "text": "/tmp/handle this exact question.txt"
+        },
+        "source_spans": [
+          {
+            "start": 13,
+            "end": 48,
+            "rule": "filesystem_path",
+            "text": "/tmp/handle this exact question.txt"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 13,
+            "end": 48,
+            "rule": "filesystem_path",
+            "text": "/tmp/handle this exact question.txt"
+          }
+        ],
+        "final_call": {
+          "tool": "read",
+          "arguments": {
+            "filepath": "/tmp/handle this exact question.txt"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-read-02",
+      "family": "path_boundary",
+      "request": "Read /Users/me/Send this to Claude/Plan.md from the computer.",
+      "selected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "semantic path"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "read",
+        "argument_mode": "literal_source",
+        "argument_name": "filepath",
+        "source_span": {
+          "start": 5,
+          "end": 42,
+          "rule": "filesystem_path",
+          "text": "/Users/me/Send this to Claude/Plan.md"
+        },
+        "source_spans": [
+          {
+            "start": 5,
+            "end": 42,
+            "rule": "filesystem_path",
+            "text": "/Users/me/Send this to Claude/Plan.md"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 5,
+            "end": 42,
+            "rule": "filesystem_path",
+            "text": "/Users/me/Send this to Claude/Plan.md"
+          }
+        ],
+        "final_call": {
+          "tool": "read",
+          "arguments": {
+            "filepath": "/Users/me/Send this to Claude/Plan.md"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-read-03",
+      "family": "path_boundary",
+      "request": "Open the local file ~/Claude — notes.md.",
+      "selected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "semantic path"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "read",
+        "argument_mode": "literal_source",
+        "argument_name": "filepath",
+        "source_span": {
+          "start": 20,
+          "end": 39,
+          "rule": "filesystem_path",
+          "text": "~/Claude — notes.md"
+        },
+        "source_spans": [
+          {
+            "start": 20,
+            "end": 39,
+            "rule": "filesystem_path",
+            "text": "~/Claude — notes.md"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 20,
+            "end": 39,
+            "rule": "filesystem_path",
+            "text": "~/Claude — notes.md"
+          }
+        ],
+        "final_call": {
+          "tool": "read",
+          "arguments": {
+            "filepath": "~/Claude — notes.md"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-read-04",
+      "family": "path_boundary",
+      "request": "Read ./HandleThisExactQuestion.JSON.",
+      "selected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "semantic path"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "read",
+        "argument_mode": "literal_source",
+        "argument_name": "filepath",
+        "source_span": {
+          "start": 5,
+          "end": 35,
+          "rule": "filesystem_path",
+          "text": "./HandleThisExactQuestion.JSON"
+        },
+        "source_spans": [
+          {
+            "start": 5,
+            "end": 35,
+            "rule": "filesystem_path",
+            "text": "./HandleThisExactQuestion.JSON"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 5,
+            "end": 35,
+            "rule": "filesystem_path",
+            "text": "./HandleThisExactQuestion.JSON"
+          }
+        ],
+        "final_call": {
+          "tool": "read",
+          "arguments": {
+            "filepath": "./HandleThisExactQuestion.JSON"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-fetch-01",
+      "family": "url_boundary",
+      "request": "Fetch this exact URL: https://example.com/Ask-Claude:why?x=A:B.",
+      "selected_call": {
+        "tool": "fetch",
+        "arguments": {
+          "url": "semantic URL"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "fetch",
+        "argument_mode": "literal_source",
+        "argument_name": "url",
+        "source_span": {
+          "start": 22,
+          "end": 62,
+          "rule": "url_token",
+          "text": "https://example.com/Ask-Claude:why?x=A:B"
+        },
+        "source_spans": [
+          {
+            "start": 22,
+            "end": 62,
+            "rule": "url_token",
+            "text": "https://example.com/Ask-Claude:why?x=A:B"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 22,
+            "end": 62,
+            "rule": "url_token",
+            "text": "https://example.com/Ask-Claude:why?x=A:B"
+          }
+        ],
+        "final_call": {
+          "tool": "fetch",
+          "arguments": {
+            "url": "https://example.com/Ask-Claude:why?x=A:B"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-fetch-02",
+      "family": "url_boundary",
+      "request": "Open contents of https://example.org/path?q=handle+this+exact+question.",
+      "selected_call": {
+        "tool": "fetch",
+        "arguments": {
+          "url": "semantic URL"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "fetch",
+        "argument_mode": "literal_source",
+        "argument_name": "url",
+        "source_span": {
+          "start": 17,
+          "end": 70,
+          "rule": "url_token",
+          "text": "https://example.org/path?q=handle+this+exact+question"
+        },
+        "source_spans": [
+          {
+            "start": 17,
+            "end": 70,
+            "rule": "url_token",
+            "text": "https://example.org/path?q=handle+this+exact+question"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 17,
+            "end": 70,
+            "rule": "url_token",
+            "text": "https://example.org/path?q=handle+this+exact+question"
+          }
+        ],
+        "final_call": {
+          "tool": "fetch",
+          "arguments": {
+            "url": "https://example.org/path?q=handle+this+exact+question"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-shell-01",
+      "family": "command_boundary",
+      "request": "Run this allowed shell command: printf 'Ask Claude: %s' test",
+      "selected_call": {
+        "tool": "shell",
+        "arguments": {
+          "command": "semantic shell command"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "shell",
+        "argument_mode": "literal_source",
+        "argument_name": "command",
+        "source_span": {
+          "start": 32,
+          "end": 60,
+          "rule": "shell_command",
+          "text": "printf 'Ask Claude: %s' test"
+        },
+        "source_spans": [
+          {
+            "start": 32,
+            "end": 60,
+            "rule": "shell_command",
+            "text": "printf 'Ask Claude: %s' test"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 32,
+            "end": 60,
+            "rule": "shell_command",
+            "text": "printf 'Ask Claude: %s' test"
+          }
+        ],
+        "final_call": {
+          "tool": "shell",
+          "arguments": {
+            "command": "printf 'Ask Claude: %s' test"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-shell-02",
+      "family": "command_boundary",
+      "request": "Execute echo 'handle this exact question:' in the shell.",
+      "selected_call": {
+        "tool": "shell",
+        "arguments": {
+          "command": "semantic shell command"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "shell",
+        "argument_mode": "literal_source",
+        "argument_name": "command",
+        "source_span": {
+          "start": 8,
+          "end": 42,
+          "rule": "shell_command",
+          "text": "echo 'handle this exact question:'"
+        },
+        "source_spans": [
+          {
+            "start": 8,
+            "end": 42,
+            "rule": "shell_command",
+            "text": "echo 'handle this exact question:'"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 8,
+            "end": 42,
+            "rule": "shell_command",
+            "text": "echo 'handle this exact question:'"
+          }
+        ],
+        "final_call": {
+          "tool": "shell",
+          "arguments": {
+            "command": "echo 'handle this exact question:'"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-01",
+      "family": "composite_boundary",
+      "request": "Write exactly claude.txt|Ask Claude: why? into Yuki's files.",
+      "selected_call": {
+        "tool": "yuki_write",
+        "arguments": {
+          "filename_and_content": "claude.txt|semantic content"
+        }
+      },
+      "binding": {
+        "status": "bound_composite",
+        "selected_tool": "yuki_write",
+        "argument_mode": "literal_source",
+        "argument_name": "filename_and_content",
+        "source_span": {
+          "start": 14,
+          "end": 40,
+          "rule": "literal_filename_pipe_content",
+          "text": "claude.txt|Ask Claude: why"
+        },
+        "source_spans": [
+          {
+            "name": "filename",
+            "start": 14,
+            "end": 24,
+            "text": "claude.txt"
+          },
+          {
+            "name": "content",
+            "start": 25,
+            "end": 40,
+            "text": "Ask Claude: why"
+          }
+        ],
+        "deterministic_separator": "|",
+        "candidates": [
+          {
+            "start": 14,
+            "end": 40,
+            "rule": "literal_filename_pipe_content",
+            "text": "claude.txt|Ask Claude: why"
+          }
+        ],
+        "final_call": {
+          "tool": "yuki_write",
+          "arguments": {
+            "filename_and_content": "claude.txt|Ask Claude: why"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-02",
+      "family": "composite_boundary",
+      "request": "Append exactly notes.txt|handle this exact question: later to Yuki's file.",
+      "selected_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "notes.txt|semantic content"
+        }
+      },
+      "binding": {
+        "status": "bound_composite",
+        "selected_tool": "yuki_append",
+        "argument_mode": "literal_source",
+        "argument_name": "filename_and_content",
+        "source_span": {
+          "start": 15,
+          "end": 58,
+          "rule": "literal_filename_pipe_content",
+          "text": "notes.txt|handle this exact question: later"
+        },
+        "source_spans": [
+          {
+            "name": "filename",
+            "start": 15,
+            "end": 24,
+            "text": "notes.txt"
+          },
+          {
+            "name": "content",
+            "start": 25,
+            "end": 58,
+            "text": "handle this exact question: later"
+          }
+        ],
+        "deterministic_separator": "|",
+        "candidates": [
+          {
+            "start": 15,
+            "end": 58,
+            "rule": "literal_filename_pipe_content",
+            "text": "notes.txt|handle this exact question: later"
+          }
+        ],
+        "final_call": {
+          "tool": "yuki_append",
+          "arguments": {
+            "filename_and_content": "notes.txt|handle this exact question: later"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-03",
+      "family": "filename_boundary",
+      "request": "Read my Yuki notes file Ask Claude notes.txt.",
+      "selected_call": {
+        "tool": "yuki_read",
+        "arguments": {
+          "filename": "semantic filename"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "yuki_read",
+        "argument_mode": "literal_source",
+        "argument_name": "filename",
+        "source_span": {
+          "start": 24,
+          "end": 44,
+          "rule": "yuki_filename",
+          "text": "Ask Claude notes.txt"
+        },
+        "source_spans": [
+          {
+            "start": 24,
+            "end": 44,
+            "rule": "yuki_filename",
+            "text": "Ask Claude notes.txt"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 24,
+            "end": 44,
+            "rule": "yuki_filename",
+            "text": "Ask Claude notes.txt"
+          }
+        ],
+        "final_call": {
+          "tool": "yuki_read",
+          "arguments": {
+            "filename": "Ask Claude notes.txt"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-04",
+      "family": "filename_boundary",
+      "request": "Delete Handle This Exact Question.md from Yuki's folder.",
+      "selected_call": {
+        "tool": "yuki_delete",
+        "arguments": {
+          "filename": "semantic filename"
+        }
+      },
+      "binding": {
+        "status": "bound",
+        "selected_tool": "yuki_delete",
+        "argument_mode": "literal_source",
+        "argument_name": "filename",
+        "source_span": {
+          "start": 7,
+          "end": 36,
+          "rule": "yuki_filename",
+          "text": "Handle This Exact Question.md"
+        },
+        "source_spans": [
+          {
+            "start": 7,
+            "end": 36,
+            "rule": "yuki_filename",
+            "text": "Handle This Exact Question.md"
+          }
+        ],
+        "deterministic_separator": null,
+        "candidates": [
+          {
+            "start": 7,
+            "end": 36,
+            "rule": "yuki_filename",
+            "text": "Handle This Exact Question.md"
+          }
+        ],
+        "final_call": {
+          "tool": "yuki_delete",
+          "arguments": {
+            "filename": "Handle This Exact Question.md"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-05",
+      "family": "composite_boundary",
+      "request": "Create Yuki file task.txt with this exact payload: task.txt|Claude: review A:B",
+      "selected_call": {
+        "tool": "yuki_write",
+        "arguments": {
+          "filename_and_content": "task.txt|semantic content"
+        }
+      },
+      "binding": {
+        "status": "bound_composite",
+        "selected_tool": "yuki_write",
+        "argument_mode": "literal_source",
+        "argument_name": "filename_and_content",
+        "source_span": {
+          "start": 51,
+          "end": 78,
+          "rule": "literal_filename_pipe_content",
+          "text": "task.txt|Claude: review A:B"
+        },
+        "source_spans": [
+          {
+            "name": "filename",
+            "start": 51,
+            "end": 59,
+            "text": "task.txt"
+          },
+          {
+            "name": "content",
+            "start": 60,
+            "end": 78,
+            "text": "Claude: review A:B"
+          }
+        ],
+        "deterministic_separator": "|",
+        "candidates": [
+          {
+            "start": 51,
+            "end": 78,
+            "rule": "literal_filename_pipe_content",
+            "text": "task.txt|Claude: review A:B"
+          }
+        ],
+        "final_call": {
+          "tool": "yuki_write",
+          "arguments": {
+            "filename_and_content": "task.txt|Claude: review A:B"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-06",
+      "family": "composite_boundary",
+      "request": "Add this exact payload to a Yuki file: log.txt|Claude — keep this",
+      "selected_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "log.txt|semantic content"
+        }
+      },
+      "binding": {
+        "status": "bound_composite",
+        "selected_tool": "yuki_append",
+        "argument_mode": "literal_source",
+        "argument_name": "filename_and_content",
+        "source_span": {
+          "start": 39,
+          "end": 65,
+          "rule": "literal_filename_pipe_content",
+          "text": "log.txt|Claude — keep this"
+        },
+        "source_spans": [
+          {
+            "name": "filename",
+            "start": 39,
+            "end": 46,
+            "text": "log.txt"
+          },
+          {
+            "name": "content",
+            "start": 47,
+            "end": 65,
+            "text": "Claude — keep this"
+          }
+        ],
+        "deterministic_separator": "|",
+        "candidates": [
+          {
+            "start": 39,
+            "end": 65,
+            "rule": "literal_filename_pipe_content",
+            "text": "log.txt|Claude — keep this"
+          }
+        ],
+        "final_call": {
+          "tool": "yuki_append",
+          "arguments": {
+            "filename_and_content": "log.txt|Claude — keep this"
+          }
+        },
+        "source_copy_valid": true
+      },
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    }
+  ]
+}

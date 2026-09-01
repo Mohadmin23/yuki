@@ -1,0 +1,2328 @@
+{
+  "configuration": {
+    "experiment": "focused_see_capacity_frozen_stage_a_subset",
+    "main_brain_role": "intended_main_brain",
+    "surrogate": false,
+    "model_label": "Qwen3.8-27B intended main brain via OpenRouter",
+    "model_id": "qwen/qwen3.8-27b",
+    "backend": "openrouter",
+    "generation_ceiling": 160,
+    "delegation_contract_version": "production-delegation-contract-v1.1",
+    "delegation_system_prompt_sha256": "1189b8cb529f8f13592e4952b9e1da31093592dfe2710c96796bc9bedb120cbb",
+    "thinking_disabled": true,
+    "stateless": true,
+    "prompt_cache_policy": "exact shared rendered-token prefix only; no prior request tokens or generations enter the current context",
+    "generation_count_per_case": 1,
+    "tool_execution_capability": false,
+    "external_api_usage": true,
+    "selection": "focused-see-capacity-25",
+    "derived_dataset_version": "production-delegation-source-v1",
+    "derived_dataset_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "total_cases": 25,
+    "model_metadata": {
+      "requested_model": "qwen/qwen3.8-27b",
+      "base_url": "https://openrouter.ai/api/v1",
+      "schema_constraints_requested": true,
+      "thinking_disabled": true,
+      "provider_routing": {
+        "sort": "price",
+        "require_parameters": true
+      },
+      "max_api_cost_usd": 0.5
+    },
+    "load_latency_ms": 0.0,
+    "derived_from_full_stage_a_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa",
+    "derived_from_focused_a_sha256": "13018fdc482ebf9d1617b7f6ec5b53c384b317b78ca4cc20094a9e86b48fda44"
+  },
+  "contract": {
+    "fields": [
+      "request",
+      "domain_hint",
+      "verbatim"
+    ],
+    "domain_source": "main-brain-generated domain_hint",
+    "tool_name_from_main_brain": false,
+    "original_request_sent_to_dispatcher": false,
+    "no_tool_case_coverage": 0,
+    "conversation_context_case_coverage": 0
+  },
+  "provenance": {
+    "source": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/production-delegation/stage-a/production-delegation-mainbrain-qwen3.8-27b-openrouter-full450-v1.json",
+    "source_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa",
+    "tools": [
+      "see"
+    ],
+    "case_ids": [
+      "p2-see-01",
+      "p2-see-02",
+      "p2-see-03",
+      "p2-see-04",
+      "p2-see-05",
+      "p2-see-06",
+      "p2-see-07",
+      "p2-see-08",
+      "p2-see-09",
+      "p2-see-10",
+      "p2-see-11",
+      "p2-see-12",
+      "p2-see-13",
+      "p2-see-14",
+      "p2-see-15",
+      "p2-see-16",
+      "p2-see-17",
+      "p2-see-18",
+      "p2-see-19",
+      "p2-see-20",
+      "p2-see-21",
+      "p2-see-22",
+      "p2-see-23",
+      "p2-see-24",
+      "p2-see-25"
+    ],
+    "derived_from": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/focused-repair/focused-a-see-recall-frozen-delegations-v1.json",
+    "derived_from_sha256": "13018fdc482ebf9d1617b7f6ec5b53c384b317b78ca4cc20094a9e86b48fda44",
+    "delegations_regenerated": false
+  },
+  "case_results": [
+    {
+      "index": 150,
+      "case_id": "p2-see-01",
+      "request": "Use the camera to find my keys.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "keys"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to locate the user's keys\",\"domain_hint\":\"media\",\"verbatim\":[\"my keys\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to locate the user's keys\",\"domain_hint\":\"media\",\"verbatim\":[\"my keys\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 814.651,
+        "prompt_tokens": 518,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.46,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 151,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002792,
+          "cumulative_api_cost_usd": 0.0434296,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to locate the user's keys",
+          "domain_hint": "media",
+          "verbatim": [
+            "my keys"
+          ]
+        },
+        "decoded": {
+          "request": "Use the camera to locate the user's keys",
+          "domain_hint": "media",
+          "verbatim": [
+            "my keys"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to locate the user's keys",
+        "domain_hint": "media",
+        "verbatim": [
+          "my keys"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 151,
+      "case_id": "p2-see-02",
+      "request": "Describe what the camera can see right now.",
+      "expected_tool": "see",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the current camera view and describe what is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the current camera view and describe what is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 921.709,
+        "prompt_tokens": 519,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.954,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 152,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002766,
+          "cumulative_api_cost_usd": 0.0437062,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the current camera view and describe what is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the current camera view and describe what is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the current camera view and describe what is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 152,
+      "case_id": "p2-see-03",
+      "request": "Look through Yuki's eye for my coffee mug.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "coffee mug"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use Yuki's camera/vision to locate the user's coffee mug in the current view\",\"domain_hint\":\"media\",\"verbatim\":[\"coffee mug\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use Yuki's camera/vision to locate the user's coffee mug in the current view\",\"domain_hint\":\"media\",\"verbatim\":[\"coffee mug\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1122.429,
+        "prompt_tokens": 521,
+        "generated_tokens": 33,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.401,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 153,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003074,
+          "cumulative_api_cost_usd": 0.0440136,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use Yuki's camera/vision to locate the user's coffee mug in the current view",
+          "domain_hint": "media",
+          "verbatim": [
+            "coffee mug"
+          ]
+        },
+        "decoded": {
+          "request": "Use Yuki's camera/vision to locate the user's coffee mug in the current view",
+          "domain_hint": "media",
+          "verbatim": [
+            "coffee mug"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use Yuki's camera/vision to locate the user's coffee mug in the current view",
+        "domain_hint": "media",
+        "verbatim": [
+          "coffee mug"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 153,
+      "case_id": "p2-see-04",
+      "request": "Check the door with the camera.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "door"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to inspect the door\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to inspect the door\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 813.369,
+        "prompt_tokens": 517,
+        "generated_tokens": 20,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.589,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.562,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 154,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002668,
+          "cumulative_api_cost_usd": 0.0442804,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to inspect the door",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use the camera to inspect the door",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to inspect the door",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 154,
+      "case_id": "p2-see-05",
+      "request": "Find my red backpack in the room.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "red backpack"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use camera/vision to locate the user's red backpack in the room\",\"domain_hint\":\"media\",\"verbatim\":[\"red backpack\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use camera/vision to locate the user's red backpack in the room\",\"domain_hint\":\"media\",\"verbatim\":[\"red backpack\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 994.571,
+        "prompt_tokens": 518,
+        "generated_tokens": 29,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.158,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.562,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 155,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002942,
+          "cumulative_api_cost_usd": 0.0445746,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use camera/vision to locate the user's red backpack in the room",
+          "domain_hint": "media",
+          "verbatim": [
+            "red backpack"
+          ]
+        },
+        "decoded": {
+          "request": "Use camera/vision to locate the user's red backpack in the room",
+          "domain_hint": "media",
+          "verbatim": [
+            "red backpack"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use camera/vision to locate the user's red backpack in the room",
+        "domain_hint": "media",
+        "verbatim": [
+          "red backpack"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 155,
+      "case_id": "p2-see-06",
+      "request": "Inspect the whiteboard using vision.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "whiteboard"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the whiteboard using vision\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the whiteboard using vision\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 853.971,
+        "prompt_tokens": 517,
+        "generated_tokens": 19,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 22.249,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 156,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002638,
+          "cumulative_api_cost_usd": 0.0448384,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the whiteboard using vision",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the whiteboard using vision",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the whiteboard using vision",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 156,
+      "case_id": "p2-see-07",
+      "request": "Can the webcam spot my phone?",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "phone"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the webcam to inspect the current scene and determine whether the user's phone is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the webcam to inspect the current scene and determine whether the user's phone is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 2150.655,
+        "prompt_tokens": 517,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 13.949,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 157,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002968,
+          "cumulative_api_cost_usd": 0.0451352,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the webcam to inspect the current scene and determine whether the user's phone is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use the webcam to inspect the current scene and determine whether the user's phone is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the webcam to inspect the current scene and determine whether the user's phone is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 157,
+      "case_id": "p2-see-08",
+      "request": "Look around the room and describe the scene.",
+      "expected_tool": "see",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the current room scene with the camera and describe what is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the current room scene with the camera and describe what is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 14550.712,
+        "prompt_tokens": 519,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 1.787,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 158,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002856,
+          "cumulative_api_cost_usd": 0.0454208,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the current room scene with the camera and describe what is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the current room scene with the camera and describe what is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the current room scene with the camera and describe what is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 158,
+      "case_id": "p2-see-09",
+      "request": "Locate my charging cable with the camera.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "charging cable"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to visually locate the user's charging cable\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to visually locate the user's charging cable\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 838.184,
+        "prompt_tokens": 519,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 28.633,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 159,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002796,
+          "cumulative_api_cost_usd": 0.0457004,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to visually locate the user's charging cable",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use the camera to visually locate the user's charging cable",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to visually locate the user's charging cable",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 159,
+      "case_id": "p2-see-10",
+      "request": "Point the camera toward the window and find the window.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "window"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to inspect the window and locate it in the view\",\"domain_hint\":\"media\",\"verbatim\":[\"the window\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to inspect the window and locate it in the view\",\"domain_hint\":\"media\",\"verbatim\":[\"the window\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1187.123,
+        "prompt_tokens": 521,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 23.586,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 160,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002924,
+          "cumulative_api_cost_usd": 0.0459928,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to inspect the window and locate it in the view",
+          "domain_hint": "media",
+          "verbatim": [
+            "the window"
+          ]
+        },
+        "decoded": {
+          "request": "Use the camera to inspect the window and locate it in the view",
+          "domain_hint": "media",
+          "verbatim": [
+            "the window"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to inspect the window and locate it in the view",
+        "domain_hint": "media",
+        "verbatim": [
+          "the window"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 160,
+      "case_id": "p2-see-11",
+      "request": "Use vision to locate my wallet.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "wallet"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use vision to locate the user's wallet\",\"domain_hint\":\"media\",\"verbatim\":[\"my wallet\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use vision to locate the user's wallet\",\"domain_hint\":\"media\",\"verbatim\":[\"my wallet\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 874.151,
+        "prompt_tokens": 517,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.311,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 161,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002758,
+          "cumulative_api_cost_usd": 0.0462686,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use vision to locate the user's wallet",
+          "domain_hint": "media",
+          "verbatim": [
+            "my wallet"
+          ]
+        },
+        "decoded": {
+          "request": "Use vision to locate the user's wallet",
+          "domain_hint": "media",
+          "verbatim": [
+            "my wallet"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use vision to locate the user's wallet",
+        "domain_hint": "media",
+        "verbatim": [
+          "my wallet"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 161,
+      "case_id": "p2-see-12",
+      "request": "Use your eyes and track down my earbuds.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "earbuds"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use camera/vision to locate the user's earbuds\",\"domain_hint\":\"media\",\"verbatim\":[\"earbuds\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use camera/vision to locate the user's earbuds\",\"domain_hint\":\"media\",\"verbatim\":[\"earbuds\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1280.492,
+        "prompt_tokens": 521,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 21.867,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 162,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002924,
+          "cumulative_api_cost_usd": 0.046561,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use camera/vision to locate the user's earbuds",
+          "domain_hint": "media",
+          "verbatim": [
+            "earbuds"
+          ]
+        },
+        "decoded": {
+          "request": "Use camera/vision to locate the user's earbuds",
+          "domain_hint": "media",
+          "verbatim": [
+            "earbuds"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use camera/vision to locate the user's earbuds",
+        "domain_hint": "media",
+        "verbatim": [
+          "earbuds"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 162,
+      "case_id": "p2-see-13",
+      "request": "Take a look around—what's visible?",
+      "expected_tool": "see",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the current visual scene\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the current visual scene\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 836.897,
+        "prompt_tokens": 519,
+        "generated_tokens": 18,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 21.508,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 163,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002616,
+          "cumulative_api_cost_usd": 0.0468226,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the current visual scene",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the current visual scene",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the current visual scene",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 163,
+      "case_id": "p2-see-14",
+      "request": "Could vision hunt for the blue notebook?",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "blue notebook"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use vision to locate the blue notebook\",\"domain_hint\":\"media\",\"verbatim\":[\"blue notebook\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use vision to locate the blue notebook\",\"domain_hint\":\"media\",\"verbatim\":[\"blue notebook\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 7298.128,
+        "prompt_tokens": 518,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 3.014,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 164,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002732,
+          "cumulative_api_cost_usd": 0.0470958,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use vision to locate the blue notebook",
+          "domain_hint": "media",
+          "verbatim": [
+            "blue notebook"
+          ]
+        },
+        "decoded": {
+          "request": "Use vision to locate the blue notebook",
+          "domain_hint": "media",
+          "verbatim": [
+            "blue notebook"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use vision to locate the blue notebook",
+        "domain_hint": "media",
+        "verbatim": [
+          "blue notebook"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 164,
+      "case_id": "p2-see-15",
+      "request": "Peek through the webcam for my glasses.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "glasses"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Capture and inspect the current webcam image to check the user's glasses\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Capture and inspect the current webcam image to check the user's glasses\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1577.235,
+        "prompt_tokens": 519,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 16.485,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 165,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002856,
+          "cumulative_api_cost_usd": 0.0473814,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Capture and inspect the current webcam image to check the user's glasses",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Capture and inspect the current webcam image to check the user's glasses",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Capture and inspect the current webcam image to check the user's glasses",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 165,
+      "case_id": "p2-see-16",
+      "request": "Scan the room until you find the desk lamp.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "desk lamp"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use camera/vision to scan the room and locate the desk lamp\",\"domain_hint\":\"media\",\"verbatim\":[\"desk lamp\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use camera/vision to scan the room and locate the desk lamp\",\"domain_hint\":\"media\",\"verbatim\":[\"desk lamp\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1141.142,
+        "prompt_tokens": 520,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.537,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 166,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000292,
+          "cumulative_api_cost_usd": 0.0476734,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use camera/vision to scan the room and locate the desk lamp",
+          "domain_hint": "media",
+          "verbatim": [
+            "desk lamp"
+          ]
+        },
+        "decoded": {
+          "request": "Use camera/vision to scan the room and locate the desk lamp",
+          "domain_hint": "media",
+          "verbatim": [
+            "desk lamp"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use camera/vision to scan the room and locate the desk lamp",
+        "domain_hint": "media",
+        "verbatim": [
+          "desk lamp"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 166,
+      "case_id": "p2-see-17",
+      "request": "what does yuki's eye see atm",
+      "expected_tool": "see",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the current camera view\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the current camera view\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 945.061,
+        "prompt_tokens": 518,
+        "generated_tokens": 18,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 19.046,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 167,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002612,
+          "cumulative_api_cost_usd": 0.0479346,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the current camera view",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the current camera view",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the current camera view",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 167,
+      "case_id": "p2-see-18",
+      "request": "Find the printed image with the camera; do not generate a new image.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "printed image"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to inspect and locate a printed image in the physical environment\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to inspect and locate a printed image in the physical environment\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 945.207,
+        "prompt_tokens": 525,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 28.565,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 168,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000291,
+          "cumulative_api_cost_usd": 0.0482256,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to inspect and locate a printed image in the physical environment",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use the camera to inspect and locate a printed image in the physical environment",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to inspect and locate a printed image in the physical environment",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 168,
+      "case_id": "p2-see-19",
+      "request": "Look at the thermostat display, not an online weather service.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "thermostat display"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the thermostat display image\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the thermostat display image\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1152.251,
+        "prompt_tokens": 522,
+        "generated_tokens": 18,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 15.622,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 169,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002628,
+          "cumulative_api_cost_usd": 0.0484884,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the thermostat display image",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the thermostat display image",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the thermostat display image",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 169,
+      "case_id": "p2-see-20",
+      "request": "Visually inspect the terminal window; don't execute its command.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "terminal window"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Visually inspect the terminal window without executing its command\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Visually inspect the terminal window without executing its command\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 857.197,
+        "prompt_tokens": 523,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.832,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 170,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002782,
+          "cumulative_api_cost_usd": 0.0487666,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Visually inspect the terminal window without executing its command",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Visually inspect the terminal window without executing its command",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Visually inspect the terminal window without executing its command",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 170,
+      "case_id": "p2-see-21",
+      "request": "Find the notes file lying on my desk; do not read a filesystem file.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "notes file"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1242.925,
+        "prompt_tokens": 526,
+        "generated_tokens": 33,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.55,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 171,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003094,
+          "cumulative_api_cost_usd": 0.049076,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 171,
+      "case_id": "p2-see-22",
+      "request": "Camera target exactly: USB-C adapter",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "USB-C adapter"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the camera target exactly as USB-C adapter\",\"domain_hint\":\"media\",\"verbatim\":[\"USB-C adapter\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the camera target exactly as USB-C adapter\",\"domain_hint\":\"media\",\"verbatim\":[\"USB-C adapter\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1300.479,
+        "prompt_tokens": 517,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 19.224,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 172,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002818,
+          "cumulative_api_cost_usd": 0.0493578,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the camera target exactly as USB-C adapter",
+          "domain_hint": "media",
+          "verbatim": [
+            "USB-C adapter"
+          ]
+        },
+        "decoded": {
+          "request": "inspect the camera target exactly as USB-C adapter",
+          "domain_hint": "media",
+          "verbatim": [
+            "USB-C adapter"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the camera target exactly as USB-C adapter",
+        "domain_hint": "media",
+        "verbatim": [
+          "USB-C adapter"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 172,
+      "case_id": "p2-see-23",
+      "request": "Locate `AirPods Pro` and preserve that capitalization.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "AirPods Pro"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\n  \"request\": \"Locate the item or information for the exact search term\",\n  \"domain_hint\": \"information\",\n  \"verbatim\": [\n    \"AirPods Pro\"\n  ]\n}",
+      "generation": {
+        "raw_text": "{\n  \"request\": \"Locate the item or information for the exact search term\",\n  \"domain_hint\": \"information\",\n  \"verbatim\": [\n    \"AirPods Pro\"\n  ]\n}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1841.511,
+        "prompt_tokens": 523,
+        "generated_tokens": 47,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.523,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 173,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003502,
+          "cumulative_api_cost_usd": 0.049708,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Locate the item or information for the exact search term",
+          "domain_hint": "information",
+          "verbatim": [
+            "AirPods Pro"
+          ]
+        },
+        "decoded": {
+          "request": "Locate the item or information for the exact search term",
+          "domain_hint": "information",
+          "verbatim": [
+            "AirPods Pro"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Locate the item or information for the exact search term",
+        "domain_hint": "information",
+        "verbatim": [
+          "AirPods Pro"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": false,
+        "semantic_request_quality": false,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 173,
+      "case_id": "p2-see-24",
+      "request": "Use vision for the object named M.2 enclosure.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "M.2 enclosure"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use vision to inspect the object named M.2 enclosure\",\"domain_hint\":\"media\",\"verbatim\":[\"M.2 enclosure\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use vision to inspect the object named M.2 enclosure\",\"domain_hint\":\"media\",\"verbatim\":[\"M.2 enclosure\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 3496.174,
+        "prompt_tokens": 521,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 8.009,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 174,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002924,
+          "cumulative_api_cost_usd": 0.0500004,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use vision to inspect the object named M.2 enclosure",
+          "domain_hint": "media",
+          "verbatim": [
+            "M.2 enclosure"
+          ]
+        },
+        "decoded": {
+          "request": "Use vision to inspect the object named M.2 enclosure",
+          "domain_hint": "media",
+          "verbatim": [
+            "M.2 enclosure"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use vision to inspect the object named M.2 enclosure",
+        "domain_hint": "media",
+        "verbatim": [
+          "M.2 enclosure"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 174,
+      "case_id": "p2-see-25",
+      "request": "I can't describe it well—camera, find the 'red-ish cable'?",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "red-ish cable"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to locate a red-ish cable in the current view\",\"domain_hint\":\"media\",\"verbatim\":[\"red-ish cable\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to locate a red-ish cable in the current view\",\"domain_hint\":\"media\",\"verbatim\":[\"red-ish cable\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1625.352,
+        "prompt_tokens": 526,
+        "generated_tokens": 29,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 17.842,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 175,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002974,
+          "cumulative_api_cost_usd": 0.0502978,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to locate a red-ish cable in the current view",
+          "domain_hint": "media",
+          "verbatim": [
+            "red-ish cable"
+          ]
+        },
+        "decoded": {
+          "request": "Use the camera to locate a red-ish cable in the current view",
+          "domain_hint": "media",
+          "verbatim": [
+            "red-ish cable"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to locate a red-ish cable in the current view",
+        "domain_hint": "media",
+        "verbatim": [
+          "red-ish cable"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    }
+  ]
+}

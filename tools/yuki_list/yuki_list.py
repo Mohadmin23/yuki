@@ -10,4 +10,4 @@ def tool_yuki_list(_=""):
     if not files:
         return "yuki/ is empty"
     lines = [f"  {f.name} ({f.stat().st_size} bytes)" for f in files if f.is_file()]
-    return f"Files in yuki/:\n" + "\n".join(lines) if lines else "yuki/ is empty"
+    return "Files in yuki/:\n" + "\n".join(lines) if lines else "yuki/ is empty"

@@ -1,0 +1,2445 @@
+{
+  "experiment": "yuki_production_interface_delegation_v1",
+  "status": "completed_with_temporary_main_brain_surrogate",
+  "main_brain_label": "Qwen3-14B-MLX-4bit temporary main-brain surrogate",
+  "main_brain_is_surrogate": true,
+  "intended_main_brain_not_tested": "Qwen3.8-27B",
+  "safety": {
+    "yuki_tool_execution_capability": false,
+    "yuki_tool_execution_attempts": 0,
+    "external_api_usage": false,
+    "one_model_loaded_at_a_time": true,
+    "one_stateless_generation_per_stage_per_case": true,
+    "previous_tool_results_used": false,
+    "original_request_sent_to_primary_dispatcher": false
+  },
+  "dataset": {
+    "source": "phase2-cases.json",
+    "source_cases": 450,
+    "source_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "derived_version": "production-delegation-source-v1",
+    "derived_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "selection": "fallback-stratified-180",
+    "selection_cases": 180,
+    "selection_rule": "ten cases per tool, category-first quotas, then source-order fill",
+    "original_case_ids_and_gold_preserved": true
+  },
+  "stage_a": {
+    "configuration": {
+      "experiment": "production_delegation_stage_a",
+      "main_brain_role": "temporary_surrogate",
+      "surrogate": true,
+      "surrogate_label": "Qwen3-14B-MLX-4bit temporary main-brain surrogate",
+      "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+      "backend": "mlx",
+      "generation_ceiling": 160,
+      "delegation_contract_version": "production-delegation-contract-v1.1",
+      "delegation_system_prompt_sha256": "1189b8cb529f8f13592e4952b9e1da31093592dfe2710c96796bc9bedb120cbb",
+      "thinking_disabled": true,
+      "stateless": true,
+      "prompt_cache_policy": "exact shared rendered-token prefix only; no prior request tokens or generations enter the current context",
+      "generation_count_per_case": 1,
+      "tool_execution_capability": false,
+      "external_api_usage": false,
+      "selection": "fallback-stratified-180",
+      "derived_dataset_version": "production-delegation-source-v1",
+      "derived_dataset_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "total_cases": 180,
+      "model_metadata": {
+        "actual_weight_dtype": "mlx.core.uint32",
+        "configured_dtype": "bfloat16",
+        "model_type": "qwen3",
+        "quantization": {
+          "group_size": 128,
+          "bits": 4
+        },
+        "context_length": 40960,
+        "thinking_disabled": true
+      },
+      "load_latency_ms": 30242.044708051253
+    },
+    "summary": {
+      "cases": 180,
+      "valid_delegation_rate": 0.95,
+      "malformed_delegation_rate": 0.05,
+      "domain_hint_accuracy": 0.8777777777777778,
+      "semantic_request_quality_rate": 0.6166666666666667,
+      "average_verbatim_recall": 0.8416666666666667,
+      "average_verbatim_precision": 0.6166666666666667,
+      "final_tool_leakage_rate": 0,
+      "average_latency_ms": 5537.862194444445,
+      "p50_latency_ms": 5348.3615,
+      "p95_latency_ms": 7388.145799999999,
+      "average_generated_tokens": 23.883333333333333,
+      "average_tokens_per_second": 6.679327777777778,
+      "peak_mlx_memory_gb": 8.3544,
+      "valid_delegations": 171,
+      "malformed_delegations": 9,
+      "correct_domain_hints": 158,
+      "domain_hint_accuracy_given_valid_delegation": 0.9239766081871345,
+      "verbatim_miss_cases": 31,
+      "malformed_case_ids": [
+        "p2-time-15",
+        "p2-hardware-18",
+        "p2-read-01",
+        "p2-read-18",
+        "p2-read-22",
+        "p2-read-25",
+        "p2-shell-23",
+        "p2-yuki_list-14",
+        "p2-yuki_list-21"
+      ],
+      "verbatim_miss_case_ids": [
+        "p2-search-12",
+        "p2-search-19",
+        "p2-search-03",
+        "p2-image-02",
+        "p2-image-12",
+        "p2-image-23",
+        "p2-image-03",
+        "p2-read-01",
+        "p2-read-18",
+        "p2-read-22",
+        "p2-read-25",
+        "p2-shell-23",
+        "p2-yuki_write-12",
+        "p2-yuki_write-13",
+        "p2-yuki_write-22",
+        "p2-yuki_write-23",
+        "p2-yuki_write-25",
+        "p2-yuki_append-01",
+        "p2-yuki_append-12",
+        "p2-yuki_append-19",
+        "p2-yuki_append-22",
+        "p2-yuki_append-23",
+        "p2-yuki_append-03",
+        "p2-remember-13",
+        "p2-recall-01",
+        "p2-recall-02",
+        "p2-recall-13",
+        "p2-recall-25",
+        "p2-recall-03",
+        "p2-ask_claude-18",
+        "p2-ask_claude-03"
+      ],
+      "whole_source_request_reproduced_in_delegation": 7,
+      "semantic_metric_false_but_hammer_1_5b_strict_successes": 42,
+      "by_expected_domain": {
+        "computer": {
+          "cases": 30,
+          "valid_delegation_rate": 0.8,
+          "domain_hint_accuracy": 0.6666666666666666,
+          "semantic_request_quality_rate": 0.4666666666666667,
+          "average_verbatim_recall": 0.8333333333333334,
+          "average_verbatim_precision": 0.6333333333333333
+        },
+        "external_agent": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "semantic_request_quality_rate": 1,
+          "average_verbatim_recall": 0.8,
+          "average_verbatim_precision": 0.8
+        },
+        "information": {
+          "cases": 50,
+          "valid_delegation_rate": 0.98,
+          "domain_hint_accuracy": 0.94,
+          "semantic_request_quality_rate": 0.74,
+          "average_verbatim_recall": 0.94,
+          "average_verbatim_precision": 0.5
+        },
+        "media": {
+          "cases": 20,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.85,
+          "semantic_request_quality_rate": 0.55,
+          "average_verbatim_recall": 0.8,
+          "average_verbatim_precision": 0.3
+        },
+        "memory": {
+          "cases": 20,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "semantic_request_quality_rate": 0.85,
+          "average_verbatim_recall": 0.7,
+          "average_verbatim_precision": 0.7
+        },
+        "yuki_files": {
+          "cases": 50,
+          "valid_delegation_rate": 0.96,
+          "domain_hint_accuracy": 0.88,
+          "semantic_request_quality_rate": 0.44,
+          "average_verbatim_recall": 0.83,
+          "average_verbatim_precision": 0.78
+        }
+      },
+      "by_dataset_category": {
+        "adversarial": {
+          "cases": 18,
+          "valid_delegation_rate": 0.9444444444444444,
+          "domain_hint_accuracy": 0.9444444444444444,
+          "semantic_request_quality_rate": 0.7222222222222222,
+          "average_verbatim_recall": 0.8611111111111112,
+          "average_verbatim_precision": 0.5833333333333334
+        },
+        "confusion": {
+          "cases": 36,
+          "valid_delegation_rate": 0.9166666666666666,
+          "domain_hint_accuracy": 0.8888888888888888,
+          "semantic_request_quality_rate": 0.5833333333333334,
+          "average_verbatim_recall": 0.8888888888888888,
+          "average_verbatim_precision": 0.6111111111111112
+        },
+        "normal": {
+          "cases": 58,
+          "valid_delegation_rate": 0.9827586206896551,
+          "domain_hint_accuracy": 0.9827586206896551,
+          "semantic_request_quality_rate": 0.6551724137931034,
+          "average_verbatim_recall": 0.8448275862068966,
+          "average_verbatim_precision": 0.6982758620689655
+        },
+        "paraphrase": {
+          "cases": 36,
+          "valid_delegation_rate": 0.9444444444444444,
+          "domain_hint_accuracy": 0.9166666666666666,
+          "semantic_request_quality_rate": 0.6666666666666666,
+          "average_verbatim_recall": 0.8194444444444444,
+          "average_verbatim_precision": 0.5694444444444444
+        },
+        "preservation": {
+          "cases": 32,
+          "valid_delegation_rate": 0.9375,
+          "domain_hint_accuracy": 0.59375,
+          "semantic_request_quality_rate": 0.46875,
+          "average_verbatim_recall": 0.796875,
+          "average_verbatim_precision": 0.546875
+        }
+      }
+    }
+  },
+  "primary": {
+    "hammer_1_5b": {
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+      "cases": 180,
+      "generated_dispatches": 171,
+      "tool_selection_accuracy": 0.8388888888888889,
+      "tool_selection_accuracy_when_domain_correct": 0.9556962025316456,
+      "strict_argument_accuracy_when_tool_correct": 0.8741721854304636,
+      "preservation_aware_argument_accuracy_when_tool_correct": 0.8807947019867549,
+      "strict_exact_call_accuracy": 0.7333333333333333,
+      "strict_exact_call_successes": 132,
+      "strict_exact_call_wilson_95": [
+        0.6643484172192241,
+        0.792567017084023
+      ],
+      "preservation_aware_exact_call_accuracy": 0.7388888888888889,
+      "preservation_aware_exact_call_successes": 133,
+      "preservation_aware_exact_call_wilson_95": [
+        0.6702078675625001,
+        0.7975865056527294
+      ],
+      "strict_exact_call_accuracy_when_domain_correct": 0.8354430379746836,
+      "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8417721518987342,
+      "schema_valid_rate": 0.9,
+      "malformed_output_rate": 0,
+      "conversational_output_rate": 0,
+      "average_dispatcher_latency_ms": 2708.7137134502923,
+      "p50_dispatcher_latency_ms": 2726.065,
+      "p95_dispatcher_latency_ms": 3381.699,
+      "average_generation_tokens_per_second": 18.507461988304094,
+      "peak_mlx_memory_gb": 3.4634,
+      "non_ambiguous": {
+        "cases": 162,
+        "valid_delegation_rate": 0.9506172839506173,
+        "domain_hint_accuracy": 0.8703703703703703,
+        "tool_selection_accuracy": 0.8271604938271605,
+        "tool_selection_accuracy_when_domain_correct": 0.950354609929078,
+        "strict_argument_accuracy": 0.7345679012345679,
+        "equivalent_argument_accuracy": 0.7345679012345679,
+        "preservation_aware_argument_accuracy": 0.7407407407407407,
+        "strict_argument_accuracy_when_tool_correct": 0.8880597014925373,
+        "preservation_aware_argument_accuracy_when_tool_correct": 0.8955223880597015,
+        "strict_exact_call_accuracy": 0.7345679012345679,
+        "equivalent_exact_call_accuracy": 0.7345679012345679,
+        "preservation_aware_exact_call_accuracy": 0.7407407407407407,
+        "strict_exact_call_accuracy_when_domain_correct": 0.8439716312056738,
+        "preservation_aware_exact_call_accuracy_when_domain_correct": 0.851063829787234,
+        "schema_valid_rate": 0.8950617283950617,
+        "malformed_output_rate": 0,
+        "conversational_output_rate": 0,
+        "average_dispatcher_latency_ms": 2697.5673246753245,
+        "p50_dispatcher_latency_ms": 2730.236,
+        "p95_dispatcher_latency_ms": 3380.6871
+      },
+      "failure_decomposition": {
+        "malformed_delegation": 9,
+        "dispatcher_wrong_argument": 5,
+        "dispatcher_wrong_tool": 5,
+        "main_brain_lost_verbatim": 15,
+        "main_brain_wrong_domain": 13,
+        "dispatcher_argument_rewrite": 1
+      },
+      "upstream_attributed_strict_failures": 37,
+      "dispatcher_attributed_strict_failures": 11,
+      "ambiguous_or_adversarial_strict_failures": 5,
+      "by_tool": {
+        "ask_claude": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 0.9,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.8,
+          "strict_argument_accuracy_when_tool_correct": 0.8888888888888888,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8888888888888888,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.8,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2255.1691,
+          "p50_dispatcher_latency_ms": 2283.991,
+          "p95_dispatcher_latency_ms": 2791.3339499999993
+        },
+        "calc": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.9,
+          "equivalent_argument_accuracy": 0.9,
+          "preservation_aware_argument_accuracy": 0.9,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.9,
+          "equivalent_exact_call_accuracy": 0.9,
+          "preservation_aware_exact_call_accuracy": 0.9,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 3055.4393,
+          "p50_dispatcher_latency_ms": 3039.2709999999997,
+          "p95_dispatcher_latency_ms": 3664.77905
+        },
+        "fetch": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.9,
+          "equivalent_argument_accuracy": 0.9,
+          "preservation_aware_argument_accuracy": 0.9,
+          "strict_argument_accuracy_when_tool_correct": 0.9,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.9,
+          "strict_exact_call_accuracy": 0.9,
+          "equivalent_exact_call_accuracy": 0.9,
+          "preservation_aware_exact_call_accuracy": 0.9,
+          "strict_exact_call_accuracy_when_domain_correct": 0.9,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.9,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2881.5792,
+          "p50_dispatcher_latency_ms": 2955.7655,
+          "p95_dispatcher_latency_ms": 3085.80305
+        },
+        "hardware": {
+          "cases": 10,
+          "valid_delegation_rate": 0.9,
+          "domain_hint_accuracy": 0.7,
+          "tool_selection_accuracy": 0.7,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.6,
+          "strict_argument_accuracy_when_tool_correct": 0.8571428571428571,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8571428571428571,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.6,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8571428571428571,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8571428571428571,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2474.3954444444444,
+          "p50_dispatcher_latency_ms": 2503.495,
+          "p95_dispatcher_latency_ms": 2779.3218
+        },
+        "image": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.7,
+          "tool_selection_accuracy_when_domain_correct": 0.7777777777777778,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 0.7142857142857143,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.7142857142857143,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 0.5555555555555556,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.5555555555555556,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2513.6037,
+          "p50_dispatcher_latency_ms": 2644.3525,
+          "p95_dispatcher_latency_ms": 3122.4054499999997
+        },
+        "read": {
+          "cases": 10,
+          "valid_delegation_rate": 0.6,
+          "domain_hint_accuracy": 0.5,
+          "tool_selection_accuracy": 0.5,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.6,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2596.0016666666666,
+          "p50_dispatcher_latency_ms": 2529.8940000000002,
+          "p95_dispatcher_latency_ms": 3002.1155
+        },
+        "recall": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 0.8,
+          "strict_argument_accuracy": 0.4,
+          "equivalent_argument_accuracy": 0.4,
+          "preservation_aware_argument_accuracy": 0.4,
+          "strict_argument_accuracy_when_tool_correct": 0.5,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.5,
+          "strict_exact_call_accuracy": 0.4,
+          "equivalent_exact_call_accuracy": 0.4,
+          "preservation_aware_exact_call_accuracy": 0.4,
+          "strict_exact_call_accuracy_when_domain_correct": 0.4,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.4,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2415.1402,
+          "p50_dispatcher_latency_ms": 2511.1955,
+          "p95_dispatcher_latency_ms": 3042.5740499999997
+        },
+        "remember": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.9,
+          "strict_argument_accuracy_when_tool_correct": 0.8,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.9,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.9,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.9,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2811.8577999999998,
+          "p50_dispatcher_latency_ms": 2753.0344999999998,
+          "p95_dispatcher_latency_ms": 3116.49405
+        },
+        "search": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 0.8888888888888888,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.6,
+          "strict_argument_accuracy_when_tool_correct": 0.75,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.75,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.6,
+          "strict_exact_call_accuracy_when_domain_correct": 0.6666666666666666,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.6666666666666666,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2957.6613,
+          "p50_dispatcher_latency_ms": 2996.7219999999998,
+          "p95_dispatcher_latency_ms": 3390.5295499999997
+        },
+        "see": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.8,
+          "tool_selection_accuracy": 0.7,
+          "tool_selection_accuracy_when_domain_correct": 0.875,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.6,
+          "strict_argument_accuracy_when_tool_correct": 0.8571428571428571,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8571428571428571,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.6,
+          "strict_exact_call_accuracy_when_domain_correct": 0.75,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.75,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2111.7134,
+          "p50_dispatcher_latency_ms": 2237.6265000000003,
+          "p95_dispatcher_latency_ms": 2478.2978000000003
+        },
+        "shell": {
+          "cases": 10,
+          "valid_delegation_rate": 0.9,
+          "domain_hint_accuracy": 0.8,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.8,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.8,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2482.3366666666666,
+          "p50_dispatcher_latency_ms": 2456.298,
+          "p95_dispatcher_latency_ms": 3072.7814
+        },
+        "time": {
+          "cases": 10,
+          "valid_delegation_rate": 0.9,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.9,
+          "equivalent_argument_accuracy": 0.9,
+          "preservation_aware_argument_accuracy": 0.9,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.9,
+          "equivalent_exact_call_accuracy": 0.9,
+          "preservation_aware_exact_call_accuracy": 0.9,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2453.5243333333333,
+          "p50_dispatcher_latency_ms": 2320.275,
+          "p95_dispatcher_latency_ms": 3004.8322
+        },
+        "weather": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 1,
+          "equivalent_argument_accuracy": 1,
+          "preservation_aware_argument_accuracy": 1,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 1,
+          "equivalent_exact_call_accuracy": 1,
+          "preservation_aware_exact_call_accuracy": 1,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2886.2476,
+          "p50_dispatcher_latency_ms": 2853.1565,
+          "p95_dispatcher_latency_ms": 3422.0227999999997
+        },
+        "yuki_append": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.6,
+          "strict_argument_accuracy_when_tool_correct": 0.6666666666666666,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.6666666666666666,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.6,
+          "strict_exact_call_accuracy_when_domain_correct": 0.6666666666666666,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.6666666666666666,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 3086.2698,
+          "p50_dispatcher_latency_ms": 3096.0505,
+          "p95_dispatcher_latency_ms": 3462.87805
+        },
+        "yuki_delete": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 1,
+          "equivalent_argument_accuracy": 1,
+          "preservation_aware_argument_accuracy": 1,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 1,
+          "equivalent_exact_call_accuracy": 1,
+          "preservation_aware_exact_call_accuracy": 1,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2840.4834,
+          "p50_dispatcher_latency_ms": 2810.693,
+          "p95_dispatcher_latency_ms": 3013.1061499999996
+        },
+        "yuki_list": {
+          "cases": 10,
+          "valid_delegation_rate": 0.8,
+          "domain_hint_accuracy": 0.8,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.8,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.8,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2679.780875,
+          "p50_dispatcher_latency_ms": 2654.965,
+          "p95_dispatcher_latency_ms": 2837.50495
+        },
+        "yuki_read": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 1,
+          "equivalent_argument_accuracy": 1,
+          "preservation_aware_argument_accuracy": 1,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 1,
+          "equivalent_exact_call_accuracy": 1,
+          "preservation_aware_exact_call_accuracy": 1,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2934.9376,
+          "p50_dispatcher_latency_ms": 2923.6875,
+          "p95_dispatcher_latency_ms": 3279.3179499999997
+        },
+        "yuki_write": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.7,
+          "tool_selection_accuracy": 0.7,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 0.7142857142857143,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.7142857142857143,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 0.7142857142857143,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.7142857142857143,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 3198.2456,
+          "p50_dispatcher_latency_ms": 3166.9045,
+          "p95_dispatcher_latency_ms": 3420.22555
+        }
+      },
+      "by_family": {
+        "computer": {
+          "cases": 30,
+          "valid_delegation_rate": 0.8,
+          "domain_hint_accuracy": 0.6666666666666666,
+          "tool_selection_accuracy": 0.6666666666666666,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.6333333333333333,
+          "equivalent_argument_accuracy": 0.6333333333333333,
+          "preservation_aware_argument_accuracy": 0.6333333333333333,
+          "strict_argument_accuracy_when_tool_correct": 0.95,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.95,
+          "strict_exact_call_accuracy": 0.6333333333333333,
+          "equivalent_exact_call_accuracy": 0.6333333333333333,
+          "preservation_aware_exact_call_accuracy": 0.6333333333333333,
+          "strict_exact_call_accuracy_when_domain_correct": 0.95,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.95,
+          "schema_valid_rate": 0.7666666666666667,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2507.7749583333334,
+          "p50_dispatcher_latency_ms": 2498.736,
+          "p95_dispatcher_latency_ms": 3085.3351499999994
+        },
+        "external_agent": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 0.9,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.8,
+          "strict_argument_accuracy_when_tool_correct": 0.8888888888888888,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8888888888888888,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.8,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2255.1691,
+          "p50_dispatcher_latency_ms": 2283.991,
+          "p95_dispatcher_latency_ms": 2791.3339499999993
+        },
+        "information": {
+          "cases": 50,
+          "valid_delegation_rate": 0.98,
+          "domain_hint_accuracy": 0.94,
+          "tool_selection_accuracy": 0.92,
+          "tool_selection_accuracy_when_domain_correct": 0.9787234042553191,
+          "strict_argument_accuracy": 0.86,
+          "equivalent_argument_accuracy": 0.86,
+          "preservation_aware_argument_accuracy": 0.86,
+          "strict_argument_accuracy_when_tool_correct": 0.9347826086956522,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.9347826086956522,
+          "strict_exact_call_accuracy": 0.86,
+          "equivalent_exact_call_accuracy": 0.86,
+          "preservation_aware_exact_call_accuracy": 0.86,
+          "strict_exact_call_accuracy_when_domain_correct": 0.9148936170212766,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.9148936170212766,
+          "schema_valid_rate": 0.96,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2854.918224489796,
+          "p50_dispatcher_latency_ms": 2971.906,
+          "p95_dispatcher_latency_ms": 3607.7419999999997
+        },
+        "media": {
+          "cases": 20,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.85,
+          "tool_selection_accuracy": 0.7,
+          "tool_selection_accuracy_when_domain_correct": 0.8235294117647058,
+          "strict_argument_accuracy": 0.55,
+          "equivalent_argument_accuracy": 0.55,
+          "preservation_aware_argument_accuracy": 0.55,
+          "strict_argument_accuracy_when_tool_correct": 0.7857142857142857,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.7857142857142857,
+          "strict_exact_call_accuracy": 0.55,
+          "equivalent_exact_call_accuracy": 0.55,
+          "preservation_aware_exact_call_accuracy": 0.55,
+          "strict_exact_call_accuracy_when_domain_correct": 0.6470588235294118,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.6470588235294118,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2312.65855,
+          "p50_dispatcher_latency_ms": 2440.735,
+          "p95_dispatcher_latency_ms": 2990.87595
+        },
+        "memory": {
+          "cases": 20,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 0.9,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.65,
+          "strict_argument_accuracy_when_tool_correct": 0.6666666666666666,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.7222222222222222,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.65,
+          "strict_exact_call_accuracy_when_domain_correct": 0.6,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.65,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2613.499,
+          "p50_dispatcher_latency_ms": 2687.3195,
+          "p95_dispatcher_latency_ms": 3193.95105
+        },
+        "yuki_files": {
+          "cases": 50,
+          "valid_delegation_rate": 0.96,
+          "domain_hint_accuracy": 0.88,
+          "tool_selection_accuracy": 0.88,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.78,
+          "equivalent_argument_accuracy": 0.78,
+          "preservation_aware_argument_accuracy": 0.78,
+          "strict_argument_accuracy_when_tool_correct": 0.8863636363636364,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8863636363636364,
+          "strict_exact_call_accuracy": 0.78,
+          "equivalent_exact_call_accuracy": 0.78,
+          "preservation_aware_exact_call_accuracy": 0.78,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8863636363636364,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8863636363636364,
+          "schema_valid_rate": 0.96,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2959.1168958333333,
+          "p50_dispatcher_latency_ms": 2947.4480000000003,
+          "p95_dispatcher_latency_ms": 3397.4467
+        }
+      },
+      "by_dataset_category": {
+        "adversarial": {
+          "cases": 18,
+          "valid_delegation_rate": 0.9444444444444444,
+          "domain_hint_accuracy": 0.9444444444444444,
+          "tool_selection_accuracy": 0.9444444444444444,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.7222222222222222,
+          "equivalent_argument_accuracy": 0.7222222222222222,
+          "preservation_aware_argument_accuracy": 0.7222222222222222,
+          "strict_argument_accuracy_when_tool_correct": 0.7647058823529411,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.7647058823529411,
+          "strict_exact_call_accuracy": 0.7222222222222222,
+          "equivalent_exact_call_accuracy": 0.7222222222222222,
+          "preservation_aware_exact_call_accuracy": 0.7222222222222222,
+          "strict_exact_call_accuracy_when_domain_correct": 0.7647058823529411,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.7647058823529411,
+          "schema_valid_rate": 0.9444444444444444,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2809.686882352941,
+          "p50_dispatcher_latency_ms": 2702.751,
+          "p95_dispatcher_latency_ms": 3339.9954
+        },
+        "confusion": {
+          "cases": 36,
+          "valid_delegation_rate": 0.9166666666666666,
+          "domain_hint_accuracy": 0.8888888888888888,
+          "tool_selection_accuracy": 0.8333333333333334,
+          "tool_selection_accuracy_when_domain_correct": 0.9375,
+          "strict_argument_accuracy": 0.7777777777777778,
+          "equivalent_argument_accuracy": 0.7777777777777778,
+          "preservation_aware_argument_accuracy": 0.7777777777777778,
+          "strict_argument_accuracy_when_tool_correct": 0.9333333333333333,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.9333333333333333,
+          "strict_exact_call_accuracy": 0.7777777777777778,
+          "equivalent_exact_call_accuracy": 0.7777777777777778,
+          "preservation_aware_exact_call_accuracy": 0.7777777777777778,
+          "strict_exact_call_accuracy_when_domain_correct": 0.875,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.875,
+          "schema_valid_rate": 0.8611111111111112,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2651.960090909091,
+          "p50_dispatcher_latency_ms": 2694.357,
+          "p95_dispatcher_latency_ms": 3204.4958
+        },
+        "normal": {
+          "cases": 58,
+          "valid_delegation_rate": 0.9827586206896551,
+          "domain_hint_accuracy": 0.9827586206896551,
+          "tool_selection_accuracy": 0.9655172413793104,
+          "tool_selection_accuracy_when_domain_correct": 0.9824561403508771,
+          "strict_argument_accuracy": 0.8620689655172413,
+          "equivalent_argument_accuracy": 0.8620689655172413,
+          "preservation_aware_argument_accuracy": 0.8620689655172413,
+          "strict_argument_accuracy_when_tool_correct": 0.8928571428571429,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8928571428571429,
+          "strict_exact_call_accuracy": 0.8620689655172413,
+          "equivalent_exact_call_accuracy": 0.8620689655172413,
+          "preservation_aware_exact_call_accuracy": 0.8620689655172413,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8771929824561403,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8771929824561403,
+          "schema_valid_rate": 0.9655172413793104,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2696.1196140350876,
+          "p50_dispatcher_latency_ms": 2698.865,
+          "p95_dispatcher_latency_ms": 3379.6752
+        },
+        "paraphrase": {
+          "cases": 36,
+          "valid_delegation_rate": 0.9444444444444444,
+          "domain_hint_accuracy": 0.9166666666666666,
+          "tool_selection_accuracy": 0.8333333333333334,
+          "tool_selection_accuracy_when_domain_correct": 0.9090909090909091,
+          "strict_argument_accuracy": 0.6944444444444444,
+          "equivalent_argument_accuracy": 0.6944444444444444,
+          "preservation_aware_argument_accuracy": 0.7222222222222222,
+          "strict_argument_accuracy_when_tool_correct": 0.8333333333333334,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8666666666666667,
+          "strict_exact_call_accuracy": 0.6944444444444444,
+          "equivalent_exact_call_accuracy": 0.6944444444444444,
+          "preservation_aware_exact_call_accuracy": 0.7222222222222222,
+          "strict_exact_call_accuracy_when_domain_correct": 0.7575757575757576,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.7878787878787878,
+          "schema_valid_rate": 0.8611111111111112,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2686.231617647059,
+          "p50_dispatcher_latency_ms": 2730.538,
+          "p95_dispatcher_latency_ms": 3474.2659
+        },
+        "preservation": {
+          "cases": 32,
+          "valid_delegation_rate": 0.9375,
+          "domain_hint_accuracy": 0.59375,
+          "tool_selection_accuracy": 0.5625,
+          "tool_selection_accuracy_when_domain_correct": 0.9473684210526315,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 0.8888888888888888,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8888888888888888,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8421052631578947,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8421052631578947,
+          "schema_valid_rate": 0.84375,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 2763.3330666666666,
+          "p50_dispatcher_latency_ms": 2935.352,
+          "p95_dispatcher_latency_ms": 3240.2096
+        }
+      },
+      "confusion_matrix": {
+        "time": {
+          "time": 9,
+          "<none>": 1
+        },
+        "weather": {
+          "weather": 10
+        },
+        "fetch": {
+          "fetch": 10
+        },
+        "search": {
+          "search": 8,
+          "weather": 1,
+          "remember": 1
+        },
+        "calc": {
+          "calc": 9,
+          "<none>": 1
+        },
+        "hardware": {
+          "hardware": 7,
+          "<none>": 1,
+          "remember": 1,
+          "yuki_write": 1
+        },
+        "see": {
+          "see": 7,
+          "<none>": 2,
+          "read": 1
+        },
+        "image": {
+          "image": 7,
+          "<none>": 2,
+          "remember": 1
+        },
+        "read": {
+          "<none>": 4,
+          "read": 5,
+          "yuki_read": 1
+        },
+        "shell": {
+          "shell": 8,
+          "<none>": 2
+        },
+        "yuki_write": {
+          "yuki_write": 7,
+          "remember": 3
+        },
+        "yuki_read": {
+          "yuki_read": 10
+        },
+        "yuki_list": {
+          "yuki_list": 8,
+          "<none>": 2
+        },
+        "yuki_delete": {
+          "yuki_delete": 10
+        },
+        "yuki_append": {
+          "yuki_append": 9,
+          "remember": 1
+        },
+        "remember": {
+          "remember": 10
+        },
+        "recall": {
+          "recall": 8,
+          "<none>": 2
+        },
+        "ask_claude": {
+          "ask_claude": 9,
+          "<none>": 1
+        }
+      }
+    },
+    "hammer_3b": {
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+      "cases": 180,
+      "generated_dispatches": 171,
+      "tool_selection_accuracy": 0.8444444444444444,
+      "tool_selection_accuracy_when_domain_correct": 0.9620253164556962,
+      "strict_argument_accuracy_when_tool_correct": 0.8552631578947368,
+      "preservation_aware_argument_accuracy_when_tool_correct": 0.8618421052631579,
+      "strict_exact_call_accuracy": 0.7222222222222222,
+      "strict_exact_call_successes": 130,
+      "strict_exact_call_wilson_95": [
+        0.652666840879483,
+        0.7824907155998001
+      ],
+      "preservation_aware_exact_call_accuracy": 0.7277777777777777,
+      "preservation_aware_exact_call_successes": 131,
+      "preservation_aware_exact_call_wilson_95": [
+        0.658501486914975,
+        0.78753500847629
+      ],
+      "strict_exact_call_accuracy_when_domain_correct": 0.8227848101265823,
+      "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8291139240506329,
+      "schema_valid_rate": 0.9,
+      "malformed_output_rate": 0,
+      "conversational_output_rate": 0,
+      "average_dispatcher_latency_ms": 5207.557783625731,
+      "p50_dispatcher_latency_ms": 5280.176,
+      "p95_dispatcher_latency_ms": 6591.5415,
+      "average_generation_tokens_per_second": 9.492269005847954,
+      "peak_mlx_memory_gb": 6.5312,
+      "non_ambiguous": {
+        "cases": 162,
+        "valid_delegation_rate": 0.9506172839506173,
+        "domain_hint_accuracy": 0.8703703703703703,
+        "tool_selection_accuracy": 0.8333333333333334,
+        "tool_selection_accuracy_when_domain_correct": 0.9574468085106383,
+        "strict_argument_accuracy": 0.7160493827160493,
+        "equivalent_argument_accuracy": 0.7160493827160493,
+        "preservation_aware_argument_accuracy": 0.7222222222222222,
+        "strict_argument_accuracy_when_tool_correct": 0.8592592592592593,
+        "preservation_aware_argument_accuracy_when_tool_correct": 0.8666666666666667,
+        "strict_exact_call_accuracy": 0.7160493827160493,
+        "equivalent_exact_call_accuracy": 0.7160493827160493,
+        "preservation_aware_exact_call_accuracy": 0.7222222222222222,
+        "strict_exact_call_accuracy_when_domain_correct": 0.8226950354609929,
+        "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8297872340425532,
+        "schema_valid_rate": 0.8950617283950617,
+        "malformed_output_rate": 0,
+        "conversational_output_rate": 0,
+        "average_dispatcher_latency_ms": 5167.172649350649,
+        "p50_dispatcher_latency_ms": 5225.7955,
+        "p95_dispatcher_latency_ms": 6585.7666500000005
+      },
+      "failure_decomposition": {
+        "malformed_delegation": 9,
+        "dispatcher_wrong_tool": 6,
+        "main_brain_lost_verbatim": 17,
+        "main_brain_wrong_domain": 13,
+        "dispatcher_wrong_argument": 4,
+        "dispatcher_argument_rewrite": 1
+      },
+      "upstream_attributed_strict_failures": 39,
+      "dispatcher_attributed_strict_failures": 11,
+      "ambiguous_or_adversarial_strict_failures": 4,
+      "by_tool": {
+        "ask_claude": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 0.9,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.6,
+          "strict_argument_accuracy_when_tool_correct": 0.6666666666666666,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.6666666666666666,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.6,
+          "strict_exact_call_accuracy_when_domain_correct": 0.6,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.6,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4860.1064,
+          "p50_dispatcher_latency_ms": 4930.092500000001,
+          "p95_dispatcher_latency_ms": 5986.352849999998
+        },
+        "calc": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.9,
+          "equivalent_argument_accuracy": 0.9,
+          "preservation_aware_argument_accuracy": 0.9,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.9,
+          "equivalent_exact_call_accuracy": 0.9,
+          "preservation_aware_exact_call_accuracy": 0.9,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5801.5859,
+          "p50_dispatcher_latency_ms": 5976.612,
+          "p95_dispatcher_latency_ms": 6476.55735
+        },
+        "fetch": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 1,
+          "equivalent_argument_accuracy": 1,
+          "preservation_aware_argument_accuracy": 1,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 1,
+          "equivalent_exact_call_accuracy": 1,
+          "preservation_aware_exact_call_accuracy": 1,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5492.2653,
+          "p50_dispatcher_latency_ms": 5445.610000000001,
+          "p95_dispatcher_latency_ms": 6421.613849999999
+        },
+        "hardware": {
+          "cases": 10,
+          "valid_delegation_rate": 0.9,
+          "domain_hint_accuracy": 0.7,
+          "tool_selection_accuracy": 0.7,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.7,
+          "equivalent_argument_accuracy": 0.7,
+          "preservation_aware_argument_accuracy": 0.7,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.7,
+          "equivalent_exact_call_accuracy": 0.7,
+          "preservation_aware_exact_call_accuracy": 0.7,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4443.783777777778,
+          "p50_dispatcher_latency_ms": 4527.349,
+          "p95_dispatcher_latency_ms": 5004.084
+        },
+        "image": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 0.8888888888888888,
+          "strict_argument_accuracy": 0.4,
+          "equivalent_argument_accuracy": 0.4,
+          "preservation_aware_argument_accuracy": 0.4,
+          "strict_argument_accuracy_when_tool_correct": 0.5,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.5,
+          "strict_exact_call_accuracy": 0.4,
+          "equivalent_exact_call_accuracy": 0.4,
+          "preservation_aware_exact_call_accuracy": 0.4,
+          "strict_exact_call_accuracy_when_domain_correct": 0.4444444444444444,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.4444444444444444,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4870.3108,
+          "p50_dispatcher_latency_ms": 4845.737999999999,
+          "p95_dispatcher_latency_ms": 6062.936699999999
+        },
+        "read": {
+          "cases": 10,
+          "valid_delegation_rate": 0.6,
+          "domain_hint_accuracy": 0.5,
+          "tool_selection_accuracy": 0.5,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.6,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4870.915,
+          "p50_dispatcher_latency_ms": 4628.450000000001,
+          "p95_dispatcher_latency_ms": 5805.289000000001
+        },
+        "recall": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 0.9,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 0.5555555555555556,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.5555555555555556,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 0.5,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.5,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5410.1829,
+          "p50_dispatcher_latency_ms": 5575.4665,
+          "p95_dispatcher_latency_ms": 6063.9486
+        },
+        "remember": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.9,
+          "strict_argument_accuracy_when_tool_correct": 0.8,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.9,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.9,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.9,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5846.5335000000005,
+          "p50_dispatcher_latency_ms": 5763.387500000001,
+          "p95_dispatcher_latency_ms": 6392.8791
+        },
+        "search": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 0.8888888888888888,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.6,
+          "strict_argument_accuracy_when_tool_correct": 0.75,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.75,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.6,
+          "strict_exact_call_accuracy_when_domain_correct": 0.6666666666666666,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.6666666666666666,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5652.5772,
+          "p50_dispatcher_latency_ms": 5408.0845,
+          "p95_dispatcher_latency_ms": 6636.91425
+        },
+        "see": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.8,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.6,
+          "strict_argument_accuracy_when_tool_correct": 0.75,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.75,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.6,
+          "strict_exact_call_accuracy_when_domain_correct": 0.75,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.75,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4388.434,
+          "p50_dispatcher_latency_ms": 4599.905500000001,
+          "p95_dispatcher_latency_ms": 5689.479749999999
+        },
+        "shell": {
+          "cases": 10,
+          "valid_delegation_rate": 0.9,
+          "domain_hint_accuracy": 0.8,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.8,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.8,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4707.592333333333,
+          "p50_dispatcher_latency_ms": 4675.32,
+          "p95_dispatcher_latency_ms": 5716.3074
+        },
+        "time": {
+          "cases": 10,
+          "valid_delegation_rate": 0.9,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 0.8888888888888888,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.8,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.8,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8888888888888888,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8888888888888888,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 3983.236111111111,
+          "p50_dispatcher_latency_ms": 4023.033,
+          "p95_dispatcher_latency_ms": 4544.6846
+        },
+        "weather": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 1,
+          "equivalent_argument_accuracy": 1,
+          "preservation_aware_argument_accuracy": 1,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 1,
+          "equivalent_exact_call_accuracy": 1,
+          "preservation_aware_exact_call_accuracy": 1,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4595.0572,
+          "p50_dispatcher_latency_ms": 4562.3585,
+          "p95_dispatcher_latency_ms": 4777.519
+        },
+        "yuki_append": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.9,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 0.8888888888888888,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 0.625,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.625,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 0.5555555555555556,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.5555555555555556,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 6109.7883,
+          "p50_dispatcher_latency_ms": 6345.424999999999,
+          "p95_dispatcher_latency_ms": 6994.2705
+        },
+        "yuki_delete": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 1,
+          "equivalent_argument_accuracy": 1,
+          "preservation_aware_argument_accuracy": 1,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 1,
+          "equivalent_exact_call_accuracy": 1,
+          "preservation_aware_exact_call_accuracy": 1,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5526.661599999999,
+          "p50_dispatcher_latency_ms": 5486.511,
+          "p95_dispatcher_latency_ms": 5760.426399999999
+        },
+        "yuki_list": {
+          "cases": 10,
+          "valid_delegation_rate": 0.8,
+          "domain_hint_accuracy": 0.8,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.8,
+          "equivalent_argument_accuracy": 0.8,
+          "preservation_aware_argument_accuracy": 0.8,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.8,
+          "equivalent_exact_call_accuracy": 0.8,
+          "preservation_aware_exact_call_accuracy": 0.8,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.8,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4953.929,
+          "p50_dispatcher_latency_ms": 4952.1345,
+          "p95_dispatcher_latency_ms": 5015.8667000000005
+        },
+        "yuki_read": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 1,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 1,
+          "equivalent_argument_accuracy": 1,
+          "preservation_aware_argument_accuracy": 1,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 1,
+          "equivalent_exact_call_accuracy": 1,
+          "preservation_aware_exact_call_accuracy": 1,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5515.4166000000005,
+          "p50_dispatcher_latency_ms": 5540.168,
+          "p95_dispatcher_latency_ms": 5665.0023
+        },
+        "yuki_write": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.7,
+          "tool_selection_accuracy": 0.7,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 0.7142857142857143,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.7142857142857143,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 0.7142857142857143,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.7142857142857143,
+          "schema_valid_rate": 1,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 6273.4752,
+          "p50_dispatcher_latency_ms": 6270.949500000001,
+          "p95_dispatcher_latency_ms": 6667.263
+        }
+      },
+      "by_family": {
+        "computer": {
+          "cases": 30,
+          "valid_delegation_rate": 0.8,
+          "domain_hint_accuracy": 0.6666666666666666,
+          "tool_selection_accuracy": 0.6666666666666666,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.6666666666666666,
+          "equivalent_argument_accuracy": 0.6666666666666666,
+          "preservation_aware_argument_accuracy": 0.6666666666666666,
+          "strict_argument_accuracy_when_tool_correct": 1,
+          "preservation_aware_argument_accuracy_when_tool_correct": 1,
+          "strict_exact_call_accuracy": 0.6666666666666666,
+          "equivalent_exact_call_accuracy": 0.6666666666666666,
+          "preservation_aware_exact_call_accuracy": 0.6666666666666666,
+          "strict_exact_call_accuracy_when_domain_correct": 1,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 1,
+          "schema_valid_rate": 0.7333333333333333,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4649.494791666667,
+          "p50_dispatcher_latency_ms": 4606.742,
+          "p95_dispatcher_latency_ms": 5834.353399999999
+        },
+        "external_agent": {
+          "cases": 10,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 0.9,
+          "strict_argument_accuracy": 0.6,
+          "equivalent_argument_accuracy": 0.6,
+          "preservation_aware_argument_accuracy": 0.6,
+          "strict_argument_accuracy_when_tool_correct": 0.6666666666666666,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.6666666666666666,
+          "strict_exact_call_accuracy": 0.6,
+          "equivalent_exact_call_accuracy": 0.6,
+          "preservation_aware_exact_call_accuracy": 0.6,
+          "strict_exact_call_accuracy_when_domain_correct": 0.6,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.6,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4860.1064,
+          "p50_dispatcher_latency_ms": 4930.092500000001,
+          "p95_dispatcher_latency_ms": 5986.352849999998
+        },
+        "information": {
+          "cases": 50,
+          "valid_delegation_rate": 0.98,
+          "domain_hint_accuracy": 0.94,
+          "tool_selection_accuracy": 0.9,
+          "tool_selection_accuracy_when_domain_correct": 0.9574468085106383,
+          "strict_argument_accuracy": 0.86,
+          "equivalent_argument_accuracy": 0.86,
+          "preservation_aware_argument_accuracy": 0.86,
+          "strict_argument_accuracy_when_tool_correct": 0.9555555555555556,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.9555555555555556,
+          "strict_exact_call_accuracy": 0.86,
+          "equivalent_exact_call_accuracy": 0.86,
+          "preservation_aware_exact_call_accuracy": 0.86,
+          "strict_exact_call_accuracy_when_domain_correct": 0.9148936170212766,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.9148936170212766,
+          "schema_valid_rate": 0.94,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5127.836346938776,
+          "p50_dispatcher_latency_ms": 5019.311,
+          "p95_dispatcher_latency_ms": 6624.2622
+        },
+        "media": {
+          "cases": 20,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 0.85,
+          "tool_selection_accuracy": 0.8,
+          "tool_selection_accuracy_when_domain_correct": 0.9411764705882353,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 0.625,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.625,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 0.5882352941176471,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.5882352941176471,
+          "schema_valid_rate": 0.9,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4629.3724,
+          "p50_dispatcher_latency_ms": 4691.1265,
+          "p95_dispatcher_latency_ms": 6347.58525
+        },
+        "memory": {
+          "cases": 20,
+          "valid_delegation_rate": 1,
+          "domain_hint_accuracy": 1,
+          "tool_selection_accuracy": 0.95,
+          "tool_selection_accuracy_when_domain_correct": 0.95,
+          "strict_argument_accuracy": 0.65,
+          "equivalent_argument_accuracy": 0.65,
+          "preservation_aware_argument_accuracy": 0.7,
+          "strict_argument_accuracy_when_tool_correct": 0.6842105263157895,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.7368421052631579,
+          "strict_exact_call_accuracy": 0.65,
+          "equivalent_exact_call_accuracy": 0.65,
+          "preservation_aware_exact_call_accuracy": 0.7,
+          "strict_exact_call_accuracy_when_domain_correct": 0.65,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.7,
+          "schema_valid_rate": 0.95,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5628.358200000001,
+          "p50_dispatcher_latency_ms": 5663.7425,
+          "p95_dispatcher_latency_ms": 6253.2981
+        },
+        "yuki_files": {
+          "cases": 50,
+          "valid_delegation_rate": 0.96,
+          "domain_hint_accuracy": 0.88,
+          "tool_selection_accuracy": 0.86,
+          "tool_selection_accuracy_when_domain_correct": 0.9772727272727273,
+          "strict_argument_accuracy": 0.76,
+          "equivalent_argument_accuracy": 0.76,
+          "preservation_aware_argument_accuracy": 0.76,
+          "strict_argument_accuracy_when_tool_correct": 0.8837209302325582,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8837209302325582,
+          "strict_exact_call_accuracy": 0.76,
+          "equivalent_exact_call_accuracy": 0.76,
+          "preservation_aware_exact_call_accuracy": 0.76,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8636363636363636,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8636363636363636,
+          "schema_valid_rate": 0.94,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5705.934354166667,
+          "p50_dispatcher_latency_ms": 5609.1515,
+          "p95_dispatcher_latency_ms": 6797.71285
+        }
+      },
+      "by_dataset_category": {
+        "adversarial": {
+          "cases": 18,
+          "valid_delegation_rate": 0.9444444444444444,
+          "domain_hint_accuracy": 0.9444444444444444,
+          "tool_selection_accuracy": 0.9444444444444444,
+          "tool_selection_accuracy_when_domain_correct": 1,
+          "strict_argument_accuracy": 0.7777777777777778,
+          "equivalent_argument_accuracy": 0.7777777777777778,
+          "preservation_aware_argument_accuracy": 0.7777777777777778,
+          "strict_argument_accuracy_when_tool_correct": 0.8235294117647058,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8235294117647058,
+          "strict_exact_call_accuracy": 0.7777777777777778,
+          "equivalent_exact_call_accuracy": 0.7777777777777778,
+          "preservation_aware_exact_call_accuracy": 0.7777777777777778,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8235294117647058,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8235294117647058,
+          "schema_valid_rate": 0.9444444444444444,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5573.399588235294,
+          "p50_dispatcher_latency_ms": 5609.023,
+          "p95_dispatcher_latency_ms": 6426.9708
+        },
+        "confusion": {
+          "cases": 36,
+          "valid_delegation_rate": 0.9166666666666666,
+          "domain_hint_accuracy": 0.8888888888888888,
+          "tool_selection_accuracy": 0.8055555555555556,
+          "tool_selection_accuracy_when_domain_correct": 0.90625,
+          "strict_argument_accuracy": 0.75,
+          "equivalent_argument_accuracy": 0.75,
+          "preservation_aware_argument_accuracy": 0.75,
+          "strict_argument_accuracy_when_tool_correct": 0.9310344827586207,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.9310344827586207,
+          "strict_exact_call_accuracy": 0.75,
+          "equivalent_exact_call_accuracy": 0.75,
+          "preservation_aware_exact_call_accuracy": 0.75,
+          "strict_exact_call_accuracy_when_domain_correct": 0.84375,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.84375,
+          "schema_valid_rate": 0.8333333333333334,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 4974.185454545454,
+          "p50_dispatcher_latency_ms": 5019.311,
+          "p95_dispatcher_latency_ms": 6162.725399999999
+        },
+        "normal": {
+          "cases": 58,
+          "valid_delegation_rate": 0.9827586206896551,
+          "domain_hint_accuracy": 0.9827586206896551,
+          "tool_selection_accuracy": 0.9655172413793104,
+          "tool_selection_accuracy_when_domain_correct": 0.9824561403508771,
+          "strict_argument_accuracy": 0.8103448275862069,
+          "equivalent_argument_accuracy": 0.8103448275862069,
+          "preservation_aware_argument_accuracy": 0.8103448275862069,
+          "strict_argument_accuracy_when_tool_correct": 0.8392857142857143,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8392857142857143,
+          "strict_exact_call_accuracy": 0.8103448275862069,
+          "equivalent_exact_call_accuracy": 0.8103448275862069,
+          "preservation_aware_exact_call_accuracy": 0.8103448275862069,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8245614035087719,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8245614035087719,
+          "schema_valid_rate": 0.9655172413793104,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5110.742754385965,
+          "p50_dispatcher_latency_ms": 4974.99,
+          "p95_dispatcher_latency_ms": 6386.8236
+        },
+        "paraphrase": {
+          "cases": 36,
+          "valid_delegation_rate": 0.9444444444444444,
+          "domain_hint_accuracy": 0.9166666666666666,
+          "tool_selection_accuracy": 0.8888888888888888,
+          "tool_selection_accuracy_when_domain_correct": 0.9696969696969697,
+          "strict_argument_accuracy": 0.7222222222222222,
+          "equivalent_argument_accuracy": 0.7222222222222222,
+          "preservation_aware_argument_accuracy": 0.75,
+          "strict_argument_accuracy_when_tool_correct": 0.8125,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.84375,
+          "strict_exact_call_accuracy": 0.7222222222222222,
+          "equivalent_exact_call_accuracy": 0.7222222222222222,
+          "preservation_aware_exact_call_accuracy": 0.75,
+          "strict_exact_call_accuracy_when_domain_correct": 0.7878787878787878,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8181818181818182,
+          "schema_valid_rate": 0.9166666666666666,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5133.059705882353,
+          "p50_dispatcher_latency_ms": 5239.027,
+          "p95_dispatcher_latency_ms": 6099.8442
+        },
+        "preservation": {
+          "cases": 32,
+          "valid_delegation_rate": 0.9375,
+          "domain_hint_accuracy": 0.59375,
+          "tool_selection_accuracy": 0.5625,
+          "tool_selection_accuracy_when_domain_correct": 0.9473684210526315,
+          "strict_argument_accuracy": 0.5,
+          "equivalent_argument_accuracy": 0.5,
+          "preservation_aware_argument_accuracy": 0.5,
+          "strict_argument_accuracy_when_tool_correct": 0.8888888888888888,
+          "preservation_aware_argument_accuracy_when_tool_correct": 0.8888888888888888,
+          "strict_exact_call_accuracy": 0.5,
+          "equivalent_exact_call_accuracy": 0.5,
+          "preservation_aware_exact_call_accuracy": 0.5,
+          "strict_exact_call_accuracy_when_domain_correct": 0.8421052631578947,
+          "preservation_aware_exact_call_accuracy_when_domain_correct": 0.8421052631578947,
+          "schema_valid_rate": 0.8125,
+          "malformed_output_rate": 0,
+          "conversational_output_rate": 0,
+          "average_dispatcher_latency_ms": 5525.3367,
+          "p50_dispatcher_latency_ms": 5748.616,
+          "p95_dispatcher_latency_ms": 6792.5331
+        }
+      },
+      "confusion_matrix": {
+        "time": {
+          "time": 8,
+          "<none>": 2
+        },
+        "weather": {
+          "weather": 10
+        },
+        "fetch": {
+          "fetch": 10
+        },
+        "search": {
+          "search": 8,
+          "weather": 1,
+          "remember": 1
+        },
+        "calc": {
+          "calc": 9,
+          "<none>": 1
+        },
+        "hardware": {
+          "hardware": 7,
+          "<none>": 2,
+          "remember": 1
+        },
+        "see": {
+          "see": 8,
+          "<none>": 1,
+          "read": 1
+        },
+        "image": {
+          "image": 8,
+          "<none>": 1,
+          "remember": 1
+        },
+        "read": {
+          "<none>": 4,
+          "read": 5,
+          "yuki_read": 1
+        },
+        "shell": {
+          "shell": 8,
+          "<none>": 2
+        },
+        "yuki_write": {
+          "yuki_write": 7,
+          "remember": 3
+        },
+        "yuki_read": {
+          "yuki_read": 10
+        },
+        "yuki_list": {
+          "yuki_list": 8,
+          "<none>": 2
+        },
+        "yuki_delete": {
+          "yuki_delete": 10
+        },
+        "yuki_append": {
+          "yuki_append": 8,
+          "<none>": 1,
+          "remember": 1
+        },
+        "remember": {
+          "remember": 10
+        },
+        "recall": {
+          "recall": 9,
+          "<none>": 1
+        },
+        "ask_claude": {
+          "ask_claude": 9,
+          "<none>": 1
+        }
+      }
+    },
+    "paired_strict_exact_call": {
+      "both_correct": 125,
+      "first_only": 7,
+      "second_only": 5,
+      "both_wrong": 43,
+      "exact_mcnemar_p": 0.7744140625
+    },
+    "paired_preservation_aware_exact_call": {
+      "both_correct": 126,
+      "first_only": 7,
+      "second_only": 5,
+      "both_wrong": 42,
+      "exact_mcnemar_p": 0.7744140625
+    },
+    "end_to_end_performance": {
+      "hammer_1_5b": {
+        "average_latency_ms": 8111.140222222222,
+        "p50_latency_ms": 8028.117,
+        "p95_latency_ms": 10027.798499999995,
+        "load_latency_excluded": true,
+        "models_were_measured_separately": true
+      },
+      "hammer_3b": {
+        "average_latency_ms": 10485.04208888889,
+        "p50_latency_ms": 10522.515,
+        "p95_latency_ms": 13408.227649999999,
+        "load_latency_excluded": true,
+        "models_were_measured_separately": true
+      }
+    },
+    "failure_examples_hammer_1_5b": {
+      "malformed_delegation": [
+        {
+          "case_id": "p2-time-15",
+          "request": "CURRENT TIME?",
+          "expected_tool": "time",
+          "actual_tool": null,
+          "expected_arguments": {},
+          "actual_arguments": null,
+          "delegation": null
+        },
+        {
+          "case_id": "p2-hardware-18",
+          "request": "Use hardware RAM stats, not recalled conversations about memory.",
+          "expected_tool": "hardware",
+          "actual_tool": null,
+          "expected_arguments": {
+            "metric": "ram"
+          },
+          "actual_arguments": null,
+          "delegation": null
+        }
+      ],
+      "dispatcher_wrong_argument": [
+        {
+          "case_id": "p2-fetch-23",
+          "request": "Fetch exactly https://example.com/a%2Fb?next=%2Fhome%3Fx%3D1",
+          "expected_tool": "fetch",
+          "actual_tool": "fetch",
+          "expected_arguments": {
+            "url": "https://example.com/a%2Fb?next=%2Fhome%3Fx%3D1"
+          },
+          "actual_arguments": {
+            "url": "https://example.com/a/b?next=/home?x=1"
+          },
+          "delegation": {
+            "request": "fetch URL",
+            "domain_hint": "information",
+            "verbatim": [
+              "https://example.com/a%2Fb?next=%2Fhome%3Fx%3D1"
+            ]
+          }
+        },
+        {
+          "case_id": "p2-search-25",
+          "request": "Search, punctuation and all: ??? macOS swap usage M1 -- 2026",
+          "expected_tool": "search",
+          "actual_tool": "search",
+          "expected_arguments": {
+            "query": "??? macOS swap usage M1 -- 2026"
+          },
+          "actual_arguments": {
+            "query": "macOS swap usage M1 -- 2026"
+          },
+          "delegation": {
+            "request": "search for information about macOS swap usage on M1 chips in 2026",
+            "domain_hint": "information",
+            "verbatim": [
+              "??? macOS swap usage M1 -- 2026"
+            ]
+          }
+        }
+      ],
+      "dispatcher_wrong_tool": [
+        {
+          "case_id": "p2-search-18",
+          "request": "Search for Tokyo weather APIs, not Tokyo's current weather.",
+          "expected_tool": "search",
+          "actual_tool": "weather",
+          "expected_arguments": {
+            "query": "Tokyo weather APIs"
+          },
+          "actual_arguments": {
+            "city": "Tokyo"
+          },
+          "delegation": {
+            "request": "search for Tokyo weather APIs",
+            "domain_hint": "information",
+            "verbatim": [
+              "Tokyo weather APIs"
+            ]
+          }
+        },
+        {
+          "case_id": "p2-see-12",
+          "request": "Use your eyes and track down my earbuds.",
+          "expected_tool": "see",
+          "actual_tool": null,
+          "expected_arguments": {
+            "target": "earbuds"
+          },
+          "actual_arguments": null,
+          "delegation": {
+            "request": "Locate the earbuds using visual inspection",
+            "domain_hint": "media",
+            "verbatim": [
+              "my earbuds"
+            ]
+          }
+        }
+      ],
+      "main_brain_lost_verbatim": [
+        {
+          "case_id": "p2-search-19",
+          "request": "Find a website explaining URL fragments; there is no exact URL to fetch.",
+          "expected_tool": "search",
+          "actual_tool": "search",
+          "expected_arguments": {
+            "query": "website explaining URL fragments"
+          },
+          "actual_arguments": {
+            "query": "URL fragments"
+          },
+          "delegation": {
+            "request": "find a website explaining URL fragments",
+            "domain_hint": "information",
+            "verbatim": [
+              "URL fragments"
+            ]
+          }
+        },
+        {
+          "case_id": "p2-image-02",
+          "request": "Create a picture of a watercolor lighthouse at dawn.",
+          "expected_tool": "image",
+          "actual_tool": "image",
+          "expected_arguments": {
+            "prompt": "watercolor lighthouse at dawn"
+          },
+          "actual_arguments": {
+            "prompt": "a watercolor lighthouse at dawn"
+          },
+          "delegation": {
+            "request": "generate a watercolor painting of a lighthouse at dawn",
+            "domain_hint": "media",
+            "verbatim": [
+              "a watercolor lighthouse at dawn"
+            ]
+          }
+        }
+      ],
+      "main_brain_wrong_domain": [
+        {
+          "case_id": "p2-search-23",
+          "request": "Keep this query intact: site:huggingface.co \"Hammer2.1-3b\" function calling",
+          "expected_tool": "search",
+          "actual_tool": "remember",
+          "expected_arguments": {
+            "query": "site:huggingface.co \"Hammer2.1-3b\" function calling"
+          },
+          "actual_arguments": {
+            "fact": "site:huggingface.co \"Hammer2.1-3b\" function calling"
+          },
+          "delegation": {
+            "request": "store a user fact for later",
+            "domain_hint": "memory",
+            "verbatim": [
+              "site:huggingface.co \"Hammer2.1-3b\" function calling"
+            ]
+          }
+        },
+        {
+          "case_id": "p2-calc-22",
+          "request": "Preserve the expression exactly: (144 / 12) + 7",
+          "expected_tool": "calc",
+          "actual_tool": null,
+          "expected_arguments": {
+            "expression": "(144 / 12) + 7"
+          },
+          "actual_arguments": null,
+          "delegation": {
+            "request": "preserve the expression exactly",
+            "domain_hint": "memory",
+            "verbatim": [
+              "(144 / 12) + 7"
+            ]
+          }
+        }
+      ],
+      "dispatcher_argument_rewrite": [
+        {
+          "case_id": "p2-remember-12",
+          "request": "Make a mental note that my cat's name is Nori.",
+          "expected_tool": "remember",
+          "actual_tool": "remember",
+          "expected_arguments": {
+            "fact": "user's cat is named Nori"
+          },
+          "actual_arguments": {
+            "fact": "my cat's name is Nori"
+          },
+          "delegation": {
+            "request": "Store a user fact for later retrieval",
+            "domain_hint": "memory",
+            "verbatim": [
+              "my cat's name is Nori"
+            ]
+          }
+        }
+      ]
+    },
+    "failure_examples_hammer_3b": {
+      "malformed_delegation": [
+        {
+          "case_id": "p2-time-15",
+          "request": "CURRENT TIME?",
+          "expected_tool": "time",
+          "actual_tool": null,
+          "expected_arguments": {},
+          "actual_arguments": null,
+          "delegation": null
+        },
+        {
+          "case_id": "p2-hardware-18",
+          "request": "Use hardware RAM stats, not recalled conversations about memory.",
+          "expected_tool": "hardware",
+          "actual_tool": null,
+          "expected_arguments": {
+            "metric": "ram"
+          },
+          "actual_arguments": null,
+          "delegation": null
+        }
+      ],
+      "dispatcher_wrong_tool": [
+        {
+          "case_id": "p2-time-05",
+          "request": "Give me the local time on this Mac.",
+          "expected_tool": "time",
+          "actual_tool": null,
+          "expected_arguments": {},
+          "actual_arguments": null,
+          "delegation": {
+            "request": "Get the current local time on the Mac",
+            "domain_hint": "information",
+            "verbatim": []
+          }
+        },
+        {
+          "case_id": "p2-search-18",
+          "request": "Search for Tokyo weather APIs, not Tokyo's current weather.",
+          "expected_tool": "search",
+          "actual_tool": "weather",
+          "expected_arguments": {
+            "query": "Tokyo weather APIs"
+          },
+          "actual_arguments": {
+            "city": "Tokyo"
+          },
+          "delegation": {
+            "request": "search for Tokyo weather APIs",
+            "domain_hint": "information",
+            "verbatim": [
+              "Tokyo weather APIs"
+            ]
+          }
+        }
+      ],
+      "main_brain_lost_verbatim": [
+        {
+          "case_id": "p2-search-19",
+          "request": "Find a website explaining URL fragments; there is no exact URL to fetch.",
+          "expected_tool": "search",
+          "actual_tool": "search",
+          "expected_arguments": {
+            "query": "website explaining URL fragments"
+          },
+          "actual_arguments": {
+            "query": "URL fragments"
+          },
+          "delegation": {
+            "request": "find a website explaining URL fragments",
+            "domain_hint": "information",
+            "verbatim": [
+              "URL fragments"
+            ]
+          }
+        },
+        {
+          "case_id": "p2-search-03",
+          "request": "Search for current Python 3.14 release notes.",
+          "expected_tool": "search",
+          "actual_tool": "search",
+          "expected_arguments": {
+            "query": "current Python 3.14 release notes"
+          },
+          "actual_arguments": {
+            "query": "Python 3.14 release notes"
+          },
+          "delegation": {
+            "request": "search for current Python 3.14 release notes",
+            "domain_hint": "information",
+            "verbatim": [
+              "Python 3.14"
+            ]
+          }
+        }
+      ],
+      "main_brain_wrong_domain": [
+        {
+          "case_id": "p2-search-23",
+          "request": "Keep this query intact: site:huggingface.co \"Hammer2.1-3b\" function calling",
+          "expected_tool": "search",
+          "actual_tool": "remember",
+          "expected_arguments": {
+            "query": "site:huggingface.co \"Hammer2.1-3b\" function calling"
+          },
+          "actual_arguments": {
+            "fact": "site:huggingface.co \"Hammer2.1-3b\" function calling"
+          },
+          "delegation": {
+            "request": "store a user fact for later",
+            "domain_hint": "memory",
+            "verbatim": [
+              "site:huggingface.co \"Hammer2.1-3b\" function calling"
+            ]
+          }
+        },
+        {
+          "case_id": "p2-calc-22",
+          "request": "Preserve the expression exactly: (144 / 12) + 7",
+          "expected_tool": "calc",
+          "actual_tool": null,
+          "expected_arguments": {
+            "expression": "(144 / 12) + 7"
+          },
+          "actual_arguments": null,
+          "delegation": {
+            "request": "preserve the expression exactly",
+            "domain_hint": "memory",
+            "verbatim": [
+              "(144 / 12) + 7"
+            ]
+          }
+        }
+      ],
+      "dispatcher_wrong_argument": [
+        {
+          "case_id": "p2-see-12",
+          "request": "Use your eyes and track down my earbuds.",
+          "expected_tool": "see",
+          "actual_tool": "see",
+          "expected_arguments": {
+            "target": "earbuds"
+          },
+          "actual_arguments": {
+            "target": "my earbuds"
+          },
+          "delegation": {
+            "request": "Locate the earbuds using visual inspection",
+            "domain_hint": "media",
+            "verbatim": [
+              "my earbuds"
+            ]
+          }
+        },
+        {
+          "case_id": "p2-see-03",
+          "request": "Look through Yuki's eye for my coffee mug.",
+          "expected_tool": "see",
+          "actual_tool": "see",
+          "expected_arguments": {
+            "target": "coffee mug"
+          },
+          "actual_arguments": {
+            "target": "my coffee mug"
+          },
+          "delegation": {
+            "request": "inspect Yuki's visual field for a coffee mug",
+            "domain_hint": "media",
+            "verbatim": [
+              "my coffee mug"
+            ]
+          }
+        }
+      ],
+      "dispatcher_argument_rewrite": [
+        {
+          "case_id": "p2-remember-12",
+          "request": "Make a mental note that my cat's name is Nori.",
+          "expected_tool": "remember",
+          "actual_tool": "remember",
+          "expected_arguments": {
+            "fact": "user's cat is named Nori"
+          },
+          "actual_arguments": {
+            "fact": "my cat's name is Nori"
+          },
+          "delegation": {
+            "request": "Store a user fact for later retrieval",
+            "domain_hint": "memory",
+            "verbatim": [
+              "my cat's name is Nori"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "ablations_hammer_1_5b": {
+    "primary_generated_domain_semantic_plus_verbatim": {
+      "input_mode": "delegated_with_verbatim",
+      "domain_source": "generated",
+      "strict_exact_call_accuracy": 0.7333333333333333,
+      "preservation_aware_exact_call_accuracy": 0.7388888888888889,
+      "average_dispatcher_latency_ms": 2708.7137134502923
+    },
+    "generated_domain_semantic_without_verbatim": {
+      "input_mode": "delegated_without_verbatim",
+      "domain_source": "generated",
+      "uses_oracle_domain": false,
+      "generated_dispatches": 171,
+      "routing_domain_accuracy": 0.8777777777777778,
+      "tool_selection_accuracy": 0.7333333333333333,
+      "strict_exact_call_accuracy": 0.25555555555555554,
+      "preservation_aware_exact_call_accuracy": 0.26666666666666666,
+      "strict_argument_accuracy_when_tool_correct": 0.3484848484848485,
+      "preservation_aware_argument_accuracy_when_tool_correct": 0.36363636363636365,
+      "schema_valid_rate": 0.7888888888888889,
+      "malformed_output_rate": 0,
+      "average_dispatcher_latency_ms": 2244.801807017544
+    },
+    "generated_domain_raw_user": {
+      "input_mode": "raw_user",
+      "domain_source": "generated",
+      "uses_oracle_domain": false,
+      "generated_dispatches": 171,
+      "routing_domain_accuracy": 0.8777777777777778,
+      "tool_selection_accuracy": 0.7666666666666667,
+      "strict_exact_call_accuracy": 0.6333333333333333,
+      "preservation_aware_exact_call_accuracy": 0.6611111111111111,
+      "strict_argument_accuracy_when_tool_correct": 0.8260869565217391,
+      "preservation_aware_argument_accuracy_when_tool_correct": 0.8623188405797102,
+      "schema_valid_rate": 0.7777777777777778,
+      "malformed_output_rate": 0.005555555555555556,
+      "average_dispatcher_latency_ms": 2602.733111111111
+    },
+    "gold_domain_raw_user": {
+      "input_mode": "raw_user",
+      "domain_source": "gold",
+      "uses_oracle_domain": true,
+      "generated_dispatches": 180,
+      "routing_domain_accuracy": 1,
+      "tool_selection_accuracy": 0.8722222222222222,
+      "strict_exact_call_accuracy": 0.7277777777777777,
+      "preservation_aware_exact_call_accuracy": 0.7555555555555555,
+      "strict_argument_accuracy_when_tool_correct": 0.8343949044585988,
+      "preservation_aware_argument_accuracy_when_tool_correct": 0.8662420382165605,
+      "schema_valid_rate": 0.8833333333333333,
+      "malformed_output_rate": 0.005555555555555556,
+      "average_dispatcher_latency_ms": 2938.3881333333334
+    },
+    "paired_primary_vs_no_verbatim_strict": {
+      "both_correct": 45,
+      "first_only": 87,
+      "second_only": 1,
+      "both_wrong": 47,
+      "exact_mcnemar_p": 5.751490196657771e-25
+    },
+    "paired_primary_vs_raw_generated_strict": {
+      "both_correct": 106,
+      "first_only": 26,
+      "second_only": 8,
+      "both_wrong": 40,
+      "exact_mcnemar_p": 0.0029350556433200836
+    },
+    "paired_primary_vs_raw_gold_strict": {
+      "both_correct": 106,
+      "first_only": 26,
+      "second_only": 25,
+      "both_wrong": 23,
+      "exact_mcnemar_p": 1.0
+    },
+    "paired_raw_generated_vs_raw_gold_strict": {
+      "both_correct": 114,
+      "first_only": 0,
+      "second_only": 17,
+      "both_wrong": 49,
+      "exact_mcnemar_p": 1.52587890625e-05
+    }
+  },
+  "same_180_previous_raw_text_selector": {
+    "cases": 180,
+    "exact_domain_selection_accuracy": 0.7055555555555556,
+    "correct_tool_in_selected_subset_rate": 0.7444444444444445,
+    "hammer_3b_tool_selection_accuracy": 0.7,
+    "hammer_3b_strict_exact_call_accuracy": 0.6111111111111112,
+    "hammer_3b_equivalent_exact_call_accuracy": 0.6166666666666667,
+    "hammer_3b_tool_selection_when_available": 0.9402985074626866,
+    "hammer_3b_strict_exact_when_available": 0.8208955223880597,
+    "average_dispatcher_latency_ms": 4517.154772222222
+  },
+  "selector_change": {
+    "exact_domain_accuracy_delta": 0.17222222222222217,
+    "correct_tool_coverage_delta": 0.1333333333333333,
+    "hammer_3b_strict_exact_call_delta": 0.11111111111111105
+  },
+  "targeted_96_oracle_reference": {
+    "warning": "Reference uses a different 96-case targeted dataset; gaps are descriptive and are not paired accuracy estimates.",
+    "results": {
+      "hammer_1_5b": {
+        "all_18": {
+          "cases": 96,
+          "strict_exact_call_accuracy": 0.625,
+          "equivalent_exact_call_accuracy": 0.6666666666666666,
+          "average_dispatcher_latency_ms": 4635.728864583333,
+          "peak_mlx_memory_gb": 3.6235
+        },
+        "logical-domains": {
+          "cases": 96,
+          "strict_exact_call_accuracy": 0.71875,
+          "equivalent_exact_call_accuracy": 0.7291666666666666,
+          "average_dispatcher_latency_ms": 2124.471916666667,
+          "peak_mlx_memory_gb": 3.4541
+        },
+        "targeted-confusions": {
+          "cases": 96,
+          "strict_exact_call_accuracy": 0.7604166666666666,
+          "equivalent_exact_call_accuracy": 0.7708333333333334,
+          "average_dispatcher_latency_ms": 2041.5814479166665,
+          "peak_mlx_memory_gb": 3.3978
+        }
+      },
+      "hammer_3b": {
+        "all_18": {
+          "cases": 96,
+          "strict_exact_call_accuracy": 0.8020833333333334,
+          "equivalent_exact_call_accuracy": 0.8125,
+          "average_dispatcher_latency_ms": 10952.40609375,
+          "peak_mlx_memory_gb": 6.651
+        },
+        "logical-domains": {
+          "cases": 96,
+          "strict_exact_call_accuracy": 0.8541666666666666,
+          "equivalent_exact_call_accuracy": 0.8645833333333334,
+          "average_dispatcher_latency_ms": 4422.4239375,
+          "peak_mlx_memory_gb": 6.5195
+        },
+        "targeted-confusions": {
+          "cases": 96,
+          "strict_exact_call_accuracy": 0.875,
+          "equivalent_exact_call_accuracy": 0.8854166666666666,
+          "average_dispatcher_latency_ms": 4594.4246041666665,
+          "peak_mlx_memory_gb": 6.4589
+        }
+      }
+    }
+  },
+  "conclusions": {
+    "selector_generalization": "Improved materially but not solved: exact domain coverage rose on the same 180 cases, while 22 cases still lacked a correct domain due to malformed or wrong Stage A output.",
+    "verbatim": "Essential in this interface: removing it caused a large paired strict exact-call loss.",
+    "hammer_capacity": "No measured 3B accuracy advantage on this frozen production interface set; 1.5B was slightly more accurate and about twice as fast/small, with a non-significant paired difference.",
+    "dominant_failure_source": "Stage A was the primary attributed source of roughly four-fifths of strict failures for both Hammer models.",
+    "production_decision": "No production integration recommendation: rerun Stage A with the intended Qwen3.8-27B and then reuse this exact Hammer evaluation before drawing deployment conclusions."
+  },
+  "input_artifact_sha256": {
+    "derived_dataset": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "stage_a": "ebd4260d372e238960a2afea993bd149b8ad264bd486d633ec1c4283e5936569",
+    "hammer_1_5b": "68b7219cfb7bcd8538dc42724d1d4536e09862bebf1b6213e51e0b1644f78b1c",
+    "hammer_3b": "1b1407c1a78e34f74c0a032d93149192fa02b14c4cacfe809bd477ed7b07ca0f",
+    "no_verbatim": "d8991f1f462258a8f47aff4033fd20ed2cf153875aefe41d7d253764c9e2a958",
+    "raw_generated": "b89431070754aa8b7ecb3c35eba977d69b67e3ec981cd72448ba17e6df347225",
+    "raw_gold": "ffc437860dc2ffa51187881ddbd3d9625abe764b5224aecc358ef01007367d69",
+    "phase2_hammer_3b": "ac97c2b51be690e7e318a30370102bf352daa5c74ed255d220c48d4ffcb85ae3",
+    "oracle": "c98a3c89ef29f9ab69754928cd4c2b2788de3d83241e66e7c7a1438dddc0e25b"
+  }
+}

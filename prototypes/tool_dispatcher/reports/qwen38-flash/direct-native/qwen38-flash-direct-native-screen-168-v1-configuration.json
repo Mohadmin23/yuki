@@ -1,0 +1,399 @@
+{
+  "experiment": "qwen38_flash_direct_native_screen",
+  "suite": "combined-168",
+  "model_id": "qwen/qwen3.8-flash",
+  "provider": "Alibaba",
+  "base_url": "https://openrouter.ai/api/v1",
+  "api_mode": "openai_compatible_chat_completions_provider_native_tool_calls",
+  "native_dialect": "openai_native_tool_calls",
+  "tool_choice": "auto",
+  "historical_profile_difference": "Alibaba rejected tool_choice='required' before inference; the screen uses the documented provider-compatible 'auto' value.",
+  "parallel_tool_calls_parameter_sent": false,
+  "reasoning": {
+    "effort": "none",
+    "exclude": true
+  },
+  "temperature": 0,
+  "seed": 0,
+  "max_tokens": 256,
+  "max_retries": 0,
+  "generation_count_per_case": 1,
+  "stateless": true,
+  "conversation_history": false,
+  "all_18_schemas_every_case": true,
+  "schema_profile": "historical_live_registry_strict_validation_adapter",
+  "schema_sha256": "22139a7c2a7ad583ec38b1fb98715e876c1a9b51554607859bde75688dc6523d",
+  "schemas_sent": [
+    {
+      "type": "function",
+      "function": {
+        "name": "time",
+        "description": "time() — Only when the user asks what time/day/date it is. Do NOT call this unprompted. Takes no arguments.",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "weather",
+        "description": "weather(\"city\") — Only when the user asks about the weather in a specific place.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "city": {
+              "type": "string",
+              "description": "City name, e.g. 'Tokyo' or 'New York'.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "city"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "fetch",
+        "description": "fetch(\"url\") — Download the page at a URL and return its readable text. Call this when the user asks about, summarizes, or references a specific URL (http:// or https://). Strictly better than `search` for \"what does this page say\" questions — search returns external snippets, fetch returns the actual page content. Do NOT use fetch for vague topic queries with no URL — use search for those. Max ~8000 chars returned; truncated cleanly. Returns 'Fetch error:' on network/DNS issues, in which case admit honestly that you couldn't read the page rather than guessing from training data.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "Full URL starting with http:// or https:// to download and extract text from.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "url"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "search",
+        "description": "search(\"query\") — Only when the user asks you to look something up, search, google, or find info you don't already know.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search query — what to look up on the web.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "query"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "calc",
+        "description": "calc(\"expression\") — Only when there's an actual math expression to evaluate.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "expression": {
+              "type": "string",
+              "description": "Arithmetic expression to evaluate, e.g. '2+2' or '(15*4)/3'. Numbers and +-*/.()% only.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "expression"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "hardware",
+        "description": "hardware(\"metric\") — Only when the user asks about CPU/RAM/disk/temperature. metric = cpu, ram, disk, process, top, gpu, temp, or all.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "metric": {
+              "type": "string",
+              "description": "Which hardware stat to report. One of: cpu, ram, disk, process, top, gpu, temp, all. Defaults to 'all' if omitted."
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "see",
+        "description": "see(\"target\") — Look at the user's world through your real eye (the webcam, opens in a window). Empty arg = describe the scene; name an object (\"apple\") to find and track it. Use when the user asks you to look at something.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "target": {
+              "type": "string",
+              "description": "Optional object to find and track, e.g. 'apple' or 'phone'. Omit to just describe the scene."
+            }
+          },
+          "required": [],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "image",
+        "description": "image(\"prompt\") — ONLY when the user EXPLICITLY asks for a picture, drawing, image, artwork, illustration, or says \"draw/sketch/paint/generate/make me an image of X\". NEVER call this for text tasks. The prompt must be a detailed visual description, not the user's raw words. Call at most ONCE per request.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "prompt": {
+              "type": "string",
+              "description": "Detailed visual description of the image to generate. Be specific about subject, style, colors, mood — not the user's raw words.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "prompt"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "read",
+        "description": "read(\"filepath\") — Only when the user asks you to read a specific local file.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "filepath": {
+              "type": "string",
+              "description": "Local filesystem path to read. Supports ~ expansion. Returns up to 2000 chars.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "filepath"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "shell",
+        "description": "shell(\"command\") — Only when the user asks to run a shell command (ls, pwd, etc.).",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "command": {
+              "type": "string",
+              "description": "Shell command to run. Only a whitelist is allowed: ls, pwd, whoami, date, uptime, df, uname, cat, head, tail, wc, echo, which, hostname.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "command"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "yuki_write",
+        "description": "yuki_write(\"filename|content\") — Write/overwrite a file in yuki/. Use when the user asks you to write/save/create a file with content.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "filename_and_content": {
+              "type": "string",
+              "description": "Pipe-separated 'filename|content' to write into the yuki/ folder. Example: 'haiku.txt|raindrops fall slowly'.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "filename_and_content"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "yuki_read",
+        "description": "yuki_read(\"filename\") — Read a file from yuki/ when the user asks what's in it.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Filename inside the yuki/ folder to read. Plain name, no path.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "filename"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "yuki_list",
+        "description": "yuki_list() — List files in yuki/ when the user asks what's there. Takes no arguments.",
+        "parameters": {
+          "type": "object",
+          "properties": {},
+          "required": [],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "yuki_delete",
+        "description": "yuki_delete(\"filename\") — Delete a file from yuki/ when the user asks to delete/remove it. Actually delete — do NOT pretend.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "filename": {
+              "type": "string",
+              "description": "Filename inside the yuki/ folder to delete. Plain name, no path.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "filename"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "yuki_append",
+        "description": "yuki_append(\"filename|content\") — Append to an existing yuki/ file when the user asks to add to it.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "filename_and_content": {
+              "type": "string",
+              "description": "Pipe-separated 'filename|content' to append into a yuki/ file that already exists.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "filename_and_content"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "remember",
+        "description": "remember(\"fact\") — Save a lasting fact about the user to long-term memory that persists across ALL future chats. Call this quietly when the user shares something personal worth keeping: their name, job, location, preferences (\"I'm vegetarian\"), ongoing projects, names of pets/family/friends, things they love or hate, or anything they'd expect you to recall days from now. Keep each fact to one short sentence phrased as a standalone note (\"user's dog is named Max\", \"user prefers dark mode\"). Do NOT call for small talk, transient questions, one-off jokes, or facts already obvious from the current conversation. Do not save the same fact twice.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "fact": {
+              "type": "string",
+              "description": "One short sentence about the user phrased as a standalone note, e.g. \"user's dog is named Max\" or \"user prefers dark mode\".",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "fact"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "recall",
+        "description": "recall(\"topic\") — Look up summaries of past conversations that touched on a topic. Call this when the user references something from before that you don't see in the current chat: \"remember when we...\", \"last time we talked about...\", \"that thing I told you about my X\", \"did I ever mention...\", or any question about past events/projects/feelings that aren't in this conversation's history. The query should be a few words capturing the topic (\"server crash debugging\", \"my sister's wedding\"), not the user's full sentence. Use the returned summaries as fuzzy memory to inform your reply — don't quote them verbatim or list them as bullets. If nothing comes back, say so honestly instead of making something up.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "topic": {
+              "type": "string",
+              "description": "A few words capturing the topic to recall, e.g. 'server crash debugging' or 'my sister's wedding'. Not the user's full sentence.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "topic"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ask_claude",
+        "description": "ask_claude(\"question\") — Only when the user explicitly asks you to ask, tell, relay to, or check with Claude (the other AI running in another tmux pane). Returns what Claude replied so you can paraphrase it back to the user. IMPORTANT: if the tool result starts with \"ASK_CLAUDE_ERROR:\", do NOT pretend Claude answered — read the error out loud to the user verbatim so they can fix the setup.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string",
+              "description": "The question or message to send to the other Claude.",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "question"
+          ],
+          "additionalProperties": false
+        }
+      }
+    }
+  ],
+  "schema_profile_matches_gpt_oss_full450_sha256": true,
+  "semantic_delegation": false,
+  "hammer_used": false,
+  "domain_selector_used": false,
+  "regex_router_used": false,
+  "post_hoc_tool_substitution": false,
+  "retry_or_self_correction": false,
+  "execution_capability": false,
+  "yuki_tool_execution_attempts": 0,
+  "sacred_450_used_as_evaluation": false,
+  "sacred_450_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+  "suite_sha256": {
+    "broad-72": "9c4317eee6b271c50bf364f8f96a26b5904899e8a3cde83387a27de59de4c0ba",
+    "targeted-96": "b416a10cec7b7fdac805b0114d8a2be642b4434ccd03d8e4d833df79b8da013d"
+  }
+}

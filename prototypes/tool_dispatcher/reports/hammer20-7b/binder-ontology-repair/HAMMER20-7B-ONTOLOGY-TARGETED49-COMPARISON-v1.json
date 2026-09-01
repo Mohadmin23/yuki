@@ -1,0 +1,375 @@
+{
+  "version": "hammer20-7b-ontology-targeted49-comparison-v1",
+  "status": "completed",
+  "source_checksums": {
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer20-7b/binder-ontology-repair/hammer20-7b-ontology-targeted49-v1.json": "f3623a303362eff94ede40b34f4ed9bd42f0ce4f19a48aef643e9ccdeb94c302",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer20-7b/binder-ontology-repair/hammer20-7b-ontology-targeted49-repaired-v1.json": "59f18233168a5e6f051d6e8bc4bac509f3a2477321809c20dae3d3a29a9d3661"
+  },
+  "safety": {
+    "qwen_called": false,
+    "gold_mutated": false,
+    "tool_execution_capability": false,
+    "tool_execution_attempts": 0
+  },
+  "baseline": {
+    "cases": 49,
+    "tool_selection_accuracy": 0.30612244897959184,
+    "strict_argument_accuracy": 0.30612244897959184,
+    "strict_exact_accuracy": 0.1836734693877551,
+    "execution_equivalent_exact_accuracy": 0.1836734693877551,
+    "schema_valid_rate": 0.5918367346938775,
+    "rejection_count": 20,
+    "malformed_count": 0
+  },
+  "repaired": {
+    "cases": 49,
+    "tool_selection_accuracy": 0.5714285714285714,
+    "strict_argument_accuracy": 0.5102040816326531,
+    "strict_exact_accuracy": 0.4489795918367347,
+    "execution_equivalent_exact_accuracy": 0.4489795918367347,
+    "schema_valid_rate": 0.7346938775510204,
+    "rejection_count": 13,
+    "malformed_count": 0
+  },
+  "baseline_primary_confusion_count": 14,
+  "repaired_primary_confusion_count": 8,
+  "family_metrics": {
+    "frozen_yuki_read_to_read_confusions": {
+      "baseline": {
+        "cases": 8,
+        "tool_selection_accuracy": 0,
+        "strict_argument_accuracy": 0,
+        "strict_exact_accuracy": 0,
+        "execution_equivalent_exact_accuracy": 0,
+        "schema_valid_rate": 1,
+        "rejection_count": 0,
+        "malformed_count": 0
+      },
+      "repaired": {
+        "cases": 8,
+        "tool_selection_accuracy": 0.375,
+        "strict_argument_accuracy": 0.375,
+        "strict_exact_accuracy": 0.375,
+        "execution_equivalent_exact_accuracy": 0.375,
+        "schema_valid_rate": 1,
+        "rejection_count": 0,
+        "malformed_count": 0
+      }
+    },
+    "frozen_yuki_write_to_append_confusions": {
+      "baseline": {
+        "cases": 6,
+        "tool_selection_accuracy": 0,
+        "strict_argument_accuracy": 1,
+        "strict_exact_accuracy": 0,
+        "execution_equivalent_exact_accuracy": 0,
+        "schema_valid_rate": 1,
+        "rejection_count": 0,
+        "malformed_count": 0
+      },
+      "repaired": {
+        "cases": 6,
+        "tool_selection_accuracy": 0.5,
+        "strict_argument_accuracy": 1,
+        "strict_exact_accuracy": 0.5,
+        "execution_equivalent_exact_accuracy": 0.5,
+        "schema_valid_rate": 1,
+        "rejection_count": 0,
+        "malformed_count": 0
+      }
+    },
+    "normal_read_controls": {
+      "baseline": {
+        "cases": 6,
+        "tool_selection_accuracy": 0.6666666666666666,
+        "strict_argument_accuracy": 0.6666666666666666,
+        "strict_exact_accuracy": 0.6666666666666666,
+        "execution_equivalent_exact_accuracy": 0.6666666666666666,
+        "schema_valid_rate": 0.6666666666666666,
+        "rejection_count": 2,
+        "malformed_count": 0
+      },
+      "repaired": {
+        "cases": 6,
+        "tool_selection_accuracy": 1,
+        "strict_argument_accuracy": 0.8333333333333334,
+        "strict_exact_accuracy": 0.8333333333333334,
+        "execution_equivalent_exact_accuracy": 0.8333333333333334,
+        "schema_valid_rate": 1,
+        "rejection_count": 0,
+        "malformed_count": 0
+      }
+    },
+    "write_preservation_controls": {
+      "baseline": {
+        "cases": 6,
+        "tool_selection_accuracy": 1,
+        "strict_argument_accuracy": 0.3333333333333333,
+        "strict_exact_accuracy": 0.3333333333333333,
+        "execution_equivalent_exact_accuracy": 0.3333333333333333,
+        "schema_valid_rate": 1,
+        "rejection_count": 0,
+        "malformed_count": 0
+      },
+      "repaired": {
+        "cases": 6,
+        "tool_selection_accuracy": 1,
+        "strict_argument_accuracy": 0.5,
+        "strict_exact_accuracy": 0.5,
+        "execution_equivalent_exact_accuracy": 0.5,
+        "schema_valid_rate": 1,
+        "rejection_count": 0,
+        "malformed_count": 0
+      }
+    },
+    "append_preservation_controls": {
+      "baseline": {
+        "cases": 6,
+        "tool_selection_accuracy": 0.8333333333333334,
+        "strict_argument_accuracy": 0.5,
+        "strict_exact_accuracy": 0.5,
+        "execution_equivalent_exact_accuracy": 0.5,
+        "schema_valid_rate": 0.8333333333333334,
+        "rejection_count": 1,
+        "malformed_count": 0
+      },
+      "repaired": {
+        "cases": 6,
+        "tool_selection_accuracy": 1,
+        "strict_argument_accuracy": 0.6666666666666666,
+        "strict_exact_accuracy": 0.6666666666666666,
+        "execution_equivalent_exact_accuracy": 0.6666666666666666,
+        "schema_valid_rate": 1,
+        "rejection_count": 0,
+        "malformed_count": 0
+      }
+    },
+    "frozen_explicit_rejections": {
+      "baseline": {
+        "cases": 20,
+        "tool_selection_accuracy": 0,
+        "strict_argument_accuracy": 0,
+        "strict_exact_accuracy": 0,
+        "execution_equivalent_exact_accuracy": 0,
+        "schema_valid_rate": 0,
+        "rejection_count": 20,
+        "malformed_count": 0
+      },
+      "repaired": {
+        "cases": 20,
+        "tool_selection_accuracy": 0.35,
+        "strict_argument_accuracy": 0.3,
+        "strict_exact_accuracy": 0.3,
+        "execution_equivalent_exact_accuracy": 0.3,
+        "schema_valid_rate": 0.35,
+        "rejection_count": 13,
+        "malformed_count": 0
+      }
+    }
+  },
+  "case_flips": [
+    {
+      "case_id": "p2-read-15",
+      "families": [
+        "frozen_explicit_rejections"
+      ],
+      "expected_tool": "read",
+      "baseline_tool": null,
+      "repaired_tool": "read",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": true,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-read-24",
+      "families": [
+        "normal_read_controls",
+        "frozen_explicit_rejections"
+      ],
+      "expected_tool": "read",
+      "baseline_tool": null,
+      "repaired_tool": "read",
+      "baseline_exact": false,
+      "repaired_exact": false,
+      "baseline_rejected": true,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-read-25",
+      "families": [
+        "normal_read_controls",
+        "frozen_explicit_rejections"
+      ],
+      "expected_tool": "read",
+      "baseline_tool": null,
+      "repaired_tool": "read",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": true,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_write-02",
+      "families": [
+        "frozen_yuki_write_to_append_confusions"
+      ],
+      "expected_tool": "yuki_write",
+      "baseline_tool": "yuki_append",
+      "repaired_tool": "yuki_write",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": false,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_write-06",
+      "families": [
+        "frozen_yuki_write_to_append_confusions"
+      ],
+      "expected_tool": "yuki_write",
+      "baseline_tool": "yuki_append",
+      "repaired_tool": "yuki_write",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": false,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_write-11",
+      "families": [
+        "write_preservation_controls"
+      ],
+      "expected_tool": "yuki_write",
+      "baseline_tool": "yuki_write",
+      "repaired_tool": "yuki_write",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": false,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_write-12",
+      "families": [
+        "frozen_yuki_write_to_append_confusions"
+      ],
+      "expected_tool": "yuki_write",
+      "baseline_tool": "yuki_append",
+      "repaired_tool": "yuki_write",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": false,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_read-02",
+      "families": [
+        "frozen_yuki_read_to_read_confusions"
+      ],
+      "expected_tool": "yuki_read",
+      "baseline_tool": "read",
+      "repaired_tool": "yuki_read",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": false,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_read-04",
+      "families": [
+        "frozen_yuki_read_to_read_confusions"
+      ],
+      "expected_tool": "yuki_read",
+      "baseline_tool": "read",
+      "repaired_tool": "yuki_read",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": false,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_read-16",
+      "families": [
+        "frozen_yuki_read_to_read_confusions"
+      ],
+      "expected_tool": "yuki_read",
+      "baseline_tool": "read",
+      "repaired_tool": "yuki_read",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": false,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_list-16",
+      "families": [
+        "frozen_explicit_rejections"
+      ],
+      "expected_tool": "yuki_list",
+      "baseline_tool": null,
+      "repaired_tool": "yuki_list",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": true,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_list-20",
+      "families": [
+        "frozen_explicit_rejections"
+      ],
+      "expected_tool": "yuki_list",
+      "baseline_tool": null,
+      "repaired_tool": "yuki_list",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": true,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_list-24",
+      "families": [
+        "frozen_explicit_rejections"
+      ],
+      "expected_tool": "yuki_list",
+      "baseline_tool": null,
+      "repaired_tool": "yuki_list",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": true,
+      "repaired_rejected": false
+    },
+    {
+      "case_id": "p2-yuki_append-23",
+      "families": [
+        "append_preservation_controls",
+        "frozen_explicit_rejections"
+      ],
+      "expected_tool": "yuki_append",
+      "baseline_tool": null,
+      "repaired_tool": "yuki_append",
+      "baseline_exact": false,
+      "repaired_exact": true,
+      "baseline_rejected": true,
+      "repaired_rejected": false
+    }
+  ],
+  "new_strict_regressions": [],
+  "full_450_gate": {
+    "criteria": {
+      "targeted_tool_selection_must_increase": true,
+      "targeted_strict_exact_must_increase": true,
+      "combined_primary_confusions_must_drop_by_at_least": 7,
+      "explicit_rejections_must_not_increase": true,
+      "new_strict_regressions_allowed": 1
+    },
+    "checks": {
+      "targeted_tool_selection_increased": true,
+      "targeted_strict_exact_increased": true,
+      "primary_confusions_dropped_enough": false,
+      "explicit_rejections_did_not_increase": true,
+      "new_strict_regressions_within_limit": true
+    },
+    "passed": false
+  }
+}

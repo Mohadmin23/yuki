@@ -1,0 +1,87 @@
+{
+  "version": "literal-boundary-v3-dev-holdout-comparison",
+  "status": "completed",
+  "frozen_inputs": {
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-corpus-v1/LITERAL-BOUNDARY-CORPUS-v1-FROZEN-MANIFEST.json": "e11282f91b61a5ae752b5a02e0f649ad2835c3dfc3fa5abada9f5d6cb44c8bf9",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-corpus-v1/LITERAL-BOUNDARY-BINDER-v3-FROZEN-MANIFEST.json": "4839ce5577e27d63dd4df5319ace8a2c76eb37e82aa02c901fe2c3908c4be397",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-corpus-v1/literal-boundary-dev-comparison-v3.json": "17a13edd0f13c0a86c73a7098df105ffe954a915867c805705df54bb1aa4b849",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-corpus-v1/literal-boundary-holdout-comparison-v3.json": "59cc25b0a0f08d195c60c22d63c9a8171685c0f6eb2aa092ba8cc07d7d1046eb"
+  },
+  "development": {
+    "cases": 200,
+    "v2_exact_successes": 62,
+    "v2_exact_accuracy": 0.31,
+    "v3_exact_successes": 200,
+    "v3_exact_accuracy": 1,
+    "v2_schema_successes": 113,
+    "v2_schema_rate": 0.565,
+    "v3_schema_successes": 200,
+    "v3_schema_rate": 1,
+    "v3_source_copy_checked": 200,
+    "v3_source_copy_successes": 200,
+    "v3_source_copy_rate": 1,
+    "v2_failure_to_v3_success": 138,
+    "v2_success_to_v3_failure": 0,
+    "schema_regressions": 0,
+    "v3_abstentions": 0
+  },
+  "holdout": {
+    "cases": 100,
+    "v2_exact_successes": 6,
+    "v2_exact_accuracy": 0.06,
+    "v3_exact_successes": 85,
+    "v3_exact_accuracy": 0.85,
+    "v2_schema_successes": 28,
+    "v2_schema_rate": 0.28,
+    "v3_schema_successes": 89,
+    "v3_schema_rate": 0.89,
+    "v3_source_copy_checked": 89,
+    "v3_source_copy_successes": 88,
+    "v3_source_copy_rate": 0.9887640449438202,
+    "v2_failure_to_v3_success": 79,
+    "v2_success_to_v3_failure": 0,
+    "schema_regressions": 3,
+    "v3_abstentions": 11
+  },
+  "final_gate": {
+    "development_passed": true,
+    "holdout_passed": false,
+    "holdout_scored_only_after_v3_freeze": true,
+    "passed": false
+  },
+  "holdout_failure_ids": [
+    "boundary-holdout-search-001",
+    "boundary-holdout-search-002",
+    "boundary-holdout-search-004",
+    "boundary-holdout-search-006",
+    "boundary-holdout-search-007",
+    "boundary-holdout-search-009",
+    "boundary-holdout-search-011",
+    "boundary-holdout-search-012",
+    "boundary-holdout-search-014",
+    "boundary-holdout-image-001",
+    "boundary-holdout-image-006",
+    "boundary-holdout-shell-002",
+    "boundary-holdout-shell-005",
+    "boundary-holdout-composite-004",
+    "boundary-holdout-composite-009"
+  ],
+  "holdout_failures_by_tool": {
+    "image": 2,
+    "search": 9,
+    "shell": 2,
+    "yuki_append": 1,
+    "yuki_write": 1
+  },
+  "holdout_failure_statuses": {
+    "bound": 2,
+    "bound_composite": 2,
+    "unbound": 11
+  },
+  "safety": {
+    "models_called": false,
+    "sacred_450_used": false,
+    "historical_168_used": false,
+    "yuki_tools_executed": false
+  }
+}

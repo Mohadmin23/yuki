@@ -1,0 +1,966 @@
+{
+  "experiment": "Yuki Phase 2 dispatcher reliability",
+  "dataset": {
+    "cases": 450,
+    "sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "composition_counts": {
+      "normal": 202,
+      "paraphrase": 110,
+      "confusion": 72,
+      "adversarial": 18,
+      "preservation": 48
+    },
+    "composition_rates": {
+      "normal": 0.4488888888888889,
+      "paraphrase": 0.24444444444444444,
+      "confusion": 0.16,
+      "adversarial": 0.04,
+      "preservation": 0.10666666666666667
+    },
+    "cases_per_tool": {
+      "time": 25,
+      "weather": 25,
+      "fetch": 25,
+      "search": 25,
+      "calc": 25,
+      "hardware": 25,
+      "see": 25,
+      "image": 25,
+      "read": 25,
+      "shell": 25,
+      "yuki_write": 25,
+      "yuki_read": 25,
+      "yuki_list": 25,
+      "yuki_delete": 25,
+      "yuki_append": 25,
+      "remember": 25,
+      "recall": 25,
+      "ask_claude": 25
+    }
+  },
+  "safety": {
+    "yuki_tool_execution": false,
+    "execution_capability": false,
+    "external_service_calls_from_yuki_tools": false,
+    "persistent_yuki_state_changes": false,
+    "one_stateless_generation_per_case": true
+  },
+  "models": {
+    "hammer_3b": {
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+      "core_metrics": {
+        "correct_tool_in_selected_subset_rate": 0.7133333333333334,
+        "tool_selection_accuracy": 0.6666666666666666,
+        "tool_selection_accuracy_when_expected_tool_available": 0.9345794392523364,
+        "strict_argument_accuracy": 0.6,
+        "execution_equivalent_argument_accuracy": 0.6044444444444445,
+        "strict_argument_accuracy_when_expected_tool_selected": 0.9,
+        "execution_equivalent_argument_accuracy_when_expected_tool_selected": 0.9066666666666666,
+        "strict_exact_call_accuracy": 0.6,
+        "execution_equivalent_exact_call_accuracy": 0.6044444444444445,
+        "strict_exact_call_accuracy_when_expected_tool_available": 0.8411214953271028,
+        "execution_equivalent_exact_call_accuracy_when_expected_tool_available": 0.8473520249221184,
+        "schema_valid_rate": 0.6755555555555556,
+        "malformed_rate": 0.0,
+        "conversational_output_rate": 0.0,
+        "nonexistent_tool_rate": 0.0,
+        "multiple_call_rate": 0.0,
+        "confidence_intervals_95": {
+          "tool_selection_accuracy": {
+            "successes": 300,
+            "total": 450,
+            "confidence": 0.95,
+            "lower": 0.6218629764841108,
+            "upper": 0.7086489172282322
+          },
+          "strict_exact_call_accuracy": {
+            "successes": 270,
+            "total": 450,
+            "confidence": 0.95,
+            "lower": 0.5540741606857974,
+            "upper": 0.6442329755416084
+          },
+          "execution_equivalent_exact_call_accuracy": {
+            "successes": 272,
+            "total": 450,
+            "confidence": 0.95,
+            "lower": 0.5585656488032423,
+            "upper": 0.6485551379231594
+          }
+        }
+      },
+      "performance_metrics": {
+        "selector_latency_ms": {
+          "average": 0.06028090444444444,
+          "p50": 0.0569375,
+          "p95": 0.09627079999999999
+        },
+        "dispatcher_latency_ms": {
+          "average": 4464.807315555556,
+          "p50": 4482.5535,
+          "p95": 6817.195649999999
+        },
+        "total_routing_latency_ms": {
+          "average": 4465.62637294,
+          "p50": 4483.4011455,
+          "p95": 6817.946779049998
+        },
+        "average_generation_tokens_per_second": 10.540324444444444,
+        "median_generation_tokens_per_second": 9.8315,
+        "average_prompt_tokens_per_second": 258.45358444444446,
+        "average_prompt_tokens": 648.2888888888889,
+        "peak_mlx_memory_gb": 6.5328,
+        "maximum_process_rss_mb": 1134.312
+      },
+      "per_tool_results": {
+        "time": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.92,
+          "tool_selection_accuracy": 0.84,
+          "tool_selection_accuracy_when_available": 0.9130434782608695,
+          "strict_exact_call_accuracy": 0.84,
+          "execution_equivalent_exact_call_accuracy": 0.84,
+          "schema_valid_rate": 0.84,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 3633.80493,
+          "p95_total_latency_ms": 3892.2161666
+        },
+        "weather": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.96,
+          "tool_selection_accuracy": 0.88,
+          "tool_selection_accuracy_when_available": 0.9166666666666666,
+          "strict_exact_call_accuracy": 0.88,
+          "execution_equivalent_exact_call_accuracy": 0.88,
+          "schema_valid_rate": 0.88,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4261.84982,
+          "p95_total_latency_ms": 4981.862549999999
+        },
+        "fetch": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.92,
+          "tool_selection_accuracy": 0.92,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.92,
+          "execution_equivalent_exact_call_accuracy": 0.92,
+          "schema_valid_rate": 0.92,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 5135.15438168,
+          "p95_total_latency_ms": 6578.257991799998
+        },
+        "search": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.92,
+          "tool_selection_accuracy": 0.72,
+          "tool_selection_accuracy_when_available": 0.782608695652174,
+          "strict_exact_call_accuracy": 0.56,
+          "execution_equivalent_exact_call_accuracy": 0.6,
+          "schema_valid_rate": 0.72,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4160.907565,
+          "p95_total_latency_ms": 5141.981617
+        },
+        "calc": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.88,
+          "tool_selection_accuracy": 0.88,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.8,
+          "execution_equivalent_exact_call_accuracy": 0.84,
+          "schema_valid_rate": 0.88,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4869.04080312,
+          "p95_total_latency_ms": 5662.5914332
+        },
+        "hardware": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.48,
+          "tool_selection_accuracy": 0.48,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.48,
+          "execution_equivalent_exact_call_accuracy": 0.48,
+          "schema_valid_rate": 0.48,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 3339.72879996,
+          "p95_total_latency_ms": 4135.6890584
+        },
+        "see": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.68,
+          "tool_selection_accuracy": 0.56,
+          "tool_selection_accuracy_when_available": 0.8235294117647058,
+          "strict_exact_call_accuracy": 0.56,
+          "execution_equivalent_exact_call_accuracy": 0.56,
+          "schema_valid_rate": 0.56,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 3300.99458168,
+          "p95_total_latency_ms": 4182.337408799999
+        },
+        "image": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.2,
+          "tool_selection_accuracy": 0.16,
+          "tool_selection_accuracy_when_available": 0.8,
+          "strict_exact_call_accuracy": 0.04,
+          "execution_equivalent_exact_call_accuracy": 0.04,
+          "schema_valid_rate": 0.16,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 3138.26222668,
+          "p95_total_latency_ms": 4639.2282834
+        },
+        "read": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 1.0,
+          "tool_selection_accuracy": 0.84,
+          "tool_selection_accuracy_when_available": 0.84,
+          "strict_exact_call_accuracy": 0.84,
+          "execution_equivalent_exact_call_accuracy": 0.84,
+          "schema_valid_rate": 0.84,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4543.2653684,
+          "p95_total_latency_ms": 5573.4825838
+        },
+        "shell": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.88,
+          "tool_selection_accuracy": 0.84,
+          "tool_selection_accuracy_when_available": 0.9545454545454546,
+          "strict_exact_call_accuracy": 0.8,
+          "execution_equivalent_exact_call_accuracy": 0.8,
+          "schema_valid_rate": 0.84,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4625.35642508,
+          "p95_total_latency_ms": 5850.045291199999
+        },
+        "yuki_write": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.76,
+          "tool_selection_accuracy": 0.76,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.64,
+          "execution_equivalent_exact_call_accuracy": 0.64,
+          "schema_valid_rate": 0.76,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 5738.92627004,
+          "p95_total_latency_ms": 7588.6446006
+        },
+        "yuki_read": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.76,
+          "tool_selection_accuracy": 0.64,
+          "tool_selection_accuracy_when_available": 0.8421052631578947,
+          "strict_exact_call_accuracy": 0.64,
+          "execution_equivalent_exact_call_accuracy": 0.64,
+          "schema_valid_rate": 0.68,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4828.2104482,
+          "p95_total_latency_ms": 6841.518107999999
+        },
+        "yuki_list": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.52,
+          "tool_selection_accuracy": 0.52,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.52,
+          "execution_equivalent_exact_call_accuracy": 0.52,
+          "schema_valid_rate": 0.56,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4085.99558828,
+          "p95_total_latency_ms": 5510.296099399998
+        },
+        "yuki_delete": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.68,
+          "tool_selection_accuracy": 0.68,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.64,
+          "execution_equivalent_exact_call_accuracy": 0.64,
+          "schema_valid_rate": 0.68,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4876.65416,
+          "p95_total_latency_ms": 7150.339841999999
+        },
+        "yuki_append": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.68,
+          "tool_selection_accuracy": 0.68,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.48,
+          "execution_equivalent_exact_call_accuracy": 0.48,
+          "schema_valid_rate": 0.68,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 5974.28696172,
+          "p95_total_latency_ms": 8278.082717199999
+        },
+        "remember": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.4,
+          "tool_selection_accuracy": 0.4,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.36,
+          "execution_equivalent_exact_call_accuracy": 0.36,
+          "schema_valid_rate": 0.4,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4510.66919152,
+          "p95_total_latency_ms": 6407.917916799999
+        },
+        "recall": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.44,
+          "tool_selection_accuracy": 0.44,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.4,
+          "execution_equivalent_exact_call_accuracy": 0.4,
+          "schema_valid_rate": 0.52,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4568.91459824,
+          "p95_total_latency_ms": 6072.0937168
+        },
+        "ask_claude": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.76,
+          "tool_selection_accuracy": 0.76,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.4,
+          "execution_equivalent_exact_call_accuracy": 0.4,
+          "schema_valid_rate": 0.76,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4789.25259332,
+          "p95_total_latency_ms": 6439.131808599998
+        }
+      },
+      "metrics_by_dataset_category": {
+        "adversarial": {
+          "cases": 18,
+          "correct_tool_in_selected_subset_rate": 0.7222222222222222,
+          "tool_selection_accuracy": 0.7222222222222222,
+          "strict_exact_call_accuracy": 0.3888888888888889,
+          "execution_equivalent_exact_call_accuracy": 0.4444444444444444
+        },
+        "confusion": {
+          "cases": 72,
+          "correct_tool_in_selected_subset_rate": 0.6388888888888888,
+          "tool_selection_accuracy": 0.5833333333333334,
+          "strict_exact_call_accuracy": 0.5,
+          "execution_equivalent_exact_call_accuracy": 0.5
+        },
+        "normal": {
+          "cases": 202,
+          "correct_tool_in_selected_subset_rate": 0.8267326732673267,
+          "tool_selection_accuracy": 0.7920792079207921,
+          "strict_exact_call_accuracy": 0.7425742574257426,
+          "execution_equivalent_exact_call_accuracy": 0.7475247524752475
+        },
+        "paraphrase": {
+          "cases": 110,
+          "correct_tool_in_selected_subset_rate": 0.5363636363636364,
+          "tool_selection_accuracy": 0.4909090909090909,
+          "strict_exact_call_accuracy": 0.4818181818181818,
+          "execution_equivalent_exact_call_accuracy": 0.4818181818181818
+        },
+        "preservation": {
+          "cases": 48,
+          "correct_tool_in_selected_subset_rate": 0.75,
+          "tool_selection_accuracy": 0.6458333333333334,
+          "strict_exact_call_accuracy": 0.5,
+          "execution_equivalent_exact_call_accuracy": 0.5
+        }
+      },
+      "failure_taxonomy": {
+        "primary_counts": {
+          "wrong_tool": 21,
+          "selector_tool_unavailable": 129,
+          "argument_rewrite": 2,
+          "wrong_argument": 28
+        },
+        "all_tag_counts": {
+          "wrong_tool": 21,
+          "selector_tool_unavailable": 129,
+          "argument_rewrite": 2,
+          "wrong_argument": 28
+        },
+        "by_expected_tool": {
+          "time": {
+            "wrong_tool": 2,
+            "selector_tool_unavailable": 2
+          },
+          "weather": {
+            "wrong_tool": 2,
+            "selector_tool_unavailable": 1
+          },
+          "fetch": {
+            "selector_tool_unavailable": 2
+          },
+          "search": {
+            "argument_rewrite": 1,
+            "wrong_tool": 5,
+            "wrong_argument": 3,
+            "selector_tool_unavailable": 2
+          },
+          "calc": {
+            "wrong_argument": 1,
+            "selector_tool_unavailable": 3,
+            "argument_rewrite": 1
+          },
+          "hardware": {
+            "selector_tool_unavailable": 13
+          },
+          "see": {
+            "wrong_tool": 3,
+            "selector_tool_unavailable": 8
+          },
+          "image": {
+            "wrong_argument": 3,
+            "selector_tool_unavailable": 20,
+            "wrong_tool": 1
+          },
+          "read": {
+            "wrong_tool": 4
+          },
+          "shell": {
+            "selector_tool_unavailable": 3,
+            "wrong_tool": 1,
+            "wrong_argument": 1
+          },
+          "yuki_write": {
+            "selector_tool_unavailable": 6,
+            "wrong_argument": 3
+          },
+          "yuki_read": {
+            "selector_tool_unavailable": 6,
+            "wrong_tool": 3
+          },
+          "yuki_list": {
+            "selector_tool_unavailable": 12
+          },
+          "yuki_delete": {
+            "selector_tool_unavailable": 8,
+            "wrong_argument": 1
+          },
+          "yuki_append": {
+            "wrong_argument": 5,
+            "selector_tool_unavailable": 8
+          },
+          "remember": {
+            "selector_tool_unavailable": 15,
+            "wrong_argument": 1
+          },
+          "recall": {
+            "selector_tool_unavailable": 14,
+            "wrong_argument": 1
+          },
+          "ask_claude": {
+            "wrong_argument": 9,
+            "selector_tool_unavailable": 6
+          }
+        },
+        "by_dataset_category": {
+          "normal": {
+            "wrong_tool": 7,
+            "argument_rewrite": 1,
+            "wrong_argument": 9,
+            "selector_tool_unavailable": 35
+          },
+          "confusion": {
+            "selector_tool_unavailable": 26,
+            "wrong_argument": 6,
+            "wrong_tool": 4
+          },
+          "paraphrase": {
+            "wrong_tool": 5,
+            "wrong_argument": 1,
+            "selector_tool_unavailable": 51
+          },
+          "preservation": {
+            "selector_tool_unavailable": 12,
+            "wrong_tool": 5,
+            "wrong_argument": 7
+          },
+          "adversarial": {
+            "wrong_argument": 5,
+            "argument_rewrite": 1,
+            "selector_tool_unavailable": 5
+          }
+        }
+      }
+    },
+    "arch_agent_3b": {
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Arch-Agent-3B-fp16",
+      "core_metrics": {
+        "correct_tool_in_selected_subset_rate": 0.7133333333333334,
+        "tool_selection_accuracy": 0.7066666666666667,
+        "tool_selection_accuracy_when_expected_tool_available": 0.9906542056074766,
+        "strict_argument_accuracy": 0.6088888888888889,
+        "execution_equivalent_argument_accuracy": 0.6333333333333333,
+        "strict_argument_accuracy_when_expected_tool_selected": 0.8616352201257862,
+        "execution_equivalent_argument_accuracy_when_expected_tool_selected": 0.8962264150943396,
+        "strict_exact_call_accuracy": 0.6088888888888889,
+        "execution_equivalent_exact_call_accuracy": 0.6333333333333333,
+        "strict_exact_call_accuracy_when_expected_tool_available": 0.8535825545171339,
+        "execution_equivalent_exact_call_accuracy_when_expected_tool_available": 0.8878504672897196,
+        "schema_valid_rate": 0.8533333333333334,
+        "malformed_rate": 0.13555555555555557,
+        "conversational_output_rate": 0.13333333333333333,
+        "nonexistent_tool_rate": 0.011111111111111112,
+        "multiple_call_rate": 0.0,
+        "confidence_intervals_95": {
+          "tool_selection_accuracy": {
+            "successes": 318,
+            "total": 450,
+            "confidence": 0.95,
+            "lower": 0.6629934039081649,
+            "upper": 0.7468413442951407
+          },
+          "strict_exact_call_accuracy": {
+            "successes": 274,
+            "total": 450,
+            "confidence": 0.95,
+            "lower": 0.5630609880923754,
+            "upper": 0.6528734491330221
+          },
+          "execution_equivalent_exact_call_accuracy": {
+            "successes": 285,
+            "total": 450,
+            "confidence": 0.95,
+            "lower": 0.5878552747438488,
+            "upper": 0.6765542402260256
+          }
+        }
+      },
+      "performance_metrics": {
+        "selector_latency_ms": {
+          "average": 0.05687082888888889,
+          "p50": 0.055979,
+          "p95": 0.09834009999999999
+        },
+        "dispatcher_latency_ms": {
+          "average": 5370.753171111111,
+          "p50": 5089.851500000001,
+          "p95": 8138.605049999997
+        },
+        "total_routing_latency_ms": {
+          "average": 5371.834964084444,
+          "p50": 5090.942854,
+          "p95": 8139.7579204999965
+        },
+        "average_generation_tokens_per_second": 9.291253333333334,
+        "median_generation_tokens_per_second": 9.273499999999999,
+        "average_prompt_tokens_per_second": 219.4899311111111,
+        "average_prompt_tokens": 648.6244444444444,
+        "peak_mlx_memory_gb": 6.5411,
+        "maximum_process_rss_mb": 601.891
+      },
+      "per_tool_results": {
+        "time": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.92,
+          "tool_selection_accuracy": 0.92,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.92,
+          "execution_equivalent_exact_call_accuracy": 0.92,
+          "schema_valid_rate": 1.0,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 3936.60623836,
+          "p95_total_latency_ms": 4428.2904247999995
+        },
+        "weather": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.96,
+          "tool_selection_accuracy": 0.96,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.96,
+          "execution_equivalent_exact_call_accuracy": 0.96,
+          "schema_valid_rate": 1.0,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 5024.66494836,
+          "p95_total_latency_ms": 5381.5945581999995
+        },
+        "fetch": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.92,
+          "tool_selection_accuracy": 0.88,
+          "tool_selection_accuracy_when_available": 0.9565217391304348,
+          "strict_exact_call_accuracy": 0.88,
+          "execution_equivalent_exact_call_accuracy": 0.88,
+          "schema_valid_rate": 0.92,
+          "malformed_rate": 0.08,
+          "average_total_latency_ms": 5846.66916504,
+          "p95_total_latency_ms": 6936.845941799999
+        },
+        "search": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.92,
+          "tool_selection_accuracy": 0.92,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.6,
+          "execution_equivalent_exact_call_accuracy": 0.6,
+          "schema_valid_rate": 1.0,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 5417.54935172,
+          "p95_total_latency_ms": 6108.5629254
+        },
+        "calc": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.88,
+          "tool_selection_accuracy": 0.88,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.6,
+          "execution_equivalent_exact_call_accuracy": 0.88,
+          "schema_valid_rate": 1.0,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 5519.16265852,
+          "p95_total_latency_ms": 6078.8408252
+        },
+        "hardware": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.48,
+          "tool_selection_accuracy": 0.48,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.48,
+          "execution_equivalent_exact_call_accuracy": 0.48,
+          "schema_valid_rate": 0.68,
+          "malformed_rate": 0.32,
+          "average_total_latency_ms": 5406.46312324,
+          "p95_total_latency_ms": 8432.210067
+        },
+        "see": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.68,
+          "tool_selection_accuracy": 0.68,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.6,
+          "execution_equivalent_exact_call_accuracy": 0.6,
+          "schema_valid_rate": 0.8,
+          "malformed_rate": 0.2,
+          "average_total_latency_ms": 4660.5984002,
+          "p95_total_latency_ms": 8315.689092
+        },
+        "image": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.2,
+          "tool_selection_accuracy": 0.2,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.08,
+          "execution_equivalent_exact_call_accuracy": 0.08,
+          "schema_valid_rate": 0.24,
+          "malformed_rate": 0.72,
+          "average_total_latency_ms": 8043.40598832,
+          "p95_total_latency_ms": 10159.020683199999
+        },
+        "read": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 1.0,
+          "tool_selection_accuracy": 0.96,
+          "tool_selection_accuracy_when_available": 0.96,
+          "strict_exact_call_accuracy": 0.96,
+          "execution_equivalent_exact_call_accuracy": 0.96,
+          "schema_valid_rate": 0.96,
+          "malformed_rate": 0.04,
+          "average_total_latency_ms": 4438.69351152,
+          "p95_total_latency_ms": 5122.577808199998
+        },
+        "shell": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.88,
+          "tool_selection_accuracy": 0.88,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.84,
+          "execution_equivalent_exact_call_accuracy": 0.84,
+          "schema_valid_rate": 0.92,
+          "malformed_rate": 0.08,
+          "average_total_latency_ms": 4731.9577716,
+          "p95_total_latency_ms": 7658.201866199997
+        },
+        "yuki_write": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.76,
+          "tool_selection_accuracy": 0.76,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.56,
+          "execution_equivalent_exact_call_accuracy": 0.56,
+          "schema_valid_rate": 0.88,
+          "malformed_rate": 0.12,
+          "average_total_latency_ms": 6348.03668836,
+          "p95_total_latency_ms": 7946.391975
+        },
+        "yuki_read": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.76,
+          "tool_selection_accuracy": 0.76,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.76,
+          "execution_equivalent_exact_call_accuracy": 0.76,
+          "schema_valid_rate": 0.88,
+          "malformed_rate": 0.08,
+          "average_total_latency_ms": 5492.70102168,
+          "p95_total_latency_ms": 6891.2649086
+        },
+        "yuki_list": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.52,
+          "tool_selection_accuracy": 0.52,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.52,
+          "execution_equivalent_exact_call_accuracy": 0.52,
+          "schema_valid_rate": 0.68,
+          "malformed_rate": 0.32,
+          "average_total_latency_ms": 5500.39243328,
+          "p95_total_latency_ms": 8016.148266399999
+        },
+        "yuki_delete": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.68,
+          "tool_selection_accuracy": 0.68,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.68,
+          "execution_equivalent_exact_call_accuracy": 0.68,
+          "schema_valid_rate": 0.68,
+          "malformed_rate": 0.32,
+          "average_total_latency_ms": 5883.62934,
+          "p95_total_latency_ms": 7044.6772922
+        },
+        "yuki_append": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.68,
+          "tool_selection_accuracy": 0.68,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.56,
+          "execution_equivalent_exact_call_accuracy": 0.56,
+          "schema_valid_rate": 0.96,
+          "malformed_rate": 0.04,
+          "average_total_latency_ms": 6307.70466484,
+          "p95_total_latency_ms": 8014.0496085999985
+        },
+        "remember": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.4,
+          "tool_selection_accuracy": 0.4,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.4,
+          "execution_equivalent_exact_call_accuracy": 0.4,
+          "schema_valid_rate": 0.8,
+          "malformed_rate": 0.08,
+          "average_total_latency_ms": 4845.24548844,
+          "p95_total_latency_ms": 5386.4939836
+        },
+        "recall": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.44,
+          "tool_selection_accuracy": 0.44,
+          "tool_selection_accuracy_when_available": 1.0,
+          "strict_exact_call_accuracy": 0.32,
+          "execution_equivalent_exact_call_accuracy": 0.32,
+          "schema_valid_rate": 1.0,
+          "malformed_rate": 0.0,
+          "average_total_latency_ms": 4873.93925004,
+          "p95_total_latency_ms": 5878.465083799999
+        },
+        "ask_claude": {
+          "cases": 25,
+          "correct_tool_in_selected_subset_rate": 0.76,
+          "tool_selection_accuracy": 0.72,
+          "tool_selection_accuracy_when_available": 0.9473684210526315,
+          "strict_exact_call_accuracy": 0.24,
+          "execution_equivalent_exact_call_accuracy": 0.4,
+          "schema_valid_rate": 0.96,
+          "malformed_rate": 0.04,
+          "average_total_latency_ms": 4415.60931,
+          "p95_total_latency_ms": 5876.0102412
+        }
+      },
+      "metrics_by_dataset_category": {
+        "adversarial": {
+          "cases": 18,
+          "correct_tool_in_selected_subset_rate": 0.7222222222222222,
+          "tool_selection_accuracy": 0.6666666666666666,
+          "strict_exact_call_accuracy": 0.4444444444444444,
+          "execution_equivalent_exact_call_accuracy": 0.4444444444444444
+        },
+        "confusion": {
+          "cases": 72,
+          "correct_tool_in_selected_subset_rate": 0.6388888888888888,
+          "tool_selection_accuracy": 0.625,
+          "strict_exact_call_accuracy": 0.4583333333333333,
+          "execution_equivalent_exact_call_accuracy": 0.4861111111111111
+        },
+        "normal": {
+          "cases": 202,
+          "correct_tool_in_selected_subset_rate": 0.8267326732673267,
+          "tool_selection_accuracy": 0.8267326732673267,
+          "strict_exact_call_accuracy": 0.7326732673267327,
+          "execution_equivalent_exact_call_accuracy": 0.7673267326732673
+        },
+        "paraphrase": {
+          "cases": 110,
+          "correct_tool_in_selected_subset_rate": 0.5363636363636364,
+          "tool_selection_accuracy": 0.5363636363636364,
+          "strict_exact_call_accuracy": 0.4818181818181818,
+          "execution_equivalent_exact_call_accuracy": 0.5
+        },
+        "preservation": {
+          "cases": 48,
+          "correct_tool_in_selected_subset_rate": 0.75,
+          "tool_selection_accuracy": 0.7291666666666666,
+          "strict_exact_call_accuracy": 0.6666666666666666,
+          "execution_equivalent_exact_call_accuracy": 0.6666666666666666
+        }
+      },
+      "failure_taxonomy": {
+        "primary_counts": {
+          "selector_tool_unavailable": 129,
+          "conversational_output": 2,
+          "wrong_argument": 33,
+          "argument_rewrite": 11,
+          "malformed_output": 1
+        },
+        "all_tag_counts": {
+          "selector_tool_unavailable": 129,
+          "conversational_output": 60,
+          "malformed_output": 61,
+          "wrong_tool": 3,
+          "wrong_argument": 33,
+          "argument_rewrite": 11,
+          "nonexistent_tool": 5
+        },
+        "by_expected_tool": {
+          "time": {
+            "selector_tool_unavailable": 2
+          },
+          "weather": {
+            "selector_tool_unavailable": 1
+          },
+          "fetch": {
+            "selector_tool_unavailable": 2,
+            "conversational_output": 2,
+            "malformed_output": 2,
+            "wrong_tool": 1
+          },
+          "search": {
+            "wrong_argument": 8,
+            "selector_tool_unavailable": 2
+          },
+          "calc": {
+            "argument_rewrite": 7,
+            "selector_tool_unavailable": 3
+          },
+          "hardware": {
+            "selector_tool_unavailable": 13,
+            "conversational_output": 8,
+            "malformed_output": 8
+          },
+          "see": {
+            "selector_tool_unavailable": 8,
+            "conversational_output": 5,
+            "malformed_output": 5,
+            "wrong_argument": 2
+          },
+          "image": {
+            "wrong_argument": 3,
+            "selector_tool_unavailable": 20,
+            "conversational_output": 18,
+            "malformed_output": 18,
+            "nonexistent_tool": 1
+          },
+          "read": {
+            "conversational_output": 1,
+            "malformed_output": 1,
+            "wrong_tool": 1
+          },
+          "shell": {
+            "selector_tool_unavailable": 3,
+            "conversational_output": 2,
+            "malformed_output": 2,
+            "wrong_argument": 1
+          },
+          "yuki_write": {
+            "wrong_argument": 5,
+            "selector_tool_unavailable": 6,
+            "conversational_output": 3,
+            "malformed_output": 3
+          },
+          "yuki_read": {
+            "selector_tool_unavailable": 6,
+            "conversational_output": 2,
+            "malformed_output": 2,
+            "nonexistent_tool": 1
+          },
+          "yuki_list": {
+            "selector_tool_unavailable": 12,
+            "conversational_output": 8,
+            "malformed_output": 8
+          },
+          "yuki_delete": {
+            "selector_tool_unavailable": 8,
+            "conversational_output": 8,
+            "malformed_output": 8
+          },
+          "yuki_append": {
+            "wrong_argument": 3,
+            "selector_tool_unavailable": 8,
+            "conversational_output": 1,
+            "malformed_output": 1
+          },
+          "remember": {
+            "selector_tool_unavailable": 15,
+            "conversational_output": 2,
+            "malformed_output": 2,
+            "nonexistent_tool": 3
+          },
+          "recall": {
+            "selector_tool_unavailable": 14,
+            "wrong_argument": 3
+          },
+          "ask_claude": {
+            "argument_rewrite": 4,
+            "wrong_argument": 8,
+            "selector_tool_unavailable": 6,
+            "malformed_output": 1,
+            "wrong_tool": 1
+          }
+        },
+        "by_dataset_category": {
+          "confusion": {
+            "selector_tool_unavailable": 26,
+            "conversational_output": 9,
+            "malformed_output": 9,
+            "wrong_argument": 10,
+            "argument_rewrite": 2,
+            "wrong_tool": 1
+          },
+          "preservation": {
+            "conversational_output": 2,
+            "malformed_output": 2,
+            "wrong_tool": 1,
+            "selector_tool_unavailable": 12,
+            "wrong_argument": 3,
+            "nonexistent_tool": 2
+          },
+          "normal": {
+            "wrong_argument": 12,
+            "argument_rewrite": 7,
+            "selector_tool_unavailable": 35,
+            "conversational_output": 24,
+            "malformed_output": 24,
+            "nonexistent_tool": 2
+          },
+          "paraphrase": {
+            "wrong_argument": 4,
+            "argument_rewrite": 2,
+            "selector_tool_unavailable": 51,
+            "conversational_output": 23,
+            "malformed_output": 23,
+            "nonexistent_tool": 1
+          },
+          "adversarial": {
+            "wrong_argument": 4,
+            "selector_tool_unavailable": 5,
+            "conversational_output": 2,
+            "malformed_output": 3,
+            "wrong_tool": 1
+          }
+        }
+      }
+    }
+  }
+}

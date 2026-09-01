@@ -1,0 +1,1731 @@
+{
+  "configuration": {
+    "experiment": "production_delegation_stage_a",
+    "main_brain_role": "temporary_surrogate",
+    "surrogate": true,
+    "surrogate_label": "Qwen3-14B-MLX-4bit temporary main-brain surrogate",
+    "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+    "backend": "mlx",
+    "generation_ceiling": 160,
+    "thinking_disabled": true,
+    "stateless": true,
+    "generation_count_per_case": 1,
+    "tool_execution_capability": false,
+    "external_api_usage": false,
+    "selection": "smoke-18",
+    "derived_dataset_version": "production-delegation-source-v1",
+    "derived_dataset_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "total_cases": 18,
+    "model_metadata": {
+      "actual_weight_dtype": "mlx.core.uint32",
+      "configured_dtype": "bfloat16",
+      "model_type": "qwen3",
+      "quantization": {
+        "group_size": 128,
+        "bits": 4
+      },
+      "context_length": 40960,
+      "thinking_disabled": true
+    },
+    "load_latency_ms": 31738.283500017133
+  },
+  "contract": {
+    "fields": [
+      "request",
+      "domain_hint",
+      "verbatim"
+    ],
+    "domain_source": "main-brain-generated domain_hint",
+    "tool_name_from_main_brain": false,
+    "original_request_sent_to_dispatcher": false,
+    "no_tool_case_coverage": 0,
+    "conversation_context_case_coverage": 0
+  },
+  "summary": {
+    "cases": 18,
+    "valid_delegation_rate": 1,
+    "malformed_delegation_rate": 0,
+    "domain_hint_accuracy": 1,
+    "semantic_request_quality_rate": 0.5,
+    "average_verbatim_recall": 0.7222222222222222,
+    "average_verbatim_precision": 0.3611111111111111,
+    "final_tool_leakage_rate": 0,
+    "average_latency_ms": 13500.117666666667,
+    "p50_latency_ms": 13469.903,
+    "p95_latency_ms": 15079.4893,
+    "average_generated_tokens": 29.5,
+    "average_tokens_per_second": 8.090055555555555,
+    "peak_mlx_memory_gb": 8.2871
+  },
+  "by_expected_domain": {
+    "computer": {
+      "cases": 3,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.3333333333333333,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 0.5
+    },
+    "external_agent": {
+      "cases": 1,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 1,
+      "average_verbatim_recall": 0.0,
+      "average_verbatim_precision": 0.0
+    },
+    "information": {
+      "cases": 5,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.8,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 0.4
+    },
+    "media": {
+      "cases": 2,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.5,
+      "average_verbatim_recall": 0.5,
+      "average_verbatim_precision": 0.0
+    },
+    "memory": {
+      "cases": 2,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.5,
+      "average_verbatim_recall": 0.0,
+      "average_verbatim_precision": 0.0
+    },
+    "yuki_files": {
+      "cases": 5,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.2,
+      "average_verbatim_recall": 0.8,
+      "average_verbatim_precision": 0.6
+    }
+  },
+  "by_dataset_category": {
+    "adversarial": {
+      "cases": 3,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.6666666666666666,
+      "average_verbatim_recall": 0.6666666666666666,
+      "average_verbatim_precision": 0.3333333333333333
+    },
+    "confusion": {
+      "cases": 4,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.75,
+      "average_verbatim_recall": 0.5,
+      "average_verbatim_precision": 0.25
+    },
+    "normal": {
+      "cases": 4,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.5,
+      "average_verbatim_recall": 0.75,
+      "average_verbatim_precision": 0.25
+    },
+    "paraphrase": {
+      "cases": 4,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.5,
+      "average_verbatim_recall": 0.75,
+      "average_verbatim_precision": 0.25
+    },
+    "preservation": {
+      "cases": 3,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 0.8333333333333334
+    }
+  },
+  "case_results": [
+    {
+      "index": 0,
+      "case_id": "p2-time-01",
+      "request": "What time is it right now?",
+      "expected_tool": "time",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "normal",
+        "time"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"current time\",\"domain_hint\":\"information\",\"verbatim\":[\"What time is it right now?\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"current time\",\"domain_hint\":\"information\",\"verbatim\":[\"What time is it right now?\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 13756.867,
+        "prompt_tokens": 336,
+        "generated_tokens": 21,
+        "prompt_tokens_per_second": 30.283,
+        "tokens_per_second": 8.264,
+        "peak_memory_gb": 8.2723,
+        "process_rss_mb": 1014.016,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 1,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "current time",
+          "domain_hint": "information",
+          "verbatim": [
+            "What time is it right now?"
+          ]
+        },
+        "decoded": {
+          "request": "current time",
+          "domain_hint": "information",
+          "verbatim": [
+            "What time is it right now?"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "current time",
+        "domain_hint": "information",
+        "verbatim": [
+          "What time is it right now?"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 1,
+      "case_id": "p2-weather-12",
+      "request": "Is it jacket weather in Glasgow right now?",
+      "expected_tool": "weather",
+      "expected_arguments": {
+        "city": "Glasgow"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "weather"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Check current weather in Glasgow\",\"domain_hint\":\"information\",\"verbatim\":[\"Is it jacket weather in Glasgow right now?\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Check current weather in Glasgow\",\"domain_hint\":\"information\",\"verbatim\":[\"Is it jacket weather in Glasgow right now?\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 12869.705,
+        "prompt_tokens": 338,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": 35.328,
+        "tokens_per_second": 8.23,
+        "peak_memory_gb": 8.2746,
+        "process_rss_mb": 1017.266,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 2,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Check current weather in Glasgow",
+          "domain_hint": "information",
+          "verbatim": [
+            "Is it jacket weather in Glasgow right now?"
+          ]
+        },
+        "decoded": {
+          "request": "Check current weather in Glasgow",
+          "domain_hint": "information",
+          "verbatim": [
+            "Is it jacket weather in Glasgow right now?"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Check current weather in Glasgow",
+        "domain_hint": "information",
+        "verbatim": [
+          "Is it jacket weather in Glasgow right now?"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 2,
+      "case_id": "p2-fetch-18",
+      "request": "Fetch this exact URL; do not search for it: https://example.com/guide",
+      "expected_tool": "fetch",
+      "expected_arguments": {
+        "url": "https://example.com/guide"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "fetch"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [
+        "https://example.com/guide"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"fetch a specific URL\",\"domain_hint\":\"information\",\"verbatim\":[\"https://example.com/guide\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"fetch a specific URL\",\"domain_hint\":\"information\",\"verbatim\":[\"https://example.com/guide\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 12443.232,
+        "prompt_tokens": 346,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": 35.932,
+        "tokens_per_second": 8.264,
+        "peak_memory_gb": 8.2829,
+        "process_rss_mb": 1017.312,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 3,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "fetch a specific URL",
+          "domain_hint": "information",
+          "verbatim": [
+            "https://example.com/guide"
+          ]
+        },
+        "decoded": {
+          "request": "fetch a specific URL",
+          "domain_hint": "information",
+          "verbatim": [
+            "https://example.com/guide"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "fetch a specific URL",
+        "domain_hint": "information",
+        "verbatim": [
+          "https://example.com/guide"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 3,
+      "case_id": "p2-search-22",
+      "request": "Search exactly for: C++ std::filesystem path case-sensitivity",
+      "expected_tool": "search",
+      "expected_arguments": {
+        "query": "C++ std::filesystem path case-sensitivity"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "search"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [
+        "C++ std::filesystem path case-sensitivity"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"search for information about C++ std::filesystem path case-sensitivity\",\"domain_hint\":\"information\",\"verbatim\":[\"C++ std::filesystem path case-sensitivity\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"search for information about C++ std::filesystem path case-sensitivity\",\"domain_hint\":\"information\",\"verbatim\":[\"C++ std::filesystem path case-sensitivity\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 14030.803,
+        "prompt_tokens": 342,
+        "generated_tokens": 34,
+        "prompt_tokens_per_second": 35.524,
+        "tokens_per_second": 7.991,
+        "peak_memory_gb": 8.2789,
+        "process_rss_mb": 1018.406,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 4,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "search for information about C++ std::filesystem path case-sensitivity",
+          "domain_hint": "information",
+          "verbatim": [
+            "C++ std::filesystem path case-sensitivity"
+          ]
+        },
+        "decoded": {
+          "request": "search for information about C++ std::filesystem path case-sensitivity",
+          "domain_hint": "information",
+          "verbatim": [
+            "C++ std::filesystem path case-sensitivity"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "search for information about C++ std::filesystem path case-sensitivity",
+        "domain_hint": "information",
+        "verbatim": [
+          "C++ std::filesystem path case-sensitivity"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 4,
+      "case_id": "p2-calc-25",
+      "request": "tool delegation is messy, but the arithmetic is ((1+2)*(3+4))%5",
+      "expected_tool": "calc",
+      "expected_arguments": {
+        "expression": "((1+2)*(3+4))%5"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "calc"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"compute arithmetic expression\",\"domain_hint\":\"information\",\"verbatim\":[\"((1+2)*(3+4))%5\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"compute arithmetic expression\",\"domain_hint\":\"information\",\"verbatim\":[\"((1+2)*(3+4))%5\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 12933.655,
+        "prompt_tokens": 349,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": 36.407,
+        "tokens_per_second": 8.12,
+        "peak_memory_gb": 8.2859,
+        "process_rss_mb": 1018.438,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 5,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "compute arithmetic expression",
+          "domain_hint": "information",
+          "verbatim": [
+            "((1+2)*(3+4))%5"
+          ]
+        },
+        "decoded": {
+          "request": "compute arithmetic expression",
+          "domain_hint": "information",
+          "verbatim": [
+            "((1+2)*(3+4))%5"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "compute arithmetic expression",
+        "domain_hint": "information",
+        "verbatim": [
+          "((1+2)*(3+4))%5"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 5,
+      "case_id": "p2-hardware-01",
+      "request": "How much RAM is this Mac using?",
+      "expected_tool": "hardware",
+      "expected_arguments": {
+        "metric": "ram"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "hardware"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "computer",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Check the current RAM usage of the Mac\",\"domain_hint\":\"computer\",\"verbatim\":[\"How much RAM is this Mac using?\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Check the current RAM usage of the Mac\",\"domain_hint\":\"computer\",\"verbatim\":[\"How much RAM is this Mac using?\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 13233.842,
+        "prompt_tokens": 337,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": 34.855,
+        "tokens_per_second": 8.197,
+        "peak_memory_gb": 8.2728,
+        "process_rss_mb": 1019.609,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 6,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Check the current RAM usage of the Mac",
+          "domain_hint": "computer",
+          "verbatim": [
+            "How much RAM is this Mac using?"
+          ]
+        },
+        "decoded": {
+          "request": "Check the current RAM usage of the Mac",
+          "domain_hint": "computer",
+          "verbatim": [
+            "How much RAM is this Mac using?"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Check the current RAM usage of the Mac",
+        "domain_hint": "computer",
+        "verbatim": [
+          "How much RAM is this Mac using?"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 6,
+      "case_id": "p2-see-12",
+      "request": "Use your eyes and track down my earbuds.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "earbuds"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Locate the user's earbuds using visual inspection\",\"domain_hint\":\"media\",\"verbatim\":[\"Use your eyes and track down my earbuds.\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Locate the user's earbuds using visual inspection\",\"domain_hint\":\"media\",\"verbatim\":[\"Use your eyes and track down my earbuds.\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 13884.46,
+        "prompt_tokens": 340,
+        "generated_tokens": 34,
+        "prompt_tokens_per_second": 35.555,
+        "tokens_per_second": 8.147,
+        "peak_memory_gb": 8.2764,
+        "process_rss_mb": 1019.625,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 7,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Locate the user's earbuds using visual inspection",
+          "domain_hint": "media",
+          "verbatim": [
+            "Use your eyes and track down my earbuds."
+          ]
+        },
+        "decoded": {
+          "request": "Locate the user's earbuds using visual inspection",
+          "domain_hint": "media",
+          "verbatim": [
+            "Use your eyes and track down my earbuds."
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Locate the user's earbuds using visual inspection",
+        "domain_hint": "media",
+        "verbatim": [
+          "Use your eyes and track down my earbuds."
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 7,
+      "case_id": "p2-image-18",
+      "request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "camera-shaped sculpture"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "camera-shaped sculpture"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"generate a sculpture shaped like a camera\",\"domain_hint\":\"media\",\"verbatim\":[\"Generate a camera-shaped sculpture; don't use the real camera.\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"generate a sculpture shaped like a camera\",\"domain_hint\":\"media\",\"verbatim\":[\"Generate a camera-shaped sculpture; don't use the real camera.\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 13705.964,
+        "prompt_tokens": 342,
+        "generated_tokens": 32,
+        "prompt_tokens_per_second": 35.504,
+        "tokens_per_second": 8.154,
+        "peak_memory_gb": 8.2789,
+        "process_rss_mb": 1019.625,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 8,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "generate a sculpture shaped like a camera",
+          "domain_hint": "media",
+          "verbatim": [
+            "Generate a camera-shaped sculpture; don't use the real camera."
+          ]
+        },
+        "decoded": {
+          "request": "generate a sculpture shaped like a camera",
+          "domain_hint": "media",
+          "verbatim": [
+            "Generate a camera-shaped sculpture; don't use the real camera."
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "generate a sculpture shaped like a camera",
+        "domain_hint": "media",
+        "verbatim": [
+          "Generate a camera-shaped sculpture; don't use the real camera."
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 8,
+      "case_id": "p2-read-22",
+      "request": "Preserve case exactly when reading /tmp/FooBar.JSON.",
+      "expected_tool": "read",
+      "expected_arguments": {
+        "filepath": "/tmp/FooBar.JSON"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "read"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "computer",
+      "required_verbatim": [
+        "/tmp/FooBar.JSON"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"read the file /tmp/FooBar.JSON while preserving case\",\"domain_hint\":\"computer\",\"verbatim\":[\"Preserve case exactly when reading /tmp/FooBar.JSON.\",\"/tmp/FooBar.JSON\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"read the file /tmp/FooBar.JSON while preserving case\",\"domain_hint\":\"computer\",\"verbatim\":[\"Preserve case exactly when reading /tmp/FooBar.JSON.\",\"/tmp/FooBar.JSON\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 15007.993,
+        "prompt_tokens": 342,
+        "generated_tokens": 43,
+        "prompt_tokens_per_second": 35.821,
+        "tokens_per_second": 8.094,
+        "peak_memory_gb": 8.2789,
+        "process_rss_mb": 1020.188,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 9,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "read the file /tmp/FooBar.JSON while preserving case",
+          "domain_hint": "computer",
+          "verbatim": [
+            "Preserve case exactly when reading /tmp/FooBar.JSON.",
+            "/tmp/FooBar.JSON"
+          ]
+        },
+        "decoded": {
+          "request": "read the file /tmp/FooBar.JSON while preserving case",
+          "domain_hint": "computer",
+          "verbatim": [
+            "Preserve case exactly when reading /tmp/FooBar.JSON.",
+            "/tmp/FooBar.JSON"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "read the file /tmp/FooBar.JSON while preserving case",
+        "domain_hint": "computer",
+        "verbatim": [
+          "Preserve case exactly when reading /tmp/FooBar.JSON.",
+          "/tmp/FooBar.JSON"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 2,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.5,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 9,
+      "case_id": "p2-shell-25",
+      "request": "The delegation is noisy [shell??], but run: ls -la /tmp/does-not-exist",
+      "expected_tool": "shell",
+      "expected_arguments": {
+        "command": "ls -la /tmp/does-not-exist"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "shell"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "computer",
+      "required_verbatim": [
+        "ls -la /tmp/does-not-exist"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"execute shell command\",\"domain_hint\":\"computer\",\"verbatim\":[\"ls -la /tmp/does-not-exist\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"execute shell command\",\"domain_hint\":\"computer\",\"verbatim\":[\"ls -la /tmp/does-not-exist\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 12743.512,
+        "prompt_tokens": 350,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": 36.641,
+        "tokens_per_second": 8.216,
+        "peak_memory_gb": 8.2871,
+        "process_rss_mb": 1020.281,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 10,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "execute shell command",
+          "domain_hint": "computer",
+          "verbatim": [
+            "ls -la /tmp/does-not-exist"
+          ]
+        },
+        "decoded": {
+          "request": "execute shell command",
+          "domain_hint": "computer",
+          "verbatim": [
+            "ls -la /tmp/does-not-exist"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "execute shell command",
+        "domain_hint": "computer",
+        "verbatim": [
+          "ls -la /tmp/does-not-exist"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 10,
+      "case_id": "p2-yuki_write-01",
+      "request": "Write this into Yuki's file: todo.txt|buy oat milk",
+      "expected_tool": "yuki_write",
+      "expected_arguments": {
+        "filename_and_content": "todo.txt|buy oat milk"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "yuki_write"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [
+        "todo.txt",
+        "buy oat milk"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"append text to a file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"todo.txt\",\"buy oat milk\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"append text to a file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"todo.txt\",\"buy oat milk\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 12736.778,
+        "prompt_tokens": 343,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": 35.946,
+        "tokens_per_second": 8.22,
+        "peak_memory_gb": 8.2793,
+        "process_rss_mb": 1020.328,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 11,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "append text to a file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "todo.txt",
+            "buy oat milk"
+          ]
+        },
+        "decoded": {
+          "request": "append text to a file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "todo.txt",
+            "buy oat milk"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "append text to a file",
+        "domain_hint": "yuki_files",
+        "verbatim": [
+          "todo.txt",
+          "buy oat milk"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 2,
+        "verbatim_emitted": 2,
+        "verbatim_hits": 2,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 11,
+      "case_id": "p2-yuki_read-12",
+      "request": "Pull up your own little file called snack.txt.",
+      "expected_tool": "yuki_read",
+      "expected_arguments": {
+        "filename": "snack.txt"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "yuki_read"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [
+        "snack.txt"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"read the contents of a file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"snack.txt\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"read the contents of a file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"snack.txt\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 12488.274,
+        "prompt_tokens": 339,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": 35.52,
+        "tokens_per_second": 8.237,
+        "peak_memory_gb": 8.2759,
+        "process_rss_mb": 1020.344,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 12,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "read the contents of a file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "snack.txt"
+          ]
+        },
+        "decoded": {
+          "request": "read the contents of a file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "snack.txt"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "read the contents of a file",
+        "domain_hint": "yuki_files",
+        "verbatim": [
+          "snack.txt"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 12,
+      "case_id": "p2-yuki_list-21",
+      "request": "Use Yuki file listing, not shell `ls`.",
+      "expected_tool": "yuki_list",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "confusion",
+        "yuki_list"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"list Yuki's personal files\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"Use Yuki file listing, not shell `ls`.\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"list Yuki's personal files\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"Use Yuki file listing, not shell `ls`.\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 13923.593,
+        "prompt_tokens": 340,
+        "generated_tokens": 32,
+        "prompt_tokens_per_second": 35.413,
+        "tokens_per_second": 7.667,
+        "peak_memory_gb": 8.2764,
+        "process_rss_mb": 1020.375,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 13,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "list Yuki's personal files",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "Use Yuki file listing, not shell `ls`."
+          ]
+        },
+        "decoded": {
+          "request": "list Yuki's personal files",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "Use Yuki file listing, not shell `ls`."
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "list Yuki's personal files",
+        "domain_hint": "yuki_files",
+        "verbatim": [
+          "Use Yuki file listing, not shell `ls`."
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 13,
+      "case_id": "p2-yuki_delete-22",
+      "request": "Delete filename exactly `OldNotes.MD` from Yuki.",
+      "expected_tool": "yuki_delete",
+      "expected_arguments": {
+        "filename": "OldNotes.MD"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "yuki_delete"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [
+        "OldNotes.MD"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"delete a file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"OldNotes.MD\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"delete a file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"OldNotes.MD\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 12256.842,
+        "prompt_tokens": 342,
+        "generated_tokens": 21,
+        "prompt_tokens_per_second": 35.833,
+        "tokens_per_second": 8.188,
+        "peak_memory_gb": 8.2789,
+        "process_rss_mb": 1020.391,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 14,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "delete a file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "OldNotes.MD"
+          ]
+        },
+        "decoded": {
+          "request": "delete a file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "OldNotes.MD"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "delete a file",
+        "domain_hint": "yuki_files",
+        "verbatim": [
+          "OldNotes.MD"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 14,
+      "case_id": "p2-yuki_append-25",
+      "request": "append-ish request... odd name.txt gets `? value_2`",
+      "expected_tool": "yuki_append",
+      "expected_arguments": {
+        "filename_and_content": "odd name.txt|? value_2"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "yuki_append"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [
+        "odd name.txt",
+        "? value_2"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"append the string `? value_2` to the file named 'odd name.txt'\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"append-ish request... odd name.txt gets `? value_2`\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"append the string `? value_2` to the file named 'odd name.txt'\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"append-ish request... odd name.txt gets `? value_2`\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 15484.635,
+        "prompt_tokens": 343,
+        "generated_tokens": 46,
+        "prompt_tokens_per_second": 35.929,
+        "tokens_per_second": 7.951,
+        "peak_memory_gb": 8.2793,
+        "process_rss_mb": 1020.406,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 15,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "append the string `? value_2` to the file named 'odd name.txt'",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "append-ish request... odd name.txt gets `? value_2`"
+          ]
+        },
+        "decoded": {
+          "request": "append the string `? value_2` to the file named 'odd name.txt'",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "append-ish request... odd name.txt gets `? value_2`"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "append the string `? value_2` to the file named 'odd name.txt'",
+        "domain_hint": "yuki_files",
+        "verbatim": [
+          "append-ish request... odd name.txt gets `? value_2`"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 2,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 15,
+      "case_id": "p2-remember-01",
+      "request": "Remember exactly this fact: user's dog is named Pixel",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's dog is named Pixel"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's dog is named Pixel"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"Remember exactly this fact: user's dog is named Pixel\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"Remember exactly this fact: user's dog is named Pixel\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 12936.69,
+        "prompt_tokens": 340,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": 35.53,
+        "tokens_per_second": 8.088,
+        "peak_memory_gb": 8.2764,
+        "process_rss_mb": 1020.406,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 16,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Remember exactly this fact: user's dog is named Pixel"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Remember exactly this fact: user's dog is named Pixel"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "Remember exactly this fact: user's dog is named Pixel"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 16,
+      "case_id": "p2-recall-12",
+      "request": "Can you dig into our shared past for the database migration topic?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "database migration"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "database migration"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Retrieve stored information about database migration discussions\",\"domain_hint\":\"memory\",\"verbatim\":[\"Can you dig into our shared past for the database migration topic?\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Retrieve stored information about database migration discussions\",\"domain_hint\":\"memory\",\"verbatim\":[\"Can you dig into our shared past for the database migration topic?\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 13890.012,
+        "prompt_tokens": 342,
+        "generated_tokens": 32,
+        "prompt_tokens_per_second": 35.282,
+        "tokens_per_second": 7.909,
+        "peak_memory_gb": 8.2789,
+        "process_rss_mb": 1020.438,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 17,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Retrieve stored information about database migration discussions",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Can you dig into our shared past for the database migration topic?"
+          ]
+        },
+        "decoded": {
+          "request": "Retrieve stored information about database migration discussions",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Can you dig into our shared past for the database migration topic?"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Retrieve stored information about database migration discussions",
+        "domain_hint": "memory",
+        "verbatim": [
+          "Can you dig into our shared past for the database migration topic?"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 17,
+      "case_id": "p2-ask_claude-18",
+      "request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "expected_tool": "ask_claude",
+      "expected_arguments": {
+        "question": "about Tokyo weather routing; do not use weather directly"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "ask_claude"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "external_agent",
+      "required_verbatim": [
+        "about Tokyo weather routing; do not use weather directly"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Delegate a question about Tokyo weather routing to Claude\",\"domain_hint\":\"external_agent\",\"verbatim\":[\"Ask Claude about Tokyo weather routing; do not use weather directly.\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Delegate a question about Tokyo weather routing to Claude\",\"domain_hint\":\"external_agent\",\"verbatim\":[\"Ask Claude about Tokyo weather routing; do not use weather directly.\"]}",
+        "normalized_text": null,
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/huggingface/hub/models--Qwen--Qwen3-14B-MLX-4bit/snapshots/ba63a5141812f9870287df53341123a71ba41433",
+        "latency_ms": 14675.261,
+        "prompt_tokens": 342,
+        "generated_tokens": 35,
+        "prompt_tokens_per_second": 34.3,
+        "tokens_per_second": 7.684,
+        "peak_memory_gb": 8.2789,
+        "process_rss_mb": 1020.422,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 18,
+          "enable_thinking": false,
+          "json_root": "object"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Delegate a question about Tokyo weather routing to Claude",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "Ask Claude about Tokyo weather routing; do not use weather directly."
+          ]
+        },
+        "decoded": {
+          "request": "Delegate a question about Tokyo weather routing to Claude",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "Ask Claude about Tokyo weather routing; do not use weather directly."
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Delegate a question about Tokyo weather routing to Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "Ask Claude about Tokyo weather routing; do not use weather directly."
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    }
+  ]
+}

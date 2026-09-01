@@ -1,0 +1,5497 @@
+{
+  "version": "hammer15-primary100-binder-input-v1",
+  "status": "gold_and_literal_annotation_free",
+  "configuration": {
+    "arm": "hammer15",
+    "case_count": 100,
+    "models_called": false,
+    "delegations_regenerated": false,
+    "hammer_generations_regenerated": false,
+    "tool_execution_capability": false
+  },
+  "source_reports": {
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/primary100-frozen-qwen-delegations-v1.json": "5454a0c2e7f2f9373693e4a8863166981e364ad21857f280a9d574724fe4320c",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer15-primary100-dispatch-v1.json": "5b0bf6152bdd5902cb9ae4ec1497c0f6020ee0ec5facfe429d2ef29a7c8106e6"
+  },
+  "splits": {
+    "primary_targeted_100": [
+      "p2-search-01",
+      "p2-search-02",
+      "p2-search-03",
+      "p2-search-04",
+      "p2-search-05",
+      "p2-search-06",
+      "p2-search-07",
+      "p2-search-08",
+      "p2-search-09",
+      "p2-search-10",
+      "p2-search-11",
+      "p2-search-12",
+      "p2-search-13",
+      "p2-search-14",
+      "p2-search-15",
+      "p2-search-16",
+      "p2-search-17",
+      "p2-search-18",
+      "p2-search-19",
+      "p2-search-20",
+      "p2-search-21",
+      "p2-search-22",
+      "p2-search-23",
+      "p2-search-24",
+      "p2-search-25",
+      "p2-image-01",
+      "p2-image-02",
+      "p2-image-03",
+      "p2-image-04",
+      "p2-image-05",
+      "p2-image-06",
+      "p2-image-07",
+      "p2-image-08",
+      "p2-image-09",
+      "p2-image-10",
+      "p2-image-11",
+      "p2-image-12",
+      "p2-image-13",
+      "p2-image-14",
+      "p2-image-15",
+      "p2-image-16",
+      "p2-image-17",
+      "p2-image-18",
+      "p2-image-19",
+      "p2-image-20",
+      "p2-image-21",
+      "p2-image-22",
+      "p2-image-23",
+      "p2-image-24",
+      "p2-image-25",
+      "p2-ask_claude-01",
+      "p2-ask_claude-02",
+      "p2-ask_claude-03",
+      "p2-ask_claude-04",
+      "p2-ask_claude-05",
+      "p2-ask_claude-06",
+      "p2-ask_claude-07",
+      "p2-ask_claude-08",
+      "p2-ask_claude-09",
+      "p2-ask_claude-10",
+      "p2-ask_claude-11",
+      "p2-ask_claude-12",
+      "p2-ask_claude-13",
+      "p2-ask_claude-14",
+      "p2-ask_claude-15",
+      "p2-ask_claude-16",
+      "p2-ask_claude-17",
+      "p2-ask_claude-18",
+      "p2-ask_claude-19",
+      "p2-ask_claude-20",
+      "p2-ask_claude-21",
+      "p2-ask_claude-22",
+      "p2-ask_claude-23",
+      "p2-ask_claude-24",
+      "p2-ask_claude-25",
+      "p2-see-01",
+      "p2-see-02",
+      "p2-see-03",
+      "p2-see-04",
+      "p2-see-05",
+      "p2-see-06",
+      "p2-see-07",
+      "p2-see-08",
+      "p2-see-09",
+      "p2-see-10",
+      "p2-see-11",
+      "p2-see-12",
+      "p2-see-13",
+      "p2-see-14",
+      "p2-see-15",
+      "p2-see-16",
+      "p2-see-17",
+      "p2-see-18",
+      "p2-see-19",
+      "p2-see-20",
+      "p2-see-21",
+      "p2-see-22",
+      "p2-see-23",
+      "p2-see-24",
+      "p2-see-25"
+    ]
+  },
+  "cases": [
+    {
+      "case_id": "p2-search-01",
+      "split": "primary_targeted_100",
+      "raw_request": "Search the web for the latest MLX documentation.",
+      "raw_request_sha256": "117194b4f03a626679d28ff8765780ddd978392709564870fa659de154ecf7ea",
+      "semantic_delegation": {
+        "request": "Search the web for the latest MLX documentation",
+        "domain_hint": "information",
+        "verbatim": [
+          "MLX documentation"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "MLX documentation"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"MLX documentation\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "MLX documentation"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "MLX documentation"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-02",
+      "split": "primary_targeted_100",
+      "raw_request": "Find information about Apple Silicon unified memory.",
+      "raw_request_sha256": "478998ab9068271db70d8faa22461f05df072c4c6c178aa770b2bc4eb5d0f92d",
+      "semantic_delegation": {
+        "request": "Find web information about Apple Silicon unified memory",
+        "domain_hint": "information",
+        "verbatim": [
+          "Apple Silicon unified memory"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "Apple Silicon unified memory"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"Apple Silicon unified memory\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "Apple Silicon unified memory"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "Apple Silicon unified memory"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-03",
+      "split": "primary_targeted_100",
+      "raw_request": "Search for current Python 3.14 release notes.",
+      "raw_request_sha256": "ea473fb1d204a0c9abec235f92d660888d12027eb50f61d88404454da9a303e2",
+      "semantic_delegation": {
+        "request": "Search the web for the current Python 3.14 release notes",
+        "domain_hint": "information",
+        "verbatim": [
+          "Python 3.14 release notes"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "Python 3.14 release notes"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"Python 3.14 release notes\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "Python 3.14 release notes"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "Python 3.14 release notes"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-04",
+      "split": "primary_targeted_100",
+      "raw_request": "Look up Hammer 2.1 function calling results.",
+      "raw_request_sha256": "a87015dbe17badb01ca100f039e9d22d124b224001d05a2997cce7cb44163cc5",
+      "semantic_delegation": {
+        "request": "Find web information about Hammer 2.1 function calling results",
+        "domain_hint": "information",
+        "verbatim": [
+          "Hammer 2.1 function calling results"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "Hammer 2.1 function calling results"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"Hammer 2.1 function calling results\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "Hammer 2.1 function calling results"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "Hammer 2.1 function calling results"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-05",
+      "split": "primary_targeted_100",
+      "raw_request": "Web search: best local speech synthesis models",
+      "raw_request_sha256": "64aafbcf1375022e44ec03ba33925fc49ac011c749869190afbe856a139331e0",
+      "semantic_delegation": {
+        "request": "web search for best local speech synthesis models",
+        "domain_hint": "information",
+        "verbatim": [
+          "best local speech synthesis models"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "best local speech synthesis models"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"best local speech synthesis models\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "best local speech synthesis models"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "best local speech synthesis models"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-06",
+      "split": "primary_targeted_100",
+      "raw_request": "Find recent articles about JSON schema decoding.",
+      "raw_request_sha256": "3abf5dcf5bcda79cc56562a78c103e9515707116c79355d8d53d014c77cdb46b",
+      "semantic_delegation": {
+        "request": "Find recent articles about JSON schema decoding",
+        "domain_hint": "information",
+        "verbatim": [
+          "JSON schema decoding"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "JSON schema decoding"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"JSON schema decoding\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "JSON schema decoding"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "JSON schema decoding"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-07",
+      "split": "primary_targeted_100",
+      "raw_request": "Search online for M1 memory pressure benchmarks.",
+      "raw_request_sha256": "6098ce3b8eaf01e3b408fe13070260ecb072a8494ced7b67783f7f83a87afad9",
+      "semantic_delegation": {
+        "request": "Search the web for M1 memory pressure benchmarks",
+        "domain_hint": "information",
+        "verbatim": [
+          "M1 memory pressure benchmarks"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "M1 memory pressure benchmarks"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"M1 memory pressure benchmarks\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "M1 memory pressure benchmarks"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "M1 memory pressure benchmarks"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-08",
+      "split": "primary_targeted_100",
+      "raw_request": "Look up how APFS handles case-sensitive paths.",
+      "raw_request_sha256": "5a5f8e1c975058eb2135fe4245d19034a164bc1360b28e2d2872badae057a932",
+      "semantic_delegation": {
+        "request": "Find web information about how APFS handles case-sensitive paths",
+        "domain_hint": "information",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "how APFS handles case-sensitive paths"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"how APFS handles case-sensitive paths\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "how APFS handles case-sensitive paths"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "how APFS handles case-sensitive paths"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-09",
+      "split": "primary_targeted_100",
+      "raw_request": "Search for open-source tool-calling datasets.",
+      "raw_request_sha256": "177512ad7e60b19f17ea6d557a53eff2b620eaf89a250063bcee43d95a53c7de",
+      "semantic_delegation": {
+        "request": "Search the web for open-source tool-calling datasets",
+        "domain_hint": "information",
+        "verbatim": [
+          "open-source tool-calling datasets"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "open-source tool-calling datasets"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"open-source tool-calling datasets\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "open-source tool-calling datasets"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "open-source tool-calling datasets"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-10",
+      "split": "primary_targeted_100",
+      "raw_request": "Find the official Rust async book.",
+      "raw_request_sha256": "65384ed25e935b78b29acd6e36a769181dc652997aa83869ae793d1992a36ad4",
+      "semantic_delegation": {
+        "request": "Find the official Rust async book",
+        "domain_hint": "information",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "official Rust async book"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"official Rust async book\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "official Rust async book"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "official Rust async book"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-11",
+      "split": "primary_targeted_100",
+      "raw_request": "Search the internet for local LLM routing research.",
+      "raw_request_sha256": "8b61f41d4cdbeb9a62f6f2ca3dd75ea755115323a091882e442ed3e384ff5482",
+      "semantic_delegation": {
+        "request": "Search the internet for local LLM routing research",
+        "domain_hint": "information",
+        "verbatim": [
+          "local LLM routing research"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "local LLM routing research"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"local LLM routing research\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "local LLM routing research"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "local LLM routing research"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-12",
+      "split": "primary_targeted_100",
+      "raw_request": "Can you dig up recent notes on MLX-LM streaming?",
+      "raw_request_sha256": "9249769cd71339c7597257b8fd821a83318fba0be1d699b60a995b07fdbb1c46",
+      "semantic_delegation": {
+        "request": "retrieve recent stored notes about MLX-LM streaming",
+        "domain_hint": "memory",
+        "verbatim": [
+          "MLX-LM streaming"
+        ]
+      },
+      "selected_call": {
+        "tool": "recall",
+        "arguments": {
+          "topic": "MLX-LM streaming"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"recall\", \"arguments\": {\"topic\": \"MLX-LM streaming\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "recall",
+              "arguments": {
+                "topic": "MLX-LM streaming"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "recall",
+            "arguments": {
+              "topic": "MLX-LM streaming"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "remember",
+          "recall"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-13",
+      "split": "primary_targeted_100",
+      "raw_request": "I need web results for compact function-calling models.",
+      "raw_request_sha256": "090ba161948a641c55e77990430cc92285322121abf614c2bfeec32feb90be0e",
+      "semantic_delegation": {
+        "request": "Search the web for compact function-calling models",
+        "domain_hint": "information",
+        "verbatim": [
+          "compact function-calling models"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "compact function-calling models"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"compact function-calling models\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "compact function-calling models"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "compact function-calling models"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-14",
+      "split": "primary_targeted_100",
+      "raw_request": "See what the internet says about Metal GPU utilization.",
+      "raw_request_sha256": "ef6e85f57efd3f954b398fce8b49caf635475e7d2163497b793576a1f6da9030",
+      "semantic_delegation": {
+        "request": "Search the web for information about Metal GPU utilization",
+        "domain_hint": "information",
+        "verbatim": [
+          "Metal GPU utilization"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "Metal GPU utilization"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"Metal GPU utilization\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "Metal GPU utilization"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "Metal GPU utilization"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-15",
+      "split": "primary_targeted_100",
+      "raw_request": "Track down documentation for Python pathlib expanduser.",
+      "raw_request_sha256": "e11d768429c4cba8998cd4b28a92a26dfad9fbacded88e7992bb7e8c027f931e",
+      "semantic_delegation": {
+        "request": "find documentation for Python pathlib expanduser",
+        "domain_hint": "information",
+        "verbatim": [
+          "Python pathlib expanduser"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "Python pathlib expanduser"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"Python pathlib expanduser\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "Python pathlib expanduser"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "Python pathlib expanduser"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-16",
+      "split": "primary_targeted_100",
+      "raw_request": "Could you research deterministic JSON generation locally?",
+      "raw_request_sha256": "c699aa897d2e9028efc6aeacf2dec574d47c6f53b74c6c7ac6dc9cffe6c4d9b2",
+      "semantic_delegation": {
+        "request": "research deterministic JSON generation locally",
+        "domain_hint": "information",
+        "verbatim": [
+          "deterministic JSON generation"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "deterministic JSON generation"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"deterministic JSON generation\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "deterministic JSON generation"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "deterministic JSON generation"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-17",
+      "split": "primary_targeted_100",
+      "raw_request": "google-ish lookup: macOS unified memory swap behavior",
+      "raw_request_sha256": "51b5b8c89c10d87d76175156f60520d6a86ee64a6c80df56516acab2b146c3f2",
+      "semantic_delegation": {
+        "request": "Find web information about macOS unified memory swap behavior",
+        "domain_hint": "information",
+        "verbatim": [
+          "macOS unified memory swap behavior"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "macOS unified memory swap behavior"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"macOS unified memory swap behavior\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "macOS unified memory swap behavior"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "macOS unified memory swap behavior"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-18",
+      "split": "primary_targeted_100",
+      "raw_request": "Search for Tokyo weather APIs, not Tokyo's current weather.",
+      "raw_request_sha256": "ec54cf57a035c4e35f45d4c8d5c105c35d517cf9029ce1ae43b89c6a96eadc9c",
+      "semantic_delegation": {
+        "request": "Search the web for Tokyo weather APIs",
+        "domain_hint": "information",
+        "verbatim": [
+          "Tokyo weather APIs"
+        ]
+      },
+      "selected_call": {
+        "tool": "weather",
+        "arguments": {
+          "city": "Tokyo"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"weather\", \"arguments\": {\"city\": \"Tokyo\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "weather",
+              "arguments": {
+                "city": "Tokyo"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "weather",
+            "arguments": {
+              "city": "Tokyo"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-19",
+      "split": "primary_targeted_100",
+      "raw_request": "Find a website explaining URL fragments; there is no exact URL to fetch.",
+      "raw_request_sha256": "dc50a035c80d7eea60c4998efd13e1ea674557fcb3ca5b537e74ab690dcd6f4e",
+      "semantic_delegation": {
+        "request": "Search the web for a website explaining URL fragments",
+        "domain_hint": "information",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "URL fragments"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"URL fragments\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "URL fragments"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "URL fragments"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-20",
+      "split": "primary_targeted_100",
+      "raw_request": "Search the web for camera calibration guides; don't open the camera.",
+      "raw_request_sha256": "058dc159fcc2b67ae049e0e4261780d7cdf41bd3946d7c2a4f1c1952585c027a",
+      "semantic_delegation": {
+        "request": "Search the web for camera calibration guides",
+        "domain_hint": "information",
+        "verbatim": [
+          "camera calibration guides"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "camera calibration guides"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"camera calibration guides\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "camera calibration guides"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "camera calibration guides"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-21",
+      "split": "primary_targeted_100",
+      "raw_request": "Look up Claude tool-use documentation; do not delegate to Claude.",
+      "raw_request_sha256": "52b6bb98ee1f17afab3400351bf94622f2c83c4d981d84773cdc79cded40bf6c",
+      "semantic_delegation": {
+        "request": "Look up Claude tool-use documentation",
+        "domain_hint": "information",
+        "verbatim": [
+          "Claude tool-use documentation"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "Claude tool-use documentation"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"Claude tool-use documentation\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "Claude tool-use documentation"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "Claude tool-use documentation"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-22",
+      "split": "primary_targeted_100",
+      "raw_request": "Search exactly for: C++ std::filesystem path case-sensitivity",
+      "raw_request_sha256": "2640f54db832fd5b6a180f76a33a5e7419337a382bf7e61e2530dd8814b63a8e",
+      "semantic_delegation": {
+        "request": "Search for the exact phrase about C++ std::filesystem path case-sensitivity",
+        "domain_hint": "information",
+        "verbatim": [
+          "C++ std::filesystem path case-sensitivity"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "C++ std::filesystem path case-sensitivity"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"C++ std::filesystem path case-sensitivity\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "C++ std::filesystem path case-sensitivity"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "C++ std::filesystem path case-sensitivity"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-23",
+      "split": "primary_targeted_100",
+      "raw_request": "Keep this query intact: site:huggingface.co \"Hammer2.1-3b\" function calling",
+      "raw_request_sha256": "595b56c355aa4277e59c823eda36534c0b28bbc767daf2336ba0c4ff2263e1c4",
+      "semantic_delegation": {
+        "request": "Search the web for the exact query about Hammer2.1-3b function calling on Hugging Face",
+        "domain_hint": "information",
+        "verbatim": [
+          "site:huggingface.co",
+          "Hammer2.1-3b",
+          "function calling"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "site:huggingface.co Hammer2.1-3b function calling"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"site:huggingface.co Hammer2.1-3b function calling\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "site:huggingface.co Hammer2.1-3b function calling"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "site:huggingface.co Hammer2.1-3b function calling"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-24",
+      "split": "primary_targeted_100",
+      "raw_request": "Use the exact query foo_bar() \"KeyError: x-y\"",
+      "raw_request_sha256": "bdc03626671076a98e502ad332c4c7e8acdf24b9942eaceb9b32989b6ad5c39c",
+      "semantic_delegation": {
+        "request": "search for the exact query",
+        "domain_hint": "information",
+        "verbatim": [
+          "foo_bar()",
+          "KeyError: x-y"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "foo_bar()"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"foo_bar()\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "foo_bar()"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "foo_bar()"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-search-25",
+      "split": "primary_targeted_100",
+      "raw_request": "Search, punctuation and all: ??? macOS swap usage M1 -- 2026",
+      "raw_request_sha256": "228552ba88be69fc314778ca443842704481178cc000ea83a6b5de4581332a3e",
+      "semantic_delegation": {
+        "request": "Search for the exact query including punctuation and symbols",
+        "domain_hint": "information",
+        "verbatim": [
+          "??? macOS swap usage M1 -- 2026"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "macOS swap usage M1 -- 2026"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"macOS swap usage M1 -- 2026\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "macOS swap usage M1 -- 2026"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "macOS swap usage M1 -- 2026"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-01",
+      "split": "primary_targeted_100",
+      "raw_request": "Generate an image with this prompt: neon fox beneath a rainy sign",
+      "raw_request_sha256": "92dea97ac7ee35a9c8e37ed4810aaac058692c77fe5787b0eca08688ed55ad63",
+      "semantic_delegation": {
+        "request": "Generate an image from the provided prompt",
+        "domain_hint": "media",
+        "verbatim": [
+          "neon fox beneath a rainy sign"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "neon fox beneath a rainy sign"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"neon fox beneath a rainy sign\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "neon fox beneath a rainy sign"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "neon fox beneath a rainy sign"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-02",
+      "split": "primary_targeted_100",
+      "raw_request": "Create a picture of a watercolor lighthouse at dawn.",
+      "raw_request_sha256": "9f142459f160dbad6f1ce29391dcac4017e0e76aeec2d1239ac4269b91f6e52c",
+      "semantic_delegation": {
+        "request": "create a watercolor image of a lighthouse at dawn",
+        "domain_hint": "media",
+        "verbatim": [
+          "watercolor lighthouse at dawn"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "watercolor lighthouse at dawn"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"watercolor lighthouse at dawn\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "watercolor lighthouse at dawn"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "watercolor lighthouse at dawn"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-03",
+      "split": "primary_targeted_100",
+      "raw_request": "Make artwork showing a tiny robot watering sunflowers.",
+      "raw_request_sha256": "f54eedbad7c88c36d95d30ae15978afbdc3c9d5f16b870c5a2e3e5da2f10b290",
+      "semantic_delegation": {
+        "request": "Create visual artwork of a tiny robot watering sunflowers",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "Create visual artwork of a tiny robot watering sunflowers"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"Create visual artwork of a tiny robot watering sunflowers\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "Create visual artwork of a tiny robot watering sunflowers"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "Create visual artwork of a tiny robot watering sunflowers"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-04",
+      "split": "primary_targeted_100",
+      "raw_request": "Generate this scene: moonlit anime library",
+      "raw_request_sha256": "7aa153998dd43cd1be01e173805399221d040a278880b5190c8c7d3daea8ffa1",
+      "semantic_delegation": {
+        "request": "create visual artwork of a moonlit anime library",
+        "domain_hint": "media",
+        "verbatim": [
+          "moonlit anime library"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "moonlit anime library"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"moonlit anime library\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "moonlit anime library"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "moonlit anime library"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-05",
+      "split": "primary_targeted_100",
+      "raw_request": "Create an image of a glass city floating above clouds.",
+      "raw_request_sha256": "3da7293515d668bf9cbb19ecb0f7125c69b6c1313b42ca3afbc2dd8de7af8729",
+      "semantic_delegation": {
+        "request": "create a visual artwork of a glass city floating above clouds",
+        "domain_hint": "media",
+        "verbatim": [
+          "a glass city floating above clouds"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "a glass city floating above clouds"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"a glass city floating above clouds\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "a glass city floating above clouds"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "a glass city floating above clouds"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-06",
+      "split": "primary_targeted_100",
+      "raw_request": "Render a cozy pixel-art kitchen in winter.",
+      "raw_request_sha256": "eaf97ea37a4ac325df4eb773298ef9848f7491166a0025e7661dd071368d66bb",
+      "semantic_delegation": {
+        "request": "create a cozy pixel-art kitchen in winter",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "create a cozy pixel-art kitchen in winter"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"create a cozy pixel-art kitchen in winter\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "create a cozy pixel-art kitchen in winter"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "create a cozy pixel-art kitchen in winter"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-07",
+      "split": "primary_targeted_100",
+      "raw_request": "Make a poster of an astronaut playing cello on Mars.",
+      "raw_request_sha256": "4f525f4c106196ef8355a90d5b26bb3314c12568f70bf4373ebe23dfd1c76e2e",
+      "semantic_delegation": {
+        "request": "Create a visual poster of an astronaut playing cello on Mars",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "Create a visual poster of an astronaut playing cello on Mars"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"Create a visual poster of an astronaut playing cello on Mars\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "Create a visual poster of an astronaut playing cello on Mars"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "Create a visual poster of an astronaut playing cello on Mars"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-08",
+      "split": "primary_targeted_100",
+      "raw_request": "Generate a charcoal sketch of an old cedar tree.",
+      "raw_request_sha256": "af2d359bf2fe1f0b5d1ce946cbb2669b6b425480e17476b4403c1644f9cf67f0",
+      "semantic_delegation": {
+        "request": "Generate a charcoal sketch of an old cedar tree",
+        "domain_hint": "media",
+        "verbatim": [
+          "charcoal sketch of an old cedar tree"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "charcoal sketch of an old cedar tree"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"charcoal sketch of an old cedar tree\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "charcoal sketch of an old cedar tree"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "charcoal sketch of an old cedar tree"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-09",
+      "split": "primary_targeted_100",
+      "raw_request": "Create a cinematic desert train at sunset.",
+      "raw_request_sha256": "d110344176a838947574adbcf458ba945d607fa5775ffee52f664dd99d6c278f",
+      "semantic_delegation": {
+        "request": "create a cinematic desert train at sunset",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "create a cinematic desert train at sunset"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"create a cinematic desert train at sunset\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "create a cinematic desert train at sunset"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "create a cinematic desert train at sunset"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-10",
+      "split": "primary_targeted_100",
+      "raw_request": "Draw a blue dragon curled around a lighthouse.",
+      "raw_request_sha256": "e53993a30484bb1309702c950271f59ed33a9268c05f358a46629e556fa0023b",
+      "semantic_delegation": {
+        "request": "create a visual artwork of a blue dragon curled around a lighthouse",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "a blue dragon curled around a lighthouse"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"a blue dragon curled around a lighthouse\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "a blue dragon curled around a lighthouse"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "a blue dragon curled around a lighthouse"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-11",
+      "split": "primary_targeted_100",
+      "raw_request": "Make an image of bioluminescent jellyfish over a dark reef.",
+      "raw_request_sha256": "14baa79cb604730af2ffa50e8f13809ebbc8459031c581f864b4f989a201b1cf",
+      "semantic_delegation": {
+        "request": "create a visual artwork of bioluminescent jellyfish over a dark reef",
+        "domain_hint": "media",
+        "verbatim": [
+          "bioluminescent jellyfish over a dark reef"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "bioluminescent jellyfish over a dark reef"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"bioluminescent jellyfish over a dark reef\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "bioluminescent jellyfish over a dark reef"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "bioluminescent jellyfish over a dark reef"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-12",
+      "split": "primary_targeted_100",
+      "raw_request": "Could you illustrate a sleepy cat running a ramen shop?",
+      "raw_request_sha256": "c191e323e6c96ca4eec66159547a48ddba558445bc7339c15a86577ab91999ee",
+      "semantic_delegation": {
+        "request": "create a visual illustration of a sleepy cat running a ramen shop",
+        "domain_hint": "media",
+        "verbatim": [
+          "sleepy cat running a ramen shop"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "sleepy cat running a ramen shop"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"sleepy cat running a ramen shop\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "sleepy cat running a ramen shop"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "sleepy cat running a ramen shop"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-13",
+      "split": "primary_targeted_100",
+      "raw_request": "I want a visual: paper-cut mountains under a gold moon.",
+      "raw_request_sha256": "580756f8be976ad7617c9bbbf7e5d35dc74c92ec642de09a076ed1ac0af1e2ff",
+      "semantic_delegation": {
+        "request": "Create a visual artwork of paper-cut mountains under a gold moon",
+        "domain_hint": "media",
+        "verbatim": [
+          "paper-cut mountains under a gold moon"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "paper-cut mountains under a gold moon"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"paper-cut mountains under a gold moon\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "paper-cut mountains under a gold moon"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "paper-cut mountains under a gold moon"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-14",
+      "split": "primary_targeted_100",
+      "raw_request": "Turn this idea into artwork—retro-futurist bicycle workshop.",
+      "raw_request_sha256": "a69602d737b10d1125ae259ed66030d16afcbfd20cccce12f6adee31670c07da",
+      "semantic_delegation": {
+        "request": "create visual artwork of a retro-futurist bicycle workshop",
+        "domain_hint": "media",
+        "verbatim": [
+          "retro-futurist bicycle workshop"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "retro-futurist bicycle workshop"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"retro-futurist bicycle workshop\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "retro-futurist bicycle workshop"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "retro-futurist bicycle workshop"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-15",
+      "split": "primary_targeted_100",
+      "raw_request": "Paint, digitally, a storm moving over lavender fields.",
+      "raw_request_sha256": "35f26f970c3b29d184e29fa9886613786681f2dd34daddc46130f89e220b7bec",
+      "semantic_delegation": {
+        "request": "create a digital painting of a storm moving over lavender fields",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "a storm moving over lavender fields"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"a storm moving over lavender fields\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "a storm moving over lavender fields"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "a storm moving over lavender fields"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-16",
+      "split": "primary_targeted_100",
+      "raw_request": "picture pls: friendly moss-covered forest giant",
+      "raw_request_sha256": "ab0af8cb94caf1115fbf219c62d07648b03ca398c71847dcd984c8755ae7f0bf",
+      "semantic_delegation": {
+        "request": "Create a visual artwork of a friendly moss-covered forest giant",
+        "domain_hint": "media",
+        "verbatim": [
+          "friendly moss-covered forest giant"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "friendly moss-covered forest giant"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"friendly moss-covered forest giant\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "friendly moss-covered forest giant"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "friendly moss-covered forest giant"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-17",
+      "split": "primary_targeted_100",
+      "raw_request": "Visualize an isometric library inside a teacup.",
+      "raw_request_sha256": "9ad3f1a00a9815c5031fcdef18af7bcb01f151706e7a073ce838bf73cea13642",
+      "semantic_delegation": {
+        "request": "create a visual artwork of an isometric library inside a teacup",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "create a visual artwork of an isometric library inside a teacup"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"create a visual artwork of an isometric library inside a teacup\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "create a visual artwork of an isometric library inside a teacup"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "create a visual artwork of an isometric library inside a teacup"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-18",
+      "split": "primary_targeted_100",
+      "raw_request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "raw_request_sha256": "afa0ab9190de1e78e660d5adecabd992d3017dc4838d8ce76f3f42a44fb77243",
+      "semantic_delegation": {
+        "request": "Generate a visual artwork of a camera-shaped sculpture without using a real camera",
+        "domain_hint": "media",
+        "verbatim": [
+          "camera-shaped sculpture"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "camera-shaped sculpture"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"camera-shaped sculpture\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "camera-shaped sculpture"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "camera-shaped sculpture"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-19",
+      "split": "primary_targeted_100",
+      "raw_request": "Create an image of Tokyo weather icons, not a weather lookup.",
+      "raw_request_sha256": "4438fb985cd122f950f1aeb27bd4593b394e5bd9c79ac0e11f6d15d17b794596",
+      "semantic_delegation": {
+        "request": "Create a visual artwork of Tokyo weather icons",
+        "domain_hint": "media",
+        "verbatim": [
+          "Tokyo weather icons"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "Tokyo weather icons"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"Tokyo weather icons\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "Tokyo weather icons"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "Tokyo weather icons"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-20",
+      "split": "primary_targeted_100",
+      "raw_request": "Make poster artwork containing the words notes.md; do not write a file.",
+      "raw_request_sha256": "1bad824f9893762081c32a5ed4242384a38c1c3c1a2f0eb9e18a5fc215a6dc7d",
+      "semantic_delegation": {
+        "request": "Create poster artwork containing the words notes.md without writing a file",
+        "domain_hint": "media",
+        "verbatim": [
+          "notes.md"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "notes.md"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"notes.md\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "notes.md"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "notes.md"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-21",
+      "split": "primary_targeted_100",
+      "raw_request": "Illustrate Claude as a brass automaton; do not ask Claude anything.",
+      "raw_request_sha256": "d33fb8820969f791c65e0e7489878758ce48e95e0db2864ca24dcc9b79629de4",
+      "semantic_delegation": {
+        "request": "Create a visual illustration of Claude as a brass automaton",
+        "domain_hint": "media",
+        "verbatim": [
+          "Claude as a brass automaton"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "Claude as a brass automaton"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"Claude as a brass automaton\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "Claude as a brass automaton"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "Claude as a brass automaton"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-22",
+      "split": "primary_targeted_100",
+      "raw_request": "Use this exact image prompt: RED fox, blue_sky, 35mm—high contrast!",
+      "raw_request_sha256": "db8c71bdbdfdd9c5bb86b2c0b74a05d52f32e00f48b2264ad9795aa0292d4d60",
+      "semantic_delegation": {
+        "request": "Create visual artwork using the provided image prompt",
+        "domain_hint": "media",
+        "verbatim": [
+          "RED fox, blue_sky, 35mm—high contrast!"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "RED fox, blue_sky, 35mm—high contrast!"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"RED fox, blue_sky, 35mm—high contrast!\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "RED fox, blue_sky, 35mm—high contrast!"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "RED fox, blue_sky, 35mm—high contrast!"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-23",
+      "split": "primary_targeted_100",
+      "raw_request": "Preserve punctuation in the prompt: 'Home, 2:17 a.m.' in rainy cyberpunk style",
+      "raw_request_sha256": "618631df2a92b2d2cdc8da5f917b2189193342db8b33c42cd8f4172cf6952d0c",
+      "semantic_delegation": {
+        "request": "Create a visual artwork in rainy cyberpunk style using the exact prompt text",
+        "domain_hint": "media",
+        "verbatim": [
+          "Home, 2:17 a.m."
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "Home, 2:17 a.m."
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"Home, 2:17 a.m.\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "Home, 2:17 a.m."
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "Home, 2:17 a.m."
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-24",
+      "split": "primary_targeted_100",
+      "raw_request": "Generate exactly: café façade; crème-and-teal palette; 4:3 composition",
+      "raw_request_sha256": "9630db4f59a40e8f6f5492622c40963d8914f62577a4697d8968b33222eadf3d",
+      "semantic_delegation": {
+        "request": "Generate visual artwork with the exact prompt",
+        "domain_hint": "media",
+        "verbatim": [
+          "café façade; crème-and-teal palette; 4:3 composition"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "caéf çaide; crème-and-teal palette; 4:3 composition"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"ca\\u00e9f \\u00e7aide; cr\\u00e8me-and-teal palette; 4:3 composition\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "caéf çaide; crème-and-teal palette; 4:3 composition"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "caéf çaide; crème-and-teal palette; 4:3 composition"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-image-25",
+      "split": "primary_targeted_100",
+      "raw_request": "uhh make... an image? prompt is: almost-empty white room + one RED chair",
+      "raw_request_sha256": "56a3be887173d3d0c1ad9927d71cdeeed14ddc2f9d98f0637ecc5a480f2720f7",
+      "semantic_delegation": {
+        "request": "Generate an image from the provided prompt",
+        "domain_hint": "media",
+        "verbatim": [
+          "almost-empty white room + one RED chair"
+        ]
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "almost-empty white room + one RED chair"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"almost-empty white room + one RED chair\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "almost-empty white room + one RED chair"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "almost-empty white room + one RED chair"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-01",
+      "split": "primary_targeted_100",
+      "raw_request": "Ask Claude: why does this asyncio task never finish?",
+      "raw_request_sha256": "325063f183f6d202e542a15b3290f083f8d1e7ecfa633944cb8ed32664c4b8be",
+      "semantic_delegation": {
+        "request": "Ask Claude why the asyncio task never finishes",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "why does this asyncio task never finish?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "why does this asyncio task never finish?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"why does this asyncio task never finish?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "why does this asyncio task never finish?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "why does this asyncio task never finish?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-02",
+      "split": "primary_targeted_100",
+      "raw_request": "Send Claude this question: can you review my parser design?",
+      "raw_request_sha256": "888eba265b8ee5b732fd114cee2669d8b059b2beb96cecaa9c5c5a4f6499be55",
+      "semantic_delegation": {
+        "request": "Delegate the user's question to Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "can you review my parser design?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "can you review my parser design?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"can you review my parser design?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "can you review my parser design?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "can you review my parser design?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-03",
+      "split": "primary_targeted_100",
+      "raw_request": "Ask Claude to inspect this error: KeyError in build_prompt",
+      "raw_request_sha256": "cf3109b9471da3cf111f8fd2e61aa946056fa388dc4b9d0186cf54087623b7a2",
+      "semantic_delegation": {
+        "request": "Delegate an error inspection task to Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "KeyError in build_prompt"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "KeyError in build_prompt"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"KeyError in build_prompt\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "KeyError in build_prompt"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "KeyError in build_prompt"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-04",
+      "split": "primary_targeted_100",
+      "raw_request": "Delegate to Claude: explain the tradeoffs of a two-stage router",
+      "raw_request_sha256": "f4476133fa4fe79a5da8210a82424c0b8ce90f5fe4913fe3c4dcf85a2395226c",
+      "semantic_delegation": {
+        "request": "Delegate a question to Claude asking it to explain the tradeoffs of a two-stage router",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "explain the tradeoffs of a two-stage router"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "explain the tradeoffs of a two-stage router"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"explain the tradeoffs of a two-stage router\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "explain the tradeoffs of a two-stage router"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "explain the tradeoffs of a two-stage router"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-05",
+      "split": "primary_targeted_100",
+      "raw_request": "Have Claude review this idea: cache schemas by domain",
+      "raw_request_sha256": "881d921ace3b42a2d02c67129e99511ef411d3e0269ee1fbc51fee9cab0c5e68",
+      "semantic_delegation": {
+        "request": "Ask Claude to review the idea: cache schemas by domain",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "cache schemas by domain"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "cache schemas by domain"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"cache schemas by domain\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "cache schemas by domain"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "cache schemas by domain"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-06",
+      "split": "primary_targeted_100",
+      "raw_request": "Ask Claude whether this test has a race condition.",
+      "raw_request_sha256": "bc96763a3f0d8f8518a7191ca047533c949bad042485e4975c70a600c2f75000",
+      "semantic_delegation": {
+        "request": "Ask Claude whether this test has a race condition",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "whether this test has a race condition"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "whether this test has a race condition"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"whether this test has a race condition\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "whether this test has a race condition"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "whether this test has a race condition"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-07",
+      "split": "primary_targeted_100",
+      "raw_request": "Send this to Claude: propose edge cases for JSON early stopping",
+      "raw_request_sha256": "3e32f801d665302c3e581bc3fce9c8aefa16408cc06f0349cbb4ef2df9cca7a9",
+      "semantic_delegation": {
+        "request": "Delegate the question to Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "propose edge cases for JSON early stopping"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "propose edge cases for JSON early stopping"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"propose edge cases for JSON early stopping\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "propose edge cases for JSON early stopping"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "propose edge cases for JSON early stopping"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-08",
+      "split": "primary_targeted_100",
+      "raw_request": "Ask the other Claude to analyze why the model emitted two calls.",
+      "raw_request_sha256": "686d5c658058588eb2cc84e4dfe6cb369ec41f1a786fe95ab1d759efb75a08a7",
+      "semantic_delegation": {
+        "request": "delegate analysis of why the model emitted two calls to external Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "why the model emitted two calls"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "why the model emitted two calls"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"why the model emitted two calls\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "why the model emitted two calls"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "why the model emitted two calls"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-09",
+      "split": "primary_targeted_100",
+      "raw_request": "Delegate this task to Claude: critique the benchmark methodology",
+      "raw_request_sha256": "665ab7e86bcf772df2dace1845ed42a1171ff35dc195f551e2ca9396807fcb3d",
+      "semantic_delegation": {
+        "request": "Delegate the task to critique the benchmark methodology to Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "critique the benchmark methodology"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "critique the benchmark methodology"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"critique the benchmark methodology\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "critique the benchmark methodology"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "critique the benchmark methodology"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-10",
+      "split": "primary_targeted_100",
+      "raw_request": "Tell Claude to check whether my regex is too broad.",
+      "raw_request_sha256": "27d6e266ee8731857a6c51e67a19a2d349428a272f553c0b8c2d5d73517b1a60",
+      "semantic_delegation": {
+        "request": "Ask the external agent to check whether the user's regex is too broad",
+        "domain_hint": "external_agent",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "Is the user's regex too broad?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"Is the user's regex too broad?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "Is the user's regex too broad?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "Is the user's regex too broad?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-11",
+      "split": "primary_targeted_100",
+      "raw_request": "Ask Claude: what could make MLX latency measurements noisy?",
+      "raw_request_sha256": "1a2c60402dc4a8e11f1f2103cc3826133cd62e3e31046f80c788c883709d29c1",
+      "semantic_delegation": {
+        "request": "Ask Claude what could make MLX latency measurements noisy",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "what could make MLX latency measurements noisy?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "what could make MLX latency measurements noisy?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"what could make MLX latency measurements noisy?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "what could make MLX latency measurements noisy?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "what could make MLX latency measurements noisy?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-12",
+      "split": "primary_targeted_100",
+      "raw_request": "Could the other agent look over this question: is the adapter stateless?",
+      "raw_request_sha256": "cef35142923120839d4c9bb4cab6c059fa4476841f974e9819e78db2b174041e",
+      "semantic_delegation": {
+        "request": "Ask the external agent to review the question about whether the adapter is stateless",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "is the adapter stateless?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "is the adapter stateless?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"is the adapter stateless?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "is the adapter stateless?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "is the adapter stateless?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-13",
+      "split": "primary_targeted_100",
+      "raw_request": "Pass along to Claude—find the flaw in my confidence-interval code.",
+      "raw_request_sha256": "4a8f561b0c626e2283af59dd0c92beb58582d8e65ef2ca83ec1fb9924d5e75c0",
+      "semantic_delegation": {
+        "request": "delegate a code-review task to Claude to find the flaw in the user's confidence-interval code",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "find the flaw in my confidence-interval code"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "find the flaw in my confidence-interval code"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"find the flaw in my confidence-interval code\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "find the flaw in my confidence-interval code"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "find the flaw in my confidence-interval code"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-14",
+      "split": "primary_targeted_100",
+      "raw_request": "I want Claude's take on whether these schemas overlap too much.",
+      "raw_request_sha256": "fdfc89608bee92fbc3548ccd3e0d3d103432d10592b78077b1b12234149ffb39",
+      "semantic_delegation": {
+        "request": "Ask Claude whether the provided schemas overlap too much",
+        "domain_hint": "external_agent",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "Are the provided schemas overlapping too much?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"Are the provided schemas overlapping too much?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "Are the provided schemas overlapping too much?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "Are the provided schemas overlapping too much?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-15",
+      "split": "primary_targeted_100",
+      "raw_request": "claude pls inspect: model chooses image when I mean see",
+      "raw_request_sha256": "1c8a6e45bd8f65603b87ede897887087e3040ad52d28e7683682baab5315ed66",
+      "semantic_delegation": {
+        "request": "Ask the external agent to inspect the issue where the model chooses image when the user means see",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "model chooses image when I mean see"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "model chooses image when I mean see"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"model chooses image when I mean see\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "model chooses image when I mean see"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "model chooses image when I mean see"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-16",
+      "split": "primary_targeted_100",
+      "raw_request": "Consult Claude about this: how should paired errors be grouped?",
+      "raw_request_sha256": "88082ead25214842118d7fec9f79fe179bc6dbccc631a97045a48ea1ad50e3cd",
+      "semantic_delegation": {
+        "request": "Ask Claude how paired errors should be grouped",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "how should paired errors be grouped?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "how should paired errors be grouped?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"how should paired errors be grouped?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "how should paired errors be grouped?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "how should paired errors be grouped?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-17",
+      "split": "primary_targeted_100",
+      "raw_request": "Get the neighboring agent to answer: should p95 include selector time?",
+      "raw_request_sha256": "1fd29415fe7fb62a736d4feedf2bfa6dbd55d54df0c8e9bd693b30006c8de290",
+      "semantic_delegation": {
+        "request": "Ask the neighboring external agent whether p95 should include selector time",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "should p95 include selector time?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "should p95 include selector time?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"should p95 include selector time?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "should p95 include selector time?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "should p95 include selector time?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-18",
+      "split": "primary_targeted_100",
+      "raw_request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "raw_request_sha256": "cfda684fa89229cdd65d3d8f0491471a470af258884d43a26639bcbdc4479a14",
+      "semantic_delegation": {
+        "request": "Delegate a question about Tokyo weather routing to Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "about Tokyo weather routing"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "about Tokyo weather routing"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"about Tokyo weather routing\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "about Tokyo weather routing"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "about Tokyo weather routing"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-19",
+      "split": "primary_targeted_100",
+      "raw_request": "Delegate a web-search design question to Claude instead of searching: how should queries be normalized?",
+      "raw_request_sha256": "60ab01247626f13e4c239f86915406cb9613ace326aeb5dcfb20c5aa35a8a70f",
+      "semantic_delegation": {
+        "request": "Delegate the design question about query normalization to Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "how should queries be normalized?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "how should queries be normalized?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"how should queries be normalized?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "how should queries be normalized?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "how should queries be normalized?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-20",
+      "split": "primary_targeted_100",
+      "raw_request": "Send Claude the shell-review task: is `cat \"/tmp/a b\"` safe? Do not execute it.",
+      "raw_request_sha256": "85ee628c2be0c6378bb695f1baa9436db57fb8f3203b2483445608021b2a1eea",
+      "semantic_delegation": {
+        "request": "Delegate a shell-review question to Claude asking whether the command is safe, without executing it",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "is `cat /tmp/a b` safe?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "is `cat /tmp/a b` safe?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"is `cat /tmp/a b` safe?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "is `cat /tmp/a b` safe?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "is `cat /tmp/a b` safe?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-21",
+      "split": "primary_targeted_100",
+      "raw_request": "Ask Claude to discuss notes.md versus Yuki files; don't read either file.",
+      "raw_request_sha256": "9bac3cddb0d4f34b4c74e3f116799b584fa3fcc2f9997a3ce7e947614191472f",
+      "semantic_delegation": {
+        "request": "Delegate a discussion comparing notes.md and Yuki files to an external agent without reading either file",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "notes.md",
+          "Yuki files"
+        ]
+      },
+      "selected_call": null,
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": true,
+          "decoded": [],
+          "canonical_call": null,
+          "errors": []
+        },
+        "validation": {
+          "passed": false,
+          "errors": [
+            "Model rejected the delegated request."
+          ]
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-22",
+      "split": "primary_targeted_100",
+      "raw_request": "Send this exact question to Claude: check why foo_bar() crashes",
+      "raw_request_sha256": "980108ae48c16bff58bd51f313fbe0293fc934603c0aa975829c1cdcb68d5bd2",
+      "semantic_delegation": {
+        "request": "Delegate the exact question to Claude",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "check why foo_bar() crashes"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "check why foo_bar() crashes"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"check why foo_bar() crashes\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "check why foo_bar() crashes"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "check why foo_bar() crashes"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-23",
+      "split": "primary_targeted_100",
+      "raw_request": "Preserve and ask Claude: Does `A_B-17` differ from `a_b-17` on APFS?",
+      "raw_request_sha256": "bdf5e96b4742d5ddeabd6526909957d2fed8e70bd0b6d9a0ad1e076ee77f7f75",
+      "semantic_delegation": {
+        "request": "Ask Claude whether the two exact filenames differ on APFS",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "Does `A_B-17` differ from `a_b-17` on APFS?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "Does `A_B-17` differ from `a_b-17` on APFS?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"Does `A_B-17` differ from `a_b-17` on APFS?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "Does `A_B-17` differ from `a_b-17` on APFS?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "Does `A_B-17` differ from `a_b-17` on APFS?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-24",
+      "split": "primary_targeted_100",
+      "raw_request": "Claude gets exactly: Review path ~/My Notes/Foo.JSON — keep case + spaces.",
+      "raw_request_sha256": "076afa99d80a50d9be84cf3e2bc785061113d4fb7e16ba4cd3dc00930c3fcb3f",
+      "semantic_delegation": {
+        "request": "Delegate the exact review instruction to the external agent",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "Review path ~/My Notes/Foo.JSON — keep case + spaces."
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "Review path ~/My Notes/Foo.JSON -- keep case + spaces."
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"Review path ~/My Notes/Foo.JSON -- keep case + spaces.\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "Review path ~/My Notes/Foo.JSON -- keep case + spaces."
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "Review path ~/My Notes/Foo.JSON -- keep case + spaces."
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-ask_claude-25",
+      "split": "primary_targeted_100",
+      "raw_request": "delegate... maybe to Claude? exact payload: Why did it output {\"tool\":null}?",
+      "raw_request_sha256": "8d416e52eab10c51aba3a4ed884329d536e6c2f86cfc1320498f428436e5a0b6",
+      "semantic_delegation": {
+        "request": "Delegate the exact question to an external reasoning agent",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "Why did it output {&quot;tool&quot;:null}?"
+        ]
+      },
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "Why did it output {&quot;tool&quot;:null}?"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"ask_claude\", \"arguments\": {\"question\": \"Why did it output {&quot;tool&quot;:null}?\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "ask_claude",
+              "arguments": {
+                "question": "Why did it output {&quot;tool&quot;:null}?"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "ask_claude",
+            "arguments": {
+              "question": "Why did it output {&quot;tool&quot;:null}?"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "ask_claude"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-01",
+      "split": "primary_targeted_100",
+      "raw_request": "Use the camera to find my keys.",
+      "raw_request_sha256": "c5d5a541a24f64ea2502c65a8c7bcbee3dfb03ddb0db16b3dc8b25908402d83b",
+      "semantic_delegation": {
+        "request": "Use the camera to locate the user's keys",
+        "domain_hint": "media",
+        "verbatim": [
+          "my keys"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "my keys"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"my keys\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "my keys"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "my keys"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-02",
+      "split": "primary_targeted_100",
+      "raw_request": "Describe what the camera can see right now.",
+      "raw_request_sha256": "e7948621ad14665b6c6efdd17880294633e1c7d883a1d29a88572de6c7b35aa7",
+      "semantic_delegation": {
+        "request": "inspect the current camera view and describe what is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {}
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {}
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {}
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-03",
+      "split": "primary_targeted_100",
+      "raw_request": "Look through Yuki's eye for my coffee mug.",
+      "raw_request_sha256": "548fa0a2f51a98f2e248c93ab6d922c5ec6a390cfaf74424bf8a982987cc5221",
+      "semantic_delegation": {
+        "request": "Use Yuki's camera/vision to locate the user's coffee mug in the current view",
+        "domain_hint": "media",
+        "verbatim": [
+          "coffee mug"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "coffee mug"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"coffee mug\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "coffee mug"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "coffee mug"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-04",
+      "split": "primary_targeted_100",
+      "raw_request": "Check the door with the camera.",
+      "raw_request_sha256": "25071cd96eca5d2ab7f953405096105297e147bb245fbf7f00bcd9e703f24ae9",
+      "semantic_delegation": {
+        "request": "Use the camera to inspect the door",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": null,
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": true,
+          "decoded": [],
+          "canonical_call": null,
+          "errors": []
+        },
+        "validation": {
+          "passed": false,
+          "errors": [
+            "Model rejected the delegated request."
+          ]
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-05",
+      "split": "primary_targeted_100",
+      "raw_request": "Find my red backpack in the room.",
+      "raw_request_sha256": "788fc174153bd200d63febac0aeb09eee403c53ea611a5d7342f8c7e76f67035",
+      "semantic_delegation": {
+        "request": "Use camera/vision to locate the user's red backpack in the room",
+        "domain_hint": "media",
+        "verbatim": [
+          "red backpack"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "red backpack"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"red backpack\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "red backpack"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "red backpack"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-06",
+      "split": "primary_targeted_100",
+      "raw_request": "Inspect the whiteboard using vision.",
+      "raw_request_sha256": "43beec5dc39ba73402a1532d1517c42ef9fed4144f4d4618af9bb89336eab093",
+      "semantic_delegation": {
+        "request": "inspect the whiteboard using vision",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": null,
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": true,
+          "decoded": [],
+          "canonical_call": null,
+          "errors": []
+        },
+        "validation": {
+          "passed": false,
+          "errors": [
+            "Model rejected the delegated request."
+          ]
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-07",
+      "split": "primary_targeted_100",
+      "raw_request": "Can the webcam spot my phone?",
+      "raw_request_sha256": "c8771769b787d2b23537537bb88cf0ac79d0e0299438e155355cc5b91ec2f889",
+      "semantic_delegation": {
+        "request": "Use the webcam to inspect the current scene and determine whether the user's phone is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": null,
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": true,
+          "decoded": [],
+          "canonical_call": null,
+          "errors": []
+        },
+        "validation": {
+          "passed": false,
+          "errors": [
+            "Model rejected the delegated request."
+          ]
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-08",
+      "split": "primary_targeted_100",
+      "raw_request": "Look around the room and describe the scene.",
+      "raw_request_sha256": "9beb77f44c412435d34d4e71cf130d86cb5f83960c06de0e337477fa9ab684a4",
+      "semantic_delegation": {
+        "request": "inspect the current room scene with the camera and describe what is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {}
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {}
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {}
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-09",
+      "split": "primary_targeted_100",
+      "raw_request": "Locate my charging cable with the camera.",
+      "raw_request_sha256": "0135cc440403256b2b16d38b2fa87fd510a391f542368d3936b15293ea49c317",
+      "semantic_delegation": {
+        "request": "Use the camera to visually locate the user's charging cable",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": null,
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": true,
+          "decoded": [],
+          "canonical_call": null,
+          "errors": []
+        },
+        "validation": {
+          "passed": false,
+          "errors": [
+            "Model rejected the delegated request."
+          ]
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-10",
+      "split": "primary_targeted_100",
+      "raw_request": "Point the camera toward the window and find the window.",
+      "raw_request_sha256": "59b17c717e72b2bfc0a8301f1b9c1db4c8db657b018a1071ef96867d34eb05e8",
+      "semantic_delegation": {
+        "request": "Use the camera to inspect the window and locate it in the view",
+        "domain_hint": "media",
+        "verbatim": [
+          "the window"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "the window"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"the window\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "the window"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "the window"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-11",
+      "split": "primary_targeted_100",
+      "raw_request": "Use vision to locate my wallet.",
+      "raw_request_sha256": "61c564fe36398cbd30d84a4bad236146a5147ca34545adc04c07993d4ba95b60",
+      "semantic_delegation": {
+        "request": "Use vision to locate the user's wallet",
+        "domain_hint": "media",
+        "verbatim": [
+          "my wallet"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "my wallet"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"my wallet\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "my wallet"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "my wallet"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-12",
+      "split": "primary_targeted_100",
+      "raw_request": "Use your eyes and track down my earbuds.",
+      "raw_request_sha256": "3147c4883dcbe773aabff2f9c0014e73bbed5b0e09eeb95e398dbee3f6839ac7",
+      "semantic_delegation": {
+        "request": "Use camera/vision to locate the user's earbuds",
+        "domain_hint": "media",
+        "verbatim": [
+          "earbuds"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "earbuds"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"earbuds\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "earbuds"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "earbuds"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-13",
+      "split": "primary_targeted_100",
+      "raw_request": "Take a look around—what's visible?",
+      "raw_request_sha256": "ab3a7adb934145371bd95b3291e0627cf1a7b2eeed393cbaa5cab5c4ec944d99",
+      "semantic_delegation": {
+        "request": "inspect the current visual scene",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {}
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {}
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {}
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-14",
+      "split": "primary_targeted_100",
+      "raw_request": "Could vision hunt for the blue notebook?",
+      "raw_request_sha256": "785946f052a169ccfa271d06ea67cc39dc6dd0f5d1927c8bac8cc78a71937db4",
+      "semantic_delegation": {
+        "request": "Use vision to locate the blue notebook",
+        "domain_hint": "media",
+        "verbatim": [
+          "blue notebook"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "blue notebook"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"blue notebook\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "blue notebook"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "blue notebook"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-15",
+      "split": "primary_targeted_100",
+      "raw_request": "Peek through the webcam for my glasses.",
+      "raw_request_sha256": "13a22dae6bf5deecfefa8a34b01023ffd9f8964a4591ab85cce44a77e4c50080",
+      "semantic_delegation": {
+        "request": "Capture and inspect the current webcam image to check the user's glasses",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": null,
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": true,
+          "decoded": [],
+          "canonical_call": null,
+          "errors": []
+        },
+        "validation": {
+          "passed": false,
+          "errors": [
+            "Model rejected the delegated request."
+          ]
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-16",
+      "split": "primary_targeted_100",
+      "raw_request": "Scan the room until you find the desk lamp.",
+      "raw_request_sha256": "549dd1dfee7ff50879073a2ed56dce5bac114c73cfc6e332b56007755f1a2e75",
+      "semantic_delegation": {
+        "request": "Use camera/vision to scan the room and locate the desk lamp",
+        "domain_hint": "media",
+        "verbatim": [
+          "desk lamp"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "desk lamp"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"desk lamp\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "desk lamp"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "desk lamp"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-17",
+      "split": "primary_targeted_100",
+      "raw_request": "what does yuki's eye see atm",
+      "raw_request_sha256": "7c36c4e56d032239bfb7509d1ce881746f47563a7ff9a8c163d7896fdda6fee4",
+      "semantic_delegation": {
+        "request": "inspect the current camera view",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {}
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {}
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {}
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-18",
+      "split": "primary_targeted_100",
+      "raw_request": "Find the printed image with the camera; do not generate a new image.",
+      "raw_request_sha256": "f8d86b2377c9e579b2b8754da56819b36f386b8f073bee6ea377a22e8e224c86",
+      "semantic_delegation": {
+        "request": "Use the camera to inspect and locate a printed image in the physical environment",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "printed image"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"printed image\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "printed image"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "printed image"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-19",
+      "split": "primary_targeted_100",
+      "raw_request": "Look at the thermostat display, not an online weather service.",
+      "raw_request_sha256": "1332c27162da263c6769c1ba7a03e041a1c76132bcf2841cb8132e9ca3f13429",
+      "semantic_delegation": {
+        "request": "inspect the thermostat display image",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "inspect the thermostat display image"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"image\", \"arguments\": {\"prompt\": \"inspect the thermostat display image\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "image",
+              "arguments": {
+                "prompt": "inspect the thermostat display image"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "image",
+            "arguments": {
+              "prompt": "inspect the thermostat display image"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-20",
+      "split": "primary_targeted_100",
+      "raw_request": "Visually inspect the terminal window; don't execute its command.",
+      "raw_request_sha256": "a578fed56b392c4e98f87eaa5aded6fbacad9c7da9e970d9deccd954405e44d2",
+      "semantic_delegation": {
+        "request": "Visually inspect the terminal window without executing its command",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "terminal window"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"terminal window\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "terminal window"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "terminal window"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-21",
+      "split": "primary_targeted_100",
+      "raw_request": "Find the notes file lying on my desk; do not read a filesystem file.",
+      "raw_request_sha256": "d0b64481681ee0134580ccc93e2ad6ee135f92081460aa24b87631fe339b4286",
+      "semantic_delegation": {
+        "request": "Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "selected_call": null,
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": true,
+          "decoded": [],
+          "canonical_call": null,
+          "errors": []
+        },
+        "validation": {
+          "passed": false,
+          "errors": [
+            "Model rejected the delegated request."
+          ]
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-22",
+      "split": "primary_targeted_100",
+      "raw_request": "Camera target exactly: USB-C adapter",
+      "raw_request_sha256": "b644e6962c3c40ae74b814cdd29288c633520f34e191719de993bb86578955d3",
+      "semantic_delegation": {
+        "request": "inspect the camera target exactly as USB-C adapter",
+        "domain_hint": "media",
+        "verbatim": [
+          "USB-C adapter"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "USB-C adapter"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"USB-C adapter\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "USB-C adapter"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "USB-C adapter"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-23",
+      "split": "primary_targeted_100",
+      "raw_request": "Locate `AirPods Pro` and preserve that capitalization.",
+      "raw_request_sha256": "e915a57b05bec1a44eac3c0502d4ea50d3f5e7aa2cc1fca5b02e2eb9d93b1632",
+      "semantic_delegation": {
+        "request": "Locate the item or information for the exact search term",
+        "domain_hint": "information",
+        "verbatim": [
+          "AirPods Pro"
+        ]
+      },
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "AirPods Pro"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"AirPods Pro\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "search",
+              "arguments": {
+                "query": "AirPods Pro"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "search",
+            "arguments": {
+              "query": "AirPods Pro"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "time",
+          "weather",
+          "fetch",
+          "search",
+          "calc"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-24",
+      "split": "primary_targeted_100",
+      "raw_request": "Use vision for the object named M.2 enclosure.",
+      "raw_request_sha256": "8f2392b5ab9ce75ebda36231ca46d5d34ea1f77ab0d586b981d2b6bf3941814d",
+      "semantic_delegation": {
+        "request": "Use vision to inspect the object named M.2 enclosure",
+        "domain_hint": "media",
+        "verbatim": [
+          "M.2 enclosure"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "M.2 enclosure"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"M.2 enclosure\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "M.2 enclosure"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "M.2 enclosure"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    },
+    {
+      "case_id": "p2-see-25",
+      "split": "primary_targeted_100",
+      "raw_request": "I can't describe it well—camera, find the 'red-ish cable'?",
+      "raw_request_sha256": "a8374fd5ba520c1f0baba904c361b2e43e4bb4a11f5b30be2bbf88b65f124688",
+      "semantic_delegation": {
+        "request": "Use the camera to locate a red-ish cable in the current view",
+        "domain_hint": "media",
+        "verbatim": [
+          "red-ish cable"
+        ]
+      },
+      "selected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "red-ish cable"
+        }
+      },
+      "hammer_record": {
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "raw_generation": "```\n[{\"name\": \"see\", \"arguments\": {\"target\": \"red-ish cable\"}}]",
+        "parse": {
+          "passed": true,
+          "malformed": false,
+          "rejected": false,
+          "decoded": [
+            {
+              "name": "see",
+              "arguments": {
+                "target": "red-ish cable"
+              }
+            }
+          ],
+          "canonical_call": {
+            "tool": "see",
+            "arguments": {
+              "target": "red-ish cable"
+            }
+          },
+          "errors": []
+        },
+        "validation": {
+          "passed": true,
+          "errors": []
+        },
+        "offered_tools": [
+          "see",
+          "image"
+        ],
+        "native_dialect": "hammer_fenced_tool_call_array",
+        "stateless": true,
+        "generation_count": 1,
+        "execution_capability": false
+      }
+    }
+  ]
+}

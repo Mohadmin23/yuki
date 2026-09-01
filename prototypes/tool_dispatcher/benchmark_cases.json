@@ -1,0 +1,92 @@
+[
+  {"case_id":"time-01","request":"What time is it?","expected_tool":"time","expected_arguments":{},"tags":["clear"]},
+  {"case_id":"time-02","request":"Tell me the current local time.","expected_tool":"time","expected_arguments":{},"tags":["paraphrase"]},
+  {"case_id":"time-03","request":"I need today's clock time; do not search the web.","expected_tool":"time","expected_arguments":{},"tags":["confusion"]},
+  {"case_id":"time-04","request":"Use Yuki's time capability now.","expected_tool":"time","expected_arguments":{},"tags":["explicit"]},
+
+  {"case_id":"weather-01","request":"What's the weather in Tokyo?","expected_tool":"weather","expected_arguments":{"city":"Tokyo"},"tags":["clear","confusion"]},
+  {"case_id":"weather-02","request":"Check the current weather for New York.","expected_tool":"weather","expected_arguments":{"city":"New York"},"tags":["paraphrase"]},
+  {"case_id":"weather-03","request":"Is it raining in Paris right now?","expected_tool":"weather","expected_arguments":{"city":"Paris"},"tags":["implicit"]},
+  {"case_id":"weather-04","request":"Get the live conditions for Algiers.","expected_tool":"weather","expected_arguments":{"city":"Algiers"},"tags":["paraphrase"]},
+
+  {"case_id":"fetch-01","request":"Fetch this exact URL: https://example.com/docs.","expected_tool":"fetch","expected_arguments":{"url":"https://example.com/docs"},"tags":["clear","confusion"]},
+  {"case_id":"fetch-02","request":"Download and extract https://www.rfc-editor.org/rfc/rfc8259.","expected_tool":"fetch","expected_arguments":{"url":"https://www.rfc-editor.org/rfc/rfc8259"},"tags":["url"]},
+  {"case_id":"fetch-03","request":"Open the contents of http://example.org/page for me.","expected_tool":"fetch","expected_arguments":{"url":"http://example.org/page"},"tags":["paraphrase"]},
+  {"case_id":"fetch-04","request":"Use fetch, not search, on https://example.net/api.","expected_tool":"fetch","expected_arguments":{"url":"https://example.net/api"},"tags":["explicit","confusion"]},
+
+  {"case_id":"search-01","request":"Search the web for weather APIs.","expected_tool":"search","expected_arguments":{"query":"weather APIs"},"tags":["clear","confusion"]},
+  {"case_id":"search-02","request":"Look up the latest MLX documentation.","expected_tool":"search","expected_arguments":{"query":"latest MLX documentation"},"tags":["paraphrase"]},
+  {"case_id":"search-03","request":"Find information online about local function-calling models.","expected_tool":"search","expected_arguments":{"query":"local function-calling models"},"tags":["paraphrase"]},
+  {"case_id":"search-04","request":"Search for JSON schema constrained decoding; there is no exact URL.","expected_tool":"search","expected_arguments":{"query":"JSON schema constrained decoding"},"tags":["confusion"]},
+
+  {"case_id":"calc-01","request":"Calculate 17 * 23.","expected_tool":"calc","expected_arguments":{"expression":"17 * 23"},"tags":["clear"]},
+  {"case_id":"calc-02","request":"What is (144 / 12) + 7?","expected_tool":"calc","expected_arguments":{"expression":"(144 / 12) + 7"},"tags":["paraphrase"]},
+  {"case_id":"calc-03","request":"Use the calculator for 2**10.","expected_tool":"calc","expected_arguments":{"expression":"2**10"},"tags":["explicit"]},
+  {"case_id":"calc-04","request":"Compute 81 % 7 without searching.","expected_tool":"calc","expected_arguments":{"expression":"81 % 7"},"tags":["confusion"]},
+
+  {"case_id":"hardware-01","request":"How much RAM is this Mac using?","expected_tool":"hardware","expected_arguments":{"metric":"ram"},"tags":["clear"]},
+  {"case_id":"hardware-02","request":"Show me the CPU status.","expected_tool":"hardware","expected_arguments":{"metric":"cpu"},"tags":["paraphrase"]},
+  {"case_id":"hardware-03","request":"Check disk usage on this computer.","expected_tool":"hardware","expected_arguments":{"metric":"disk"},"tags":["clear"]},
+  {"case_id":"hardware-04","request":"Give me all local hardware stats.","expected_tool":"hardware","expected_arguments":{"metric":"all"},"tags":["explicit"]},
+
+  {"case_id":"see-01","request":"Look through the camera and find my coffee mug.","expected_tool":"see","expected_arguments":{"target":"coffee mug"},"tags":["clear"]},
+  {"case_id":"see-02","request":"Describe what you can see right now.","expected_tool":"see","expected_arguments":{},"tags":["optional-argument"]},
+  {"case_id":"see-03","request":"Use Yuki's eye to locate my phone.","expected_tool":"see","expected_arguments":{"target":"phone"},"tags":["paraphrase"]},
+  {"case_id":"see-04","request":"Can the camera spot my keys?","expected_tool":"see","expected_arguments":{"target":"keys"},"tags":["confusion"]},
+
+  {"case_id":"image-01","request":"Generate an image with this exact prompt: neon fox under a rainy sign","expected_tool":"image","expected_arguments":{"prompt":"neon fox under a rainy sign"},"tags":["clear"]},
+  {"case_id":"image-02","request":"Use the image tool with this exact prompt: watercolor lighthouse at dawn","expected_tool":"image","expected_arguments":{"prompt":"watercolor lighthouse at dawn"},"tags":["explicit"]},
+  {"case_id":"image-03","request":"Create a picture using exactly: tiny robot watering sunflowers","expected_tool":"image","expected_arguments":{"prompt":"tiny robot watering sunflowers"},"tags":["paraphrase"]},
+  {"case_id":"image-04","request":"Make artwork from this exact prompt, not a text file: moonlit anime library","expected_tool":"image","expected_arguments":{"prompt":"moonlit anime library"},"tags":["confusion"]},
+
+  {"case_id":"read-01","request":"Read /tmp/test.txt.","expected_tool":"read","expected_arguments":{"filepath":"/tmp/test.txt"},"tags":["clear","confusion"]},
+  {"case_id":"read-02","request":"Open the local file ~/notes.md.","expected_tool":"read","expected_arguments":{"filepath":"~/notes.md"},"tags":["path"]},
+  {"case_id":"read-03","request":"Show me the contents of /Users/shared/report.json.","expected_tool":"read","expected_arguments":{"filepath":"/Users/shared/report.json"},"tags":["paraphrase"]},
+  {"case_id":"read-04","request":"Read /tmp/yuki_notes.txt from the filesystem, not Yuki's folder.","expected_tool":"read","expected_arguments":{"filepath":"/tmp/yuki_notes.txt"},"tags":["confusion"]},
+
+  {"case_id":"shell-01","request":"Run this allowed shell command: ls -la","expected_tool":"shell","expected_arguments":{"command":"ls -la"},"tags":["clear"]},
+  {"case_id":"shell-02","request":"Execute pwd in the shell.","expected_tool":"shell","expected_arguments":{"command":"pwd"},"tags":["explicit"]},
+  {"case_id":"shell-03","request":"Use the terminal command df -h.","expected_tool":"shell","expected_arguments":{"command":"df -h"},"tags":["paraphrase"]},
+  {"case_id":"shell-04","request":"Run uname -a, do not search for the answer.","expected_tool":"shell","expected_arguments":{"command":"uname -a"},"tags":["confusion"]},
+
+  {"case_id":"yuki-write-01","request":"Write exactly notes.txt|Buy oat milk into Yuki's files.","expected_tool":"yuki_write","expected_arguments":{"filename_and_content":"notes.txt|Buy oat milk"},"tags":["clear"]},
+  {"case_id":"yuki-write-02","request":"Create Yuki file poem.md with this exact payload: poem.md|stars over quiet water","expected_tool":"yuki_write","expected_arguments":{"filename_and_content":"poem.md|stars over quiet water"},"tags":["paraphrase"]},
+  {"case_id":"yuki-write-03","request":"Save this exact Yuki note: todo.txt|Call Sam tomorrow","expected_tool":"yuki_write","expected_arguments":{"filename_and_content":"todo.txt|Call Sam tomorrow"},"tags":["clear"]},
+  {"case_id":"yuki-write-04","request":"Make a text file in Yuki's folder using exactly draft.txt|chapter one, not an image.","expected_tool":"yuki_write","expected_arguments":{"filename_and_content":"draft.txt|chapter one"},"tags":["confusion"]},
+
+  {"case_id":"yuki-read-01","request":"Read my Yuki notes file notes.txt.","expected_tool":"yuki_read","expected_arguments":{"filename":"notes.txt"},"tags":["clear","confusion"]},
+  {"case_id":"yuki-read-02","request":"Open poem.md from Yuki's personal folder.","expected_tool":"yuki_read","expected_arguments":{"filename":"poem.md"},"tags":["paraphrase"]},
+  {"case_id":"yuki-read-03","request":"Show the Yuki file todo.txt.","expected_tool":"yuki_read","expected_arguments":{"filename":"todo.txt"},"tags":["clear"]},
+  {"case_id":"yuki-read-04","request":"Use Yuki read for journal.md, not the general filesystem reader.","expected_tool":"yuki_read","expected_arguments":{"filename":"journal.md"},"tags":["confusion"]},
+
+  {"case_id":"yuki-list-01","request":"List Yuki's files.","expected_tool":"yuki_list","expected_arguments":{},"tags":["clear","confusion"]},
+  {"case_id":"yuki-list-02","request":"What files are in Yuki's personal folder?","expected_tool":"yuki_list","expected_arguments":{},"tags":["paraphrase"]},
+  {"case_id":"yuki-list-03","request":"Show the names of all Yuki notes.","expected_tool":"yuki_list","expected_arguments":{},"tags":["paraphrase"]},
+  {"case_id":"yuki-list-04","request":"Use the Yuki file list, not shell ls.","expected_tool":"yuki_list","expected_arguments":{},"tags":["confusion"]},
+
+  {"case_id":"yuki-delete-01","request":"Delete notes.txt from Yuki's folder.","expected_tool":"yuki_delete","expected_arguments":{"filename":"notes.txt"},"tags":["clear"]},
+  {"case_id":"yuki-delete-02","request":"Remove the Yuki file poem.md.","expected_tool":"yuki_delete","expected_arguments":{"filename":"poem.md"},"tags":["paraphrase"]},
+  {"case_id":"yuki-delete-03","request":"Erase todo.txt from Yuki's personal files.","expected_tool":"yuki_delete","expected_arguments":{"filename":"todo.txt"},"tags":["paraphrase"]},
+  {"case_id":"yuki-delete-04","request":"Use Yuki delete on journal.md; do not run a shell command.","expected_tool":"yuki_delete","expected_arguments":{"filename":"journal.md"},"tags":["confusion"]},
+
+  {"case_id":"yuki-append-01","request":"Append exactly notes.txt|and buy coffee to Yuki's file.","expected_tool":"yuki_append","expected_arguments":{"filename_and_content":"notes.txt|and buy coffee"},"tags":["clear"]},
+  {"case_id":"yuki-append-02","request":"Add this exact payload to a Yuki file: log.txt|second entry","expected_tool":"yuki_append","expected_arguments":{"filename_and_content":"log.txt|second entry"},"tags":["paraphrase"]},
+  {"case_id":"yuki-append-03","request":"Extend poem.md using exactly poem.md|one more line","expected_tool":"yuki_append","expected_arguments":{"filename_and_content":"poem.md|one more line"},"tags":["clear"]},
+  {"case_id":"yuki-append-04","request":"Add, rather than overwrite, exactly todo.txt|Buy tea in Yuki's folder.","expected_tool":"yuki_append","expected_arguments":{"filename_and_content":"todo.txt|Buy tea"},"tags":["confusion"]},
+
+  {"case_id":"remember-01","request":"Remember exactly this fact: user's dog is named Max","expected_tool":"remember","expected_arguments":{"fact":"user's dog is named Max"},"tags":["clear","confusion"]},
+  {"case_id":"remember-02","request":"Store this fact exactly: user prefers dark mode","expected_tool":"remember","expected_arguments":{"fact":"user prefers dark mode"},"tags":["paraphrase"]},
+  {"case_id":"remember-03","request":"Keep this in memory exactly: user's favorite tea is jasmine","expected_tool":"remember","expected_arguments":{"fact":"user's favorite tea is jasmine"},"tags":["clear"]},
+  {"case_id":"remember-04","request":"Remember this new fact, do not recall old chats: user works nights","expected_tool":"remember","expected_arguments":{"fact":"user works nights"},"tags":["confusion"]},
+
+  {"case_id":"recall-01","request":"What did I previously tell you about the server crash?","expected_tool":"recall","expected_arguments":{"topic":"server crash"},"tags":["clear","confusion"]},
+  {"case_id":"recall-02","request":"Recall our past discussion about my sister's wedding.","expected_tool":"recall","expected_arguments":{"topic":"my sister's wedding"},"tags":["paraphrase"]},
+  {"case_id":"recall-03","request":"Look up our previous conversations about the garden project.","expected_tool":"recall","expected_arguments":{"topic":"garden project"},"tags":["paraphrase"]},
+  {"case_id":"recall-04","request":"Search my remembered conversations for laptop upgrade.","expected_tool":"recall","expected_arguments":{"topic":"laptop upgrade"},"tags":["confusion"]},
+
+  {"case_id":"ask-claude-01","request":"Ask Claude to inspect this error: TypeError in server.py","expected_tool":"ask_claude","expected_arguments":{"question":"inspect this error: TypeError in server.py"},"tags":["clear","confusion"]},
+  {"case_id":"ask-claude-02","request":"Send Claude this exact question: Why is the test hanging?","expected_tool":"ask_claude","expected_arguments":{"question":"Why is the test hanging?"},"tags":["explicit"]},
+  {"case_id":"ask-claude-03","request":"Have the other Claude review this message: check the schema adapter","expected_tool":"ask_claude","expected_arguments":{"question":"check the schema adapter"},"tags":["paraphrase"]},
+  {"case_id":"ask-claude-04","request":"Ask Claude, not web search: Is this traceback caused by asyncio?","expected_tool":"ask_claude","expected_arguments":{"question":"Is this traceback caused by asyncio?"},"tags":["confusion"]}
+]
+

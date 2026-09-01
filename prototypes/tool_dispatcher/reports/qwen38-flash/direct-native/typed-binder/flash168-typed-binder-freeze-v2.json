@@ -1,0 +1,43 @@
+{
+  "version": "flash168-typed-binder-freeze-v2",
+  "status": "frozen_before_scoring",
+  "frozen_sources": {
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/FLASH168-TYPED-BINDER-v1-FROZEN-MANIFEST.json": "3359e7c9aa4d1b9afa36b671eeb11a5ce700cbed1b4398e515f28f8366c774cf",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-typed-binder-comparison-v1.json": "662078150149ebf1f30ae444213c9e40204e062c1092a8157d3506bf9cef3ed0",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-typed-binder-input-v1.json": "eb71a6373a1e75f193e180d3a187e3576c9752fb1890a6ff178177a4767e5507",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/qwen38-flash-direct-native-screen-168-v1.json": "0c71c299cbd559a3c2a0f0dd67e90236620926cda1859db89072239a601baade",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-literal-source-annotations-v1.json": "3a5ee9f97f6771b6977a3652418cc89729cbf4d8341791543261c02ec6f9662e",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/phase2-cases.json": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466"
+  },
+  "development_probe": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-probe/literal-boundary-v1-vs-v2-comparison.json",
+    "sha256": "3ef6d50a53a991efeb5a43bba7ed44cd9a0ee52c5e15e205a1d8c2ef28aa42d9",
+    "gate_passed": true
+  },
+  "binder_source": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/typed_literal_binder_v2.py",
+    "sha256": "6b1cc7da143b8d8986d0063ae3c06343719b00a59850498f58340695ba85174c"
+  },
+  "binder_predictions": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-typed-binder-predictions-v2.json",
+    "sha256": "0b39c82492e1ede2b880510a4f5b2b88d054b220aaa38a9b3a4f00501c91d856"
+  },
+  "binder_abstentions": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-typed-binder-abstentions-v2.jsonl",
+    "sha256": "71363c689b1dfe26a581ed6739347785a43388ec2b6261d70c46db6921ac0f4b"
+  },
+  "literal_annotations": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-literal-source-annotations-v1.json",
+    "sha256": "3a5ee9f97f6771b6977a3652418cc89729cbf4d8341791543261c02ec6f9662e",
+    "available_to_binder": false
+  },
+  "safety": {
+    "models_called": false,
+    "new_generation": false,
+    "gold_available_to_binder": false,
+    "literal_annotations_available_to_binder": false,
+    "sacred_450_used": false,
+    "tool_execution_capability": false,
+    "tool_execution_attempts": 0
+  }
+}

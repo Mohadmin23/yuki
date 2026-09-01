@@ -1,0 +1,714 @@
+{
+  "version": "literal-boundary-development-probe-v1",
+  "status": "gold_and_annotations_free",
+  "purpose": "Fresh non-sacred deterministic literal payload-boundary development",
+  "case_count": 64,
+  "sacred_450_source": false,
+  "model_outputs_used": false,
+  "cases": [
+    {
+      "case_id": "boundary-ask-01",
+      "request": "Ask Claude: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-02",
+      "request": "Ask Claude this exact question: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-03",
+      "request": "Have Claude answer: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-04",
+      "request": "Send this to Claude: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-05",
+      "request": "Claude — check this for me: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-06",
+      "request": "I need Claude to handle this exact question: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-07",
+      "request": "Tell Claude: inspect the retry loop.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-08",
+      "request": "Delegate to Claude: review the parser boundary.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-09",
+      "request": "Could you ask Claude: does this preserve_case?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-10",
+      "request": "Please have Claude answer: is Foo.JSON different from foo.json?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-11",
+      "request": "Send Claude this question: where did the null come from?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-12",
+      "request": "Pass this to Claude: compare foo_bar() with fooBar().",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-13",
+      "request": "Consult Claude: check KeyError: city without rewriting it.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-14",
+      "request": "Claude: explain why x:y stays literal.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-15",
+      "request": "Claude — why did it output {\"tool\": null}?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-16",
+      "request": "I want Claude to review: A_B-17 vs a_b-17.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-17",
+      "request": "Have Claude inspect: /tmp/Foo Bar.txt",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-18",
+      "request": "Ask Claude to check the race condition.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "ask_to_payload"
+    },
+    {
+      "case_id": "boundary-ask-19",
+      "request": "Have Claude review the schema adapter.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "verb_payload"
+    },
+    {
+      "case_id": "boundary-ask-20",
+      "request": "Tell Claude to inspect traceback line 42.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "verb_payload"
+    },
+    {
+      "case_id": "boundary-ask-21",
+      "request": "Ask Claude: handle this exact question: why does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "payload_contains_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-22",
+      "request": "Ask Claude: Ask Claude to retry after five seconds.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "payload_contains_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-23",
+      "request": "Send this to Claude: Send this to Claude: preserve both copies.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "payload_contains_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-24",
+      "request": "Claude — I need Claude to handle this exact question: why now?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "payload_contains_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-25",
+      "request": "Have Claude answer: Have Claude answer: nested text.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "payload_contains_scaffolding"
+    },
+    {
+      "case_id": "boundary-ask-26",
+      "request": "Ask Claude this exact question: \"handle this exact question: why?\"",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "outer_quote_delimiter"
+    },
+    {
+      "case_id": "boundary-ask-27",
+      "request": "Send this to Claude: 'Ask Claude: keep this colon.'",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "outer_quote_delimiter"
+    },
+    {
+      "case_id": "boundary-ask-28",
+      "request": "Delegate to Claude: `Have Claude answer: yes?`",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "outer_quote_delimiter"
+    },
+    {
+      "case_id": "boundary-ask-29",
+      "request": "Ask Claude: explain the phrase \"handle this exact question:\" literally.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "inner_quote_payload"
+    },
+    {
+      "case_id": "boundary-ask-30",
+      "request": "Claude — check this for me: keep the words \"check this for me:\" intact.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "inner_quote_payload"
+    },
+    {
+      "case_id": "boundary-ask-31",
+      "request": "Ask Claude this exact question: why: does this fail?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "inner_colon_payload"
+    },
+    {
+      "case_id": "boundary-ask-32",
+      "request": "Have Claude answer: first: second: third",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "inner_colon_payload"
+    },
+    {
+      "case_id": "boundary-ask-33",
+      "request": "Send this to Claude: JSON {\"message\":\"Ask Claude: hi\"}",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "structured_payload"
+    },
+    {
+      "case_id": "boundary-ask-34",
+      "request": "I need Claude to handle this exact question: compare A:B with A::B.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "inner_colon_payload"
+    },
+    {
+      "case_id": "boundary-ask-35",
+      "request": "Ask Claude: Do not strip \"Ask Claude:\" from this payload.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "negative_instruction_payload"
+    },
+    {
+      "case_id": "boundary-ask-36",
+      "request": "Claude — \"Ask Claude: why?\"",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "outer_quote_delimiter"
+    },
+    {
+      "case_id": "boundary-ask-37",
+      "request": "Send this to Claude: `why does foo_bar() fail?`",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "outer_quote_delimiter"
+    },
+    {
+      "case_id": "boundary-ask-38",
+      "request": "Have Claude answer: \"why does this fail?\" exactly as written.",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "inner_quote_payload"
+    },
+    {
+      "case_id": "boundary-ask-39",
+      "request": "Ask Claude: colon at end -> value:",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "terminal_colon_payload"
+    },
+    {
+      "case_id": "boundary-ask-40",
+      "request": "Ask Claude: question mark stays?",
+      "selected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "semantic external-agent request"
+        }
+      },
+      "family": "terminal_question_payload"
+    },
+    {
+      "case_id": "boundary-search-01",
+      "request": "Search for handle this exact question: parser behavior.",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "family": "cross_tool_prefix_text"
+    },
+    {
+      "case_id": "boundary-search-02",
+      "request": "Search the web for \"Ask Claude: why?\"",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "family": "outer_quote_delimiter"
+    },
+    {
+      "case_id": "boundary-search-03",
+      "request": "Search query: site:example.com \"exact phrase\"",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "family": "inner_quote_payload"
+    },
+    {
+      "case_id": "boundary-search-04",
+      "request": "Look up why:path handling differs.",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "family": "inner_colon_payload"
+    },
+    {
+      "case_id": "boundary-search-05",
+      "request": "Find information online about Send this to Claude: conventions.",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "family": "cross_tool_prefix_text"
+    },
+    {
+      "case_id": "boundary-search-06",
+      "request": "Search for C++ A::B vs A:B.",
+      "selected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "semantic search query"
+        }
+      },
+      "family": "inner_colon_payload"
+    },
+    {
+      "case_id": "boundary-image-01",
+      "request": "Generate an image with this exact prompt: \"Claude — neon rain\"",
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "semantic image prompt"
+        }
+      },
+      "family": "outer_quote_delimiter"
+    },
+    {
+      "case_id": "boundary-image-02",
+      "request": "Create a picture using exactly: handle this exact question: a red fox",
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "semantic image prompt"
+        }
+      },
+      "family": "cross_tool_prefix_text"
+    },
+    {
+      "case_id": "boundary-image-03",
+      "request": "Use the image tool with this exact prompt: text reading \"Ask Claude:\" in neon",
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "semantic image prompt"
+        }
+      },
+      "family": "inner_quote_payload"
+    },
+    {
+      "case_id": "boundary-image-04",
+      "request": "Make artwork from this exact prompt, not a text file: A:B — C::D",
+      "selected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "semantic image prompt"
+        }
+      },
+      "family": "inner_colon_payload"
+    },
+    {
+      "case_id": "boundary-read-01",
+      "request": "Read exactly /tmp/handle this exact question.txt.",
+      "selected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "semantic path"
+        }
+      },
+      "family": "path_boundary"
+    },
+    {
+      "case_id": "boundary-read-02",
+      "request": "Read /Users/me/Send this to Claude/Plan.md from the computer.",
+      "selected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "semantic path"
+        }
+      },
+      "family": "path_boundary"
+    },
+    {
+      "case_id": "boundary-read-03",
+      "request": "Open the local file ~/Claude — notes.md.",
+      "selected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "semantic path"
+        }
+      },
+      "family": "path_boundary"
+    },
+    {
+      "case_id": "boundary-read-04",
+      "request": "Read ./HandleThisExactQuestion.JSON.",
+      "selected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "semantic path"
+        }
+      },
+      "family": "path_boundary"
+    },
+    {
+      "case_id": "boundary-fetch-01",
+      "request": "Fetch this exact URL: https://example.com/Ask-Claude:why?x=A:B.",
+      "selected_call": {
+        "tool": "fetch",
+        "arguments": {
+          "url": "semantic URL"
+        }
+      },
+      "family": "url_boundary"
+    },
+    {
+      "case_id": "boundary-fetch-02",
+      "request": "Open contents of https://example.org/path?q=handle+this+exact+question.",
+      "selected_call": {
+        "tool": "fetch",
+        "arguments": {
+          "url": "semantic URL"
+        }
+      },
+      "family": "url_boundary"
+    },
+    {
+      "case_id": "boundary-shell-01",
+      "request": "Run this allowed shell command: printf 'Ask Claude: %s' test",
+      "selected_call": {
+        "tool": "shell",
+        "arguments": {
+          "command": "semantic shell command"
+        }
+      },
+      "family": "command_boundary"
+    },
+    {
+      "case_id": "boundary-shell-02",
+      "request": "Execute echo 'handle this exact question:' in the shell.",
+      "selected_call": {
+        "tool": "shell",
+        "arguments": {
+          "command": "semantic shell command"
+        }
+      },
+      "family": "command_boundary"
+    },
+    {
+      "case_id": "boundary-yuki-01",
+      "request": "Write exactly claude.txt|Ask Claude: why? into Yuki's files.",
+      "selected_call": {
+        "tool": "yuki_write",
+        "arguments": {
+          "filename_and_content": "claude.txt|semantic content"
+        }
+      },
+      "family": "composite_boundary"
+    },
+    {
+      "case_id": "boundary-yuki-02",
+      "request": "Append exactly notes.txt|handle this exact question: later to Yuki's file.",
+      "selected_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "notes.txt|semantic content"
+        }
+      },
+      "family": "composite_boundary"
+    },
+    {
+      "case_id": "boundary-yuki-03",
+      "request": "Read my Yuki notes file Ask Claude notes.txt.",
+      "selected_call": {
+        "tool": "yuki_read",
+        "arguments": {
+          "filename": "semantic filename"
+        }
+      },
+      "family": "filename_boundary"
+    },
+    {
+      "case_id": "boundary-yuki-04",
+      "request": "Delete Handle This Exact Question.md from Yuki's folder.",
+      "selected_call": {
+        "tool": "yuki_delete",
+        "arguments": {
+          "filename": "semantic filename"
+        }
+      },
+      "family": "filename_boundary"
+    },
+    {
+      "case_id": "boundary-yuki-05",
+      "request": "Create Yuki file task.txt with this exact payload: task.txt|Claude: review A:B",
+      "selected_call": {
+        "tool": "yuki_write",
+        "arguments": {
+          "filename_and_content": "task.txt|semantic content"
+        }
+      },
+      "family": "composite_boundary"
+    },
+    {
+      "case_id": "boundary-yuki-06",
+      "request": "Add this exact payload to a Yuki file: log.txt|Claude — keep this",
+      "selected_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "log.txt|semantic content"
+        }
+      },
+      "family": "composite_boundary"
+    }
+  ]
+}

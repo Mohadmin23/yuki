@@ -1,0 +1,175 @@
+{
+  "comparison": {
+    "case_count": 8,
+    "same_cases_verified": true,
+    "routing_only": true,
+    "tool_execution_attempts": 0,
+    "reliability_conclusion_allowed": false,
+    "phase": "phase_1_smoke"
+  },
+  "ranking_by_exact_call_accuracy": [
+    "Hammer2.1-1.5B — remember-vs-recall",
+    "Hammer2.1-3B — remember-vs-recall"
+  ],
+  "oracle_effects_by_model": {},
+  "models": [
+    {
+      "label": "Hammer2.1-1.5B",
+      "experiment_label": "Hammer2.1-1.5B — remember-vs-recall",
+      "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+      "report_path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/oracle/hammer21-1.5b-remember-vs-recall.json",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "oracle_profile": "remember-vs-recall",
+      "oracle_subsets": {
+        "remember-vs-recall": {
+          "tools": [
+            "remember",
+            "recall"
+          ],
+          "case_count": 8
+        }
+      },
+      "total_cases": 8,
+      "tool_selection_accuracy": 1.0,
+      "argument_accuracy": 1.0,
+      "strict_argument_accuracy": 1.0,
+      "exact_call_accuracy": 1.0,
+      "schema_valid_output_rate": 1.0,
+      "malformed_output_rate": 0.0,
+      "average_inference_latency_ms": 2346.4455,
+      "end_to_end_generated_tokens_per_second": 9.322611584202573,
+      "normalized_output_count": 8,
+      "json_complete_rate": 1.0,
+      "peak_memory_gb": 3.4366,
+      "process_rss_mb": 3489.094,
+      "failures": 0,
+      "failures_by_expected_tool": {},
+      "confusion_matrix": {
+        "remember": {
+          "remember": 4
+        },
+        "recall": {
+          "recall": 4
+        }
+      },
+      "metrics_by_tag": {
+        "clear": {
+          "total_cases": 3,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "confusion": {
+          "total_cases": 4,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "paraphrase": {
+          "total_cases": 3,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        }
+      },
+      "execution_equivalent_argument_accuracy": 1.0,
+      "strict_exact_call_accuracy": 1.0,
+      "execution_equivalent_call_accuracy": 1.0,
+      "p50_inference_latency_ms": 2318.9055,
+      "p95_inference_latency_ms": 2492.5346,
+      "aggregate_generation_tokens_per_second": 19.554999499587666,
+      "median_backend_reported_tokens_per_second": 19.564500000000002
+    },
+    {
+      "label": "Hammer2.1-3B",
+      "experiment_label": "Hammer2.1-3B — remember-vs-recall",
+      "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+      "report_path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/oracle/hammer21-3b-remember-vs-recall.json",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "oracle_profile": "remember-vs-recall",
+      "oracle_subsets": {
+        "remember-vs-recall": {
+          "tools": [
+            "remember",
+            "recall"
+          ],
+          "case_count": 8
+        }
+      },
+      "total_cases": 8,
+      "tool_selection_accuracy": 1.0,
+      "argument_accuracy": 1.0,
+      "strict_argument_accuracy": 1.0,
+      "exact_call_accuracy": 1.0,
+      "schema_valid_output_rate": 1.0,
+      "malformed_output_rate": 0.0,
+      "average_inference_latency_ms": 5331.1627499999995,
+      "end_to_end_generated_tokens_per_second": 4.103232451494751,
+      "normalized_output_count": 8,
+      "json_complete_rate": 1.0,
+      "peak_memory_gb": 6.5053,
+      "process_rss_mb": 957.891,
+      "failures": 0,
+      "failures_by_expected_tool": {},
+      "confusion_matrix": {
+        "remember": {
+          "remember": 4
+        },
+        "recall": {
+          "recall": 4
+        }
+      },
+      "metrics_by_tag": {
+        "clear": {
+          "total_cases": 3,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "confusion": {
+          "total_cases": 4,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "paraphrase": {
+          "total_cases": 3,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        }
+      },
+      "execution_equivalent_argument_accuracy": 1.0,
+      "strict_exact_call_accuracy": 1.0,
+      "execution_equivalent_call_accuracy": 1.0,
+      "p50_inference_latency_ms": 4997.4205,
+      "p95_inference_latency_ms": 6575.88225,
+      "aggregate_generation_tokens_per_second": 9.71270950844927,
+      "median_backend_reported_tokens_per_second": 9.7235
+    }
+  ]
+}

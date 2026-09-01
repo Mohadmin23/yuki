@@ -1,0 +1,35 @@
+{
+  "version": "flash168-typed-binder-v1-frozen-manifest",
+  "status": "frozen_do_not_modify_or_rescore_in_place",
+  "frozen_at": "2026-08-26",
+  "result": {
+    "historical_strict_raw": "145/168",
+    "historical_strict_bound": "161/168",
+    "typed_contract_raw": "148/168",
+    "typed_contract_bound": "166/168",
+    "annotated_literal_raw": "85/104",
+    "annotated_literal_bound": "103/104",
+    "historical_regressions": 1,
+    "typed_regressions": 1,
+    "schema_regressions": 0,
+    "decision": "FAIL_ZERO_REGRESSION_GATE"
+  },
+  "artifacts": {
+    "typed_literal_binder.py": "0ca26737b6017f907b46860be30c3770ec5ccfe6ef25d7505130c50b6104d602",
+    "flash168-literal-source-annotations-v1.json": "3a5ee9f97f6771b6977a3652418cc89729cbf4d8341791543261c02ec6f9662e",
+    "flash168-typed-binder-input-v1.json": "eb71a6373a1e75f193e180d3a187e3576c9752fb1890a6ff178177a4767e5507",
+    "flash168-typed-binder-predictions-v1.json": "c36cd4b6850d546c2b19dc485a5f463f3ac4c1833ad70bc06c7bf0befeee0f58",
+    "flash168-typed-binder-freeze-v1.json": "78b6b6e053700c9f557b98801923a8811bb98eed6b804231bdcd88978b57362b",
+    "flash168-typed-binder-comparison-v1.json": "662078150149ebf1f30ae444213c9e40204e062c1092a8157d3506bf9cef3ed0",
+    "flash168-typed-binder-cases-v1.jsonl": "e5751168f5b5290b98a91dec4faa47ef858c3ed8cb4b59bef18c89393e1c5c33",
+    "FLASH168-TYPED-BINDER-REPLAY-REPORT.md": "eceb7ec8772464ace9ffb90c7c8f79e9621dd566d35912be9a013940bd24d77e",
+    "FLASH168-TYPED-BINDER-SHA256SUMS-v1.txt": "506ffd9e8e0a19b935a35436967e1cd6cbc1c2ea3c3781285adbe55453147aaf"
+  },
+  "sacred_phase2_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+  "safety": {
+    "models_called": false,
+    "new_generation": false,
+    "yuki_tools_executed": false,
+    "sacred_450_run": false
+  }
+}

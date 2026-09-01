@@ -1,0 +1,165 @@
+{
+  "version": "yuki-argument-contract-v1",
+  "scope": "prototype_only",
+  "description": "Field-level transport and scoring contract for the 18 live Yuki tools. This does not modify production tool metadata or implementations.",
+  "modes": {
+    "no_argument": "The tool has no argument payload.",
+    "literal_source": "The final value must be copied character-for-character from one or more spans of the immutable raw user request.",
+    "semantic_argument": "The value is a canonical semantic extraction and may normalize wording without changing intent."
+  },
+  "literal_policy": {
+    "character_source": "raw_user_request_only",
+    "normalization_allowed": false,
+    "model_generated_text_allowed": false,
+    "ambiguous_span_behavior": "abstain",
+    "request_scaffolding_is_payload": false,
+    "delimiter_rule": "Quotation marks or code fences used only to delimit a payload are excluded; characters inside the delimiters are preserved.",
+    "composite_rule": "Every component must be an exact source span. Only the contract-declared separator may be inserted deterministically."
+  },
+  "semantic_policy": {
+    "model_may_normalize": true,
+    "model_may_change_intent": false,
+    "deterministic_comparators_only": true,
+    "unlisted_paraphrase_behavior": "fail_or_require_an_explicit_accepted_alternative"
+  },
+  "tools": {
+    "time": {
+      "argument": null,
+      "mode": "no_argument",
+      "required": false,
+      "comparison": "empty_object",
+      "rationale": "Current date/time requires no user payload."
+    },
+    "weather": {
+      "argument": "city",
+      "mode": "semantic_argument",
+      "required": true,
+      "comparison": "normalized_text",
+      "rationale": "A place name may be extracted from surrounding grammar and compared without case or whitespace sensitivity."
+    },
+    "fetch": {
+      "argument": "url",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "rationale": "Changing any URL character can address a different resource."
+    },
+    "search": {
+      "argument": "query",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "rationale": "The search payload is user-authored transport. Casing, punctuation, operators, quotes, and wording can affect results."
+    },
+    "calc": {
+      "argument": "expression",
+      "mode": "semantic_argument",
+      "required": true,
+      "comparison": "calc_ast",
+      "rationale": "Whitespace and redundant parentheses may normalize while the parsed arithmetic structure must remain identical."
+    },
+    "hardware": {
+      "argument": "metric",
+      "mode": "semantic_argument",
+      "required": false,
+      "comparison": "enum_exact",
+      "omitted_equivalent_to": "all",
+      "rationale": "Natural language must map to Yuki's canonical hardware metric enum; this is classification, not source copying."
+    },
+    "see": {
+      "argument": "target",
+      "mode": "semantic_argument",
+      "required": false,
+      "comparison": "referent_phrase",
+      "omitted_behavior": "describe_scene",
+      "rationale": "The target identifies an object or scene intent. Articles and possessives such as 'my keys' versus 'keys' need not be preserved."
+    },
+    "image": {
+      "argument": "prompt",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "rationale": "Creative prompt wording, punctuation, capitalization, quoted labels, and style tokens are user-authored payload and must survive transport."
+    },
+    "read": {
+      "argument": "filepath",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "rationale": "Filesystem paths are case- and character-sensitive."
+    },
+    "shell": {
+      "argument": "command",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "rationale": "Shell syntax is character-sensitive and must never be regenerated or normalized by the binder."
+    },
+    "yuki_write": {
+      "argument": "filename_and_content",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "components": [
+        "filename",
+        "content"
+      ],
+      "deterministic_separator": "|",
+      "rationale": "Both the Yuki filename and replacement content are exact-sensitive; only the pipe transport separator may be inserted."
+    },
+    "yuki_read": {
+      "argument": "filename",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "rationale": "Yuki-store filenames are case- and character-sensitive identifiers."
+    },
+    "yuki_list": {
+      "argument": null,
+      "mode": "no_argument",
+      "required": false,
+      "comparison": "empty_object",
+      "rationale": "Listing Yuki's managed store requires no argument."
+    },
+    "yuki_delete": {
+      "argument": "filename",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "rationale": "The destructive target filename must be preserved exactly."
+    },
+    "yuki_append": {
+      "argument": "filename_and_content",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "components": [
+        "filename",
+        "content"
+      ],
+      "deterministic_separator": "|",
+      "rationale": "Both the existing Yuki filename and appended content are exact-sensitive; only the pipe transport separator may be inserted."
+    },
+    "remember": {
+      "argument": "fact",
+      "mode": "semantic_argument",
+      "required": true,
+      "comparison": "semantic_reference",
+      "rationale": "Yuki stores a short standalone fact, so first-person user wording may need a faithful perspective-normalized note."
+    },
+    "recall": {
+      "argument": "topic",
+      "mode": "semantic_argument",
+      "required": true,
+      "comparison": "referent_phrase",
+      "rationale": "Recall needs a compact retrieval topic, not a lossless copy of the user's full memory question."
+    },
+    "ask_claude": {
+      "argument": "question",
+      "mode": "literal_source",
+      "required": true,
+      "comparison": "literal_character_exact",
+      "rationale": "The external agent should receive the user's intended question or message without model rewriting."
+    }
+  }
+}

@@ -1,0 +1,2931 @@
+{
+  "configuration": {
+    "router_mode": "model_only",
+    "output_mode": "native",
+    "native_dialect": "openai_native_tool_calls",
+    "backend": "openrouter-native-tools",
+    "model_id": "openai/gpt-oss-20b",
+    "group": "all",
+    "available_tools": [
+      "time",
+      "weather",
+      "fetch",
+      "search",
+      "calc",
+      "hardware",
+      "see",
+      "image",
+      "read",
+      "shell",
+      "yuki_write",
+      "yuki_read",
+      "yuki_list",
+      "yuki_delete",
+      "yuki_append",
+      "remember",
+      "recall",
+      "ask_claude"
+    ],
+    "oracle_profile": null,
+    "oracle_subsets": {},
+    "execute": false,
+    "phase": "phase_1_smoke",
+    "experiment": "gpt_oss_direct_all_18_native_tools",
+    "selection": "smoke-18",
+    "exposure_condition": "all_18_real_yuki_schemas",
+    "schema_profile": "live_registry_strict_validation_adapter",
+    "schema_sha256": "22139a7c2a7ad583ec38b1fb98715e876c1a9b51554607859bde75688dc6523d",
+    "phase2_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "selection_source_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "native_api_tool_calls": true,
+    "tool_choice": "required",
+    "parallel_tool_calls": false,
+    "reasoning_effort": "low",
+    "reasoning_excluded_from_output": true,
+    "generation_count_per_case": 1,
+    "stateless": true,
+    "execution_capability": false,
+    "yuki_tool_execution_attempts": 0,
+    "binder_used": false,
+    "qwen_used": false,
+    "hammer_used": false,
+    "regex_router_used": false
+  },
+  "metrics": {
+    "total_cases": 18,
+    "model_invocations": 18,
+    "tool_selection_accuracy": 0.0,
+    "argument_accuracy": 0.0,
+    "strict_argument_accuracy": 0.0,
+    "execution_equivalent_argument_accuracy": 0.0,
+    "exact_call_accuracy": 0.0,
+    "execution_equivalent_call_accuracy": 0.0,
+    "schema_valid_output_rate": 0.0,
+    "malformed_output_rate": 0.0,
+    "average_inference_latency_ms": null,
+    "p50_inference_latency_ms": null,
+    "p95_inference_latency_ms": null,
+    "average_tokens_per_second": null,
+    "mean_backend_reported_tokens_per_second": null,
+    "median_backend_reported_tokens_per_second": null,
+    "end_to_end_generated_tokens_per_second": null,
+    "execution_attempts": 0,
+    "execution_passes": 0
+  },
+  "failures_by_expected_tool": {
+    "time": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "weather": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "fetch": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "search": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "calc": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "hardware": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "see": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "image": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "read": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "shell": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "yuki_write": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "yuki_read": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "yuki_list": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "yuki_delete": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "yuki_append": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "remember": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "recall": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "ask_claude": {
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    }
+  },
+  "confusion_matrix": {
+    "time": {
+      "<none>": 1
+    },
+    "weather": {
+      "<none>": 1
+    },
+    "fetch": {
+      "<none>": 1
+    },
+    "search": {
+      "<none>": 1
+    },
+    "calc": {
+      "<none>": 1
+    },
+    "hardware": {
+      "<none>": 1
+    },
+    "see": {
+      "<none>": 1
+    },
+    "image": {
+      "<none>": 1
+    },
+    "read": {
+      "<none>": 1
+    },
+    "shell": {
+      "<none>": 1
+    },
+    "yuki_write": {
+      "<none>": 1
+    },
+    "yuki_read": {
+      "<none>": 1
+    },
+    "yuki_list": {
+      "<none>": 1
+    },
+    "yuki_delete": {
+      "<none>": 1
+    },
+    "yuki_append": {
+      "<none>": 1
+    },
+    "remember": {
+      "<none>": 1
+    },
+    "recall": {
+      "<none>": 1
+    },
+    "ask_claude": {
+      "<none>": 1
+    }
+  },
+  "case_results": [
+    {
+      "index": 0,
+      "case_id": "p2-time-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "time"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "What time is it right now?",
+      "expected_tool": "time",
+      "expected_arguments": {},
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "no_arguments",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 1,
+      "case_id": "p2-weather-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "weather"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Is it jacket weather in Glasgow right now?",
+      "expected_tool": "weather",
+      "expected_arguments": {
+        "city": "Glasgow"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 2,
+      "case_id": "p2-fetch-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "fetch"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Fetch this exact URL; do not search for it: https://example.com/guide",
+      "expected_tool": "fetch",
+      "expected_arguments": {
+        "url": "https://example.com/guide"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 3,
+      "case_id": "p2-search-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "search"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Search exactly for: C++ std::filesystem path case-sensitivity",
+      "expected_tool": "search",
+      "expected_arguments": {
+        "query": "C++ std::filesystem path case-sensitivity"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 4,
+      "case_id": "p2-calc-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "calc"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "tool delegation is messy, but the arithmetic is ((1+2)*(3+4))%5",
+      "expected_tool": "calc",
+      "expected_arguments": {
+        "expression": "((1+2)*(3+4))%5"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "calc_ast",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 5,
+      "case_id": "p2-hardware-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "hardware"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "How much RAM is this Mac using?",
+      "expected_tool": "hardware",
+      "expected_arguments": {
+        "metric": "ram"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 6,
+      "case_id": "p2-see-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Use your eyes and track down my earbuds.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "earbuds"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 7,
+      "case_id": "p2-image-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "camera-shaped sculpture"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 8,
+      "case_id": "p2-read-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "read"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Preserve case exactly when reading /tmp/FooBar.JSON.",
+      "expected_tool": "read",
+      "expected_arguments": {
+        "filepath": "/tmp/FooBar.JSON"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 9,
+      "case_id": "p2-shell-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "shell"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "The delegation is noisy [shell??], but run: ls -la /tmp/does-not-exist",
+      "expected_tool": "shell",
+      "expected_arguments": {
+        "command": "ls -la /tmp/does-not-exist"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 10,
+      "case_id": "p2-yuki_write-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "yuki_write"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Write this into Yuki's file: todo.txt|buy oat milk",
+      "expected_tool": "yuki_write",
+      "expected_arguments": {
+        "filename_and_content": "todo.txt|buy oat milk"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 11,
+      "case_id": "p2-yuki_read-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "yuki_read"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Pull up your own little file called snack.txt.",
+      "expected_tool": "yuki_read",
+      "expected_arguments": {
+        "filename": "snack.txt"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 12,
+      "case_id": "p2-yuki_list-21",
+      "tags": [
+        "phase2",
+        "confusion",
+        "yuki_list"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Use Yuki file listing, not shell `ls`.",
+      "expected_tool": "yuki_list",
+      "expected_arguments": {},
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "no_arguments",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 13,
+      "case_id": "p2-yuki_delete-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "yuki_delete"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Delete filename exactly `OldNotes.MD` from Yuki.",
+      "expected_tool": "yuki_delete",
+      "expected_arguments": {
+        "filename": "OldNotes.MD"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 14,
+      "case_id": "p2-yuki_append-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "yuki_append"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "append-ish request... odd name.txt gets `? value_2`",
+      "expected_tool": "yuki_append",
+      "expected_arguments": {
+        "filename_and_content": "odd name.txt|? value_2"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 15,
+      "case_id": "p2-remember-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Remember exactly this fact: user's dog is named Pixel",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's dog is named Pixel"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 16,
+      "case_id": "p2-recall-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Can you dig into our shared past for the database migration topic?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "database migration"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 17,
+      "case_id": "p2-ask_claude-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "ask_claude"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "expected_tool": "ask_claude",
+      "expected_arguments": {
+        "question": "about Tokyo weather routing; do not use weather directly"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "raw_text": "",
+        "error": "NotFoundError: Error code: 404 - {'error': {'message': 'No endpoints found that can handle the requested parameters. To learn more about provider routing, visit: https://openrouter.ai/docs/guides/routing/provider-selection', 'code': 404}}",
+        "generated_tokens": null,
+        "tokens_per_second": null,
+        "latency_ms": null
+      },
+      "parse": {
+        "passed": false,
+        "malformed": false,
+        "rejected": false,
+        "decoded": null,
+        "canonical_call": null,
+        "errors": [
+          "Model generation failed before parsing."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Generation failed."
+        ]
+      },
+      "execution": {
+        "status": "generation_failed",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    }
+  ],
+  "fine_tuning_examples": [
+    {
+      "case_id": "p2-time-01",
+      "request": "What time is it right now?",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "time",
+        "arguments": {}
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "no_arguments",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-weather-12",
+      "request": "Is it jacket weather in Glasgow right now?",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "weather",
+        "arguments": {
+          "city": "Glasgow"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-fetch-18",
+      "request": "Fetch this exact URL; do not search for it: https://example.com/guide",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "fetch",
+        "arguments": {
+          "url": "https://example.com/guide"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-search-22",
+      "request": "Search exactly for: C++ std::filesystem path case-sensitivity",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "C++ std::filesystem path case-sensitivity"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-calc-25",
+      "request": "tool delegation is messy, but the arithmetic is ((1+2)*(3+4))%5",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "calc",
+        "arguments": {
+          "expression": "((1+2)*(3+4))%5"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "calc_ast",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-hardware-01",
+      "request": "How much RAM is this Mac using?",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "hardware",
+        "arguments": {
+          "metric": "ram"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-see-12",
+      "request": "Use your eyes and track down my earbuds.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "see",
+        "arguments": {
+          "target": "earbuds"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-image-18",
+      "request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "camera-shaped sculpture"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-read-22",
+      "request": "Preserve case exactly when reading /tmp/FooBar.JSON.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "/tmp/FooBar.JSON"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-shell-25",
+      "request": "The delegation is noisy [shell??], but run: ls -la /tmp/does-not-exist",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "shell",
+        "arguments": {
+          "command": "ls -la /tmp/does-not-exist"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-yuki_write-01",
+      "request": "Write this into Yuki's file: todo.txt|buy oat milk",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "yuki_write",
+        "arguments": {
+          "filename_and_content": "todo.txt|buy oat milk"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-yuki_read-12",
+      "request": "Pull up your own little file called snack.txt.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "yuki_read",
+        "arguments": {
+          "filename": "snack.txt"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-yuki_list-21",
+      "request": "Use Yuki file listing, not shell `ls`.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "yuki_list",
+        "arguments": {}
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "no_arguments",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-yuki_delete-22",
+      "request": "Delete filename exactly `OldNotes.MD` from Yuki.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "yuki_delete",
+        "arguments": {
+          "filename": "OldNotes.MD"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-yuki_append-25",
+      "request": "append-ish request... odd name.txt gets `? value_2`",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "odd name.txt|? value_2"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-remember-01",
+      "request": "Remember exactly this fact: user's dog is named Pixel",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "remember",
+        "arguments": {
+          "fact": "user's dog is named Pixel"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-recall-12",
+      "request": "Can you dig into our shared past for the database migration topic?",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "recall",
+        "arguments": {
+          "topic": "database migration"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-ask_claude-18",
+      "request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "about Tokyo weather routing; do not use weather directly"
+        }
+      },
+      "raw_generation": "",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    }
+  ],
+  "api_usage": {
+    "cost_usd": 0,
+    "cost_reported_cases": 0,
+    "providers": [],
+    "average_reasoning_tokens": 0,
+    "maximum_reasoning_tokens": 0
+  },
+  "by_expected_tool": {
+    "ask_claude": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "calc": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "fetch": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "hardware": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "image": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "read": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "recall": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "remember": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "search": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "see": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "shell": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "time": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "weather": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_append": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_delete": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_list": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_read": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_write": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    }
+  },
+  "by_dataset_category": {
+    "adversarial": {
+      "cases": 3,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "confusion": {
+      "cases": 4,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "normal": {
+      "cases": 4,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "paraphrase": {
+      "cases": 4,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "preservation": {
+      "cases": 3,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    }
+  }
+}

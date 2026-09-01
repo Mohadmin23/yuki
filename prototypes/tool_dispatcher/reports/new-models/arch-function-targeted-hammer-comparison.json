@@ -1,0 +1,602 @@
+{
+  "comparison": {
+    "case_count": 96,
+    "same_cases_verified": true,
+    "routing_only": true,
+    "tool_execution_attempts": 0,
+    "reliability_conclusion_allowed": false,
+    "phase": "phase_1_smoke"
+  },
+  "ranking_by_exact_call_accuracy": [
+    "Hammer2.1-3B",
+    "Arch-Function-3B-fp16",
+    "Hammer2.1-1.5B"
+  ],
+  "oracle_effects_by_model": {},
+  "models": [
+    {
+      "label": "Hammer2.1-1.5B",
+      "experiment_label": "Hammer2.1-1.5B",
+      "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+      "report_path": "prototypes/tool_dispatcher/reports/hammer21-1.5b-targeted-96-final.json",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "oracle_profile": null,
+      "oracle_subsets": {},
+      "total_cases": 96,
+      "tool_selection_accuracy": 0.75,
+      "argument_accuracy": 0.625,
+      "strict_argument_accuracy": 0.625,
+      "exact_call_accuracy": 0.625,
+      "schema_valid_output_rate": 0.8020833333333334,
+      "malformed_output_rate": 0.0,
+      "average_inference_latency_ms": 4635.728864583333,
+      "end_to_end_generated_tokens_per_second": 4.231175702096702,
+      "normalized_output_count": 96,
+      "json_complete_rate": 1.0,
+      "peak_memory_gb": 3.6235,
+      "process_rss_mb": 1579.734,
+      "failures": 36,
+      "failures_by_expected_tool": {
+        "weather": {
+          "model_reject": 2,
+          "wrong_tool": 3,
+          "wrong_arguments": 4,
+          "execution_non_equivalent_arguments": 3,
+          "schema_invalid": 2
+        },
+        "see": {
+          "model_reject": 12,
+          "wrong_tool": 12,
+          "wrong_arguments": 13,
+          "execution_non_equivalent_arguments": 13,
+          "schema_invalid": 12
+        },
+        "read": {
+          "wrong_arguments": 6,
+          "execution_non_equivalent_arguments": 6,
+          "model_reject": 1,
+          "wrong_tool": 1,
+          "schema_invalid": 1
+        },
+        "yuki_read": {
+          "wrong_tool": 4,
+          "wrong_arguments": 4,
+          "execution_non_equivalent_arguments": 4
+        },
+        "search": {
+          "model_reject": 3,
+          "wrong_tool": 3,
+          "wrong_arguments": 4,
+          "execution_non_equivalent_arguments": 4,
+          "schema_invalid": 3
+        },
+        "ask_claude": {
+          "wrong_arguments": 5,
+          "model_reject": 1,
+          "wrong_tool": 1,
+          "execution_non_equivalent_arguments": 2,
+          "schema_invalid": 1
+        }
+      },
+      "confusion_matrix": {
+        "weather": {
+          "weather": 13,
+          "<none>": 2,
+          "hardware": 1
+        },
+        "see": {
+          "<none>": 12,
+          "see": 4
+        },
+        "read": {
+          "read": 23,
+          "<none>": 1
+        },
+        "yuki_read": {
+          "yuki_read": 4,
+          "read": 4
+        },
+        "search": {
+          "search": 13,
+          "<none>": 3
+        },
+        "ask_claude": {
+          "ask_claude": 15,
+          "<none>": 1
+        }
+      },
+      "metrics_by_tag": {
+        "ask-claude-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.9375,
+          "strict_argument_accuracy": 0.6875,
+          "execution_equivalent_argument_accuracy": 0.875,
+          "strict_exact_call_accuracy": 0.6875,
+          "execution_equivalent_call_accuracy": 0.875,
+          "schema_valid_output_rate": 0.9375,
+          "malformed_output_rate": 0.0
+        },
+        "confusion": {
+          "total_cases": 1,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "filepath-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 0.75,
+          "execution_equivalent_argument_accuracy": 0.75,
+          "strict_exact_call_accuracy": 0.75,
+          "execution_equivalent_call_accuracy": 0.75,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "filesystem": {
+          "total_cases": 8,
+          "tool_selection_accuracy": 0.875,
+          "strict_argument_accuracy": 0.75,
+          "execution_equivalent_argument_accuracy": 0.75,
+          "strict_exact_call_accuracy": 0.75,
+          "execution_equivalent_call_accuracy": 0.75,
+          "schema_valid_output_rate": 0.875,
+          "malformed_output_rate": 0.0
+        },
+        "read-vs-yuki-read": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.6875,
+          "strict_argument_accuracy": 0.625,
+          "execution_equivalent_argument_accuracy": 0.625,
+          "strict_exact_call_accuracy": 0.625,
+          "execution_equivalent_call_accuracy": 0.625,
+          "schema_valid_output_rate": 0.9375,
+          "malformed_output_rate": 0.0
+        },
+        "search-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.8125,
+          "strict_argument_accuracy": 0.75,
+          "execution_equivalent_argument_accuracy": 0.75,
+          "strict_exact_call_accuracy": 0.75,
+          "execution_equivalent_call_accuracy": 0.75,
+          "schema_valid_output_rate": 0.8125,
+          "malformed_output_rate": 0.0
+        },
+        "see-camera-routing": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.25,
+          "strict_argument_accuracy": 0.1875,
+          "execution_equivalent_argument_accuracy": 0.1875,
+          "strict_exact_call_accuracy": 0.1875,
+          "execution_equivalent_call_accuracy": 0.1875,
+          "schema_valid_output_rate": 0.25,
+          "malformed_output_rate": 0.0
+        },
+        "targeted": {
+          "total_cases": 96,
+          "tool_selection_accuracy": 0.75,
+          "strict_argument_accuracy": 0.625,
+          "execution_equivalent_argument_accuracy": 0.6666666666666666,
+          "strict_exact_call_accuracy": 0.625,
+          "execution_equivalent_call_accuracy": 0.6666666666666666,
+          "schema_valid_output_rate": 0.8020833333333334,
+          "malformed_output_rate": 0.0
+        },
+        "weather-routing": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.8125,
+          "strict_argument_accuracy": 0.75,
+          "execution_equivalent_argument_accuracy": 0.8125,
+          "strict_exact_call_accuracy": 0.75,
+          "execution_equivalent_call_accuracy": 0.8125,
+          "schema_valid_output_rate": 0.875,
+          "malformed_output_rate": 0.0
+        },
+        "yuki-file": {
+          "total_cases": 8,
+          "tool_selection_accuracy": 0.5,
+          "strict_argument_accuracy": 0.5,
+          "execution_equivalent_argument_accuracy": 0.5,
+          "strict_exact_call_accuracy": 0.5,
+          "execution_equivalent_call_accuracy": 0.5,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        }
+      },
+      "execution_equivalent_argument_accuracy": 0.6666666666666666,
+      "strict_exact_call_accuracy": 0.625,
+      "execution_equivalent_call_accuracy": 0.6666666666666666,
+      "p50_inference_latency_ms": 4719.0975,
+      "p95_inference_latency_ms": 5376.298,
+      "aggregate_generation_tokens_per_second": 18.436383182402935,
+      "median_backend_reported_tokens_per_second": 18.473
+    },
+    {
+      "label": "Hammer2.1-3B",
+      "experiment_label": "Hammer2.1-3B",
+      "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+      "report_path": "prototypes/tool_dispatcher/reports/hammer21-3b-targeted-96-final.json",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "oracle_profile": null,
+      "oracle_subsets": {},
+      "total_cases": 96,
+      "tool_selection_accuracy": 0.875,
+      "argument_accuracy": 0.8020833333333334,
+      "strict_argument_accuracy": 0.8020833333333334,
+      "exact_call_accuracy": 0.8020833333333334,
+      "schema_valid_output_rate": 0.875,
+      "malformed_output_rate": 0.0,
+      "average_inference_latency_ms": 10952.40609375,
+      "end_to_end_generated_tokens_per_second": 1.7994523910668279,
+      "normalized_output_count": 96,
+      "json_complete_rate": 1.0,
+      "peak_memory_gb": 6.651,
+      "process_rss_mb": 1180.609,
+      "failures": 19,
+      "failures_by_expected_tool": {
+        "weather": {
+          "model_reject": 1,
+          "wrong_tool": 1,
+          "wrong_arguments": 2,
+          "execution_non_equivalent_arguments": 1,
+          "schema_invalid": 1
+        },
+        "see": {
+          "model_reject": 3,
+          "wrong_tool": 3,
+          "wrong_arguments": 4,
+          "execution_non_equivalent_arguments": 4,
+          "schema_invalid": 3
+        },
+        "read": {
+          "model_reject": 2,
+          "wrong_tool": 2,
+          "wrong_arguments": 2,
+          "execution_non_equivalent_arguments": 2,
+          "schema_invalid": 2
+        },
+        "search": {
+          "model_reject": 5,
+          "wrong_tool": 5,
+          "wrong_arguments": 6,
+          "execution_non_equivalent_arguments": 6,
+          "schema_invalid": 5
+        },
+        "ask_claude": {
+          "wrong_arguments": 5,
+          "execution_non_equivalent_arguments": 5,
+          "model_reject": 1,
+          "wrong_tool": 1,
+          "schema_invalid": 1
+        }
+      },
+      "confusion_matrix": {
+        "weather": {
+          "weather": 15,
+          "<none>": 1
+        },
+        "see": {
+          "see": 13,
+          "<none>": 3
+        },
+        "read": {
+          "read": 22,
+          "<none>": 2
+        },
+        "yuki_read": {
+          "yuki_read": 8
+        },
+        "search": {
+          "search": 11,
+          "<none>": 5
+        },
+        "ask_claude": {
+          "ask_claude": 15,
+          "<none>": 1
+        }
+      },
+      "metrics_by_tag": {
+        "ask-claude-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.9375,
+          "strict_argument_accuracy": 0.6875,
+          "execution_equivalent_argument_accuracy": 0.6875,
+          "strict_exact_call_accuracy": 0.6875,
+          "execution_equivalent_call_accuracy": 0.6875,
+          "schema_valid_output_rate": 0.9375,
+          "malformed_output_rate": 0.0
+        },
+        "confusion": {
+          "total_cases": 1,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "filepath-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "filesystem": {
+          "total_cases": 8,
+          "tool_selection_accuracy": 0.75,
+          "strict_argument_accuracy": 0.75,
+          "execution_equivalent_argument_accuracy": 0.75,
+          "strict_exact_call_accuracy": 0.75,
+          "execution_equivalent_call_accuracy": 0.75,
+          "schema_valid_output_rate": 0.75,
+          "malformed_output_rate": 0.0
+        },
+        "read-vs-yuki-read": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.875,
+          "strict_argument_accuracy": 0.875,
+          "execution_equivalent_argument_accuracy": 0.875,
+          "strict_exact_call_accuracy": 0.875,
+          "execution_equivalent_call_accuracy": 0.875,
+          "schema_valid_output_rate": 0.875,
+          "malformed_output_rate": 0.0
+        },
+        "search-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.6875,
+          "strict_argument_accuracy": 0.625,
+          "execution_equivalent_argument_accuracy": 0.625,
+          "strict_exact_call_accuracy": 0.625,
+          "execution_equivalent_call_accuracy": 0.625,
+          "schema_valid_output_rate": 0.6875,
+          "malformed_output_rate": 0.0
+        },
+        "see-camera-routing": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.8125,
+          "strict_argument_accuracy": 0.75,
+          "execution_equivalent_argument_accuracy": 0.75,
+          "strict_exact_call_accuracy": 0.75,
+          "execution_equivalent_call_accuracy": 0.75,
+          "schema_valid_output_rate": 0.8125,
+          "malformed_output_rate": 0.0
+        },
+        "targeted": {
+          "total_cases": 96,
+          "tool_selection_accuracy": 0.875,
+          "strict_argument_accuracy": 0.8020833333333334,
+          "execution_equivalent_argument_accuracy": 0.8125,
+          "strict_exact_call_accuracy": 0.8020833333333334,
+          "execution_equivalent_call_accuracy": 0.8125,
+          "schema_valid_output_rate": 0.875,
+          "malformed_output_rate": 0.0
+        },
+        "weather-routing": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.9375,
+          "strict_argument_accuracy": 0.875,
+          "execution_equivalent_argument_accuracy": 0.9375,
+          "strict_exact_call_accuracy": 0.875,
+          "execution_equivalent_call_accuracy": 0.9375,
+          "schema_valid_output_rate": 0.9375,
+          "malformed_output_rate": 0.0
+        },
+        "yuki-file": {
+          "total_cases": 8,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        }
+      },
+      "execution_equivalent_argument_accuracy": 0.8125,
+      "strict_exact_call_accuracy": 0.8020833333333334,
+      "execution_equivalent_call_accuracy": 0.8125,
+      "p50_inference_latency_ms": 10340.116,
+      "p95_inference_latency_ms": 14230.3155,
+      "aggregate_generation_tokens_per_second": 9.405765140628324,
+      "median_backend_reported_tokens_per_second": 9.5295
+    },
+    {
+      "label": "Arch-Function-3B-fp16",
+      "experiment_label": "Arch-Function-3B-fp16",
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Arch-Function-3B-fp16",
+      "report_path": "prototypes/tool_dispatcher/reports/new-models/arch-function-3b-targeted-96.json",
+      "native_dialect": "arch_xml_tool_call_object",
+      "oracle_profile": null,
+      "oracle_subsets": {},
+      "total_cases": 96,
+      "tool_selection_accuracy": 0.8958333333333334,
+      "argument_accuracy": 0.78125,
+      "strict_argument_accuracy": 0.78125,
+      "exact_call_accuracy": 0.78125,
+      "schema_valid_output_rate": 0.8125,
+      "malformed_output_rate": 0.10416666666666667,
+      "average_inference_latency_ms": 13809.21553125,
+      "end_to_end_generated_tokens_per_second": 1.5712635245329227,
+      "normalized_output_count": 88,
+      "json_complete_rate": 0.8958333333333334,
+      "peak_memory_gb": 6.6521,
+      "process_rss_mb": 2389.344,
+      "failures": 21,
+      "failures_by_expected_tool": {
+        "weather": {
+          "wrong_arguments": 1
+        },
+        "see": {
+          "malformed_output": 2,
+          "wrong_tool": 2,
+          "wrong_arguments": 3,
+          "execution_non_equivalent_arguments": 3,
+          "schema_invalid": 2
+        },
+        "search": {
+          "malformed_output": 5,
+          "wrong_tool": 5,
+          "wrong_arguments": 5,
+          "execution_non_equivalent_arguments": 5,
+          "schema_invalid": 5
+        },
+        "read": {
+          "wrong_arguments": 2,
+          "execution_non_equivalent_arguments": 2,
+          "schema_invalid": 2,
+          "malformed_output": 1,
+          "wrong_tool": 1
+        },
+        "ask_claude": {
+          "wrong_arguments": 10,
+          "execution_non_equivalent_arguments": 10,
+          "schema_invalid": 9,
+          "malformed_output": 2,
+          "wrong_tool": 2
+        }
+      },
+      "confusion_matrix": {
+        "weather": {
+          "weather": 16
+        },
+        "see": {
+          "see": 14,
+          "<none>": 2
+        },
+        "read": {
+          "read": 23,
+          "<none>": 1
+        },
+        "yuki_read": {
+          "yuki_read": 8
+        },
+        "search": {
+          "search": 11,
+          "<none>": 5
+        },
+        "ask_claude": {
+          "ask_claude": 14,
+          "<none>": 2
+        }
+      },
+      "metrics_by_tag": {
+        "ask-claude-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.875,
+          "strict_argument_accuracy": 0.375,
+          "execution_equivalent_argument_accuracy": 0.375,
+          "strict_exact_call_accuracy": 0.375,
+          "execution_equivalent_call_accuracy": 0.375,
+          "schema_valid_output_rate": 0.4375,
+          "malformed_output_rate": 0.125
+        },
+        "confusion": {
+          "total_cases": 1,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "filepath-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.9375,
+          "strict_argument_accuracy": 0.875,
+          "execution_equivalent_argument_accuracy": 0.875,
+          "strict_exact_call_accuracy": 0.875,
+          "execution_equivalent_call_accuracy": 0.875,
+          "schema_valid_output_rate": 0.875,
+          "malformed_output_rate": 0.0625
+        },
+        "filesystem": {
+          "total_cases": 8,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "read-vs-yuki-read": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "search-preservation": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.6875,
+          "strict_argument_accuracy": 0.6875,
+          "execution_equivalent_argument_accuracy": 0.6875,
+          "strict_exact_call_accuracy": 0.6875,
+          "execution_equivalent_call_accuracy": 0.6875,
+          "schema_valid_output_rate": 0.6875,
+          "malformed_output_rate": 0.3125
+        },
+        "see-camera-routing": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 0.875,
+          "strict_argument_accuracy": 0.8125,
+          "execution_equivalent_argument_accuracy": 0.8125,
+          "strict_exact_call_accuracy": 0.8125,
+          "execution_equivalent_call_accuracy": 0.8125,
+          "schema_valid_output_rate": 0.875,
+          "malformed_output_rate": 0.125
+        },
+        "targeted": {
+          "total_cases": 96,
+          "tool_selection_accuracy": 0.8958333333333334,
+          "strict_argument_accuracy": 0.78125,
+          "execution_equivalent_argument_accuracy": 0.7916666666666666,
+          "strict_exact_call_accuracy": 0.78125,
+          "execution_equivalent_call_accuracy": 0.7916666666666666,
+          "schema_valid_output_rate": 0.8125,
+          "malformed_output_rate": 0.10416666666666667
+        },
+        "weather-routing": {
+          "total_cases": 16,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 0.9375,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 0.9375,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        },
+        "yuki-file": {
+          "total_cases": 8,
+          "tool_selection_accuracy": 1.0,
+          "strict_argument_accuracy": 1.0,
+          "execution_equivalent_argument_accuracy": 1.0,
+          "strict_exact_call_accuracy": 1.0,
+          "execution_equivalent_call_accuracy": 1.0,
+          "schema_valid_output_rate": 1.0,
+          "malformed_output_rate": 0.0
+        }
+      },
+      "execution_equivalent_argument_accuracy": 0.7916666666666666,
+      "strict_exact_call_accuracy": 0.78125,
+      "execution_equivalent_call_accuracy": 0.7916666666666666,
+      "p50_inference_latency_ms": 14383.700499999999,
+      "p95_inference_latency_ms": 18008.915,
+      "aggregate_generation_tokens_per_second": 9.35855734922877,
+      "median_backend_reported_tokens_per_second": 9.43
+    }
+  ]
+}

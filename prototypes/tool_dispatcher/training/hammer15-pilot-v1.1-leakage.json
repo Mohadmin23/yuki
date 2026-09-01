@@ -1,0 +1,2132 @@
+{
+  "version": "sacred450-leakage-v1",
+  "sacred_dataset": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/phase2-cases.json",
+  "sacred_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+  "thresholds": {
+    "reject": {
+      "character_similarity": 0.88,
+      "token_jaccard": 0.72,
+      "trigram_jaccard": 0.72,
+      "literal_payload_similarity": 0.92
+    },
+    "review": {
+      "character_similarity": 0.8,
+      "token_jaccard": 0.58,
+      "trigram_jaccard": 0.58
+    }
+  },
+  "counts": {
+    "pass": 150,
+    "review": 0,
+    "reject": 0
+  },
+  "flagged": {},
+  "records": {
+    "h15-pilot-v1.1-001": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-22",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.515625,
+        "token_jaccard": 0.23529411764705882,
+        "trigram_jaccard": 0.18627450980392157,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.314286
+      }
+    },
+    "h15-pilot-v1.1-002": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.46153846153846156,
+        "token_jaccard": 0.041666666666666664,
+        "trigram_jaccard": 0.11818181818181818,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-003": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-12",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5773195876288659,
+        "token_jaccard": 0.16666666666666666,
+        "trigram_jaccard": 0.2236842105263158,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.791667
+      }
+    },
+    "h15-pilot-v1.1-004": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-recall-15",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5238095238095238,
+        "token_jaccard": 0.11764705882352941,
+        "trigram_jaccard": 0.16326530612244897,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-005": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_list-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.46296296296296297,
+        "token_jaccard": 0.05263157894736842,
+        "trigram_jaccard": 0.061224489795918366,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-006": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4788732394366197,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.09836065573770492,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-007": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-09",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.64,
+        "token_jaccard": 0.25,
+        "trigram_jaccard": 0.3595505617977528,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.769231
+      }
+    },
+    "h15-pilot-v1.1-008": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-09",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.27848101265822783,
+        "token_jaccard": 0.07692307692307693,
+        "trigram_jaccard": 0.10294117647058823,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.521739
+      }
+    },
+    "h15-pilot-v1.1-009": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-time-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5555555555555556,
+        "token_jaccard": 0.25,
+        "trigram_jaccard": 0.25,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-010": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-19",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5735294117647058,
+        "token_jaccard": 0.2631578947368421,
+        "trigram_jaccard": 0.1919191919191919,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-011": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_list-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5094339622641509,
+        "token_jaccard": 0.13333333333333333,
+        "trigram_jaccard": 0.13953488372093023,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-012": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_delete-08",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4897959183673469,
+        "token_jaccard": 0.07692307692307693,
+        "trigram_jaccard": 0.09302325581395349,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-013": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-17",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5,
+        "token_jaccard": 0.14285714285714285,
+        "trigram_jaccard": 0.13095238095238096,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.6
+      }
+    },
+    "h15-pilot-v1.1-014": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-14",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5806451612903226,
+        "token_jaccard": 0.2,
+        "trigram_jaccard": 0.19148936170212766,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-015": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_list-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5185185185185185,
+        "token_jaccard": 0.07692307692307693,
+        "trigram_jaccard": 0.13846153846153847,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-016": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5263157894736842,
+        "token_jaccard": 0.14285714285714285,
+        "trigram_jaccard": 0.2,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.37037
+      }
+    },
+    "h15-pilot-v1.1-017": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-fetch-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6521739130434783,
+        "token_jaccard": 0.18181818181818182,
+        "trigram_jaccard": 0.41935483870967744,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.786885
+      }
+    },
+    "h15-pilot-v1.1-018": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.448,
+        "token_jaccard": 0.11764705882352941,
+        "trigram_jaccard": 0.125,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.5
+      }
+    },
+    "h15-pilot-v1.1-019": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-ask_claude-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5192307692307693,
+        "token_jaccard": 0.125,
+        "trigram_jaccard": 0.20987654320987653,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.375
+      }
+    },
+    "h15-pilot-v1.1-020": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-12",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.2616822429906542,
+        "token_jaccard": 0.07692307692307693,
+        "trigram_jaccard": 0.03,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.408163
+      }
+    },
+    "h15-pilot-v1.1-021": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-hardware-10",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.47619047619047616,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.08571428571428572,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-022": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-10",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6,
+        "token_jaccard": 0.15384615384615385,
+        "trigram_jaccard": 0.22033898305084745,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-023": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5783132530120482,
+        "token_jaccard": 0.3333333333333333,
+        "trigram_jaccard": 0.27419354838709675,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-024": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-22",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6153846153846154,
+        "token_jaccard": 0.3333333333333333,
+        "trigram_jaccard": 0.38095238095238093,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.88
+      }
+    },
+    "h15-pilot-v1.1-025": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.47058823529411764,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.06779661016949153,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-026": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6265060240963856,
+        "token_jaccard": 0.18181818181818182,
+        "trigram_jaccard": 0.3103448275862069,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.444444
+      }
+    },
+    "h15-pilot-v1.1-027": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-15",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.449438202247191,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.0,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-028": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-18",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4142857142857143,
+        "token_jaccard": 0.043478260869565216,
+        "trigram_jaccard": 0.06896551724137931,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-029": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-09",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.55,
+        "token_jaccard": 0.25,
+        "trigram_jaccard": 0.13432835820895522,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.385965
+      }
+    },
+    "h15-pilot-v1.1-030": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-calc-21",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5432098765432098,
+        "token_jaccard": 0.11764705882352941,
+        "trigram_jaccard": 0.1746031746031746,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-031": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5299145299145299,
+        "token_jaccard": 0.25,
+        "trigram_jaccard": 0.24719101123595505,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.529412
+      }
+    },
+    "h15-pilot-v1.1-032": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-16",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5227272727272727,
+        "token_jaccard": 0.125,
+        "trigram_jaccard": 0.18181818181818182,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-033": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5882352941176471,
+        "token_jaccard": 0.3076923076923077,
+        "trigram_jaccard": 0.24615384615384617,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-034": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-04",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5964912280701754,
+        "token_jaccard": 0.4444444444444444,
+        "trigram_jaccard": 0.3125,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.355556
+      }
+    },
+    "h15-pilot-v1.1-035": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_delete-09",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6,
+        "token_jaccard": 0.2222222222222222,
+        "trigram_jaccard": 0.30158730158730157,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.571429
+      }
+    },
+    "h15-pilot-v1.1-036": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5454545454545454,
+        "token_jaccard": 0.1111111111111111,
+        "trigram_jaccard": 0.12195121951219512,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-037": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4727272727272727,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.04081632653061224,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-038": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_list-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6595744680851063,
+        "token_jaccard": 0.2857142857142857,
+        "trigram_jaccard": 0.2714285714285714,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-039": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-19",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4507042253521127,
+        "token_jaccard": 0.043478260869565216,
+        "trigram_jaccard": 0.10833333333333334,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-040": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_write-21",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.3305785123966942,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.058823529411764705,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.428571
+      }
+    },
+    "h15-pilot-v1.1-041": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-10",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5333333333333333,
+        "token_jaccard": 0.14285714285714285,
+        "trigram_jaccard": 0.21212121212121213,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-042": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-08",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4782608695652174,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.05063291139240506,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-043": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-01",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.39215686274509803,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.044444444444444446,
+        "same_tool_literal_payload_match": true,
+        "same_tool_literal_payload_similarity": 1.0
+      }
+    },
+    "h15-pilot-v1.1-044": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-hardware-01",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.625,
+        "token_jaccard": 0.38461538461538464,
+        "trigram_jaccard": 0.29310344827586204,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-045": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.44036697247706424,
+        "token_jaccard": 0.0625,
+        "trigram_jaccard": 0.10869565217391304,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-046": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.43373493975903615,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.05333333333333334,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-047": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-16",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4881889763779528,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.1111111111111111,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-048": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-ask_claude-10",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5393258426966292,
+        "token_jaccard": 0.13333333333333333,
+        "trigram_jaccard": 0.1506849315068493,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-049": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-18",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.40860215053763443,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.19718309859154928,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.756757
+      }
+    },
+    "h15-pilot-v1.1-050": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5977011494252874,
+        "token_jaccard": 0.4166666666666667,
+        "trigram_jaccard": 0.296875,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.26087
+      }
+    },
+    "h15-pilot-v1.1-051": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-14",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.23140495867768596,
+        "token_jaccard": 0.05555555555555555,
+        "trigram_jaccard": 0.09345794392523364,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.5
+      }
+    },
+    "h15-pilot-v1.1-052": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-10",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4358974358974359,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.027777777777777776,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-053": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_write-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.390625,
+        "token_jaccard": 0.05,
+        "trigram_jaccard": 0.10185185185185185,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.419753
+      }
+    },
+    "h15-pilot-v1.1-054": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-hardware-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6,
+        "token_jaccard": 0.18181818181818182,
+        "trigram_jaccard": 0.1875,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-055": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-04",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.42990654205607476,
+        "token_jaccard": 0.058823529411764705,
+        "trigram_jaccard": 0.13333333333333333,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-056": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-21",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.40601503759398494,
+        "token_jaccard": 0.08695652173913043,
+        "trigram_jaccard": 0.1,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-057": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-time-11",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6666666666666666,
+        "token_jaccard": 0.42857142857142855,
+        "trigram_jaccard": 0.46153846153846156,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-058": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_delete-19",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4788732394366197,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.14912280701754385,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-059": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-20",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.49206349206349204,
+        "token_jaccard": 0.1111111111111111,
+        "trigram_jaccard": 0.10416666666666667,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.292683
+      }
+    },
+    "h15-pilot-v1.1-060": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-ask_claude-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6140350877192983,
+        "token_jaccard": 0.23529411764705882,
+        "trigram_jaccard": 0.29411764705882354,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.296296
+      }
+    },
+    "h15-pilot-v1.1-061": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-hardware-19",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.432,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.13725490196078433,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-062": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.2786885245901639,
+        "token_jaccard": 0.10526315789473684,
+        "trigram_jaccard": 0.09433962264150944,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.477612
+      }
+    },
+    "h15-pilot-v1.1-063": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-16",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4842105263157895,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.1518987341772152,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.622222
+      }
+    },
+    "h15-pilot-v1.1-064": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-ask_claude-18",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.40522875816993464,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.06818181818181818,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.42735
+      }
+    },
+    "h15-pilot-v1.1-065": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-21",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.39603960396039606,
+        "token_jaccard": 0.16666666666666666,
+        "trigram_jaccard": 0.18181818181818182,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.6
+      }
+    },
+    "h15-pilot-v1.1-066": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.3,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.13432835820895522,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.538462
+      }
+    },
+    "h15-pilot-v1.1-067": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_append-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4090909090909091,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.11304347826086956,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.414634
+      }
+    },
+    "h15-pilot-v1.1-068": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.43103448275862066,
+        "token_jaccard": 0.16666666666666666,
+        "trigram_jaccard": 0.15384615384615385,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-069": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-12",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4594594594594595,
+        "token_jaccard": 0.07142857142857142,
+        "trigram_jaccard": 0.07692307692307693,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-070": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-recall-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5,
+        "token_jaccard": 0.07692307692307693,
+        "trigram_jaccard": 0.0821917808219178,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-071": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-10",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5675675675675675,
+        "token_jaccard": 0.16666666666666666,
+        "trigram_jaccard": 0.2222222222222222,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-072": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_append-20",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.453125,
+        "token_jaccard": 0.05555555555555555,
+        "trigram_jaccard": 0.07766990291262135,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.230769
+      }
+    },
+    "h15-pilot-v1.1-073": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-recall-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4423076923076923,
+        "token_jaccard": 0.125,
+        "trigram_jaccard": 0.10227272727272728,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-074": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-11",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.49382716049382713,
+        "token_jaccard": 0.1,
+        "trigram_jaccard": 0.1,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-075": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-15",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.49572649572649574,
+        "token_jaccard": 0.15789473684210525,
+        "trigram_jaccard": 0.08823529411764706,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-076": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-07",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.47058823529411764,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.04,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-077": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-01",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5753424657534246,
+        "token_jaccard": 0.3333333333333333,
+        "trigram_jaccard": 0.32,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-078": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_delete-14",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.45454545454545453,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.05,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-079": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-calc-01",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5531914893617021,
+        "token_jaccard": 0.125,
+        "trigram_jaccard": 0.22857142857142856,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-080": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_delete-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5121951219512195,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.18181818181818182,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.62069
+      }
+    },
+    "h15-pilot-v1.1-081": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-hardware-04",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5194805194805194,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.19672131147540983,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-082": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-07",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.75,
+        "token_jaccard": 0.5714285714285714,
+        "trigram_jaccard": 0.475,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-083": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-08",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.7945205479452054,
+        "token_jaccard": 0.45454545454545453,
+        "trigram_jaccard": 0.46808510638297873,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-084": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-20",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5043478260869565,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.15789473684210525,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-085": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4864864864864865,
+        "token_jaccard": 0.125,
+        "trigram_jaccard": 0.13829787234042554,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.193548
+      }
+    },
+    "h15-pilot-v1.1-086": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-08",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.43373493975903615,
+        "token_jaccard": 0.08333333333333333,
+        "trigram_jaccard": 0.0821917808219178,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-087": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4691358024691358,
+        "token_jaccard": 0.0625,
+        "trigram_jaccard": 0.07142857142857142,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-088": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-16",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4842105263157895,
+        "token_jaccard": 0.11764705882352941,
+        "trigram_jaccard": 0.14285714285714285,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-089": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_append-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.39655172413793105,
+        "token_jaccard": 0.05,
+        "trigram_jaccard": 0.09473684210526316,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.493151
+      }
+    },
+    "h15-pilot-v1.1-090": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-11",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4878048780487805,
+        "token_jaccard": 0.2727272727272727,
+        "trigram_jaccard": 0.16417910447761194,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.590909
+      }
+    },
+    "h15-pilot-v1.1-091": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.46296296296296297,
+        "token_jaccard": 0.11764705882352941,
+        "trigram_jaccard": 0.14444444444444443,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.382353
+      }
+    },
+    "h15-pilot-v1.1-092": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5333333333333333,
+        "token_jaccard": 0.2222222222222222,
+        "trigram_jaccard": 0.23076923076923078,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-093": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_list-18",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5909090909090909,
+        "token_jaccard": 0.25,
+        "trigram_jaccard": 0.3793103448275862,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-094": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.47058823529411764,
+        "token_jaccard": 0.2857142857142857,
+        "trigram_jaccard": 0.25396825396825395,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-095": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-20",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.49612403100775193,
+        "token_jaccard": 0.17647058823529413,
+        "trigram_jaccard": 0.34523809523809523,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.648649
+      }
+    },
+    "h15-pilot-v1.1-096": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-22",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.46551724137931033,
+        "token_jaccard": 0.07142857142857142,
+        "trigram_jaccard": 0.13402061855670103,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-097": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-07",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.48484848484848486,
+        "token_jaccard": 0.14285714285714285,
+        "trigram_jaccard": 0.2608695652173913,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.777778
+      }
+    },
+    "h15-pilot-v1.1-098": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.2857142857142857,
+        "token_jaccard": 0.1,
+        "trigram_jaccard": 0.07142857142857142,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.8
+      }
+    },
+    "h15-pilot-v1.1-099": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-ask_claude-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.43410852713178294,
+        "token_jaccard": 0.16666666666666666,
+        "trigram_jaccard": 0.16346153846153846,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.380952
+      }
+    },
+    "h15-pilot-v1.1-100": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4523809523809524,
+        "token_jaccard": 0.058823529411764705,
+        "trigram_jaccard": 0.06944444444444445,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-101": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-17",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4444444444444444,
+        "token_jaccard": 0.06666666666666667,
+        "trigram_jaccard": 0.06451612903225806,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-102": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-24",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.49572649572649574,
+        "token_jaccard": 0.13333333333333333,
+        "trigram_jaccard": 0.13402061855670103,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-103": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-calc-24",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4444444444444444,
+        "token_jaccard": 0.1,
+        "trigram_jaccard": 0.13559322033898305,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-104": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.40816326530612246,
+        "token_jaccard": 0.125,
+        "trigram_jaccard": 0.15384615384615385,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.8
+      }
+    },
+    "h15-pilot-v1.1-105": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-06",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5454545454545454,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.109375,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-106": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-time-22",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6376811594202898,
+        "token_jaccard": 0.2727272727272727,
+        "trigram_jaccard": 0.3617021276595745,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-107": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_write-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.3652173913043478,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.028037383177570093,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.469136
+      }
+    },
+    "h15-pilot-v1.1-108": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-time-04",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4946236559139785,
+        "token_jaccard": 0.2,
+        "trigram_jaccard": 0.21739130434782608,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-109": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-09",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5714285714285714,
+        "token_jaccard": 0.18181818181818182,
+        "trigram_jaccard": 0.20689655172413793,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-110": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_append-23",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.48484848484848486,
+        "token_jaccard": 0.13333333333333333,
+        "trigram_jaccard": 0.2,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-111": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.37362637362637363,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.1111111111111111,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.622222
+      }
+    },
+    "h15-pilot-v1.1-112": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-fetch-18",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.41379310344827586,
+        "token_jaccard": 0.14285714285714285,
+        "trigram_jaccard": 0.13114754098360656,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-113": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-time-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5,
+        "token_jaccard": 0.2,
+        "trigram_jaccard": 0.25,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-114": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-hardware-22",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.46511627906976744,
+        "token_jaccard": 0.07692307692307693,
+        "trigram_jaccard": 0.1267605633802817,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-115": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5333333333333333,
+        "token_jaccard": 0.15384615384615385,
+        "trigram_jaccard": 0.19718309859154928,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-116": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-19",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4411764705882353,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.049586776859504134,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-117": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-10",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.25806451612903225,
+        "token_jaccard": 0.15384615384615385,
+        "trigram_jaccard": 0.07317073170731707,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.631579
+      }
+    },
+    "h15-pilot-v1.1-118": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-calc-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6046511627906976,
+        "token_jaccard": 0.1111111111111111,
+        "trigram_jaccard": 0.21875,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-119": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-fetch-01",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.64,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.3333333333333333,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.723404
+      }
+    },
+    "h15-pilot-v1.1-120": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-shell-09",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5263157894736842,
+        "token_jaccard": 0.4,
+        "trigram_jaccard": 0.25925925925925924,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.6
+      }
+    },
+    "h15-pilot-v1.1-121": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-01",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5333333333333333,
+        "token_jaccard": 0.08695652173913043,
+        "trigram_jaccard": 0.2549019607843137,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.241379
+      }
+    },
+    "h15-pilot-v1.1-122": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-fetch-03",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.449438202247191,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.1527777777777778,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.484848
+      }
+    },
+    "h15-pilot-v1.1-123": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-15",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.46296296296296297,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.14942528735632185,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.580645
+      }
+    },
+    "h15-pilot-v1.1-124": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_list-22",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.49019607843137253,
+        "token_jaccard": 0.05263157894736842,
+        "trigram_jaccard": 0.08045977011494253,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-125": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-ask_claude-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4413793103448276,
+        "token_jaccard": 0.09090909090909091,
+        "trigram_jaccard": 0.11475409836065574,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.197183
+      }
+    },
+    "h15-pilot-v1.1-126": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-fetch-21",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5068493150684932,
+        "token_jaccard": 0.07142857142857142,
+        "trigram_jaccard": 0.21495327102803738,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.764706
+      }
+    },
+    "h15-pilot-v1.1-127": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-recall-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6530612244897959,
+        "token_jaccard": 0.42857142857142855,
+        "trigram_jaccard": 0.34285714285714286,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-128": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-recall-02",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4888888888888889,
+        "token_jaccard": 0.26666666666666666,
+        "trigram_jaccard": 0.2112676056338028,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-129": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-24",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.37383177570093457,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.07608695652173914,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.545455
+      }
+    },
+    "h15-pilot-v1.1-130": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_write-01",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.47058823529411764,
+        "token_jaccard": 0.0625,
+        "trigram_jaccard": 0.0945945945945946,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-131": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-10",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.55,
+        "token_jaccard": 0.16666666666666666,
+        "trigram_jaccard": 0.16393442622950818,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-132": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-17",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.76,
+        "token_jaccard": 0.2857142857142857,
+        "trigram_jaccard": 0.4838709677419355,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-133": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-24",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6461538461538462,
+        "token_jaccard": 0.2222222222222222,
+        "trigram_jaccard": 0.35555555555555557,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-134": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-23",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.38016528925619836,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.02654867256637168,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-135": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-remember-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.44155844155844154,
+        "token_jaccard": 0.15384615384615385,
+        "trigram_jaccard": 0.09523809523809523,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-136": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-search-08",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.509090909090909,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.1276595744680851,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-137": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_write-05",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.2047244094488189,
+        "token_jaccard": 0.045454545454545456,
+        "trigram_jaccard": 0.0625,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.444444
+      }
+    },
+    "h15-pilot-v1.1-138": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-hardware-08",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6329113924050633,
+        "token_jaccard": 0.2,
+        "trigram_jaccard": 0.3888888888888889,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-139": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_read-19",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4158415841584158,
+        "token_jaccard": 0.13333333333333333,
+        "trigram_jaccard": 0.17721518987341772,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.75
+      }
+    },
+    "h15-pilot-v1.1-140": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-weather-08",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.47058823529411764,
+        "token_jaccard": 0.16666666666666666,
+        "trigram_jaccard": 0.12280701754385964,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-141": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-image-01",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5203252032520326,
+        "token_jaccard": 0.29411764705882354,
+        "trigram_jaccard": 0.3068181818181818,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.454545
+      }
+    },
+    "h15-pilot-v1.1-142": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-hardware-11",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.6333333333333333,
+        "token_jaccard": 0.5,
+        "trigram_jaccard": 0.36585365853658536,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-143": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_write-14",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.46017699115044247,
+        "token_jaccard": 0.05555555555555555,
+        "trigram_jaccard": 0.07216494845360824,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-144": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-18",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4566929133858268,
+        "token_jaccard": 0.15,
+        "trigram_jaccard": 0.11764705882352941,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-145": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-read-15",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.375,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.05747126436781609,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.530612
+      }
+    },
+    "h15-pilot-v1.1-146": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_append-13",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.45161290322580644,
+        "token_jaccard": 0.15,
+        "trigram_jaccard": 0.1346153846153846,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.290323
+      }
+    },
+    "h15-pilot-v1.1-147": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-yuki_write-19",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.3150684931506849,
+        "token_jaccard": 0.0,
+        "trigram_jaccard": 0.0546875,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.407407
+      }
+    },
+    "h15-pilot-v1.1-148": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-recall-12",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.4424778761061947,
+        "token_jaccard": 0.15,
+        "trigram_jaccard": 0.1134020618556701,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-149": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-see-25",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.45544554455445546,
+        "token_jaccard": 0.11764705882352941,
+        "trigram_jaccard": 0.07954545454545454,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    },
+    "h15-pilot-v1.1-150": {
+      "checker_version": "sacred450-leakage-v1",
+      "status": "pass",
+      "flags": [],
+      "closest_case_id": "p2-time-04",
+      "signals": {
+        "normalized_exact": false,
+        "character_similarity": 0.5,
+        "token_jaccard": 0.11764705882352941,
+        "trigram_jaccard": 0.14814814814814814,
+        "same_tool_literal_payload_match": false,
+        "same_tool_literal_payload_similarity": 0.0
+      }
+    }
+  },
+  "limitations": [
+    "Lexical checks cannot prove semantic independence.",
+    "Short generic requests have unstable similarity scores.",
+    "Semantic fields necessarily reuse small canonical enums or concepts.",
+    "The checker flags suspicious overlap but does not rewrite candidates."
+  ]
+}

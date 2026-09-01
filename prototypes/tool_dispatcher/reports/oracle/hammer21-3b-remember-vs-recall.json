@@ -1,0 +1,845 @@
+{
+  "configuration": {
+    "router_mode": "model_only",
+    "output_mode": "native",
+    "native_dialect": "hammer_fenced_tool_call_array",
+    "backend": "mlx",
+    "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+    "group": "all",
+    "available_tools": [
+      "remember",
+      "recall"
+    ],
+    "oracle_profile": "remember-vs-recall",
+    "oracle_subsets": {
+      "remember-vs-recall": {
+        "tools": [
+          "remember",
+          "recall"
+        ],
+        "case_count": 8
+      }
+    },
+    "execute": false,
+    "phase": "phase_1_smoke"
+  },
+  "metrics": {
+    "total_cases": 8,
+    "model_invocations": 8,
+    "tool_selection_accuracy": 1.0,
+    "argument_accuracy": 1.0,
+    "strict_argument_accuracy": 1.0,
+    "execution_equivalent_argument_accuracy": 1.0,
+    "exact_call_accuracy": 1.0,
+    "execution_equivalent_call_accuracy": 1.0,
+    "schema_valid_output_rate": 1.0,
+    "malformed_output_rate": 0.0,
+    "average_inference_latency_ms": 5331.1627499999995,
+    "p50_inference_latency_ms": 4997.4205,
+    "p95_inference_latency_ms": 6575.88225,
+    "average_tokens_per_second": 9.71270950844927,
+    "mean_backend_reported_tokens_per_second": 9.714625,
+    "median_backend_reported_tokens_per_second": 9.7235,
+    "end_to_end_generated_tokens_per_second": 4.103232451494751,
+    "execution_attempts": 0,
+    "execution_passes": 0
+  },
+  "failures_by_expected_tool": {},
+  "confusion_matrix": {
+    "remember": {
+      "remember": 4
+    },
+    "recall": {
+      "recall": 4
+    }
+  },
+  "case_results": [
+    {
+      "index": 0,
+      "case_id": "remember-01",
+      "tags": [
+        "clear",
+        "confusion"
+      ],
+      "oracle_subset": "remember-vs-recall",
+      "offered_tools": [
+        "remember",
+        "recall"
+      ],
+      "request": "Remember exactly this fact: user's dog is named Max",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's dog is named Max"
+      },
+      "actual_tool": "remember",
+      "actual_arguments": {
+        "fact": "user's dog is named Max"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "fact": {
+            "expected": "user's dog is named Max",
+            "actual": "user's dog is named Max",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"remember\", \"arguments\": {\"fact\": \"user's dog is named Max\"}}]",
+        "normalized_text": "[{\"name\": \"remember\", \"arguments\": {\"fact\": \"user's dog is named Max\"}}]",
+        "backend": "mlx",
+        "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "latency_ms": 5879.417,
+        "prompt_tokens": 675,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": 205.769,
+        "tokens_per_second": 9.684,
+        "peak_memory_gb": 6.5039,
+        "process_rss_mb": 957.625,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 1,
+          "run_kind": "first_after_load",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "remember",
+            "arguments": {
+              "fact": "user's dog is named Max"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "remember",
+          "arguments": {
+            "fact": "user's dog is named Max"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 1,
+      "case_id": "remember-02",
+      "tags": [
+        "paraphrase"
+      ],
+      "oracle_subset": "remember-vs-recall",
+      "offered_tools": [
+        "remember",
+        "recall"
+      ],
+      "request": "Store this fact exactly: user prefers dark mode",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user prefers dark mode"
+      },
+      "actual_tool": "remember",
+      "actual_arguments": {
+        "fact": "user prefers dark mode"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "fact": {
+            "expected": "user prefers dark mode",
+            "actual": "user prefers dark mode",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"remember\", \"arguments\": {\"fact\": \"user prefers dark mode\"}}]",
+        "normalized_text": "[{\"name\": \"remember\", \"arguments\": {\"fact\": \"user prefers dark mode\"}}]",
+        "backend": "mlx",
+        "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "latency_ms": 6950.902,
+        "prompt_tokens": 673,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": 149.848,
+        "tokens_per_second": 9.485,
+        "peak_memory_gb": 6.5021,
+        "process_rss_mb": 957.781,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 2,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "remember",
+            "arguments": {
+              "fact": "user prefers dark mode"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "remember",
+          "arguments": {
+            "fact": "user prefers dark mode"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 2,
+      "case_id": "remember-03",
+      "tags": [
+        "clear"
+      ],
+      "oracle_subset": "remember-vs-recall",
+      "offered_tools": [
+        "remember",
+        "recall"
+      ],
+      "request": "Keep this in memory exactly: user's favorite tea is jasmine",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's favorite tea is jasmine"
+      },
+      "actual_tool": "remember",
+      "actual_arguments": {
+        "fact": "user's favorite tea is jasmine"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "fact": {
+            "expected": "user's favorite tea is jasmine",
+            "actual": "user's favorite tea is jasmine",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"remember\", \"arguments\": {\"fact\": \"user's favorite tea is jasmine\"}}]",
+        "normalized_text": "[{\"name\": \"remember\", \"arguments\": {\"fact\": \"user's favorite tea is jasmine\"}}]",
+        "backend": "mlx",
+        "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "latency_ms": 5036.521,
+        "prompt_tokens": 676,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": 275.764,
+        "tokens_per_second": 9.832,
+        "peak_memory_gb": 6.5042,
+        "process_rss_mb": 957.781,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 3,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "remember",
+            "arguments": {
+              "fact": "user's favorite tea is jasmine"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "remember",
+          "arguments": {
+            "fact": "user's favorite tea is jasmine"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 3,
+      "case_id": "remember-04",
+      "tags": [
+        "confusion"
+      ],
+      "oracle_subset": "remember-vs-recall",
+      "offered_tools": [
+        "remember",
+        "recall"
+      ],
+      "request": "Remember this new fact, do not recall old chats: user works nights",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user works nights"
+      },
+      "actual_tool": "remember",
+      "actual_arguments": {
+        "fact": "user works nights"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "fact": {
+            "expected": "user works nights",
+            "actual": "user works nights",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"remember\", \"arguments\": {\"fact\": \"user works nights\"}}]",
+        "normalized_text": "[{\"name\": \"remember\", \"arguments\": {\"fact\": \"user works nights\"}}]",
+        "backend": "mlx",
+        "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "latency_ms": 4834.76,
+        "prompt_tokens": 678,
+        "generated_tokens": 21,
+        "prompt_tokens_per_second": 265.116,
+        "tokens_per_second": 9.829,
+        "peak_memory_gb": 6.5053,
+        "process_rss_mb": 957.797,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 4,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "remember",
+            "arguments": {
+              "fact": "user works nights"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "remember",
+          "arguments": {
+            "fact": "user works nights"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 4,
+      "case_id": "recall-01",
+      "tags": [
+        "clear",
+        "confusion"
+      ],
+      "oracle_subset": "remember-vs-recall",
+      "offered_tools": [
+        "remember",
+        "recall"
+      ],
+      "request": "What did I previously tell you about the server crash?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "server crash"
+      },
+      "actual_tool": "recall",
+      "actual_arguments": {
+        "topic": "server crash"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "topic": {
+            "expected": "server crash",
+            "actual": "server crash",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"recall\", \"arguments\": {\"topic\": \"server crash\"}}]",
+        "normalized_text": "[{\"name\": \"recall\", \"arguments\": {\"topic\": \"server crash\"}}]",
+        "backend": "mlx",
+        "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "latency_ms": 4921.235,
+        "prompt_tokens": 675,
+        "generated_tokens": 20,
+        "prompt_tokens_per_second": 248.763,
+        "tokens_per_second": 9.683,
+        "peak_memory_gb": 6.5039,
+        "process_rss_mb": 957.891,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 5,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "recall",
+            "arguments": {
+              "topic": "server crash"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "recall",
+          "arguments": {
+            "topic": "server crash"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 5,
+      "case_id": "recall-02",
+      "tags": [
+        "paraphrase"
+      ],
+      "oracle_subset": "remember-vs-recall",
+      "offered_tools": [
+        "remember",
+        "recall"
+      ],
+      "request": "Recall our past discussion about my sister's wedding.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "my sister's wedding"
+      },
+      "actual_tool": "recall",
+      "actual_arguments": {
+        "topic": "my sister's wedding"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "topic": {
+            "expected": "my sister's wedding",
+            "actual": "my sister's wedding",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"recall\", \"arguments\": {\"topic\": \"my sister's wedding\"}}]",
+        "normalized_text": "[{\"name\": \"recall\", \"arguments\": {\"topic\": \"my sister's wedding\"}}]",
+        "backend": "mlx",
+        "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "latency_ms": 5159.09,
+        "prompt_tokens": 675,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": 247.918,
+        "tokens_per_second": 9.588,
+        "peak_memory_gb": 6.5039,
+        "process_rss_mb": 957.891,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 6,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "recall",
+            "arguments": {
+              "topic": "my sister's wedding"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "recall",
+          "arguments": {
+            "topic": "my sister's wedding"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 6,
+      "case_id": "recall-03",
+      "tags": [
+        "paraphrase"
+      ],
+      "oracle_subset": "remember-vs-recall",
+      "offered_tools": [
+        "remember",
+        "recall"
+      ],
+      "request": "Look up our previous conversations about the garden project.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "garden project"
+      },
+      "actual_tool": "recall",
+      "actual_arguments": {
+        "topic": "garden project"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "topic": {
+            "expected": "garden project",
+            "actual": "garden project",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"recall\", \"arguments\": {\"topic\": \"garden project\"}}]",
+        "normalized_text": "[{\"name\": \"recall\", \"arguments\": {\"topic\": \"garden project\"}}]",
+        "backend": "mlx",
+        "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "latency_ms": 4958.32,
+        "prompt_tokens": 674,
+        "generated_tokens": 21,
+        "prompt_tokens_per_second": 252.865,
+        "tokens_per_second": 9.763,
+        "peak_memory_gb": 6.5037,
+        "process_rss_mb": 957.781,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 7,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "recall",
+            "arguments": {
+              "topic": "garden project"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "recall",
+          "arguments": {
+            "topic": "garden project"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 7,
+      "case_id": "recall-04",
+      "tags": [
+        "confusion"
+      ],
+      "oracle_subset": "remember-vs-recall",
+      "offered_tools": [
+        "remember",
+        "recall"
+      ],
+      "request": "Search my remembered conversations for laptop upgrade.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "laptop upgrade"
+      },
+      "actual_tool": "recall",
+      "actual_arguments": {
+        "topic": "laptop upgrade"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "topic": {
+            "expected": "laptop upgrade",
+            "actual": "laptop upgrade",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"recall\", \"arguments\": {\"topic\": \"laptop upgrade\"}}]",
+        "normalized_text": "[{\"name\": \"recall\", \"arguments\": {\"topic\": \"laptop upgrade\"}}]",
+        "backend": "mlx",
+        "model_id": "/Users/mohamedlaminemennane/Library/Caches/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "latency_ms": 4909.057,
+        "prompt_tokens": 672,
+        "generated_tokens": 21,
+        "prompt_tokens_per_second": 254.804,
+        "tokens_per_second": 9.853,
+        "peak_memory_gb": 6.5019,
+        "process_rss_mb": 957.875,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 8,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "recall",
+            "arguments": {
+              "topic": "laptop upgrade"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "recall",
+          "arguments": {
+            "topic": "laptop upgrade"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    }
+  ],
+  "fine_tuning_examples": []
+}

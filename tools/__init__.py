@@ -28,6 +28,7 @@ _TOOL_NAMES = [
     "search",
     "calc",
     "hardware",
+    "see",
     "image",
     "read",
     "shell",

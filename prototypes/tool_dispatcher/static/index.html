@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yuki Dispatcher Lab</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f4efe8;
+      --muted: #aaa29a;
+      --paper: #111315;
+      --panel: #181b1e;
+      --panel-2: #202429;
+      --line: #34393f;
+      --rose: #f5a6ba;
+      --rose-deep: #b75f78;
+      --mint: #79d7bd;
+      --amber: #f2c66d;
+      --red: #ef7c7c;
+      --blue: #91bfff;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: 3px;
+      background: var(--rose);
+      z-index: 10;
+    }
+    .shell { width: min(1500px, calc(100% - 40px)); margin: 0 auto; padding: 34px 0 70px; }
+    header { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin-bottom: 28px; }
+    .eyebrow { color: var(--rose); font: 700 11px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; }
+    h1 { margin: 9px 0 6px; font-size: clamp(30px, 4vw, 54px); line-height: .96; letter-spacing: -.045em; }
+    .subtitle { margin: 0; color: var(--muted); max-width: 720px; line-height: 1.55; }
+    .status { display: flex; align-items: center; gap: 9px; color: var(--muted); white-space: nowrap; font-size: 13px; }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 4px rgba(239,124,124,.1); }
+    .dot.ready { background: var(--mint); box-shadow: 0 0 0 4px rgba(121,215,189,.1); }
+    .panel { border: 1px solid var(--line); background: var(--panel); }
+    .panel-head { padding: 15px 18px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .panel-head h2 { margin: 0; font-size: 15px; letter-spacing: -.01em; }
+    .panel-body { padding: 18px; }
+    .model-grid { display: grid; grid-template-columns: 150px minmax(280px, 1fr) minmax(220px, .8fr) 130px auto; gap: 12px; align-items: end; }
+    label { display: grid; gap: 7px; color: var(--muted); font-size: 12px; }
+    input, select, textarea, button {
+      font: inherit;
+    }
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #101214;
+      color: var(--ink);
+      padding: 10px 11px;
+      outline: none;
+      border-radius: 3px;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--rose-deep); box-shadow: 0 0 0 3px rgba(245,166,186,.08); }
+    textarea { min-height: 128px; resize: vertical; font-size: 16px; line-height: 1.5; }
+    button { border: 1px solid var(--rose-deep); background: var(--rose); color: #231318; padding: 10px 16px; border-radius: 3px; cursor: pointer; font-weight: 750; }
+    button.secondary { background: transparent; color: var(--ink); border-color: var(--line); }
+    button.danger { background: transparent; color: var(--amber); border-color: #7a653c; }
+    button:disabled { cursor: not-allowed; opacity: .42; }
+    button:not(:disabled):hover { filter: brightness(1.06); }
+    .workspace { display: grid; grid-template-columns: minmax(340px, .76fr) minmax(0, 1.4fr); gap: 18px; margin-top: 18px; align-items: start; }
+    .controls { display: grid; gap: 15px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .checks { display: flex; flex-wrap: wrap; gap: 14px; padding: 2px 0; }
+    .checks label { display: flex; align-items: center; gap: 7px; }
+    .checks input { width: auto; accent-color: var(--rose); }
+    .actions { display: flex; flex-wrap: wrap; gap: 9px; }
+    .note { margin: 0; padding: 12px; background: #141719; border-left: 3px solid var(--blue); color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .metrics { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); border-bottom: 1px solid var(--line); }
+    .metric { padding: 13px 15px; border-right: 1px solid var(--line); min-height: 71px; }
+    .metric:last-child { border-right: 0; }
+    .metric span { display: block; color: var(--muted); font: 10px/1.2 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+    .metric strong { display: block; margin-top: 9px; font: 700 17px/1 var(--mono); overflow: hidden; text-overflow: ellipsis; }
+    .result-body { padding: 18px; display: grid; gap: 14px; }
+    .decision { display: grid; grid-template-columns: 1fr 1.4fr; gap: 14px; }
+    .readout { border: 1px solid var(--line); background: #131517; padding: 13px; min-height: 76px; }
+    .readout .label { color: var(--muted); font: 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+    .tool-name { font: 750 25px/1 var(--mono); color: var(--rose); }
+    pre { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; color: #d7dde4; font: 12px/1.55 var(--mono); tab-size: 2; }
+    details { border: 1px solid var(--line); background: #131517; }
+    summary { cursor: pointer; padding: 12px 13px; color: var(--muted); font-size: 12px; user-select: none; }
+    details pre { border-top: 1px solid var(--line); padding: 14px; max-height: 360px; overflow: auto; }
+    .badges { display: flex; gap: 8px; flex-wrap: wrap; }
+    .badge { padding: 5px 8px; border: 1px solid var(--line); color: var(--muted); font: 10px/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; }
+    .badge.pass { color: var(--mint); border-color: #356a5b; }
+    .badge.fail { color: var(--red); border-color: #714143; }
+    .badge.warn { color: var(--amber); border-color: #705d35; }
+    .error-box { display: none; border: 1px solid #713f42; background: #211719; color: #ffb5b8; padding: 13px; font: 12px/1.5 var(--mono); white-space: pre-wrap; }
+    .benchmark { margin-top: 18px; }
+    .benchmark-controls { display: grid; grid-template-columns: repeat(4, minmax(130px, 1fr)) auto; gap: 12px; align-items: end; }
+    .benchmark-summary { margin-top: 16px; display: none; }
+    .bench-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); }
+    .bench-table-wrap { margin-top: 14px; overflow: auto; max-height: 420px; border: 1px solid var(--line); }
+    table { border-collapse: collapse; width: 100%; font-size: 12px; }
+    th, td { padding: 9px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { position: sticky; top: 0; background: var(--panel-2); color: var(--muted); font: 10px/1.2 var(--mono); text-transform: uppercase; }
+    td code { font-family: var(--mono); color: #d7dde4; }
+    .ok { color: var(--mint); }
+    .no { color: var(--red); }
+    .loading { animation: pulse 1s ease-in-out infinite alternate; }
+    @keyframes pulse { to { opacity: .45; } }
+    @media (max-width: 1050px) {
+      .model-grid { grid-template-columns: 1fr 2fr; }
+      .workspace { grid-template-columns: 1fr; }
+      .metrics, .bench-metrics { grid-template-columns: repeat(3, 1fr); }
+      .benchmark-controls { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 24px, 1500px); padding-top: 24px; }
+      header { align-items: flex-start; flex-direction: column; }
+      .model-grid, .row, .decision, .benchmark-controls { grid-template-columns: 1fr; }
+      .metrics, .bench-metrics { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <div class="eyebrow">Local function-routing experiment</div>
+        <h1>Yuki Dispatcher Lab</h1>
+        <p class="subtitle">One request. One model generation. One validated tool call. No conversation, no assistant answer, and no result summarization.</p>
+      </div>
+      <div class="status"><span id="statusDot" class="dot"></span><span id="statusText">No model loaded</span></div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-head"><h2>Model under test</h2><span class="eyebrow">swappable 1B–3B lab</span></div>
+      <div class="panel-body model-grid">
+        <label>Backend
+          <select id="backend">
+            <option value="mlx">MLX</option>
+            <option value="transformers">Transformers / MPS</option>
+            <option value="openai-compatible-local">Local API</option>
+          </select>
+        </label>
+        <label>Model repository or local FP16 path
+          <input id="modelId" value="Salesforce/xLAM-1b-fc-r" spellcheck="false">
+        </label>
+        <label>Local API base URL
+          <input id="baseUrl" value="http://127.0.0.1:8080/v1" spellcheck="false">
+        </label>
+        <label>API key
+          <input id="apiKey" value="local" type="password">
+        </label>
+        <button id="loadModel">Load model</button>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="panel">
+        <div class="panel-head"><h2>Delegated request</h2><span class="badge">256 token ceiling</span></div>
+        <div class="panel-body controls">
+          <label>Natural-language tool request
+            <textarea id="request">What's the weather in Tokyo?</textarea>
+          </label>
+          <div class="row">
+            <label>Available schemas
+              <select id="group">
+                <option value="all">All 18 tools</option>
+                <option value="information">Information</option>
+                <option value="computer">Computer</option>
+                <option value="media">Media</option>
+                <option value="yuki-files">Yuki files</option>
+                <option value="memory">Memory</option>
+                <option value="external-agent">External agent</option>
+              </select>
+            </label>
+            <label>Output experiment
+              <select id="outputMode">
+                <option value="native">Model-native (primary)</option>
+                <option value="canonical">Canonical A/B</option>
+              </select>
+            </label>
+          </div>
+          <div class="row">
+            <label>Shell policy
+              <select id="shellMode">
+                <option value="dry_run">Dry run</option>
+                <option value="strict">Strict execution</option>
+              </select>
+            </label>
+            <div class="checks">
+              <label><input type="checkbox" id="allowSideEffects"> Allow side effects / external tools</label>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="route">Route + validate</button>
+            <button id="execute" class="danger" disabled>Execute validated call</button>
+            <button id="clear" class="secondary">Clear output</button>
+          </div>
+          <p class="note">Execution is deliberately separate. The model never receives the tool result. Shell stays dry-run unless strict mode and explicit side-effect permission are both selected.</p>
+          <div id="requestError" class="error-box"></div>
+        </div>
+      </section>
+
+      <section class="panel" aria-live="polite">
+        <div class="panel-head"><h2>Decision trace</h2><div id="badges" class="badges"><span class="badge">Waiting</span></div></div>
+        <div class="metrics">
+          <div class="metric"><span>Latency</span><strong id="latency">—</strong></div>
+          <div class="metric"><span>Generated</span><strong id="tokens">—</strong></div>
+          <div class="metric"><span>Tokens / sec</span><strong id="tps">—</strong></div>
+          <div class="metric"><span>Peak memory</span><strong id="memory">—</strong></div>
+          <div class="metric"><span>Finish</span><strong id="finish">—</strong></div>
+        </div>
+        <div class="result-body">
+          <div class="decision">
+            <div class="readout"><div class="label">Selected tool</div><div id="selectedTool" class="tool-name">—</div></div>
+            <div class="readout"><div class="label">Parsed arguments</div><pre id="parsedArgs">—</pre></div>
+          </div>
+          <details open><summary>Raw model generation</summary><pre id="rawGeneration">No generation yet.</pre></details>
+          <details><summary>Schema validation</summary><pre id="validation">No validation yet.</pre></details>
+          <details><summary>Exact schemas sent to the model</summary><pre id="schemas">No schemas yet.</pre></details>
+          <details><summary>Exact prompt content</summary><pre id="prompt">No prompt yet.</pre></details>
+          <details><summary>Backend-rendered prompt</summary><pre id="renderedPrompt">No rendered prompt yet.</pre></details>
+          <details open><summary>Tool execution and raw output</summary><pre id="execution">Not requested.</pre></details>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel benchmark">
+      <div class="panel-head"><h2>Phase 1 smoke benchmark</h2><span class="eyebrow">72 cases · Phase 2 ready</span></div>
+      <div class="panel-body">
+        <div class="benchmark-controls">
+          <label>Router mode
+            <select id="benchRouter">
+              <option value="model_only">Small model only</option>
+              <option value="regex_only">Regex only</option>
+              <option value="regex_then_model">Regex then model</option>
+            </select>
+          </label>
+          <label>Tool group
+            <select id="benchGroup">
+              <option value="all">All 18 tools</option>
+              <option value="information">Information</option>
+              <option value="computer">Computer</option>
+              <option value="media">Media</option>
+              <option value="yuki-files">Yuki files</option>
+              <option value="memory">Memory</option>
+              <option value="external-agent">External agent</option>
+            </select>
+          </label>
+          <label>Output mode
+            <select id="benchOutput"><option value="native">Model-native</option><option value="canonical">Canonical</option></select>
+          </label>
+          <label>Optional case limit
+            <input id="benchLimit" type="number" min="1" placeholder="All matching">
+          </label>
+          <button id="runBenchmark">Run benchmark</button>
+        </div>
+        <div id="benchmarkError" class="error-box" style="margin-top:14px"></div>
+        <div id="benchmarkSummary" class="benchmark-summary">
+          <div id="benchMetrics" class="bench-metrics"></div>
+          <details style="margin-top:14px"><summary>Failures grouped by tool</summary><pre id="benchFailures"></pre></details>
+          <div class="bench-table-wrap">
+            <table>
+              <thead><tr><th>Case</th><th>Expected</th><th>Actual</th><th>Args exact</th><th>Args equivalent</th><th>Schema</th><th>Call exact</th><th>Call equivalent</th></tr></thead>
+              <tbody id="benchRows"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let lastResult = null;
+    const $ = (id) => document.getElementById(id);
+    const pretty = (value) => value == null ? "—" : JSON.stringify(value, null, 2);
+    const fmt = (value, suffix = "") => value == null ? "—" : `${Number(value).toFixed(2)}${suffix}`;
+
+    async function api(path, options = {}) {
+      const response = await fetch(path, { headers: { "Content-Type": "application/json" }, ...options });
+      let body;
+      try { body = await response.json(); } catch { body = { detail: await response.text() }; }
+      if (!response.ok) throw new Error(typeof body.detail === "string" ? body.detail : pretty(body.detail));
+      return body;
+    }
+
+    function showError(target, error) {
+      target.textContent = error.message || String(error);
+      target.style.display = "block";
+    }
+    function hideError(target) { target.style.display = "none"; target.textContent = ""; }
+    function setBusy(button, busy, text) {
+      if (busy) { button.dataset.label = button.textContent; button.textContent = text; button.disabled = true; button.classList.add("loading"); }
+      else { button.textContent = button.dataset.label || button.textContent; button.disabled = false; button.classList.remove("loading"); }
+    }
+
+    async function refreshStatus() {
+      try {
+        const state = await api("/api/status");
+        $("statusDot").classList.toggle("ready", state.ready);
+        if (state.ready) {
+          const dtype = state.model.model_metadata.actual_weight_dtype || state.model.model_metadata.runtime_dtype || state.model.model_metadata.configured_dtype || "dtype unknown";
+          $("statusText").textContent = `${state.model.backend} · ${dtype} · load ${fmt(state.model.load_latency_ms, " ms")}`;
+        } else {
+          $("statusText").textContent = "No model loaded";
+        }
+      } catch (error) { $("statusText").textContent = `Server error: ${error.message}`; }
+    }
+
+    $("loadModel").addEventListener("click", async () => {
+      const button = $("loadModel");
+      hideError($("requestError"));
+      setBusy(button, true, "Loading…");
+      try {
+        await api("/api/model/load", { method: "POST", body: JSON.stringify({
+          backend: $("backend").value,
+          model_id: $("modelId").value.trim(),
+          base_url: $("backend").value === "openai-compatible-local" ? $("baseUrl").value.trim() : null,
+          api_key: $("apiKey").value,
+          constrain_json: true
+        }) });
+        await refreshStatus();
+      } catch (error) { showError($("requestError"), error); }
+      finally { setBusy(button, false); }
+    });
+
+    function renderDispatch(result) {
+      lastResult = result;
+      const generation = result.generation || {};
+      $("latency").textContent = fmt(generation.latency_ms, " ms");
+      $("tokens").textContent = generation.generated_tokens ?? "—";
+      $("tps").textContent = fmt(generation.tokens_per_second);
+      $("memory").textContent = generation.peak_memory_gb != null ? fmt(generation.peak_memory_gb, " GB") : fmt(generation.process_rss_mb, " MB");
+      $("finish").textContent = generation.finish_reason || "—";
+      $("selectedTool").textContent = result.selected_tool || "—";
+      $("parsedArgs").textContent = pretty(result.parsed_arguments);
+      $("rawGeneration").textContent = generation.raw_text || generation.error || "(empty generation)";
+      $("validation").textContent = pretty({ parser_input: generation.normalized_text || generation.raw_text, parse: result.parse, schema: result.validation });
+      $("schemas").textContent = pretty(result.schemas_sent);
+      $("prompt").textContent = result.prompt_content || "—";
+      $("renderedPrompt").textContent = generation.rendered_prompt || "—";
+      $("execution").textContent = pretty(result.execution);
+      const badges = [];
+      badges.push(`<span class="badge ${result.parse.passed ? "pass" : "fail"}">Parse ${result.parse.passed ? "pass" : "fail"}</span>`);
+      badges.push(`<span class="badge ${result.validation.passed ? "pass" : "fail"}">Schema ${result.validation.passed ? "pass" : "fail"}</span>`);
+      if (result.parse.rejected) badges.push('<span class="badge warn">Rejected</span>');
+      if (generation.normalized_text) badges.push('<span class="badge warn">Tokenizer normalized</span>');
+      badges.push(`<span class="badge">${result.output_mode}</span>`);
+      badges.push(`<span class="badge">${result.native_dialect}</span>`);
+      $("badges").innerHTML = badges.join("");
+      $("execute").disabled = !result.validation.passed;
+    }
+
+    $("route").addEventListener("click", async () => {
+      const button = $("route");
+      hideError($("requestError"));
+      setBusy(button, true, "Routing…");
+      $("execute").disabled = true;
+      try {
+        const result = await api("/api/dispatch", { method: "POST", body: JSON.stringify({
+          request: $("request").value,
+          group: $("group").value,
+          output_mode: $("outputMode").value,
+          execute: false,
+          allow_side_effects: false,
+          shell_mode: $("shellMode").value
+        }) });
+        renderDispatch(result);
+      } catch (error) { showError($("requestError"), error); }
+      finally { setBusy(button, false); }
+    });
+
+    $("execute").addEventListener("click", async () => {
+      if (!lastResult?.canonical_call) return;
+      const button = $("execute");
+      hideError($("requestError"));
+      setBusy(button, true, "Executing…");
+      try {
+        const execution = await api("/api/execute", { method: "POST", body: JSON.stringify({
+          ...lastResult.canonical_call,
+          group: $("group").value,
+          allow_side_effects: $("allowSideEffects").checked,
+          shell_mode: $("shellMode").value
+        }) });
+        lastResult.execution = execution;
+        $("execution").textContent = pretty(execution);
+      } catch (error) { showError($("requestError"), error); }
+      finally { setBusy(button, false); }
+    });
+
+    $("clear").addEventListener("click", () => {
+      lastResult = null;
+      ["latency","tokens","tps","memory","finish","selectedTool"].forEach(id => $(id).textContent = "—");
+      $("parsedArgs").textContent = "—";
+      $("rawGeneration").textContent = "No generation yet.";
+      $("validation").textContent = "No validation yet.";
+      $("schemas").textContent = "No schemas yet.";
+      $("prompt").textContent = "No prompt yet.";
+      $("renderedPrompt").textContent = "No rendered prompt yet.";
+      $("execution").textContent = "Not requested.";
+      $("badges").innerHTML = '<span class="badge">Waiting</span>';
+      $("execute").disabled = true;
+      hideError($("requestError"));
+    });
+
+    function metric(label, value) {
+      return `<div class="metric"><span>${label}</span><strong>${value}</strong></div>`;
+    }
+    $("runBenchmark").addEventListener("click", async () => {
+      const button = $("runBenchmark");
+      hideError($("benchmarkError"));
+      setBusy(button, true, "Running…");
+      $("benchmarkSummary").style.display = "none";
+      const limitValue = $("benchLimit").value.trim();
+      try {
+        const report = await api("/api/benchmark", { method: "POST", body: JSON.stringify({
+          router_mode: $("benchRouter").value,
+          group: $("benchGroup").value,
+          output_mode: $("benchOutput").value,
+          execute: false,
+          limit: limitValue ? Number(limitValue) : null
+        }) });
+        const m = report.metrics;
+        $("benchMetrics").innerHTML = [
+          metric("Cases", m.total_cases),
+          metric("Tool accuracy", fmt(m.tool_selection_accuracy * 100, "%")),
+          metric("Arguments exact", fmt(m.strict_argument_accuracy * 100, "%")),
+          metric("Arguments equivalent", fmt(m.execution_equivalent_argument_accuracy * 100, "%")),
+          metric("Call exact", fmt(m.exact_call_accuracy * 100, "%")),
+          metric("Call equivalent", fmt(m.execution_equivalent_call_accuracy * 100, "%")),
+          metric("Schema valid", fmt(m.schema_valid_output_rate * 100, "%")),
+          metric("Malformed", fmt(m.malformed_output_rate * 100, "%"))
+        ].join("");
+        $("benchFailures").textContent = pretty({ failures: report.failures_by_expected_tool, confusion: report.confusion_matrix, performance: {
+          average_latency_ms: m.average_inference_latency_ms,
+          average_tokens_per_second: m.average_tokens_per_second
+        }});
+        $("benchRows").innerHTML = report.case_results.map(row => `<tr>
+          <td><code>${row.case_id}</code><br>${row.request}</td>
+          <td><code>${row.expected_tool}</code></td>
+          <td class="${row.tool_correct ? "ok" : "no"}"><code>${row.actual_tool || "none"}</code></td>
+          <td class="${row.strict_arguments_correct ? "ok" : "no"}">${row.strict_arguments_correct ? "pass" : "fail"}</td>
+          <td class="${row.execution_equivalent_arguments_correct ? "ok" : "no"}">${row.execution_equivalent_arguments_correct ? "pass" : "fail"}</td>
+          <td class="${row.schema_valid ? "ok" : "no"}">${row.schema_valid ? "pass" : "fail"}</td>
+          <td class="${row.exact_call ? "ok" : "no"}">${row.exact_call ? "pass" : "fail"}</td>
+          <td class="${row.execution_equivalent_call ? "ok" : "no"}">${row.execution_equivalent_call ? "pass" : "fail"}</td>
+        </tr>`).join("");
+        $("benchmarkSummary").style.display = "block";
+      } catch (error) { showError($("benchmarkError"), error); }
+      finally { setBusy(button, false); }
+    });
+
+    refreshStatus();
+  </script>
+</body>
+</html>

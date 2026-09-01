@@ -1,0 +1,79 @@
+{
+  "version": "hammer15-pilot-manifest-v1.2",
+  "record_format": "hammer15-training-record-v1.2",
+  "decision": "APPROVE FOR STAGED SCALING",
+  "source_pilot": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/training/hammer15-pilot-v1.1.jsonl",
+  "source_pilot_sha256": "9bab33fa2e0c1df0701bd51b4da6d8a08940d05d3f88892501ea3ddafa3001ff",
+  "original_pilot_v1_sha256": "563f4cc6f159f497836adaa585f8b3fd437a20126310541a8427f19f878a3c82",
+  "seed_inherited_from_v1.1": 151825,
+  "record_count": 150,
+  "human_review_history": {
+    "keep": 145,
+    "revise": 5,
+    "reject": 0
+  },
+  "revised_record_numbers": [
+    30,
+    31,
+    36,
+    94,
+    117
+  ],
+  "category_counts": {
+    "adversarial_edge": 15,
+    "literal_preservation": 35,
+    "ontology_confusion": 60,
+    "ordinary_easy": 15,
+    "semantic_argument": 25
+  },
+  "argument_mode_counts": {
+    "literal_source": 86,
+    "no_argument": 4,
+    "reject": 6,
+    "semantic_argument": 54
+  },
+  "tool_counts": {
+    "None": 6,
+    "ask_claude": 7,
+    "calc": 6,
+    "fetch": 4,
+    "hardware": 11,
+    "image": 12,
+    "read": 11,
+    "recall": 10,
+    "remember": 10,
+    "search": 12,
+    "see": 11,
+    "shell": 9,
+    "time": 2,
+    "weather": 6,
+    "yuki_append": 9,
+    "yuki_delete": 2,
+    "yuki_list": 2,
+    "yuki_read": 6,
+    "yuki_write": 14
+  },
+  "ontology_family_counts": {
+    "read-vs-yuki_read": 10,
+    "remember-vs-yuki_write": 10,
+    "search-vs-recall": 10,
+    "see-vs-image": 10,
+    "shell-vs-hardware": 10,
+    "yuki_write-vs-yuki_append": 10
+  },
+  "offered_tool_count_distribution": {
+    "1": 9,
+    "2": 86,
+    "3": 11,
+    "5": 27,
+    "18": 17
+  },
+  "prompt_profile": "hammer21-yuki-typed-a1-ontology-structured-files-v1.1",
+  "structured_write_append_preserved": true,
+  "metadata_excluded_from_training": true,
+  "inference_used": false,
+  "models_loaded": false,
+  "yuki_tools_executed": false,
+  "frozen_450_rerun": false,
+  "sacred_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466"
+}

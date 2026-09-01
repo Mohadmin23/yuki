@@ -1,0 +1,24 @@
+{
+  "version": "qwen3.8-hammer1.5-full450-artifact-manifest-v1",
+  "date": "2026-08-21",
+  "artifacts": {
+    "production-delegation-source-v1.json": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "stage-a/production-delegation-mainbrain-qwen3.8-27b-openrouter-smoke18-v1.json": "7b80a2cb50ce25631e923aca3518a1e5ca4ae6718703f017174222c589f9d512",
+    "stage-a/production-delegation-mainbrain-qwen3.8-27b-openrouter-full450-v1.json": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa",
+    "stage-b/production-delegation-hammer1.5b-qwen3.8-27b-full450-v1.json": "84b619922e3b24c0080b17b91a5963114f024647112e467a6099ae9fab425f8a",
+    "stage-b/production-delegation-hammer1.5b-qwen3.8-27b-full450-v1-failures.jsonl": "7d82ec2c4f5721ba56db781d903237ac37d84691638f2cecee97387a6e162de1",
+    "qwen3.8-hammer1.5-full450-comparison-v1.json": "050646d9908bdc5ee03fd42e336d0c1585583512349320bd3ede236821ce40b8",
+    "QWEN3.8-27B-HAMMER1.5B-FULL450-REPORT.md": "92e118d7e778e598779563b1ba822477d5ce3091390d55d99be7d2ed59a1f7b5"
+  },
+  "harness_sources": {
+    "delegation_mainbrain.py": "1c8abdd5742989036ec6a50e4789cb9785048e89fe97cd93db0f303a3f5443fb",
+    "delegation_dispatcher.py": "797be378504bd900c4466c5e1e7cf781ca1dda42fa04aec3878bca6d51913108",
+    "__main__.py": "f85b46586a9e71487940431229d57dd5b83b2a195483e4d20e4cecbff0d6420e",
+    "tests/test_production_delegation.py": "8516004e0ed75cc2f3c169fe0e5e9661963bcb9663681acbb65e51f1c317e5b6"
+  },
+  "safety": {
+    "yuki_tool_execution_capability": false,
+    "yuki_tool_execution_attempts": 0,
+    "hammer_3b_loaded": false
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "version": "gpt-oss-20b-vs-qwen38-stage-a-comparison-v1",
+  "experiment": "production_delegation_stage_a_main_brain_comparison",
+  "scope": {
+    "cases": 450,
+    "dataset": "production-delegation-source-v1",
+    "dataset_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "same_prompt": true,
+    "prompt_sha256": "1189b8cb529f8f13592e4952b9e1da31093592dfe2710c96796bc9bedb120cbb",
+    "same_schema": true,
+    "same_scorer": true,
+    "stateless": true,
+    "generations_per_case": 1,
+    "yuki_tool_execution": false,
+    "hammer_run": false
+  },
+  "arms": {
+    "qwen3.8_27b": {
+      "model_id": "qwen/qwen3.8-27b",
+      "provider_policy": "OpenRouter price routing with parameter support required",
+      "providers": ["Chutes", "CoreWeave", "Reka"],
+      "reasoning": "disabled",
+      "generation_ceiling": 160,
+      "report": "../production-delegation/stage-a/production-delegation-mainbrain-qwen3.8-27b-openrouter-full450-v1.json",
+      "report_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa",
+      "metrics": {
+        "valid_delegation_rate": 1.0,
+        "malformed_delegation_rate": 0.0,
+        "domain_hint_accuracy": 0.9911111111111112,
+        "semantic_request_quality_rate": 0.6933333333333334,
+        "average_verbatim_recall": 0.9055555555555556,
+        "average_verbatim_precision": 0.7593333333333333,
+        "final_tool_leakage_rate": 0.0022222222222222222,
+        "average_latency_ms": 2144.939282222222,
+        "p50_latency_ms": 1209.7705,
+        "p95_latency_ms": 6976.231999999988,
+        "average_generated_tokens": 28.964444444444446,
+        "average_tokens_per_second": 21.249602222222222,
+        "api_cost_usd": 0.13306525
+      }
+    },
+    "gpt_oss_20b": {
+      "model_id": "openai/gpt-oss-20b",
+      "provider_policy": "DeepInfra pinned; fallback disabled; parameter support required",
+      "providers": ["DeepInfra"],
+      "reasoning": "mandatory low effort, excluded from visible output",
+      "generation_ceiling": 256,
+      "report": "stage-a/mainbrain-gpt-oss-20b-openrouter-full450-v1-deepinfra.json",
+      "report_sha256": "f99588031a30cf8fbdbed966c07366fc7fcdeb9e793acadcbdc4c423e2a42cf7",
+      "metrics": {
+        "valid_delegation_rate": 0.9977777777777778,
+        "malformed_delegation_rate": 0.0022222222222222222,
+        "domain_hint_accuracy": 0.8622222222222222,
+        "semantic_request_quality_rate": 0.47333333333333333,
+        "average_verbatim_recall": 0.8344444444444444,
+        "average_verbatim_precision": 0.5533333333333333,
+        "final_tool_leakage_rate": 0.0,
+        "average_latency_ms": 1031.5101022222223,
+        "p50_latency_ms": 918.352,
+        "p95_latency_ms": 1885.0812499999972,
+        "average_generated_tokens": 74.45111111111112,
+        "average_tokens_per_second": 74.48034,
+        "api_cost_usd": 0.01206553
+      },
+      "domain_accuracy_by_tool": {
+        "time": 0.96,
+        "weather": 0.96,
+        "fetch": 0.92,
+        "search": 0.80,
+        "calc": 0.96,
+        "hardware": 0.92,
+        "see": 0.64,
+        "image": 0.80,
+        "read": 0.96,
+        "shell": 1.0,
+        "yuki_write": 0.96,
+        "yuki_read": 0.64,
+        "yuki_list": 0.44,
+        "yuki_delete": 0.64,
+        "yuki_append": 0.92,
+        "remember": 1.0,
+        "recall": 1.0,
+        "ask_claude": 1.0
+      },
+      "domain_failures_by_tool": {
+        "yuki_list": 14,
+        "see": 9,
+        "yuki_read": 9,
+        "yuki_delete": 9,
+        "search": 5,
+        "image": 5,
+        "fetch": 2,
+        "hardware": 2,
+        "yuki_append": 2,
+        "time": 1,
+        "weather": 1,
+        "calc": 1,
+        "read": 1,
+        "yuki_write": 1
+      },
+      "malformed_case_ids": ["p2-yuki_list-06"]
+    }
+  },
+  "delta_gpt_oss_minus_qwen": {
+    "valid_delegation_percentage_points": -0.22222222222222365,
+    "domain_accuracy_percentage_points": -12.888888888888895,
+    "semantic_quality_percentage_points": -22.0,
+    "verbatim_recall_percentage_points": -7.111111111111112,
+    "verbatim_precision_percentage_points": -20.599999999999998,
+    "average_latency_ms": -1113.42918,
+    "p50_latency_ms": -291.4185,
+    "p95_latency_ms": -5091.15075,
+    "tokens_per_second_multiplier": 3.5050227868317743,
+    "cost_multiplier": 0.09067378598093792
+  },
+  "interpretation": {
+    "stage_a_result": "GPT-OSS-20B is faster and cheaper but materially less accurate under the frozen semantic-delegation contract.",
+    "replacement_supported": false,
+    "downstream_conclusion_available": false,
+    "downstream_blocker": "The external volume containing Hammer2.1-1.5b-fp16 was not mounted."
+  }
+}

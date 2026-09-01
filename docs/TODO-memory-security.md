@@ -1,3 +1,15 @@
+> ⚠️ **STALE / HISTORICAL — DO NOT TRUST THE CODE REFERENCES BELOW (as of 2026-06-24).**
+> The entire multi-user system this document describes was **deleted** on 2026-05-15.
+> `MULTI_USER_MODE`, `verify_and_advance`, `_default_user_id`, `_create_slot`,
+> `bot.unlocked_user_id`, the slot/2FA/unlock machinery, and the "122/127 tests"
+> count **no longer exist** anywhere in `ms_llama.py` or `interface/server.py`.
+> Memory is now a single flat `data/memory.json`; see `episodic.py` + the `remember`/
+> `recall` tools for the real, current design. This file is kept only for the design
+> rationale (the 4 questions, the "what worked" list). Do not go looking for the
+> functions named here — you will not find them. See `AGENTS.md` for current state.
+
+---
+
 # TODO: Multi-User Memory Security Rework
 
 **Status:** On hold. Reverted to simple single-user mode via `MULTI_USER_MODE = False` in `ms_llama.py`. All identity/unlock/ownership code is still in the repo — flipping the flag back to `True` restores the multi-user behavior.

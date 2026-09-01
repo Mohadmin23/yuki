@@ -1,0 +1,40 @@
+{
+  "version": "flash168-typed-binder-freeze-v1",
+  "status": "frozen_before_scoring",
+  "frozen_sources": {
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/qwen38-flash-direct-native-screen-168-v1.json": "0c71c299cbd559a3c2a0f0dd67e90236620926cda1859db89072239a601baade",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-literal-source-annotations-v1.json": "3a5ee9f97f6771b6977a3652418cc89729cbf4d8341791543261c02ec6f9662e",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/phase2-cases.json": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466"
+  },
+  "binder_input": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-typed-binder-input-v1.json",
+    "sha256": "eb71a6373a1e75f193e180d3a187e3576c9752fb1890a6ff178177a4767e5507"
+  },
+  "binder_predictions": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-typed-binder-predictions-v1.json",
+    "sha256": "c36cd4b6850d546c2b19dc485a5f463f3ac4c1833ad70bc06c7bf0befeee0f58"
+  },
+  "binder_abstentions": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-typed-binder-abstentions-v1.jsonl",
+    "sha256": "71363c689b1dfe26a581ed6739347785a43388ec2b6261d70c46db6921ac0f4b"
+  },
+  "binder_source": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/typed_literal_binder.py",
+    "sha256": "0ca26737b6017f907b46860be30c3770ec5ccfe6ef25d7505130c50b6104d602"
+  },
+  "literal_annotations": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/flash168-literal-source-annotations-v1.json",
+    "sha256": "3a5ee9f97f6771b6977a3652418cc89729cbf4d8341791543261c02ec6f9662e",
+    "frozen_before_binder_predictions": true,
+    "available_to_binder": false
+  },
+  "safety": {
+    "models_called": false,
+    "new_generation": false,
+    "gold_available_to_binder": false,
+    "literal_annotations_available_to_binder": false,
+    "sacred_450_used": false,
+    "tool_execution_capability": false,
+    "tool_execution_attempts": 0
+  }
+}

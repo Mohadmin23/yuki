@@ -1,0 +1,2805 @@
+{
+  "configuration": {
+    "router_mode": "model_only",
+    "output_mode": "native",
+    "native_dialect": "openai_native_tool_calls",
+    "backend": "openrouter-native-tools",
+    "model_id": "openai/gpt-oss-20b",
+    "group": "all",
+    "available_tools": [
+      "time",
+      "weather",
+      "fetch",
+      "search",
+      "calc",
+      "hardware",
+      "see",
+      "image",
+      "read",
+      "shell",
+      "yuki_write",
+      "yuki_read",
+      "yuki_list",
+      "yuki_delete",
+      "yuki_append",
+      "remember",
+      "recall",
+      "ask_claude"
+    ],
+    "oracle_profile": null,
+    "oracle_subsets": {},
+    "execute": false,
+    "phase": "phase_1_smoke",
+    "experiment": "gpt_oss_direct_all_18_native_tools",
+    "selection": "smoke-18",
+    "exposure_condition": "all_18_real_yuki_schemas",
+    "schema_profile": "live_registry_strict_validation_adapter",
+    "schema_sha256": "22139a7c2a7ad583ec38b1fb98715e876c1a9b51554607859bde75688dc6523d",
+    "phase2_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "selection_source_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "native_api_tool_calls": true,
+    "tool_choice": "required",
+    "parallel_tool_calls_parameter_sent": false,
+    "multiple_calls_rejected_by_parser": true,
+    "reasoning_effort": "low",
+    "reasoning_excluded_from_output": true,
+    "generation_count_per_case": 1,
+    "stateless": true,
+    "execution_capability": false,
+    "yuki_tool_execution_attempts": 0,
+    "binder_used": false,
+    "qwen_used": false,
+    "hammer_used": false,
+    "regex_router_used": false
+  },
+  "metrics": {
+    "total_cases": 18,
+    "model_invocations": 18,
+    "tool_selection_accuracy": 0.9444444444444444,
+    "argument_accuracy": 0.8333333333333334,
+    "strict_argument_accuracy": 0.8333333333333334,
+    "execution_equivalent_argument_accuracy": 0.8333333333333334,
+    "exact_call_accuracy": 0.8333333333333334,
+    "execution_equivalent_call_accuracy": 0.8333333333333334,
+    "schema_valid_output_rate": 0.9444444444444444,
+    "malformed_output_rate": 0.05555555555555555,
+    "average_inference_latency_ms": 741.9152777777778,
+    "p50_inference_latency_ms": 616.4625000000001,
+    "p95_inference_latency_ms": 1164.7009999999998,
+    "average_tokens_per_second": 49.5715323044758,
+    "mean_backend_reported_tokens_per_second": 52.37605555555555,
+    "median_backend_reported_tokens_per_second": 57.8195,
+    "end_to_end_generated_tokens_per_second": 49.57139835148891,
+    "execution_attempts": 0,
+    "execution_passes": 0
+  },
+  "failures_by_expected_tool": {
+    "image": {
+      "malformed_output": 1,
+      "wrong_tool": 1,
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1,
+      "schema_invalid": 1
+    },
+    "read": {
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1
+    },
+    "ask_claude": {
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1
+    }
+  },
+  "confusion_matrix": {
+    "time": {
+      "time": 1
+    },
+    "weather": {
+      "weather": 1
+    },
+    "fetch": {
+      "fetch": 1
+    },
+    "search": {
+      "search": 1
+    },
+    "calc": {
+      "calc": 1
+    },
+    "hardware": {
+      "hardware": 1
+    },
+    "see": {
+      "see": 1
+    },
+    "image": {
+      "<none>": 1
+    },
+    "read": {
+      "read": 1
+    },
+    "shell": {
+      "shell": 1
+    },
+    "yuki_write": {
+      "yuki_write": 1
+    },
+    "yuki_read": {
+      "yuki_read": 1
+    },
+    "yuki_list": {
+      "yuki_list": 1
+    },
+    "yuki_delete": {
+      "yuki_delete": 1
+    },
+    "yuki_append": {
+      "yuki_append": 1
+    },
+    "remember": {
+      "remember": 1
+    },
+    "recall": {
+      "recall": 1
+    },
+    "ask_claude": {
+      "ask_claude": 1
+    }
+  },
+  "case_results": [
+    {
+      "index": 0,
+      "case_id": "p2-time-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "time"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "What time is it right now?",
+      "expected_tool": "time",
+      "expected_arguments": {},
+      "actual_tool": "time",
+      "actual_arguments": {},
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "no_arguments",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {}
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"time\",\"arguments\":{}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 814.441,
+        "prompt_tokens": 1723,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 30.696,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.641,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 1,
+          "run_kind": "first_after_load",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 4,
+          "api_cost_usd": 5.519e-05,
+          "cumulative_api_cost_usd": 5.519e-05,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "time",
+            "arguments": {}
+          }
+        ],
+        "canonical_call": {
+          "tool": "time",
+          "arguments": {}
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 1,
+      "case_id": "p2-weather-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "weather"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Is it jacket weather in Glasgow right now?",
+      "expected_tool": "weather",
+      "expected_arguments": {
+        "city": "Glasgow"
+      },
+      "actual_tool": "weather",
+      "actual_arguments": {
+        "city": "Glasgow"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "city": {
+            "expected": "Glasgow",
+            "actual": "Glasgow",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"weather\",\"arguments\":{\"city\":\"Glasgow\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 529.739,
+        "prompt_tokens": 1725,
+        "generated_tokens": 31,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 58.519,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.781,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 2,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 9,
+          "api_cost_usd": 5.609e-05,
+          "cumulative_api_cost_usd": 0.00011128,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "weather",
+            "arguments": {
+              "city": "Glasgow"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "weather",
+          "arguments": {
+            "city": "Glasgow"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 2,
+      "case_id": "p2-fetch-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "fetch"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Fetch this exact URL; do not search for it: https://example.com/guide",
+      "expected_tool": "fetch",
+      "expected_arguments": {
+        "url": "https://example.com/guide"
+      },
+      "actual_tool": "fetch",
+      "actual_arguments": {
+        "url": "https://example.com/guide"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "url": {
+            "expected": "https://example.com/guide",
+            "actual": "https://example.com/guide",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"fetch\",\"arguments\":{\"url\":\"https://example.com/guide\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1004.182,
+        "prompt_tokens": 1733,
+        "generated_tokens": 31,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 30.871,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.875,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 3,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 4,
+          "api_cost_usd": 5.633e-05,
+          "cumulative_api_cost_usd": 0.00016761,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "fetch",
+            "arguments": {
+              "url": "https://example.com/guide"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "fetch",
+          "arguments": {
+            "url": "https://example.com/guide"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 3,
+      "case_id": "p2-search-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "search"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Search exactly for: C++ std::filesystem path case-sensitivity",
+      "expected_tool": "search",
+      "expected_arguments": {
+        "query": "C++ std::filesystem path case-sensitivity"
+      },
+      "actual_tool": "search",
+      "actual_arguments": {
+        "query": "C++ std::filesystem path case-sensitivity"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "query": {
+            "expected": "C++ std::filesystem path case-sensitivity",
+            "actual": "C++ std::filesystem path case-sensitivity",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"search\",\"arguments\":{\"query\":\"C++ std::filesystem path case-sensitivity\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 481.776,
+        "prompt_tokens": 1729,
+        "generated_tokens": 33,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 68.497,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.875,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 4,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 3,
+          "api_cost_usd": 5.649e-05,
+          "cumulative_api_cost_usd": 0.0002241,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "search",
+            "arguments": {
+              "query": "C++ std::filesystem path case-sensitivity"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "search",
+          "arguments": {
+            "query": "C++ std::filesystem path case-sensitivity"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 4,
+      "case_id": "p2-calc-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "calc"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "tool delegation is messy, but the arithmetic is ((1+2)*(3+4))%5",
+      "expected_tool": "calc",
+      "expected_arguments": {
+        "expression": "((1+2)*(3+4))%5"
+      },
+      "actual_tool": "calc",
+      "actual_arguments": {
+        "expression": "((1+2)*(3+4))%5"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "calc_ast",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "expression": {
+            "expected": "((1+2)*(3+4))%5",
+            "actual": "((1+2)*(3+4))%5",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"calc\",\"arguments\":{\"expression\":\"((1+2)*(3+4))%5\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 612.749,
+        "prompt_tokens": 1736,
+        "generated_tokens": 35,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 57.12,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.891,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 5,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 3,
+          "api_cost_usd": 5.698e-05,
+          "cumulative_api_cost_usd": 0.00028108,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "calc",
+            "arguments": {
+              "expression": "((1+2)*(3+4))%5"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "calc",
+          "arguments": {
+            "expression": "((1+2)*(3+4))%5"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 5,
+      "case_id": "p2-hardware-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "hardware"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "How much RAM is this Mac using?",
+      "expected_tool": "hardware",
+      "expected_arguments": {
+        "metric": "ram"
+      },
+      "actual_tool": "hardware",
+      "actual_arguments": {
+        "metric": "ram"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "metric": {
+            "expected": "ram",
+            "actual": "ram",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"hardware\",\"arguments\":{\"metric\":\"ram\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 615.013,
+        "prompt_tokens": 1724,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 42.276,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.906,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 6,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 5,
+          "api_cost_usd": 5.536e-05,
+          "cumulative_api_cost_usd": 0.00033644,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "hardware",
+            "arguments": {
+              "metric": "ram"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "hardware",
+          "arguments": {
+            "metric": "ram"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 6,
+      "case_id": "p2-see-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Use your eyes and track down my earbuds.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "earbuds"
+      },
+      "actual_tool": "see",
+      "actual_arguments": {
+        "target": "earbuds"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "target": {
+            "expected": "earbuds",
+            "actual": "earbuds",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"see\",\"arguments\":{\"target\":\"earbuds\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 502.435,
+        "prompt_tokens": 1725,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 59.709,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.922,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 7,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 6,
+          "api_cost_usd": 5.595e-05,
+          "cumulative_api_cost_usd": 0.00039239,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "see",
+            "arguments": {
+              "target": "earbuds"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "see",
+          "arguments": {
+            "target": "earbuds"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 7,
+      "case_id": "p2-image-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "camera-shaped sculpture"
+      },
+      "actual_tool": null,
+      "actual_arguments": null,
+      "tool_correct": false,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "schema_valid": false,
+      "malformed": true,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "{\"error\":\"No suitable tool available for this request.\"}",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 955.61,
+        "prompt_tokens": 1728,
+        "generated_tokens": 56,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 58.601,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.922,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 8,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 39,
+          "api_cost_usd": 5.968e-05,
+          "cumulative_api_cost_usd": 0.00045207,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": false,
+        "malformed": true,
+        "rejected": false,
+        "decoded": {
+          "error": "No suitable tool available for this request."
+        },
+        "canonical_call": null,
+        "errors": [
+          "Native output must be a JSON tool-call array."
+        ]
+      },
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Native output must be a JSON tool-call array."
+        ]
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 8,
+      "case_id": "p2-read-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "read"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Preserve case exactly when reading /tmp/FooBar.JSON.",
+      "expected_tool": "read",
+      "expected_arguments": {
+        "filepath": "/tmp/FooBar.JSON"
+      },
+      "actual_tool": "read",
+      "actual_arguments": {
+        "filepath": "tmp/FooBar.JSON"
+      },
+      "tool_correct": true,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "At least one argument differs under the tool policy.",
+        "fields": {
+          "filepath": {
+            "expected": "/tmp/FooBar.JSON",
+            "actual": "tmp/FooBar.JSON",
+            "equivalent": false
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"read\",\"arguments\":{\"filepath\":\"tmp/FooBar.JSON\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 504.363,
+        "prompt_tokens": 1729,
+        "generated_tokens": 34,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 67.412,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.938,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 9,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 7,
+          "api_cost_usd": 5.663e-05,
+          "cumulative_api_cost_usd": 0.0005087,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "read",
+            "arguments": {
+              "filepath": "tmp/FooBar.JSON"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "read",
+          "arguments": {
+            "filepath": "tmp/FooBar.JSON"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 9,
+      "case_id": "p2-shell-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "shell"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "The delegation is noisy [shell??], but run: ls -la /tmp/does-not-exist",
+      "expected_tool": "shell",
+      "expected_arguments": {
+        "command": "ls -la /tmp/does-not-exist"
+      },
+      "actual_tool": "shell",
+      "actual_arguments": {
+        "command": "ls -la /tmp/does-not-exist"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "command": {
+            "expected": "ls -la /tmp/does-not-exist",
+            "actual": "ls -la /tmp/does-not-exist",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"shell\",\"arguments\":{\"command\":\"ls -la /tmp/does-not-exist\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 506.848,
+        "prompt_tokens": 1737,
+        "generated_tokens": 35,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 69.054,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.0,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 10,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 4,
+          "api_cost_usd": 5.701e-05,
+          "cumulative_api_cost_usd": 0.00056571,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "shell",
+            "arguments": {
+              "command": "ls -la /tmp/does-not-exist"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "shell",
+          "arguments": {
+            "command": "ls -la /tmp/does-not-exist"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 10,
+      "case_id": "p2-yuki_write-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "yuki_write"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Write this into Yuki's file: todo.txt|buy oat milk",
+      "expected_tool": "yuki_write",
+      "expected_arguments": {
+        "filename_and_content": "todo.txt|buy oat milk"
+      },
+      "actual_tool": "yuki_write",
+      "actual_arguments": {
+        "filename_and_content": "todo.txt|buy oat milk"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "filename_and_content": {
+            "expected": "todo.txt|buy oat milk",
+            "actual": "todo.txt|buy oat milk",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"yuki_write\",\"arguments\":{\"filename_and_content\":\"todo.txt|buy oat milk\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 546.099,
+        "prompt_tokens": 1730,
+        "generated_tokens": 36,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 65.922,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.016,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 11,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 4,
+          "api_cost_usd": 5.694e-05,
+          "cumulative_api_cost_usd": 0.00062265,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_write",
+            "arguments": {
+              "filename_and_content": "todo.txt|buy oat milk"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_write",
+          "arguments": {
+            "filename_and_content": "todo.txt|buy oat milk"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 11,
+      "case_id": "p2-yuki_read-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "yuki_read"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Pull up your own little file called snack.txt.",
+      "expected_tool": "yuki_read",
+      "expected_arguments": {
+        "filename": "snack.txt"
+      },
+      "actual_tool": "yuki_read",
+      "actual_arguments": {
+        "filename": "snack.txt"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "filename": {
+            "expected": "snack.txt",
+            "actual": "snack.txt",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"yuki_read\",\"arguments\":{\"filename\":\"snack.txt\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1161.812,
+        "prompt_tokens": 1726,
+        "generated_tokens": 41,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 35.29,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.016,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 12,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 13,
+          "api_cost_usd": 5.752e-05,
+          "cumulative_api_cost_usd": 0.00068017,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_read",
+            "arguments": {
+              "filename": "snack.txt"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_read",
+          "arguments": {
+            "filename": "snack.txt"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 12,
+      "case_id": "p2-yuki_list-21",
+      "tags": [
+        "phase2",
+        "confusion",
+        "yuki_list"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Use Yuki file listing, not shell `ls`.",
+      "expected_tool": "yuki_list",
+      "expected_arguments": {},
+      "actual_tool": "yuki_list",
+      "actual_arguments": {},
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "no_arguments",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {}
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"yuki_list\",\"arguments\":{}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 720.885,
+        "prompt_tokens": 1727,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 41.616,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.016,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 13,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 6,
+          "api_cost_usd": 5.601e-05,
+          "cumulative_api_cost_usd": 0.00073618,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_list",
+            "arguments": {}
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_list",
+          "arguments": {}
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 13,
+      "case_id": "p2-yuki_delete-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "yuki_delete"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Delete filename exactly `OldNotes.MD` from Yuki.",
+      "expected_tool": "yuki_delete",
+      "expected_arguments": {
+        "filename": "OldNotes.MD"
+      },
+      "actual_tool": "yuki_delete",
+      "actual_arguments": {
+        "filename": "OldNotes.MD"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "filename": {
+            "expected": "OldNotes.MD",
+            "actual": "OldNotes.MD",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"yuki_delete\",\"arguments\":{\"filename\":\"OldNotes.MD\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1017.248,
+        "prompt_tokens": 1729,
+        "generated_tokens": 36,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 35.39,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.016,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 14,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 10,
+          "api_cost_usd": 5.691e-05,
+          "cumulative_api_cost_usd": 0.00079309,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_delete",
+            "arguments": {
+              "filename": "OldNotes.MD"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_delete",
+          "arguments": {
+            "filename": "OldNotes.MD"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 14,
+      "case_id": "p2-yuki_append-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "yuki_append"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "append-ish request... odd name.txt gets `? value_2`",
+      "expected_tool": "yuki_append",
+      "expected_arguments": {
+        "filename_and_content": "odd name.txt|? value_2"
+      },
+      "actual_tool": "yuki_append",
+      "actual_arguments": {
+        "filename_and_content": "odd name.txt|? value_2"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "filename_and_content": {
+            "expected": "odd name.txt|? value_2",
+            "actual": "odd name.txt|? value_2",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"yuki_append\",\"arguments\":{\"filename_and_content\":\"odd name.txt|? value_2\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1063.833,
+        "prompt_tokens": 1730,
+        "generated_tokens": 79,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 74.26,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.016,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 15,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 44,
+          "api_cost_usd": 6.296e-05,
+          "cumulative_api_cost_usd": 0.00085605,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_append",
+            "arguments": {
+              "filename_and_content": "odd name.txt|? value_2"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_append",
+          "arguments": {
+            "filename_and_content": "odd name.txt|? value_2"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 15,
+      "case_id": "p2-remember-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Remember exactly this fact: user's dog is named Pixel",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's dog is named Pixel"
+      },
+      "actual_tool": "remember",
+      "actual_arguments": {
+        "fact": "user's dog is named Pixel"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "fact": {
+            "expected": "user's dog is named Pixel",
+            "actual": "user's dog is named Pixel",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"remember\",\"arguments\":{\"fact\":\"user's dog is named Pixel\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 518.458,
+        "prompt_tokens": 1726,
+        "generated_tokens": 35,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 67.508,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.016,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 16,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 8,
+          "api_cost_usd": 5.668e-05,
+          "cumulative_api_cost_usd": 0.00091273,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "remember",
+            "arguments": {
+              "fact": "user's dog is named Pixel"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "remember",
+          "arguments": {
+            "fact": "user's dog is named Pixel"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 16,
+      "case_id": "p2-recall-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Can you dig into our shared past for the database migration topic?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "database migration"
+      },
+      "actual_tool": "recall",
+      "actual_arguments": {
+        "topic": "database migration"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "topic": {
+            "expected": "database migration",
+            "actual": "database migration",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"recall\",\"arguments\":{\"topic\":\"database migration\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 617.912,
+        "prompt_tokens": 1729,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 45.314,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.016,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 17,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 5,
+          "api_cost_usd": 5.579e-05,
+          "cumulative_api_cost_usd": 0.00096852,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "recall",
+            "arguments": {
+              "topic": "database migration"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "recall",
+          "arguments": {
+            "topic": "database migration"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 17,
+      "case_id": "p2-ask_claude-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "ask_claude"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "expected_tool": "ask_claude",
+      "expected_arguments": {
+        "question": "about Tokyo weather routing; do not use weather directly"
+      },
+      "actual_tool": "ask_claude",
+      "actual_arguments": {
+        "question": "What is the weather in Tokyo?"
+      },
+      "tool_correct": true,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "At least one argument differs under the tool policy.",
+        "fields": {
+          "question": {
+            "expected": "about Tokyo weather routing; do not use weather directly",
+            "actual": "What is the weather in Tokyo?",
+            "equivalent": false
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "openai_native_tool_calls",
+      "generation": {
+        "raw_text": "[{\"name\":\"ask_claude\",\"arguments\":{\"question\":\"What is the weather in Tokyo?\"}}]",
+        "normalized_text": null,
+        "backend": "openrouter-native-tools",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1181.072,
+        "prompt_tokens": 1729,
+        "generated_tokens": 41,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 34.714,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.031,
+        "finish_reason": "tool_calls",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 18,
+          "run_kind": "warm",
+          "base_url": "https://openrouter.ai/api/v1",
+          "json_root": "array",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "native_tool_calls": true,
+          "tool_choice": "required",
+          "reasoning_tokens": 10,
+          "api_cost_usd": 5.761e-05,
+          "cumulative_api_cost_usd": 0.00102613,
+          "max_api_cost_usd": 0.01
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "ask_claude",
+            "arguments": {
+              "question": "What is the weather in Tokyo?"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "What is the weather in Tokyo?"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    }
+  ],
+  "fine_tuning_examples": [
+    {
+      "case_id": "p2-image-18",
+      "request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "camera-shaped sculpture"
+        }
+      },
+      "raw_generation": "{\"error\":\"No suitable tool available for this request.\"}",
+      "actual_call": null,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "Actual arguments are not a JSON object.",
+        "fields": {}
+      },
+      "failure_types": [
+        "malformed_output",
+        "wrong_tool",
+        "wrong_arguments",
+        "execution_non_equivalent_arguments",
+        "schema_invalid"
+      ]
+    },
+    {
+      "case_id": "p2-read-22",
+      "request": "Preserve case exactly when reading /tmp/FooBar.JSON.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "/tmp/FooBar.JSON"
+        }
+      },
+      "raw_generation": "[{\"name\":\"read\",\"arguments\":{\"filepath\":\"tmp/FooBar.JSON\"}}]",
+      "actual_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "tmp/FooBar.JSON"
+        }
+      },
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "At least one argument differs under the tool policy.",
+        "fields": {
+          "filepath": {
+            "expected": "/tmp/FooBar.JSON",
+            "actual": "tmp/FooBar.JSON",
+            "equivalent": false
+          }
+        }
+      },
+      "failure_types": [
+        "wrong_arguments",
+        "execution_non_equivalent_arguments"
+      ]
+    },
+    {
+      "case_id": "p2-ask_claude-18",
+      "request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "openai_native_tool_calls",
+      "expected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "about Tokyo weather routing; do not use weather directly"
+        }
+      },
+      "raw_generation": "[{\"name\":\"ask_claude\",\"arguments\":{\"question\":\"What is the weather in Tokyo?\"}}]",
+      "actual_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "What is the weather in Tokyo?"
+        }
+      },
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "At least one argument differs under the tool policy.",
+        "fields": {
+          "question": {
+            "expected": "about Tokyo weather routing; do not use weather directly",
+            "actual": "What is the weather in Tokyo?",
+            "equivalent": false
+          }
+        }
+      },
+      "failure_types": [
+        "wrong_arguments",
+        "execution_non_equivalent_arguments"
+      ]
+    }
+  ],
+  "api_usage": {
+    "cost_usd": 0.00102613,
+    "cost_reported_cases": 18,
+    "providers": [
+      "DeepInfra"
+    ],
+    "average_reasoning_tokens": 10.222222222222221,
+    "maximum_reasoning_tokens": 44
+  },
+  "by_expected_tool": {
+    "ask_claude": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "calc": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "fetch": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "hardware": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "image": {
+      "cases": 1,
+      "tool_selection_accuracy": 0,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 0,
+      "malformed_rate": 1,
+      "rejection_rate": 0
+    },
+    "read": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "recall": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "remember": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "search": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "see": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "shell": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "time": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "weather": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_append": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_delete": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_list": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_read": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_write": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    }
+  },
+  "by_dataset_category": {
+    "adversarial": {
+      "cases": 3,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "confusion": {
+      "cases": 4,
+      "tool_selection_accuracy": 0.75,
+      "strict_argument_accuracy": 0.5,
+      "execution_equivalent_argument_accuracy": 0.5,
+      "strict_exact_call_accuracy": 0.5,
+      "execution_equivalent_exact_call_accuracy": 0.5,
+      "schema_valid_rate": 0.75,
+      "malformed_rate": 0.25,
+      "rejection_rate": 0
+    },
+    "normal": {
+      "cases": 4,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "paraphrase": {
+      "cases": 4,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "preservation": {
+      "cases": 3,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 0.6666666666666666,
+      "execution_equivalent_argument_accuracy": 0.6666666666666666,
+      "strict_exact_call_accuracy": 0.6666666666666666,
+      "execution_equivalent_exact_call_accuracy": 0.6666666666666666,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    }
+  }
+}

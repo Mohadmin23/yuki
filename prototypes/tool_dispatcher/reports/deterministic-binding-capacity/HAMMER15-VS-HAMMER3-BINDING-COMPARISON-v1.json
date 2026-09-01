@@ -1,0 +1,509 @@
+{
+  "version": "hammer15-vs-hammer3-deterministic-binding-capacity-v1",
+  "status": "completed",
+  "question": "Does Hammer 3B materially improve end-to-end dispatch after exact payload regeneration is replaced by deterministic source binding?",
+  "frozen_inputs": {
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/primary100-frozen-qwen-delegations-v1.json": "5454a0c2e7f2f9373693e4a8863166981e364ad21857f280a9d574724fe4320c",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding/literal-source-annotations-targeted100-recall25-v1.json": "9c33e6a9a2881bf44379ce1cb1ce7ac9367d25e542a1e203ac052f6f25d647f0",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/source_span_policy.py": "b05a97db54d7062ed2889596f1caa156a2f694d9ba19d0dd8d40b4c5cc61f0f8",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding/SOURCE-SPAN-POLICY-v1.md": "3f7f935fa0a302bf14012fd4cb5f9f1c5a6ae0d5e72c6e8957638873c339f1dc",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding/deterministic-binding-targeted100-recall25-v1.json": "4da47871fe461530b2182ffc0d089ee2477f30cd0750b7489a816e1758550db4",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer15-primary100-dispatch-v1.json": "5b0bf6152bdd5902cb9ae4ec1497c0f6020ee0ec5facfe429d2ef29a7c8106e6",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer15-primary100-dispatch-v1-failures.jsonl": "7f60d7c18bdfe55e8298b5f364b8f11b5dd4ea59b9c1ee0f82b74701e86e2b03",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer15-primary100-binder-input-v1.json": "f22993f40c6404097734f5d349e7e04fe0d725eb19a6f7fb6dbc7321f492c476",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer15-primary100-binder-predictions-v1.json": "56dda4dd7b06e9b71c590fe6c7090922ea2a2fc3248309ebf5e50da5a9d9a1bf",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer15-primary100-binder-ambiguities-v1.jsonl": "b7eb18071ed9554c850c591f1fa61a2c6a69dbe2f11d38d1f673e6f53b553b40",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer3-primary100-dispatch-v1.json": "3015542a1fd54862567104d33fca2baa1741a22443d7a7d02b2a66706460758d",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer3-primary100-dispatch-v1-failures.jsonl": "27fcfcc432890be1d97e879c3ee7bf94c60179366c118a74b1c28ca25c027814",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer3-primary100-binder-input-v1.json": "f86f1355fe1f0ed6d3ae4b65c61d843c9087551ee9beaee55f448d4b5e774268",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer3-primary100-binder-predictions-v1.json": "b8ca3a2c2a3dad371a252ec553381c64c083701ae37ee5a660e7237f82fa093c",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding-capacity/hammer3-primary100-binder-ambiguities-v1.jsonl": "7b23823fb88370db6ffd86ace8b926d743814adc0122dd10bc502dcf983a9595"
+  },
+  "controlled_conditions": {
+    "case_count": 100,
+    "tools": [
+      "search",
+      "image",
+      "ask_claude",
+      "see"
+    ],
+    "same_frozen_qwen_delegations": true,
+    "qwen_called": false,
+    "delegations_regenerated": false,
+    "same_a1_schemas": true,
+    "same_hammer_native_format": true,
+    "same_parser_validator_scoring": true,
+    "same_deterministic_binder": true,
+    "hammer15_binding_matches_prior_frozen_primary": true,
+    "binder_had_literal_annotation_access": false,
+    "predictions_frozen_before_scoring": true,
+    "official_gold_mutated": false,
+    "stateless": true,
+    "one_generation_per_case": true,
+    "yuki_tool_execution_capability": false,
+    "yuki_tool_execution_attempts": 0
+  },
+  "overall": {
+    "hammer15": {
+      "arm": "hammer15",
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+      "cases": 100,
+      "tool_selection_accuracy": 0.89,
+      "official_strict_exact_accuracy": 0.64,
+      "official_preservation_aware_exact_accuracy": 0.64,
+      "literal_source_exact_accuracy_conservative": 0.87,
+      "literal_source_exact_accuracy_on_eligible": 0.8877551020408163,
+      "literal_reference_eligible_cases": 98,
+      "schema_valid_rate_after_binding": 0.9,
+      "binder_coverage": 0.9,
+      "binder_status_counts": {
+        "ambiguous": 1,
+        "bound": 86,
+        "no_argument": 4,
+        "no_selected_call": 7,
+        "unbound": 1,
+        "unsupported_selected_tool": 1
+      },
+      "abstention_count": 9,
+      "binder_ambiguity_count": 1,
+      "annotation_ambiguity_count": 2,
+      "malformed_hammer_count": 0,
+      "hammer_rejection_count": 7,
+      "average_latency_ms": 2228.92641,
+      "p50_latency_ms": 2293.5315,
+      "p95_latency_ms": 2740.524,
+      "generation_tokens_per_second": 19.97757,
+      "peak_mlx_memory_gb": 3.4699,
+      "raw_slice_invariant_rate": 1
+    },
+    "hammer3": {
+      "arm": "hammer3",
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+      "cases": 100,
+      "tool_selection_accuracy": 0.95,
+      "official_strict_exact_accuracy": 0.63,
+      "official_preservation_aware_exact_accuracy": 0.63,
+      "literal_source_exact_accuracy_conservative": 0.92,
+      "literal_source_exact_accuracy_on_eligible": 0.9387755102040817,
+      "literal_reference_eligible_cases": 98,
+      "schema_valid_rate_after_binding": 0.95,
+      "binder_coverage": 0.95,
+      "binder_status_counts": {
+        "ambiguous": 2,
+        "bound": 91,
+        "no_argument": 4,
+        "no_selected_call": 3
+      },
+      "abstention_count": 3,
+      "binder_ambiguity_count": 2,
+      "annotation_ambiguity_count": 2,
+      "malformed_hammer_count": 0,
+      "hammer_rejection_count": 3,
+      "average_latency_ms": 4397.56276,
+      "p50_latency_ms": 4485.536,
+      "p95_latency_ms": 5365.48215,
+      "generation_tokens_per_second": 9.90029,
+      "peak_mlx_memory_gb": 6.5366,
+      "raw_slice_invariant_rate": 1
+    }
+  },
+  "per_tool": {
+    "search": {
+      "hammer15": {
+        "arm": "hammer15",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "cases": 25,
+        "tool_selection_accuracy": 0.92,
+        "official_strict_exact_accuracy": 0.8,
+        "official_preservation_aware_exact_accuracy": 0.8,
+        "literal_source_exact_accuracy_conservative": 0.92,
+        "literal_source_exact_accuracy_on_eligible": 0.92,
+        "literal_reference_eligible_cases": 25,
+        "schema_valid_rate_after_binding": 0.96,
+        "binder_coverage": 0.96,
+        "binder_status_counts": {
+          "bound": 24,
+          "unsupported_selected_tool": 1
+        },
+        "abstention_count": 1,
+        "binder_ambiguity_count": 0,
+        "annotation_ambiguity_count": 0,
+        "malformed_hammer_count": 0,
+        "hammer_rejection_count": 0,
+        "average_latency_ms": 2511.0919599999997,
+        "p50_latency_ms": 2491.34,
+        "p95_latency_ms": 2839.0553999999997,
+        "generation_tokens_per_second": 19.34788,
+        "peak_mlx_memory_gb": 3.4699,
+        "raw_slice_invariant_rate": 1
+      },
+      "hammer3": {
+        "arm": "hammer3",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "cases": 25,
+        "tool_selection_accuracy": 0.92,
+        "official_strict_exact_accuracy": 0.8,
+        "official_preservation_aware_exact_accuracy": 0.8,
+        "literal_source_exact_accuracy_conservative": 0.92,
+        "literal_source_exact_accuracy_on_eligible": 0.92,
+        "literal_reference_eligible_cases": 25,
+        "schema_valid_rate_after_binding": 0.96,
+        "binder_coverage": 0.96,
+        "binder_status_counts": {
+          "bound": 24,
+          "no_selected_call": 1
+        },
+        "abstention_count": 1,
+        "binder_ambiguity_count": 0,
+        "annotation_ambiguity_count": 0,
+        "malformed_hammer_count": 0,
+        "hammer_rejection_count": 1,
+        "average_latency_ms": 4902.69276,
+        "p50_latency_ms": 4896.098,
+        "p95_latency_ms": 5624.880799999999,
+        "generation_tokens_per_second": 9.96212,
+        "peak_mlx_memory_gb": 6.5366,
+        "raw_slice_invariant_rate": 1
+      }
+    },
+    "image": {
+      "hammer15": {
+        "arm": "hammer15",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "cases": 25,
+        "tool_selection_accuracy": 1,
+        "official_strict_exact_accuracy": 0.52,
+        "official_preservation_aware_exact_accuracy": 0.52,
+        "literal_source_exact_accuracy_conservative": 1,
+        "literal_source_exact_accuracy_on_eligible": 1,
+        "literal_reference_eligible_cases": 25,
+        "schema_valid_rate_after_binding": 1,
+        "binder_coverage": 1,
+        "binder_status_counts": {
+          "bound": 25
+        },
+        "abstention_count": 0,
+        "binder_ambiguity_count": 0,
+        "annotation_ambiguity_count": 0,
+        "malformed_hammer_count": 0,
+        "hammer_rejection_count": 0,
+        "average_latency_ms": 2335.61956,
+        "p50_latency_ms": 2274.996,
+        "p95_latency_ms": 2727.2457999999997,
+        "generation_tokens_per_second": 19.32772,
+        "peak_mlx_memory_gb": 3.34,
+        "raw_slice_invariant_rate": 1
+      },
+      "hammer3": {
+        "arm": "hammer3",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "cases": 25,
+        "tool_selection_accuracy": 1,
+        "official_strict_exact_accuracy": 0.52,
+        "official_preservation_aware_exact_accuracy": 0.52,
+        "literal_source_exact_accuracy_conservative": 1,
+        "literal_source_exact_accuracy_on_eligible": 1,
+        "literal_reference_eligible_cases": 25,
+        "schema_valid_rate_after_binding": 1,
+        "binder_coverage": 1,
+        "binder_status_counts": {
+          "bound": 25
+        },
+        "abstention_count": 0,
+        "binder_ambiguity_count": 0,
+        "annotation_ambiguity_count": 0,
+        "malformed_hammer_count": 0,
+        "hammer_rejection_count": 0,
+        "average_latency_ms": 4486.72932,
+        "p50_latency_ms": 4387.539,
+        "p95_latency_ms": 5243.6024,
+        "generation_tokens_per_second": 9.78696,
+        "peak_mlx_memory_gb": 6.4082,
+        "raw_slice_invariant_rate": 1
+      }
+    },
+    "ask_claude": {
+      "hammer15": {
+        "arm": "hammer15",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "cases": 25,
+        "tool_selection_accuracy": 0.96,
+        "official_strict_exact_accuracy": 0.96,
+        "official_preservation_aware_exact_accuracy": 0.96,
+        "literal_source_exact_accuracy_conservative": 0.96,
+        "literal_source_exact_accuracy_on_eligible": 0.96,
+        "literal_reference_eligible_cases": 25,
+        "schema_valid_rate_after_binding": 0.96,
+        "binder_coverage": 0.96,
+        "binder_status_counts": {
+          "bound": 24,
+          "no_selected_call": 1
+        },
+        "abstention_count": 1,
+        "binder_ambiguity_count": 0,
+        "annotation_ambiguity_count": 0,
+        "malformed_hammer_count": 0,
+        "hammer_rejection_count": 1,
+        "average_latency_ms": 2315.05988,
+        "p50_latency_ms": 2344.033,
+        "p95_latency_ms": 2681.6276000000003,
+        "generation_tokens_per_second": 19.69664,
+        "peak_mlx_memory_gb": 3.3324,
+        "raw_slice_invariant_rate": 1
+      },
+      "hammer3": {
+        "arm": "hammer3",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "cases": 25,
+        "tool_selection_accuracy": 0.92,
+        "official_strict_exact_accuracy": 0.92,
+        "official_preservation_aware_exact_accuracy": 0.92,
+        "literal_source_exact_accuracy_conservative": 0.92,
+        "literal_source_exact_accuracy_on_eligible": 0.92,
+        "literal_reference_eligible_cases": 25,
+        "schema_valid_rate_after_binding": 0.92,
+        "binder_coverage": 0.92,
+        "binder_status_counts": {
+          "bound": 23,
+          "no_selected_call": 2
+        },
+        "abstention_count": 2,
+        "binder_ambiguity_count": 0,
+        "annotation_ambiguity_count": 0,
+        "malformed_hammer_count": 0,
+        "hammer_rejection_count": 2,
+        "average_latency_ms": 4448.1942,
+        "p50_latency_ms": 4593.138,
+        "p95_latency_ms": 5337.0904,
+        "generation_tokens_per_second": 10.0264,
+        "peak_mlx_memory_gb": 6.3807,
+        "raw_slice_invariant_rate": 1
+      }
+    },
+    "see": {
+      "hammer15": {
+        "arm": "hammer15",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-1.5b-fp16",
+        "cases": 25,
+        "tool_selection_accuracy": 0.68,
+        "official_strict_exact_accuracy": 0.28,
+        "official_preservation_aware_exact_accuracy": 0.28,
+        "literal_source_exact_accuracy_conservative": 0.6,
+        "literal_source_exact_accuracy_on_eligible": 0.6521739130434783,
+        "literal_reference_eligible_cases": 23,
+        "schema_valid_rate_after_binding": 0.68,
+        "binder_coverage": 0.68,
+        "binder_status_counts": {
+          "ambiguous": 1,
+          "bound": 13,
+          "no_argument": 4,
+          "no_selected_call": 6,
+          "unbound": 1
+        },
+        "abstention_count": 7,
+        "binder_ambiguity_count": 1,
+        "annotation_ambiguity_count": 2,
+        "malformed_hammer_count": 0,
+        "hammer_rejection_count": 6,
+        "average_latency_ms": 1753.93424,
+        "p50_latency_ms": 1962.922,
+        "p95_latency_ms": 2117.0774,
+        "generation_tokens_per_second": 21.53804,
+        "peak_mlx_memory_gb": 3.4589,
+        "raw_slice_invariant_rate": 1
+      },
+      "hammer3": {
+        "arm": "hammer3",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+        "cases": 25,
+        "tool_selection_accuracy": 0.96,
+        "official_strict_exact_accuracy": 0.28,
+        "official_preservation_aware_exact_accuracy": 0.28,
+        "literal_source_exact_accuracy_conservative": 0.84,
+        "literal_source_exact_accuracy_on_eligible": 0.9130434782608695,
+        "literal_reference_eligible_cases": 23,
+        "schema_valid_rate_after_binding": 0.92,
+        "binder_coverage": 0.92,
+        "binder_status_counts": {
+          "ambiguous": 2,
+          "bound": 19,
+          "no_argument": 4
+        },
+        "abstention_count": 0,
+        "binder_ambiguity_count": 2,
+        "annotation_ambiguity_count": 2,
+        "malformed_hammer_count": 0,
+        "hammer_rejection_count": 0,
+        "average_latency_ms": 3752.63476,
+        "p50_latency_ms": 3867.369,
+        "p95_latency_ms": 4366.485999999999,
+        "generation_tokens_per_second": 9.82568,
+        "peak_mlx_memory_gb": 6.5255,
+        "raw_slice_invariant_rate": 1
+      }
+    }
+  },
+  "change_hammer3_minus_hammer15": {
+    "tool_selection_percentage_points": 5.999999999999995,
+    "official_strict_exact_percentage_points": -1.0000000000000009,
+    "official_preservation_aware_exact_percentage_points": -1.0000000000000009,
+    "literal_source_exact_conservative_percentage_points": 5.000000000000004,
+    "schema_validity_percentage_points": 4.999999999999993,
+    "binder_coverage_percentage_points": 4.999999999999993,
+    "latency_ratio": 1.9729510764781149,
+    "peak_mlx_memory_ratio": 1.883800685898729
+  },
+  "case_level_analysis": {
+    "flips": {
+      "tool_selection": {
+        "failure_to_success": [
+          "p2-search-18",
+          "p2-see-04",
+          "p2-see-06",
+          "p2-see-07",
+          "p2-see-09",
+          "p2-see-15",
+          "p2-see-19",
+          "p2-see-21"
+        ],
+        "success_to_failure": [
+          "p2-search-16",
+          "p2-ask_claude-25"
+        ],
+        "net_successes": 6,
+        "exact_paired_binomial_p": 0.109375
+      },
+      "official_strict_exact": {
+        "failure_to_success": [
+          "p2-search-18"
+        ],
+        "success_to_failure": [
+          "p2-search-16",
+          "p2-ask_claude-25"
+        ],
+        "net_successes": -1,
+        "exact_paired_binomial_p": 1.0
+      },
+      "official_preservation_aware_exact": {
+        "failure_to_success": [
+          "p2-search-18"
+        ],
+        "success_to_failure": [
+          "p2-search-16",
+          "p2-ask_claude-25"
+        ],
+        "net_successes": -1,
+        "exact_paired_binomial_p": 1.0
+      },
+      "literal_source_exact": {
+        "failure_to_success": [
+          "p2-search-18",
+          "p2-see-04",
+          "p2-see-06",
+          "p2-see-07",
+          "p2-see-09",
+          "p2-see-15",
+          "p2-see-19"
+        ],
+        "success_to_failure": [
+          "p2-search-16",
+          "p2-ask_claude-25"
+        ],
+        "net_successes": 5,
+        "exact_paired_binomial_p": 0.1796875
+      },
+      "schema_validity_after_binding": {
+        "failure_to_success": [
+          "p2-search-18",
+          "p2-see-04",
+          "p2-see-06",
+          "p2-see-07",
+          "p2-see-09",
+          "p2-see-15",
+          "p2-see-19"
+        ],
+        "success_to_failure": [
+          "p2-search-16",
+          "p2-ask_claude-25"
+        ],
+        "net_successes": 5,
+        "exact_paired_binomial_p": 0.1796875
+      }
+    },
+    "fixed_only_by_better_hammer_selection": {
+      "official_strict_exact": [
+        "p2-search-18"
+      ],
+      "literal_source_exact": [
+        "p2-search-18",
+        "p2-see-04",
+        "p2-see-06",
+        "p2-see-07",
+        "p2-see-09",
+        "p2-see-15",
+        "p2-see-19"
+      ]
+    },
+    "unchanged_same_call_official_failures": [
+      "p2-search-01",
+      "p2-search-10",
+      "p2-search-19",
+      "p2-image-02",
+      "p2-image-03",
+      "p2-image-05",
+      "p2-image-06",
+      "p2-image-07",
+      "p2-image-08",
+      "p2-image-09",
+      "p2-image-10",
+      "p2-image-12",
+      "p2-image-15",
+      "p2-image-17",
+      "p2-image-18",
+      "p2-see-01",
+      "p2-see-03",
+      "p2-see-05",
+      "p2-see-10",
+      "p2-see-11",
+      "p2-see-12",
+      "p2-see-14",
+      "p2-see-16",
+      "p2-see-18",
+      "p2-see-20"
+    ],
+    "unchanged_official_fail_but_literal_source_success": [
+      "p2-search-01",
+      "p2-search-10",
+      "p2-search-19",
+      "p2-image-02",
+      "p2-image-03",
+      "p2-image-05",
+      "p2-image-06",
+      "p2-image-07",
+      "p2-image-08",
+      "p2-image-09",
+      "p2-image-10",
+      "p2-image-12",
+      "p2-image-15",
+      "p2-image-17",
+      "p2-image-18",
+      "p2-see-01",
+      "p2-see-03",
+      "p2-see-05",
+      "p2-see-11",
+      "p2-see-12",
+      "p2-see-14",
+      "p2-see-16",
+      "p2-see-20"
+    ],
+    "unchanged_binder_or_annotation_limited": [
+      "p2-see-10",
+      "p2-see-18"
+    ]
+  },
+  "interpretation": {
+    "real_capacity_signal": "Hammer 3B materially improves see tool selection and therefore see literal-source exactness after binding.",
+    "overall_tradeoff": "The targeted 100-case gain is +6 points in selection and +5 points in conservative literal-source exactness, but -1 point in official strict exactness at about 2x latency and 1.9x peak MLX memory.",
+    "decision": "Do not replace Hammer 1.5B globally on this evidence. Hammer 3B is justified only if the see-specific selection gain is worth the nearly doubled local inference cost; it did not improve the other three tools end-to-end as a group."
+  }
+}

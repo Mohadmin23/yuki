@@ -1,0 +1,1867 @@
+{
+  "configuration": {
+    "experiment": "production_delegation_stage_a",
+    "main_brain_role": "intended_main_brain",
+    "surrogate": false,
+    "model_label": "openai/gpt-oss-20b intended main brain via OpenRouter",
+    "model_id": "openai/gpt-oss-20b",
+    "backend": "openrouter",
+    "generation_ceiling": 256,
+    "delegation_contract_version": "production-delegation-contract-v1.1",
+    "delegation_system_prompt_sha256": "1189b8cb529f8f13592e4952b9e1da31093592dfe2710c96796bc9bedb120cbb",
+    "thinking_disabled": false,
+    "stateless": true,
+    "prompt_cache_policy": "exact shared rendered-token prefix only; no prior request tokens or generations enter the current context",
+    "generation_count_per_case": 1,
+    "tool_execution_capability": false,
+    "external_api_usage": true,
+    "selection": "smoke-18",
+    "derived_dataset_version": "production-delegation-source-v1",
+    "derived_dataset_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "total_cases": 18,
+    "model_metadata": {
+      "requested_model": "openai/gpt-oss-20b",
+      "base_url": "https://openrouter.ai/api/v1",
+      "schema_constraints_requested": true,
+      "thinking_disabled": false,
+      "reasoning_config": {
+        "effort": "low",
+        "exclude": true
+      },
+      "provider_routing": {
+        "require_parameters": true,
+        "order": [
+          "DeepInfra"
+        ],
+        "allow_fallbacks": false
+      },
+      "generation_ceiling": 256,
+      "max_api_cost_usd": 0.05
+    },
+    "load_latency_ms": 0.0
+  },
+  "contract": {
+    "fields": [
+      "request",
+      "domain_hint",
+      "verbatim"
+    ],
+    "domain_source": "main-brain-generated domain_hint",
+    "tool_name_from_main_brain": false,
+    "original_request_sent_to_dispatcher": false,
+    "no_tool_case_coverage": 0,
+    "conversation_context_case_coverage": 0
+  },
+  "summary": {
+    "cases": 18,
+    "valid_delegation_rate": 1,
+    "malformed_delegation_rate": 0,
+    "domain_hint_accuracy": 0.7777777777777778,
+    "semantic_request_quality_rate": 0.5555555555555556,
+    "average_verbatim_recall": 0.8333333333333334,
+    "average_verbatim_precision": 0.5555555555555556,
+    "final_tool_leakage_rate": 0,
+    "average_latency_ms": 890.7167777777778,
+    "p50_latency_ms": 865.2055,
+    "p95_latency_ms": 1285.4599499999997,
+    "average_generated_tokens": 67.16666666666667,
+    "average_tokens_per_second": 77.147,
+    "peak_mlx_memory_gb": null,
+    "api_cost_usd": 0.00046497,
+    "api_cost_reported_cases": 18,
+    "providers": [
+      "DeepInfra"
+    ]
+  },
+  "by_expected_domain": {
+    "computer": {
+      "cases": 3,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.6666666666666666,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 0.6666666666666666
+    },
+    "external_agent": {
+      "cases": 1,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 1,
+      "average_verbatim_recall": 0.0,
+      "average_verbatim_precision": 0.0
+    },
+    "information": {
+      "cases": 5,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.8,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 0.4
+    },
+    "media": {
+      "cases": 2,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 0.5,
+      "semantic_request_quality_rate": 0.5,
+      "average_verbatim_recall": 0.5,
+      "average_verbatim_precision": 0.0
+    },
+    "memory": {
+      "cases": 2,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 0.5,
+      "semantic_request_quality_rate": 0.5,
+      "average_verbatim_recall": 0.5,
+      "average_verbatim_precision": 0.5
+    },
+    "yuki_files": {
+      "cases": 5,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 0.6,
+      "semantic_request_quality_rate": 0.2,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 1.0
+    }
+  },
+  "by_dataset_category": {
+    "adversarial": {
+      "cases": 3,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.6666666666666666,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 0.6666666666666666
+    },
+    "confusion": {
+      "cases": 4,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 1,
+      "average_verbatim_recall": 0.5,
+      "average_verbatim_precision": 0.5
+    },
+    "normal": {
+      "cases": 4,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 1,
+      "semantic_request_quality_rate": 0.75,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 0.5
+    },
+    "paraphrase": {
+      "cases": 4,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 0.25,
+      "semantic_request_quality_rate": 0.25,
+      "average_verbatim_recall": 0.75,
+      "average_verbatim_precision": 0.25
+    },
+    "preservation": {
+      "cases": 3,
+      "valid_delegation_rate": 1,
+      "domain_hint_accuracy": 0.6666666666666666,
+      "semantic_request_quality_rate": 0,
+      "average_verbatim_recall": 1.0,
+      "average_verbatim_precision": 1.0
+    }
+  },
+  "case_results": [
+    {
+      "index": 0,
+      "case_id": "p2-time-01",
+      "request": "What time is it right now?",
+      "expected_tool": "time",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "normal",
+        "time"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve current time\",\"domain_hint\":\"information\",\"verbatim\":[\"What time is it right now?\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve current time\",\"domain_hint\":\"information\",\"verbatim\":[\"What time is it right now?\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1269.447,
+        "prompt_tokens": 542,
+        "generated_tokens": 78,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 61.444,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 1,
+          "enable_thinking": true,
+          "reasoning_tokens": 45,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.718e-05,
+          "cumulative_api_cost_usd": 2.718e-05,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve current time",
+          "domain_hint": "information",
+          "verbatim": [
+            "What time is it right now?"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve current time",
+          "domain_hint": "information",
+          "verbatim": [
+            "What time is it right now?"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve current time",
+        "domain_hint": "information",
+        "verbatim": [
+          "What time is it right now?"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 1,
+      "case_id": "p2-weather-12",
+      "request": "Is it jacket weather in Glasgow right now?",
+      "expected_tool": "weather",
+      "expected_arguments": {
+        "city": "Glasgow"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "weather"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve current weather for Glasgow\",\"domain_hint\":\"information\",\"verbatim\":[\"Is it jacket weather in Glasgow right now?\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve current weather for Glasgow\",\"domain_hint\":\"information\",\"verbatim\":[\"Is it jacket weather in Glasgow right now?\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 861.844,
+        "prompt_tokens": 544,
+        "generated_tokens": 63,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 73.099,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 2,
+          "enable_thinking": true,
+          "reasoning_tokens": 28,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.514e-05,
+          "cumulative_api_cost_usd": 5.232e-05,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve current weather for Glasgow",
+          "domain_hint": "information",
+          "verbatim": [
+            "Is it jacket weather in Glasgow right now?"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve current weather for Glasgow",
+          "domain_hint": "information",
+          "verbatim": [
+            "Is it jacket weather in Glasgow right now?"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve current weather for Glasgow",
+        "domain_hint": "information",
+        "verbatim": [
+          "Is it jacket weather in Glasgow right now?"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 2,
+      "case_id": "p2-fetch-18",
+      "request": "Fetch this exact URL; do not search for it: https://example.com/guide",
+      "expected_tool": "fetch",
+      "expected_arguments": {
+        "url": "https://example.com/guide"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "fetch"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [
+        "https://example.com/guide"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"fetch URL\",\"domain_hint\":\"information\",\"verbatim\":[\"https://example.com/guide\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"fetch URL\",\"domain_hint\":\"information\",\"verbatim\":[\"https://example.com/guide\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 640.847,
+        "prompt_tokens": 552,
+        "generated_tokens": 55,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 85.824,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 3,
+          "enable_thinking": true,
+          "reasoning_tokens": 25,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.426e-05,
+          "cumulative_api_cost_usd": 7.658e-05,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "fetch URL",
+          "domain_hint": "information",
+          "verbatim": [
+            "https://example.com/guide"
+          ]
+        },
+        "decoded": {
+          "request": "fetch URL",
+          "domain_hint": "information",
+          "verbatim": [
+            "https://example.com/guide"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "fetch URL",
+        "domain_hint": "information",
+        "verbatim": [
+          "https://example.com/guide"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 3,
+      "case_id": "p2-search-22",
+      "request": "Search exactly for: C++ std::filesystem path case-sensitivity",
+      "expected_tool": "search",
+      "expected_arguments": {
+        "query": "C++ std::filesystem path case-sensitivity"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "search"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [
+        "C++ std::filesystem path case-sensitivity"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"search web for exact phrase\",\"domain_hint\":\"information\",\"verbatim\":[\"C++ std::filesystem path case-sensitivity\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"search web for exact phrase\",\"domain_hint\":\"information\",\"verbatim\":[\"C++ std::filesystem path case-sensitivity\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1034.381,
+        "prompt_tokens": 548,
+        "generated_tokens": 64,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 61.873,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.734,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 4,
+          "enable_thinking": true,
+          "reasoning_tokens": 29,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.54e-05,
+          "cumulative_api_cost_usd": 0.00010198,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "search web for exact phrase",
+          "domain_hint": "information",
+          "verbatim": [
+            "C++ std::filesystem path case-sensitivity"
+          ]
+        },
+        "decoded": {
+          "request": "search web for exact phrase",
+          "domain_hint": "information",
+          "verbatim": [
+            "C++ std::filesystem path case-sensitivity"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "search web for exact phrase",
+        "domain_hint": "information",
+        "verbatim": [
+          "C++ std::filesystem path case-sensitivity"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 4,
+      "case_id": "p2-calc-25",
+      "request": "tool delegation is messy, but the arithmetic is ((1+2)*(3+4))%5",
+      "expected_tool": "calc",
+      "expected_arguments": {
+        "expression": "((1+2)*(3+4))%5"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "calc"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "information",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"compute arithmetic expression\",\"domain_hint\":\"information\",\"verbatim\":[\"((1+2)*(3+4))%5\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"compute arithmetic expression\",\"domain_hint\":\"information\",\"verbatim\":[\"((1+2)*(3+4))%5\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1061.008,
+        "prompt_tokens": 555,
+        "generated_tokens": 103,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 97.078,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.75,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 5,
+          "enable_thinking": true,
+          "reasoning_tokens": 74,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 3.107e-05,
+          "cumulative_api_cost_usd": 0.00013305,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "compute arithmetic expression",
+          "domain_hint": "information",
+          "verbatim": [
+            "((1+2)*(3+4))%5"
+          ]
+        },
+        "decoded": {
+          "request": "compute arithmetic expression",
+          "domain_hint": "information",
+          "verbatim": [
+            "((1+2)*(3+4))%5"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "compute arithmetic expression",
+        "domain_hint": "information",
+        "verbatim": [
+          "((1+2)*(3+4))%5"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 5,
+      "case_id": "p2-hardware-01",
+      "request": "How much RAM is this Mac using?",
+      "expected_tool": "hardware",
+      "expected_arguments": {
+        "metric": "ram"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "hardware"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "computer",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve current RAM usage\",\"domain_hint\":\"computer\",\"verbatim\":[\"How much RAM is this Mac using?\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve current RAM usage\",\"domain_hint\":\"computer\",\"verbatim\":[\"How much RAM is this Mac using?\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 664.909,
+        "prompt_tokens": 543,
+        "generated_tokens": 58,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 87.23,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.734,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 6,
+          "enable_thinking": true,
+          "reasoning_tokens": 22,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.441e-05,
+          "cumulative_api_cost_usd": 0.00015746,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve current RAM usage",
+          "domain_hint": "computer",
+          "verbatim": [
+            "How much RAM is this Mac using?"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve current RAM usage",
+          "domain_hint": "computer",
+          "verbatim": [
+            "How much RAM is this Mac using?"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve current RAM usage",
+        "domain_hint": "computer",
+        "verbatim": [
+          "How much RAM is this Mac using?"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 6,
+      "case_id": "p2-see-12",
+      "request": "Use your eyes and track down my earbuds.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "earbuds"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"locate user's earbuds\",\"domain_hint\":\"external_agent\",\"verbatim\":[\"Use your eyes and track down my earbuds.\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"locate user's earbuds\",\"domain_hint\":\"external_agent\",\"verbatim\":[\"Use your eyes and track down my earbuds.\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1072.948,
+        "prompt_tokens": 544,
+        "generated_tokens": 61,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 56.853,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.734,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 7,
+          "enable_thinking": true,
+          "reasoning_tokens": 30,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.486e-05,
+          "cumulative_api_cost_usd": 0.00018232,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "locate user's earbuds",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "Use your eyes and track down my earbuds."
+          ]
+        },
+        "decoded": {
+          "request": "locate user's earbuds",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "Use your eyes and track down my earbuds."
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "locate user's earbuds",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "Use your eyes and track down my earbuds."
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": false,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 7,
+      "case_id": "p2-image-18",
+      "request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "camera-shaped sculpture"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "camera-shaped sculpture"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create visual artwork\",\"domain_hint\":\"media\",\"verbatim\":[\"Generate a camera-shaped sculpture; don't use the real camera.\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create visual artwork\",\"domain_hint\":\"media\",\"verbatim\":[\"Generate a camera-shaped sculpture; don't use the real camera.\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 580.427,
+        "prompt_tokens": 547,
+        "generated_tokens": 52,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 89.589,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.75,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 8,
+          "enable_thinking": true,
+          "reasoning_tokens": 15,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.369e-05,
+          "cumulative_api_cost_usd": 0.00020601,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create visual artwork",
+          "domain_hint": "media",
+          "verbatim": [
+            "Generate a camera-shaped sculpture; don't use the real camera."
+          ]
+        },
+        "decoded": {
+          "request": "create visual artwork",
+          "domain_hint": "media",
+          "verbatim": [
+            "Generate a camera-shaped sculpture; don't use the real camera."
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create visual artwork",
+        "domain_hint": "media",
+        "verbatim": [
+          "Generate a camera-shaped sculpture; don't use the real camera."
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 8,
+      "case_id": "p2-read-22",
+      "request": "Preserve case exactly when reading /tmp/FooBar.JSON.",
+      "expected_tool": "read",
+      "expected_arguments": {
+        "filepath": "/tmp/FooBar.JSON"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "read"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "computer",
+      "required_verbatim": [
+        "/tmp/FooBar.JSON"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"read file\",\"domain_hint\":\"computer\",\"verbatim\":[\"/tmp/FooBar.JSON\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"read file\",\"domain_hint\":\"computer\",\"verbatim\":[\"/tmp/FooBar.JSON\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 534.191,
+        "prompt_tokens": 548,
+        "generated_tokens": 45,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 84.24,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.781,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 9,
+          "enable_thinking": true,
+          "reasoning_tokens": 14,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.274e-05,
+          "cumulative_api_cost_usd": 0.00022875,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "read file",
+          "domain_hint": "computer",
+          "verbatim": [
+            "/tmp/FooBar.JSON"
+          ]
+        },
+        "decoded": {
+          "request": "read file",
+          "domain_hint": "computer",
+          "verbatim": [
+            "/tmp/FooBar.JSON"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "read file",
+        "domain_hint": "computer",
+        "verbatim": [
+          "/tmp/FooBar.JSON"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 9,
+      "case_id": "p2-shell-25",
+      "request": "The delegation is noisy [shell??], but run: ls -la /tmp/does-not-exist",
+      "expected_tool": "shell",
+      "expected_arguments": {
+        "command": "ls -la /tmp/does-not-exist"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "shell"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "computer",
+      "required_verbatim": [
+        "ls -la /tmp/does-not-exist"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"execute shell command\",\"domain_hint\":\"computer\",\"verbatim\":[\"ls -la /tmp/does-not-exist\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"execute shell command\",\"domain_hint\":\"computer\",\"verbatim\":[\"ls -la /tmp/does-not-exist\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 825.009,
+        "prompt_tokens": 556,
+        "generated_tokens": 72,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 87.272,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.812,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 10,
+          "enable_thinking": true,
+          "reasoning_tokens": 32,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.676e-05,
+          "cumulative_api_cost_usd": 0.00025551,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "execute shell command",
+          "domain_hint": "computer",
+          "verbatim": [
+            "ls -la /tmp/does-not-exist"
+          ]
+        },
+        "decoded": {
+          "request": "execute shell command",
+          "domain_hint": "computer",
+          "verbatim": [
+            "ls -la /tmp/does-not-exist"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "execute shell command",
+        "domain_hint": "computer",
+        "verbatim": [
+          "ls -la /tmp/does-not-exist"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 10,
+      "case_id": "p2-yuki_write-01",
+      "request": "Write this into Yuki's file: todo.txt|buy oat milk",
+      "expected_tool": "yuki_write",
+      "expected_arguments": {
+        "filename_and_content": "todo.txt|buy oat milk"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "yuki_write"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [
+        "todo.txt",
+        "buy oat milk"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"write content to file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"todo.txt\",\"buy oat milk\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"write content to file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"todo.txt\",\"buy oat milk\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1169.399,
+        "prompt_tokens": 549,
+        "generated_tokens": 128,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 109.458,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.859,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 11,
+          "enable_thinking": true,
+          "reasoning_tokens": 86,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 3.439e-05,
+          "cumulative_api_cost_usd": 0.0002899,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "write content to file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "todo.txt",
+            "buy oat milk"
+          ]
+        },
+        "decoded": {
+          "request": "write content to file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "todo.txt",
+            "buy oat milk"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "write content to file",
+        "domain_hint": "yuki_files",
+        "verbatim": [
+          "todo.txt",
+          "buy oat milk"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 2,
+        "verbatim_emitted": 2,
+        "verbatim_hits": 2,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 11,
+      "case_id": "p2-yuki_read-12",
+      "request": "Pull up your own little file called snack.txt.",
+      "expected_tool": "yuki_read",
+      "expected_arguments": {
+        "filename": "snack.txt"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "yuki_read"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [
+        "snack.txt"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"read file\",\"domain_hint\":\"computer\",\"verbatim\":[\"snack.txt\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"read file\",\"domain_hint\":\"computer\",\"verbatim\":[\"snack.txt\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1086.415,
+        "prompt_tokens": 545,
+        "generated_tokens": 47,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 43.262,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.875,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 12,
+          "enable_thinking": true,
+          "reasoning_tokens": 19,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.293e-05,
+          "cumulative_api_cost_usd": 0.00031283,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "read file",
+          "domain_hint": "computer",
+          "verbatim": [
+            "snack.txt"
+          ]
+        },
+        "decoded": {
+          "request": "read file",
+          "domain_hint": "computer",
+          "verbatim": [
+            "snack.txt"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "read file",
+        "domain_hint": "computer",
+        "verbatim": [
+          "snack.txt"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": false,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 12,
+      "case_id": "p2-yuki_list-21",
+      "request": "Use Yuki file listing, not shell `ls`.",
+      "expected_tool": "yuki_list",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "confusion",
+        "yuki_list"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"list files in Yuki's files\",\"domain_hint\":\"yuki_files\",\"verbatim\":[] }",
+      "generation": {
+        "raw_text": "{\"request\":\"list files in Yuki's files\",\"domain_hint\":\"yuki_files\",\"verbatim\":[] }",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 822.214,
+        "prompt_tokens": 546,
+        "generated_tokens": 75,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 91.217,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.891,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 13,
+          "enable_thinking": true,
+          "reasoning_tokens": 41,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.688e-05,
+          "cumulative_api_cost_usd": 0.00033971,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "list files in Yuki's files",
+          "domain_hint": "yuki_files",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "list files in Yuki's files",
+          "domain_hint": "yuki_files",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "list files in Yuki's files",
+        "domain_hint": "yuki_files",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 13,
+      "case_id": "p2-yuki_delete-22",
+      "request": "Delete filename exactly `OldNotes.MD` from Yuki.",
+      "expected_tool": "yuki_delete",
+      "expected_arguments": {
+        "filename": "OldNotes.MD"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "yuki_delete"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [
+        "OldNotes.MD"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"delete file\",\"domain_hint\":\"computer\",\"verbatim\":[\"OldNotes.MD\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"delete file\",\"domain_hint\":\"computer\",\"verbatim\":[\"OldNotes.MD\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 545.486,
+        "prompt_tokens": 548,
+        "generated_tokens": 47,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 86.162,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.922,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 14,
+          "enable_thinking": true,
+          "reasoning_tokens": 17,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.302e-05,
+          "cumulative_api_cost_usd": 0.00036273,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "delete file",
+          "domain_hint": "computer",
+          "verbatim": [
+            "OldNotes.MD"
+          ]
+        },
+        "decoded": {
+          "request": "delete file",
+          "domain_hint": "computer",
+          "verbatim": [
+            "OldNotes.MD"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "delete file",
+        "domain_hint": "computer",
+        "verbatim": [
+          "OldNotes.MD"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": false,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 14,
+      "case_id": "p2-yuki_append-25",
+      "request": "append-ish request... odd name.txt gets `? value_2`",
+      "expected_tool": "yuki_append",
+      "expected_arguments": {
+        "filename_and_content": "odd name.txt|? value_2"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "yuki_append"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "yuki_files",
+      "required_verbatim": [
+        "odd name.txt",
+        "? value_2"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"append to file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"? value_2\",\"odd name.txt\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"append to file\",\"domain_hint\":\"yuki_files\",\"verbatim\":[\"? value_2\",\"odd name.txt\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 940.345,
+        "prompt_tokens": 549,
+        "generated_tokens": 69,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 73.377,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.922,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 15,
+          "enable_thinking": true,
+          "reasoning_tokens": 26,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.613e-05,
+          "cumulative_api_cost_usd": 0.00038886,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "append to file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "? value_2",
+            "odd name.txt"
+          ]
+        },
+        "decoded": {
+          "request": "append to file",
+          "domain_hint": "yuki_files",
+          "verbatim": [
+            "? value_2",
+            "odd name.txt"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "append to file",
+        "domain_hint": "yuki_files",
+        "verbatim": [
+          "? value_2",
+          "odd name.txt"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 2,
+        "verbatim_emitted": 2,
+        "verbatim_hits": 2,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 15,
+      "case_id": "p2-remember-01",
+      "request": "Remember exactly this fact: user's dog is named Pixel",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's dog is named Pixel"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's dog is named Pixel"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's dog is named Pixel\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's dog is named Pixel\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 868.567,
+        "prompt_tokens": 545,
+        "generated_tokens": 65,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 74.836,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.922,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 16,
+          "enable_thinking": true,
+          "reasoning_tokens": 32,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.545e-05,
+          "cumulative_api_cost_usd": 0.00041431,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's dog is named Pixel"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's dog is named Pixel"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's dog is named Pixel"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 16,
+      "case_id": "p2-recall-12",
+      "request": "Can you dig into our shared past for the database migration topic?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "database migration"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "database migration"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"delegate to external agent\",\"domain_hint\":\"external_agent\",\"verbatim\":[\"dig into our shared past for the database migration topic\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"delegate to external agent\",\"domain_hint\":\"external_agent\",\"verbatim\":[\"dig into our shared past for the database migration topic\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 679.265,
+        "prompt_tokens": 548,
+        "generated_tokens": 45,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 66.248,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.922,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 17,
+          "enable_thinking": true,
+          "reasoning_tokens": 7,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.274e-05,
+          "cumulative_api_cost_usd": 0.00043705,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "delegate to external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "dig into our shared past for the database migration topic"
+          ]
+        },
+        "decoded": {
+          "request": "delegate to external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "dig into our shared past for the database migration topic"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "delegate to external agent",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "dig into our shared past for the database migration topic"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": false,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 17,
+      "case_id": "p2-ask_claude-18",
+      "request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "expected_tool": "ask_claude",
+      "expected_arguments": {
+        "question": "about Tokyo weather routing; do not use weather directly"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "ask_claude"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "external_agent",
+      "required_verbatim": [
+        "about Tokyo weather routing; do not use weather directly"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"delegate to external agent\",\"domain_hint\":\"external_agent\",\"verbatim\":[\"Tokyo weather routing; do not use weather directly\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"delegate to external agent\",\"domain_hint\":\"external_agent\",\"verbatim\":[\"Tokyo weather routing; do not use weather directly\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "openai/gpt-oss-20b",
+        "latency_ms": 1376.2,
+        "prompt_tokens": 548,
+        "generated_tokens": 82,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 59.584,
+        "peak_memory_gb": null,
+        "process_rss_mb": 75.922,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 18,
+          "enable_thinking": true,
+          "reasoning_tokens": 55,
+          "json_root": "object",
+          "requested_model": "openai/gpt-oss-20b",
+          "returned_model": "openai/gpt-oss-20b",
+          "provider": "DeepInfra",
+          "api_cost_usd": 2.792e-05,
+          "cumulative_api_cost_usd": 0.00046497,
+          "max_api_cost_usd": 0.05
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "delegate to external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "Tokyo weather routing; do not use weather directly"
+          ]
+        },
+        "decoded": {
+          "request": "delegate to external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "Tokyo weather routing; do not use weather directly"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "delegate to external agent",
+        "domain_hint": "external_agent",
+        "verbatim": [
+          "Tokyo weather routing; do not use weather directly"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    }
+  ]
+}

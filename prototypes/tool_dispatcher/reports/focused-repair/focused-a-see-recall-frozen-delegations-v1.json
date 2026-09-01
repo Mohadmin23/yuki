@@ -1,0 +1,4733 @@
+{
+  "configuration": {
+    "experiment": "focused_repair_frozen_stage_a_subset",
+    "main_brain_role": "intended_main_brain",
+    "surrogate": false,
+    "model_label": "Qwen3.8-27B intended main brain via OpenRouter",
+    "model_id": "qwen/qwen3.8-27b",
+    "backend": "openrouter",
+    "generation_ceiling": 160,
+    "delegation_contract_version": "production-delegation-contract-v1.1",
+    "delegation_system_prompt_sha256": "1189b8cb529f8f13592e4952b9e1da31093592dfe2710c96796bc9bedb120cbb",
+    "thinking_disabled": true,
+    "stateless": true,
+    "prompt_cache_policy": "exact shared rendered-token prefix only; no prior request tokens or generations enter the current context",
+    "generation_count_per_case": 1,
+    "tool_execution_capability": false,
+    "external_api_usage": true,
+    "selection": "focused-a-see-recall-50",
+    "derived_dataset_version": "production-delegation-source-v1",
+    "derived_dataset_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "total_cases": 50,
+    "model_metadata": {
+      "requested_model": "qwen/qwen3.8-27b",
+      "base_url": "https://openrouter.ai/api/v1",
+      "schema_constraints_requested": true,
+      "thinking_disabled": true,
+      "provider_routing": {
+        "sort": "price",
+        "require_parameters": true
+      },
+      "max_api_cost_usd": 0.5
+    },
+    "load_latency_ms": 0.0,
+    "derived_from_full_stage_a_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa"
+  },
+  "contract": {
+    "fields": [
+      "request",
+      "domain_hint",
+      "verbatim"
+    ],
+    "domain_source": "main-brain-generated domain_hint",
+    "tool_name_from_main_brain": false,
+    "original_request_sent_to_dispatcher": false,
+    "no_tool_case_coverage": 0,
+    "conversation_context_case_coverage": 0
+  },
+  "provenance": {
+    "source": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/production-delegation/stage-a/production-delegation-mainbrain-qwen3.8-27b-openrouter-full450-v1.json",
+    "source_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa",
+    "tools": [
+      "see",
+      "recall"
+    ],
+    "case_ids": [
+      "p2-see-01",
+      "p2-see-02",
+      "p2-see-03",
+      "p2-see-04",
+      "p2-see-05",
+      "p2-see-06",
+      "p2-see-07",
+      "p2-see-08",
+      "p2-see-09",
+      "p2-see-10",
+      "p2-see-11",
+      "p2-see-12",
+      "p2-see-13",
+      "p2-see-14",
+      "p2-see-15",
+      "p2-see-16",
+      "p2-see-17",
+      "p2-see-18",
+      "p2-see-19",
+      "p2-see-20",
+      "p2-see-21",
+      "p2-see-22",
+      "p2-see-23",
+      "p2-see-24",
+      "p2-see-25",
+      "p2-recall-01",
+      "p2-recall-02",
+      "p2-recall-03",
+      "p2-recall-04",
+      "p2-recall-05",
+      "p2-recall-06",
+      "p2-recall-07",
+      "p2-recall-08",
+      "p2-recall-09",
+      "p2-recall-10",
+      "p2-recall-11",
+      "p2-recall-12",
+      "p2-recall-13",
+      "p2-recall-14",
+      "p2-recall-15",
+      "p2-recall-16",
+      "p2-recall-17",
+      "p2-recall-18",
+      "p2-recall-19",
+      "p2-recall-20",
+      "p2-recall-21",
+      "p2-recall-22",
+      "p2-recall-23",
+      "p2-recall-24",
+      "p2-recall-25"
+    ]
+  },
+  "case_results": [
+    {
+      "index": 150,
+      "case_id": "p2-see-01",
+      "request": "Use the camera to find my keys.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "keys"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to locate the user's keys\",\"domain_hint\":\"media\",\"verbatim\":[\"my keys\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to locate the user's keys\",\"domain_hint\":\"media\",\"verbatim\":[\"my keys\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 814.651,
+        "prompt_tokens": 518,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.46,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 151,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002792,
+          "cumulative_api_cost_usd": 0.0434296,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to locate the user's keys",
+          "domain_hint": "media",
+          "verbatim": [
+            "my keys"
+          ]
+        },
+        "decoded": {
+          "request": "Use the camera to locate the user's keys",
+          "domain_hint": "media",
+          "verbatim": [
+            "my keys"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to locate the user's keys",
+        "domain_hint": "media",
+        "verbatim": [
+          "my keys"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 151,
+      "case_id": "p2-see-02",
+      "request": "Describe what the camera can see right now.",
+      "expected_tool": "see",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the current camera view and describe what is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the current camera view and describe what is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 921.709,
+        "prompt_tokens": 519,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.954,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 152,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002766,
+          "cumulative_api_cost_usd": 0.0437062,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the current camera view and describe what is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the current camera view and describe what is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the current camera view and describe what is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 152,
+      "case_id": "p2-see-03",
+      "request": "Look through Yuki's eye for my coffee mug.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "coffee mug"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use Yuki's camera/vision to locate the user's coffee mug in the current view\",\"domain_hint\":\"media\",\"verbatim\":[\"coffee mug\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use Yuki's camera/vision to locate the user's coffee mug in the current view\",\"domain_hint\":\"media\",\"verbatim\":[\"coffee mug\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1122.429,
+        "prompt_tokens": 521,
+        "generated_tokens": 33,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.401,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 153,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003074,
+          "cumulative_api_cost_usd": 0.0440136,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use Yuki's camera/vision to locate the user's coffee mug in the current view",
+          "domain_hint": "media",
+          "verbatim": [
+            "coffee mug"
+          ]
+        },
+        "decoded": {
+          "request": "Use Yuki's camera/vision to locate the user's coffee mug in the current view",
+          "domain_hint": "media",
+          "verbatim": [
+            "coffee mug"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use Yuki's camera/vision to locate the user's coffee mug in the current view",
+        "domain_hint": "media",
+        "verbatim": [
+          "coffee mug"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 153,
+      "case_id": "p2-see-04",
+      "request": "Check the door with the camera.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "door"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to inspect the door\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to inspect the door\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 813.369,
+        "prompt_tokens": 517,
+        "generated_tokens": 20,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.589,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.562,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 154,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002668,
+          "cumulative_api_cost_usd": 0.0442804,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to inspect the door",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use the camera to inspect the door",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to inspect the door",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 154,
+      "case_id": "p2-see-05",
+      "request": "Find my red backpack in the room.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "red backpack"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use camera/vision to locate the user's red backpack in the room\",\"domain_hint\":\"media\",\"verbatim\":[\"red backpack\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use camera/vision to locate the user's red backpack in the room\",\"domain_hint\":\"media\",\"verbatim\":[\"red backpack\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 994.571,
+        "prompt_tokens": 518,
+        "generated_tokens": 29,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.158,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.562,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 155,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002942,
+          "cumulative_api_cost_usd": 0.0445746,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use camera/vision to locate the user's red backpack in the room",
+          "domain_hint": "media",
+          "verbatim": [
+            "red backpack"
+          ]
+        },
+        "decoded": {
+          "request": "Use camera/vision to locate the user's red backpack in the room",
+          "domain_hint": "media",
+          "verbatim": [
+            "red backpack"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use camera/vision to locate the user's red backpack in the room",
+        "domain_hint": "media",
+        "verbatim": [
+          "red backpack"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 155,
+      "case_id": "p2-see-06",
+      "request": "Inspect the whiteboard using vision.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "whiteboard"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the whiteboard using vision\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the whiteboard using vision\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 853.971,
+        "prompt_tokens": 517,
+        "generated_tokens": 19,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 22.249,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 156,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002638,
+          "cumulative_api_cost_usd": 0.0448384,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the whiteboard using vision",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the whiteboard using vision",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the whiteboard using vision",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 156,
+      "case_id": "p2-see-07",
+      "request": "Can the webcam spot my phone?",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "phone"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the webcam to inspect the current scene and determine whether the user's phone is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the webcam to inspect the current scene and determine whether the user's phone is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 2150.655,
+        "prompt_tokens": 517,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 13.949,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 157,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002968,
+          "cumulative_api_cost_usd": 0.0451352,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the webcam to inspect the current scene and determine whether the user's phone is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use the webcam to inspect the current scene and determine whether the user's phone is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the webcam to inspect the current scene and determine whether the user's phone is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 157,
+      "case_id": "p2-see-08",
+      "request": "Look around the room and describe the scene.",
+      "expected_tool": "see",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the current room scene with the camera and describe what is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the current room scene with the camera and describe what is visible\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 14550.712,
+        "prompt_tokens": 519,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 1.787,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 158,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002856,
+          "cumulative_api_cost_usd": 0.0454208,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the current room scene with the camera and describe what is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the current room scene with the camera and describe what is visible",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the current room scene with the camera and describe what is visible",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 158,
+      "case_id": "p2-see-09",
+      "request": "Locate my charging cable with the camera.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "charging cable"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to visually locate the user's charging cable\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to visually locate the user's charging cable\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 838.184,
+        "prompt_tokens": 519,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 28.633,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 159,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002796,
+          "cumulative_api_cost_usd": 0.0457004,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to visually locate the user's charging cable",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use the camera to visually locate the user's charging cable",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to visually locate the user's charging cable",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 159,
+      "case_id": "p2-see-10",
+      "request": "Point the camera toward the window and find the window.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "window"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to inspect the window and locate it in the view\",\"domain_hint\":\"media\",\"verbatim\":[\"the window\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to inspect the window and locate it in the view\",\"domain_hint\":\"media\",\"verbatim\":[\"the window\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1187.123,
+        "prompt_tokens": 521,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 23.586,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 160,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002924,
+          "cumulative_api_cost_usd": 0.0459928,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to inspect the window and locate it in the view",
+          "domain_hint": "media",
+          "verbatim": [
+            "the window"
+          ]
+        },
+        "decoded": {
+          "request": "Use the camera to inspect the window and locate it in the view",
+          "domain_hint": "media",
+          "verbatim": [
+            "the window"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to inspect the window and locate it in the view",
+        "domain_hint": "media",
+        "verbatim": [
+          "the window"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 160,
+      "case_id": "p2-see-11",
+      "request": "Use vision to locate my wallet.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "wallet"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use vision to locate the user's wallet\",\"domain_hint\":\"media\",\"verbatim\":[\"my wallet\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use vision to locate the user's wallet\",\"domain_hint\":\"media\",\"verbatim\":[\"my wallet\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 874.151,
+        "prompt_tokens": 517,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.311,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 161,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002758,
+          "cumulative_api_cost_usd": 0.0462686,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use vision to locate the user's wallet",
+          "domain_hint": "media",
+          "verbatim": [
+            "my wallet"
+          ]
+        },
+        "decoded": {
+          "request": "Use vision to locate the user's wallet",
+          "domain_hint": "media",
+          "verbatim": [
+            "my wallet"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use vision to locate the user's wallet",
+        "domain_hint": "media",
+        "verbatim": [
+          "my wallet"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 161,
+      "case_id": "p2-see-12",
+      "request": "Use your eyes and track down my earbuds.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "earbuds"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use camera/vision to locate the user's earbuds\",\"domain_hint\":\"media\",\"verbatim\":[\"earbuds\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use camera/vision to locate the user's earbuds\",\"domain_hint\":\"media\",\"verbatim\":[\"earbuds\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1280.492,
+        "prompt_tokens": 521,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 21.867,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 162,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002924,
+          "cumulative_api_cost_usd": 0.046561,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use camera/vision to locate the user's earbuds",
+          "domain_hint": "media",
+          "verbatim": [
+            "earbuds"
+          ]
+        },
+        "decoded": {
+          "request": "Use camera/vision to locate the user's earbuds",
+          "domain_hint": "media",
+          "verbatim": [
+            "earbuds"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use camera/vision to locate the user's earbuds",
+        "domain_hint": "media",
+        "verbatim": [
+          "earbuds"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 162,
+      "case_id": "p2-see-13",
+      "request": "Take a look around—what's visible?",
+      "expected_tool": "see",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the current visual scene\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the current visual scene\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 836.897,
+        "prompt_tokens": 519,
+        "generated_tokens": 18,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 21.508,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 163,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002616,
+          "cumulative_api_cost_usd": 0.0468226,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the current visual scene",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the current visual scene",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the current visual scene",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 163,
+      "case_id": "p2-see-14",
+      "request": "Could vision hunt for the blue notebook?",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "blue notebook"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use vision to locate the blue notebook\",\"domain_hint\":\"media\",\"verbatim\":[\"blue notebook\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use vision to locate the blue notebook\",\"domain_hint\":\"media\",\"verbatim\":[\"blue notebook\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 7298.128,
+        "prompt_tokens": 518,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 3.014,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 164,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002732,
+          "cumulative_api_cost_usd": 0.0470958,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use vision to locate the blue notebook",
+          "domain_hint": "media",
+          "verbatim": [
+            "blue notebook"
+          ]
+        },
+        "decoded": {
+          "request": "Use vision to locate the blue notebook",
+          "domain_hint": "media",
+          "verbatim": [
+            "blue notebook"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use vision to locate the blue notebook",
+        "domain_hint": "media",
+        "verbatim": [
+          "blue notebook"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 164,
+      "case_id": "p2-see-15",
+      "request": "Peek through the webcam for my glasses.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "glasses"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Capture and inspect the current webcam image to check the user's glasses\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Capture and inspect the current webcam image to check the user's glasses\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1577.235,
+        "prompt_tokens": 519,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 16.485,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.594,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 165,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002856,
+          "cumulative_api_cost_usd": 0.0473814,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Capture and inspect the current webcam image to check the user's glasses",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Capture and inspect the current webcam image to check the user's glasses",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Capture and inspect the current webcam image to check the user's glasses",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 165,
+      "case_id": "p2-see-16",
+      "request": "Scan the room until you find the desk lamp.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "desk lamp"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use camera/vision to scan the room and locate the desk lamp\",\"domain_hint\":\"media\",\"verbatim\":[\"desk lamp\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use camera/vision to scan the room and locate the desk lamp\",\"domain_hint\":\"media\",\"verbatim\":[\"desk lamp\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1141.142,
+        "prompt_tokens": 520,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.537,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 166,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000292,
+          "cumulative_api_cost_usd": 0.0476734,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use camera/vision to scan the room and locate the desk lamp",
+          "domain_hint": "media",
+          "verbatim": [
+            "desk lamp"
+          ]
+        },
+        "decoded": {
+          "request": "Use camera/vision to scan the room and locate the desk lamp",
+          "domain_hint": "media",
+          "verbatim": [
+            "desk lamp"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use camera/vision to scan the room and locate the desk lamp",
+        "domain_hint": "media",
+        "verbatim": [
+          "desk lamp"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 166,
+      "case_id": "p2-see-17",
+      "request": "what does yuki's eye see atm",
+      "expected_tool": "see",
+      "expected_arguments": {},
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the current camera view\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the current camera view\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 945.061,
+        "prompt_tokens": 518,
+        "generated_tokens": 18,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 19.046,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 167,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002612,
+          "cumulative_api_cost_usd": 0.0479346,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the current camera view",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the current camera view",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the current camera view",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 167,
+      "case_id": "p2-see-18",
+      "request": "Find the printed image with the camera; do not generate a new image.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "printed image"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to inspect and locate a printed image in the physical environment\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to inspect and locate a printed image in the physical environment\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 945.207,
+        "prompt_tokens": 525,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 28.565,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 168,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000291,
+          "cumulative_api_cost_usd": 0.0482256,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to inspect and locate a printed image in the physical environment",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use the camera to inspect and locate a printed image in the physical environment",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to inspect and locate a printed image in the physical environment",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 168,
+      "case_id": "p2-see-19",
+      "request": "Look at the thermostat display, not an online weather service.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "thermostat display"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the thermostat display image\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the thermostat display image\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1152.251,
+        "prompt_tokens": 522,
+        "generated_tokens": 18,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 15.622,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 169,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002628,
+          "cumulative_api_cost_usd": 0.0484884,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the thermostat display image",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "inspect the thermostat display image",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the thermostat display image",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 169,
+      "case_id": "p2-see-20",
+      "request": "Visually inspect the terminal window; don't execute its command.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "terminal window"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Visually inspect the terminal window without executing its command\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Visually inspect the terminal window without executing its command\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 857.197,
+        "prompt_tokens": 523,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.832,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 170,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002782,
+          "cumulative_api_cost_usd": 0.0487666,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Visually inspect the terminal window without executing its command",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Visually inspect the terminal window without executing its command",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Visually inspect the terminal window without executing its command",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 170,
+      "case_id": "p2-see-21",
+      "request": "Find the notes file lying on my desk; do not read a filesystem file.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "notes file"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1242.925,
+        "prompt_tokens": 526,
+        "generated_tokens": 33,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.55,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 171,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003094,
+          "cumulative_api_cost_usd": 0.049076,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use camera/vision to locate and identify the notes file on the user's desk without accessing the filesystem.",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 171,
+      "case_id": "p2-see-22",
+      "request": "Camera target exactly: USB-C adapter",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "USB-C adapter"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"inspect the camera target exactly as USB-C adapter\",\"domain_hint\":\"media\",\"verbatim\":[\"USB-C adapter\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"inspect the camera target exactly as USB-C adapter\",\"domain_hint\":\"media\",\"verbatim\":[\"USB-C adapter\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1300.479,
+        "prompt_tokens": 517,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 19.224,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 172,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002818,
+          "cumulative_api_cost_usd": 0.0493578,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "inspect the camera target exactly as USB-C adapter",
+          "domain_hint": "media",
+          "verbatim": [
+            "USB-C adapter"
+          ]
+        },
+        "decoded": {
+          "request": "inspect the camera target exactly as USB-C adapter",
+          "domain_hint": "media",
+          "verbatim": [
+            "USB-C adapter"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "inspect the camera target exactly as USB-C adapter",
+        "domain_hint": "media",
+        "verbatim": [
+          "USB-C adapter"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 172,
+      "case_id": "p2-see-23",
+      "request": "Locate `AirPods Pro` and preserve that capitalization.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "AirPods Pro"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\n  \"request\": \"Locate the item or information for the exact search term\",\n  \"domain_hint\": \"information\",\n  \"verbatim\": [\n    \"AirPods Pro\"\n  ]\n}",
+      "generation": {
+        "raw_text": "{\n  \"request\": \"Locate the item or information for the exact search term\",\n  \"domain_hint\": \"information\",\n  \"verbatim\": [\n    \"AirPods Pro\"\n  ]\n}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1841.511,
+        "prompt_tokens": 523,
+        "generated_tokens": 47,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.523,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 173,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003502,
+          "cumulative_api_cost_usd": 0.049708,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Locate the item or information for the exact search term",
+          "domain_hint": "information",
+          "verbatim": [
+            "AirPods Pro"
+          ]
+        },
+        "decoded": {
+          "request": "Locate the item or information for the exact search term",
+          "domain_hint": "information",
+          "verbatim": [
+            "AirPods Pro"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Locate the item or information for the exact search term",
+        "domain_hint": "information",
+        "verbatim": [
+          "AirPods Pro"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": false,
+        "semantic_request_quality": false,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 173,
+      "case_id": "p2-see-24",
+      "request": "Use vision for the object named M.2 enclosure.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "M.2 enclosure"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use vision to inspect the object named M.2 enclosure\",\"domain_hint\":\"media\",\"verbatim\":[\"M.2 enclosure\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use vision to inspect the object named M.2 enclosure\",\"domain_hint\":\"media\",\"verbatim\":[\"M.2 enclosure\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 3496.174,
+        "prompt_tokens": 521,
+        "generated_tokens": 28,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 8.009,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 174,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002924,
+          "cumulative_api_cost_usd": 0.0500004,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use vision to inspect the object named M.2 enclosure",
+          "domain_hint": "media",
+          "verbatim": [
+            "M.2 enclosure"
+          ]
+        },
+        "decoded": {
+          "request": "Use vision to inspect the object named M.2 enclosure",
+          "domain_hint": "media",
+          "verbatim": [
+            "M.2 enclosure"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use vision to inspect the object named M.2 enclosure",
+        "domain_hint": "media",
+        "verbatim": [
+          "M.2 enclosure"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 174,
+      "case_id": "p2-see-25",
+      "request": "I can't describe it well—camera, find the 'red-ish cable'?",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "red-ish cable"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "see"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Use the camera to locate a red-ish cable in the current view\",\"domain_hint\":\"media\",\"verbatim\":[\"red-ish cable\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Use the camera to locate a red-ish cable in the current view\",\"domain_hint\":\"media\",\"verbatim\":[\"red-ish cable\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1625.352,
+        "prompt_tokens": 526,
+        "generated_tokens": 29,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 17.842,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.641,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 175,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002974,
+          "cumulative_api_cost_usd": 0.0502978,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Use the camera to locate a red-ish cable in the current view",
+          "domain_hint": "media",
+          "verbatim": [
+            "red-ish cable"
+          ]
+        },
+        "decoded": {
+          "request": "Use the camera to locate a red-ish cable in the current view",
+          "domain_hint": "media",
+          "verbatim": [
+            "red-ish cable"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Use the camera to locate a red-ish cable in the current view",
+        "domain_hint": "media",
+        "verbatim": [
+          "red-ish cable"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 0,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 400,
+      "case_id": "p2-recall-01",
+      "request": "Recall our previous discussion about the server crash.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "server crash"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "server crash"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about the server crash discussion\",\"domain_hint\":\"memory\",\"verbatim\":[\"the server crash\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about the server crash discussion\",\"domain_hint\":\"memory\",\"verbatim\":[\"the server crash\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 806.519,
+        "prompt_tokens": 520,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 32.237,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 401,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000286,
+          "cumulative_api_cost_usd": 0.1182386,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about the server crash discussion",
+          "domain_hint": "memory",
+          "verbatim": [
+            "the server crash"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about the server crash discussion",
+          "domain_hint": "memory",
+          "verbatim": [
+            "the server crash"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about the server crash discussion",
+        "domain_hint": "memory",
+        "verbatim": [
+          "the server crash"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 401,
+      "case_id": "p2-recall-02",
+      "request": "What did I tell you about my sister's wedding?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "my sister's wedding"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "my sister's wedding"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about the user's sister's wedding\",\"domain_hint\":\"memory\",\"verbatim\":[\"my sister's wedding\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about the user's sister's wedding\",\"domain_hint\":\"memory\",\"verbatim\":[\"my sister's wedding\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1071.534,
+        "prompt_tokens": 521,
+        "generated_tokens": 29,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 27.064,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 402,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002954,
+          "cumulative_api_cost_usd": 0.118534,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about the user's sister's wedding",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my sister's wedding"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about the user's sister's wedding",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my sister's wedding"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about the user's sister's wedding",
+        "domain_hint": "memory",
+        "verbatim": [
+          "my sister's wedding"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 402,
+      "case_id": "p2-recall-03",
+      "request": "Look up remembered conversations about the garden project.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "garden project"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "garden project"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about the garden project\",\"domain_hint\":\"memory\",\"verbatim\":[\"garden project\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about the garden project\",\"domain_hint\":\"memory\",\"verbatim\":[\"garden project\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 804.643,
+        "prompt_tokens": 519,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 31.07,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 403,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002826,
+          "cumulative_api_cost_usd": 0.1188166,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about the garden project",
+          "domain_hint": "memory",
+          "verbatim": [
+            "garden project"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about the garden project",
+          "domain_hint": "memory",
+          "verbatim": [
+            "garden project"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about the garden project",
+        "domain_hint": "memory",
+        "verbatim": [
+          "garden project"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 403,
+      "case_id": "p2-recall-04",
+      "request": "Recall what we discussed about a laptop upgrade.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "laptop upgrade"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "laptop upgrade"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about a laptop upgrade\",\"domain_hint\":\"memory\",\"verbatim\":[\"laptop upgrade\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about a laptop upgrade\",\"domain_hint\":\"memory\",\"verbatim\":[\"laptop upgrade\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 997.753,
+        "prompt_tokens": 520,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.056,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 404,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000283,
+          "cumulative_api_cost_usd": 0.1190996,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about a laptop upgrade",
+          "domain_hint": "memory",
+          "verbatim": [
+            "laptop upgrade"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about a laptop upgrade",
+          "domain_hint": "memory",
+          "verbatim": [
+            "laptop upgrade"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about a laptop upgrade",
+        "domain_hint": "memory",
+        "verbatim": [
+          "laptop upgrade"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 404,
+      "case_id": "p2-recall-05",
+      "request": "Find our past memory about the Rust compiler error.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "Rust compiler error"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "Rust compiler error"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user memory about the Rust compiler error\",\"domain_hint\":\"memory\",\"verbatim\":[\"Rust compiler error\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user memory about the Rust compiler error\",\"domain_hint\":\"memory\",\"verbatim\":[\"Rust compiler error\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1359.825,
+        "prompt_tokens": 520,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 19.855,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 405,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000289,
+          "cumulative_api_cost_usd": 0.1193886,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user memory about the Rust compiler error",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Rust compiler error"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user memory about the Rust compiler error",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Rust compiler error"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user memory about the Rust compiler error",
+        "domain_hint": "memory",
+        "verbatim": [
+          "Rust compiler error"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 405,
+      "case_id": "p2-recall-06",
+      "request": "What do you remember from the kitchen renovation discussion?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "kitchen renovation"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "kitchen renovation"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about the kitchen renovation discussion\",\"domain_hint\":\"memory\",\"verbatim\":[\"kitchen renovation discussion\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about the kitchen renovation discussion\",\"domain_hint\":\"memory\",\"verbatim\":[\"kitchen renovation discussion\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 921.576,
+        "prompt_tokens": 520,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.298,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.516,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 406,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000289,
+          "cumulative_api_cost_usd": 0.1196776,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about the kitchen renovation discussion",
+          "domain_hint": "memory",
+          "verbatim": [
+            "kitchen renovation discussion"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about the kitchen renovation discussion",
+          "domain_hint": "memory",
+          "verbatim": [
+            "kitchen renovation discussion"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about the kitchen renovation discussion",
+        "domain_hint": "memory",
+        "verbatim": [
+          "kitchen renovation discussion"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 406,
+      "case_id": "p2-recall-07",
+      "request": "Recall the earlier conversation about my travel plans.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "travel plans"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "travel plans"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about travel plans\",\"domain_hint\":\"memory\",\"verbatim\":[\"my travel plans\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about travel plans\",\"domain_hint\":\"memory\",\"verbatim\":[\"my travel plans\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 849.808,
+        "prompt_tokens": 520,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 28.242,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.516,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 407,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.00028,
+          "cumulative_api_cost_usd": 0.1199576,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about travel plans",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my travel plans"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about travel plans",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my travel plans"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about travel plans",
+        "domain_hint": "memory",
+        "verbatim": [
+          "my travel plans"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 407,
+      "case_id": "p2-recall-08",
+      "request": "Search memory for our API timeout debugging.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "API timeout debugging"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "API timeout debugging"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored memory about API timeout debugging\",\"domain_hint\":\"memory\",\"verbatim\":[\"API timeout debugging\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored memory about API timeout debugging\",\"domain_hint\":\"memory\",\"verbatim\":[\"API timeout debugging\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 790.317,
+        "prompt_tokens": 518,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 30.368,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.516,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 408,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002792,
+          "cumulative_api_cost_usd": 0.1202368,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored memory about API timeout debugging",
+          "domain_hint": "memory",
+          "verbatim": [
+            "API timeout debugging"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored memory about API timeout debugging",
+          "domain_hint": "memory",
+          "verbatim": [
+            "API timeout debugging"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored memory about API timeout debugging",
+        "domain_hint": "memory",
+        "verbatim": [
+          "API timeout debugging"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 408,
+      "case_id": "p2-recall-09",
+      "request": "Bring back the past discussion about Nori's vet visit.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "Nori's vet visit"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "Nori's vet visit"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about Nori's vet visit\",\"domain_hint\":\"memory\",\"verbatim\":[\"Nori's vet visit\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about Nori's vet visit\",\"domain_hint\":\"memory\",\"verbatim\":[\"Nori's vet visit\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1115.015,
+        "prompt_tokens": 522,
+        "generated_tokens": 29,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.009,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.531,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 409,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002958,
+          "cumulative_api_cost_usd": 0.1205326,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about Nori's vet visit",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Nori's vet visit"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about Nori's vet visit",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Nori's vet visit"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about Nori's vet visit",
+        "domain_hint": "memory",
+        "verbatim": [
+          "Nori's vet visit"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 409,
+      "case_id": "p2-recall-10",
+      "request": "Recall our notes from the voice latency investigation.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "voice latency investigation"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "voice latency investigation"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored notes about the voice latency investigation\",\"domain_hint\":\"memory\",\"verbatim\":[\"voice latency investigation\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored notes about the voice latency investigation\",\"domain_hint\":\"memory\",\"verbatim\":[\"voice latency investigation\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 784.3,
+        "prompt_tokens": 520,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 31.876,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.531,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 410,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000283,
+          "cumulative_api_cost_usd": 0.1208156,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored notes about the voice latency investigation",
+          "domain_hint": "memory",
+          "verbatim": [
+            "voice latency investigation"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored notes about the voice latency investigation",
+          "domain_hint": "memory",
+          "verbatim": [
+            "voice latency investigation"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored notes about the voice latency investigation",
+        "domain_hint": "memory",
+        "verbatim": [
+          "voice latency investigation"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 410,
+      "case_id": "p2-recall-11",
+      "request": "What did we previously say about the blue bicycle?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "blue bicycle"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "blue bicycle"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about the blue bicycle\",\"domain_hint\":\"memory\",\"verbatim\":[\"the blue bicycle\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about the blue bicycle\",\"domain_hint\":\"memory\",\"verbatim\":[\"the blue bicycle\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 979.07,
+        "prompt_tokens": 520,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.534,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.531,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 411,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000283,
+          "cumulative_api_cost_usd": 0.1210986,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about the blue bicycle",
+          "domain_hint": "memory",
+          "verbatim": [
+            "the blue bicycle"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about the blue bicycle",
+          "domain_hint": "memory",
+          "verbatim": [
+            "the blue bicycle"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about the blue bicycle",
+        "domain_hint": "memory",
+        "verbatim": [
+          "the blue bicycle"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 411,
+      "case_id": "p2-recall-12",
+      "request": "Can you dig into our shared past for the database migration topic?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "database migration"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "database migration"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about the database migration topic\",\"domain_hint\":\"memory\",\"verbatim\":[\"database migration\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about the database migration topic\",\"domain_hint\":\"memory\",\"verbatim\":[\"database migration\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 902.17,
+        "prompt_tokens": 523,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 27.711,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.531,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 412,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002842,
+          "cumulative_api_cost_usd": 0.1213828,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about the database migration topic",
+          "domain_hint": "memory",
+          "verbatim": [
+            "database migration"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about the database migration topic",
+          "domain_hint": "memory",
+          "verbatim": [
+            "database migration"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about the database migration topic",
+        "domain_hint": "memory",
+        "verbatim": [
+          "database migration"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 412,
+      "case_id": "p2-recall-13",
+      "request": "Memory search: that conversation where Metal ran out of RAM.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "Metal out of RAM"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "Metal ran out of RAM"
+      ],
+      "argument_alternatives": {
+        "topic": [
+          "Metal ran out of RAM"
+        ]
+      },
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Search stored memory for the conversation where Metal ran out of RAM\",\"domain_hint\":\"memory\",\"verbatim\":[\"that conversation where Metal ran out of RAM\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Search stored memory for the conversation where Metal ran out of RAM\",\"domain_hint\":\"memory\",\"verbatim\":[\"that conversation where Metal ran out of RAM\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 964.582,
+        "prompt_tokens": 522,
+        "generated_tokens": 33,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 34.212,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.531,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 413,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003078,
+          "cumulative_api_cost_usd": 0.1216906,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Search stored memory for the conversation where Metal ran out of RAM",
+          "domain_hint": "memory",
+          "verbatim": [
+            "that conversation where Metal ran out of RAM"
+          ]
+        },
+        "decoded": {
+          "request": "Search stored memory for the conversation where Metal ran out of RAM",
+          "domain_hint": "memory",
+          "verbatim": [
+            "that conversation where Metal ran out of RAM"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Search stored memory for the conversation where Metal ran out of RAM",
+        "domain_hint": "memory",
+        "verbatim": [
+          "that conversation where Metal ran out of RAM"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 413,
+      "case_id": "p2-recall-14",
+      "request": "Remind me what came up when we talked about jasmine tea.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "jasmine tea"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "jasmine tea"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about the conversation topic jasmine tea\",\"domain_hint\":\"memory\",\"verbatim\":[\"jasmine tea\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about the conversation topic jasmine tea\",\"domain_hint\":\"memory\",\"verbatim\":[\"jasmine tea\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 854.581,
+        "prompt_tokens": 523,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 31.594,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.531,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 414,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002902,
+          "cumulative_api_cost_usd": 0.1219808,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about the conversation topic jasmine tea",
+          "domain_hint": "memory",
+          "verbatim": [
+            "jasmine tea"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about the conversation topic jasmine tea",
+          "domain_hint": "memory",
+          "verbatim": [
+            "jasmine tea"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about the conversation topic jasmine tea",
+        "domain_hint": "memory",
+        "verbatim": [
+          "jasmine tea"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 414,
+      "case_id": "p2-recall-15",
+      "request": "Find the older chat concerning the parser refactor.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "parser refactor"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "parser refactor"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve a previously stored chat or memory entry about the parser refactor\",\"domain_hint\":\"memory\",\"verbatim\":[\"parser refactor\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve a previously stored chat or memory entry about the parser refactor\",\"domain_hint\":\"memory\",\"verbatim\":[\"parser refactor\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1044.2,
+        "prompt_tokens": 519,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.857,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.531,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 415,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002886,
+          "cumulative_api_cost_usd": 0.1222694,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve a previously stored chat or memory entry about the parser refactor",
+          "domain_hint": "memory",
+          "verbatim": [
+            "parser refactor"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve a previously stored chat or memory entry about the parser refactor",
+          "domain_hint": "memory",
+          "verbatim": [
+            "parser refactor"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve a previously stored chat or memory entry about the parser refactor",
+        "domain_hint": "memory",
+        "verbatim": [
+          "parser refactor"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 415,
+      "case_id": "p2-recall-16",
+      "request": "What was our earlier thinking around home-office lighting?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "home-office lighting"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "home-office lighting"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about home-office lighting\",\"domain_hint\":\"memory\",\"verbatim\":[\"home-office lighting\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about home-office lighting\",\"domain_hint\":\"memory\",\"verbatim\":[\"home-office lighting\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 3560.814,
+        "prompt_tokens": 520,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 7.021,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 416,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000283,
+          "cumulative_api_cost_usd": 0.1225524,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about home-office lighting",
+          "domain_hint": "memory",
+          "verbatim": [
+            "home-office lighting"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about home-office lighting",
+          "domain_hint": "memory",
+          "verbatim": [
+            "home-office lighting"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about home-office lighting",
+        "domain_hint": "memory",
+        "verbatim": [
+          "home-office lighting"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 416,
+      "case_id": "p2-recall-17",
+      "request": "Pull the remembered context for my holiday packing list.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "holiday packing list"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "holiday packing list"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information for the holiday packing list\",\"domain_hint\":\"memory\",\"verbatim\":[\"holiday packing list\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information for the holiday packing list\",\"domain_hint\":\"memory\",\"verbatim\":[\"holiday packing list\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1047.823,
+        "prompt_tokens": 520,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.813,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 417,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000286,
+          "cumulative_api_cost_usd": 0.1228384,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information for the holiday packing list",
+          "domain_hint": "memory",
+          "verbatim": [
+            "holiday packing list"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information for the holiday packing list",
+          "domain_hint": "memory",
+          "verbatim": [
+            "holiday packing list"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information for the holiday packing list",
+        "domain_hint": "memory",
+        "verbatim": [
+          "holiday packing list"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 417,
+      "case_id": "p2-recall-18",
+      "request": "Recall weather API planning, not today's weather.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "weather API planning"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "weather API planning"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored information about weather API planning\",\"domain_hint\":\"memory\",\"verbatim\":[\"weather API planning\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored information about weather API planning\",\"domain_hint\":\"memory\",\"verbatim\":[\"weather API planning\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1133.262,
+        "prompt_tokens": 521,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 21.178,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.547,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 418,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002804,
+          "cumulative_api_cost_usd": 0.1231188,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored information about weather API planning",
+          "domain_hint": "memory",
+          "verbatim": [
+            "weather API planning"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored information about weather API planning",
+          "domain_hint": "memory",
+          "verbatim": [
+            "weather API planning"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored information about weather API planning",
+        "domain_hint": "memory",
+        "verbatim": [
+          "weather API planning"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 418,
+      "case_id": "p2-recall-19",
+      "request": "Search remembered chats for URL fetch failures, not the web.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "URL fetch failures"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "URL fetch failures"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Search stored memory for remembered chat entries about URL fetch failures\",\"domain_hint\":\"memory\",\"verbatim\":[\"URL fetch failures\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Search stored memory for remembered chat entries about URL fetch failures\",\"domain_hint\":\"memory\",\"verbatim\":[\"URL fetch failures\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 967.352,
+        "prompt_tokens": 522,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 27.911,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.562,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 419,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002898,
+          "cumulative_api_cost_usd": 0.1234086,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Search stored memory for remembered chat entries about URL fetch failures",
+          "domain_hint": "memory",
+          "verbatim": [
+            "URL fetch failures"
+          ]
+        },
+        "decoded": {
+          "request": "Search stored memory for remembered chat entries about URL fetch failures",
+          "domain_hint": "memory",
+          "verbatim": [
+            "URL fetch failures"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Search stored memory for remembered chat entries about URL fetch failures",
+        "domain_hint": "memory",
+        "verbatim": [
+          "URL fetch failures"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 419,
+      "case_id": "p2-recall-20",
+      "request": "Recall our discussion of notes.md; do not read a file.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "notes.md discussion"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "notes.md"
+      ],
+      "argument_alternatives": {
+        "topic": [
+          "notes.md"
+        ]
+      },
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored information about the discussion of notes.md\",\"domain_hint\":\"memory\",\"verbatim\":[\"notes.md\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored information about the discussion of notes.md\",\"domain_hint\":\"memory\",\"verbatim\":[\"notes.md\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1066.799,
+        "prompt_tokens": 524,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 23.435,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.578,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 420,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002846,
+          "cumulative_api_cost_usd": 0.1236932,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored information about the discussion of notes.md",
+          "domain_hint": "memory",
+          "verbatim": [
+            "notes.md"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored information about the discussion of notes.md",
+          "domain_hint": "memory",
+          "verbatim": [
+            "notes.md"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored information about the discussion of notes.md",
+        "domain_hint": "memory",
+        "verbatim": [
+          "notes.md"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 420,
+      "case_id": "p2-recall-21",
+      "request": "Use memory for Claude bridge debugging; don't ask Claude now.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "Claude bridge debugging"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "Claude bridge debugging"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store a memory fact about Claude bridge debugging\",\"domain_hint\":\"memory\",\"verbatim\":[\"Claude bridge debugging\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store a memory fact about Claude bridge debugging\",\"domain_hint\":\"memory\",\"verbatim\":[\"Claude bridge debugging\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1021.4,
+        "prompt_tokens": 523,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 23.497,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.578,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 421,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002812,
+          "cumulative_api_cost_usd": 0.1239744,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store a memory fact about Claude bridge debugging",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Claude bridge debugging"
+          ]
+        },
+        "decoded": {
+          "request": "store a memory fact about Claude bridge debugging",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Claude bridge debugging"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store a memory fact about Claude bridge debugging",
+        "domain_hint": "memory",
+        "verbatim": [
+          "Claude bridge debugging"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 421,
+      "case_id": "p2-recall-22",
+      "request": "Recall the exact topic `Project X-17`.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "Project X-17"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "Project X-17"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information for the exact topic\",\"domain_hint\":\"memory\",\"verbatim\":[\"Project X-17\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information for the exact topic\",\"domain_hint\":\"memory\",\"verbatim\":[\"Project X-17\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1047.214,
+        "prompt_tokens": 522,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.783,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.578,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 422,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002898,
+          "cumulative_api_cost_usd": 0.1242642,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information for the exact topic",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Project X-17"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information for the exact topic",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Project X-17"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information for the exact topic",
+        "domain_hint": "memory",
+        "verbatim": [
+          "Project X-17"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 422,
+      "case_id": "p2-recall-23",
+      "request": "Search memory using topic foo_bar parser crash.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "foo_bar parser crash"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "foo_bar parser crash"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information for the given memory topic\",\"domain_hint\":\"memory\",\"verbatim\":[\"foo_bar parser crash\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information for the given memory topic\",\"domain_hint\":\"memory\",\"verbatim\":[\"foo_bar parser crash\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 4991.072,
+        "prompt_tokens": 519,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 5.41,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.578,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 423,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002886,
+          "cumulative_api_cost_usd": 0.1245528,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information for the given memory topic",
+          "domain_hint": "memory",
+          "verbatim": [
+            "foo_bar parser crash"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information for the given memory topic",
+          "domain_hint": "memory",
+          "verbatim": [
+            "foo_bar parser crash"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information for the given memory topic",
+        "domain_hint": "memory",
+        "verbatim": [
+          "foo_bar parser crash"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 423,
+      "case_id": "p2-recall-24",
+      "request": "Bring back the topic Mum's 60th birthday, punctuation intact.",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "Mum's 60th birthday"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "Mum's 60th birthday"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve the previously stored memory topic about Mum's 60th birthday\",\"domain_hint\":\"memory\",\"verbatim\":[\"Mum's 60th birthday\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve the previously stored memory topic about Mum's 60th birthday\",\"domain_hint\":\"memory\",\"verbatim\":[\"Mum's 60th birthday\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1330.61,
+        "prompt_tokens": 525,
+        "generated_tokens": 35,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.304,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.578,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 424,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000315,
+          "cumulative_api_cost_usd": 0.1248678,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve the previously stored memory topic about Mum's 60th birthday",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Mum's 60th birthday"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve the previously stored memory topic about Mum's 60th birthday",
+          "domain_hint": "memory",
+          "verbatim": [
+            "Mum's 60th birthday"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve the previously stored memory topic about Mum's 60th birthday",
+        "domain_hint": "memory",
+        "verbatim": [
+          "Mum's 60th birthday"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 424,
+      "case_id": "p2-recall-25",
+      "request": "uh... previous thing about the red-ish cable? recall that topic",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "red-ish cable"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "recall"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "red-ish cable"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"retrieve previously stored user information about the red-ish cable\",\"domain_hint\":\"memory\",\"verbatim\":[\"red-ish cable\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"retrieve previously stored user information about the red-ish cable\",\"domain_hint\":\"memory\",\"verbatim\":[\"red-ish cable\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1011.411,
+        "prompt_tokens": 523,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.707,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.609,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 425,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002872,
+          "cumulative_api_cost_usd": 0.125155,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "retrieve previously stored user information about the red-ish cable",
+          "domain_hint": "memory",
+          "verbatim": [
+            "red-ish cable"
+          ]
+        },
+        "decoded": {
+          "request": "retrieve previously stored user information about the red-ish cable",
+          "domain_hint": "memory",
+          "verbatim": [
+            "red-ish cable"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "retrieve previously stored user information about the red-ish cable",
+        "domain_hint": "memory",
+        "verbatim": [
+          "red-ish cable"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    }
+  ]
+}

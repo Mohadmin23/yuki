@@ -4,7 +4,7 @@ version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
     "bitsandbytes>=0.49.2",
-    "duckduckgo-search>=8.1.1",
+    "ddgs>=9.0",
     "fastapi>=0.136.1",
     "granian>=2.7.4",
     "kokoro>=0.9.4",
@@ -14,6 +14,8 @@ dependencies = [
     "psutil>=7.2.2",
     "soundfile>=0.13.1",
     "sqlite-vec>=0.1.9",
+    "textual>=8.2.7",
+    "textual-image[textual]>=0.13.2",
     "torch>=2.11.0",
     "transformers>=5.8.0",
 ]
@@ -26,3 +28,17 @@ dev = [
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+
+[tool.ruff]
+# ruff is NOT a project dependency — run it via `uvx ruff check .`. This config
+# is still honored by uvx. `subprojects/` are independent side-workflows (some
+# vendored) and are not part of the main lint surface.
+extend-exclude = ["subprojects", ".venv"]
+
+[tool.ruff.lint.per-file-ignores]
+# Each tool package does `from .<impl> import <fn> as tool_fn` so the registry in
+# tools/__init__.py can pick up `_mod.tool_fn`. ruff sees the aliased import as
+# unused (F401) — it is NOT. Do NOT run `ruff check --fix` expecting to clear
+# these; --fix would DELETE the re-exports and break every tool. This ignore is
+# the chokepoint guard so that never happens.
+"tools/*/__init__.py" = ["F401"]

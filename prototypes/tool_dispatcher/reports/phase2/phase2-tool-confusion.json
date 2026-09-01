@@ -1,0 +1,543 @@
+{
+  "dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+  "models": {
+    "hammer_3b": {
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.1-3b-fp16",
+      "full_matrix": {
+        "time": {
+          "time": 21,
+          "<none>": 4
+        },
+        "weather": {
+          "weather": 22,
+          "<none>": 3
+        },
+        "fetch": {
+          "fetch": 23,
+          "<none>": 2
+        },
+        "search": {
+          "search": 18,
+          "<none>": 7
+        },
+        "calc": {
+          "calc": 22,
+          "<none>": 3
+        },
+        "hardware": {
+          "hardware": 12,
+          "<none>": 13
+        },
+        "see": {
+          "see": 14,
+          "<none>": 11
+        },
+        "image": {
+          "image": 4,
+          "<none>": 21
+        },
+        "read": {
+          "read": 21,
+          "<none>": 4
+        },
+        "shell": {
+          "shell": 21,
+          "<none>": 4
+        },
+        "yuki_write": {
+          "yuki_write": 19,
+          "<none>": 6
+        },
+        "yuki_read": {
+          "yuki_read": 16,
+          "<none>": 8,
+          "fetch": 1
+        },
+        "yuki_list": {
+          "yuki_list": 13,
+          "<none>": 11,
+          "search": 1
+        },
+        "yuki_delete": {
+          "yuki_delete": 17,
+          "<none>": 8
+        },
+        "yuki_append": {
+          "yuki_append": 17,
+          "<none>": 8
+        },
+        "remember": {
+          "remember": 10,
+          "<none>": 15
+        },
+        "recall": {
+          "recall": 11,
+          "<none>": 12,
+          "search": 2
+        },
+        "ask_claude": {
+          "ask_claude": 19,
+          "<none>": 6
+        }
+      },
+      "focus_clusters": {
+        "filesystem": {
+          "tools": [
+            "read",
+            "yuki_read",
+            "shell"
+          ],
+          "error_count": 17,
+          "errors": [
+            {
+              "expected": "read",
+              "actual": "<none>",
+              "count": 4
+            },
+            {
+              "expected": "yuki_read",
+              "actual": "<none>",
+              "count": 8
+            },
+            {
+              "expected": "yuki_read",
+              "actual": "fetch",
+              "count": 1
+            },
+            {
+              "expected": "shell",
+              "actual": "<none>",
+              "count": 4
+            }
+          ]
+        },
+        "information": {
+          "tools": [
+            "weather",
+            "search",
+            "fetch"
+          ],
+          "error_count": 12,
+          "errors": [
+            {
+              "expected": "weather",
+              "actual": "<none>",
+              "count": 3
+            },
+            {
+              "expected": "search",
+              "actual": "<none>",
+              "count": 7
+            },
+            {
+              "expected": "fetch",
+              "actual": "<none>",
+              "count": 2
+            }
+          ]
+        },
+        "media": {
+          "tools": [
+            "see",
+            "image"
+          ],
+          "error_count": 32,
+          "errors": [
+            {
+              "expected": "see",
+              "actual": "<none>",
+              "count": 11
+            },
+            {
+              "expected": "image",
+              "actual": "<none>",
+              "count": 21
+            }
+          ]
+        },
+        "memory": {
+          "tools": [
+            "remember",
+            "recall"
+          ],
+          "error_count": 29,
+          "errors": [
+            {
+              "expected": "remember",
+              "actual": "<none>",
+              "count": 15
+            },
+            {
+              "expected": "recall",
+              "actual": "<none>",
+              "count": 12
+            },
+            {
+              "expected": "recall",
+              "actual": "search",
+              "count": 2
+            }
+          ]
+        },
+        "yuki_file_mutation": {
+          "tools": [
+            "yuki_write",
+            "yuki_append"
+          ],
+          "error_count": 14,
+          "errors": [
+            {
+              "expected": "yuki_write",
+              "actual": "<none>",
+              "count": 6
+            },
+            {
+              "expected": "yuki_append",
+              "actual": "<none>",
+              "count": 8
+            }
+          ]
+        }
+      }
+    },
+    "arch_agent_3b": {
+      "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Arch-Agent-3B-fp16",
+      "full_matrix": {
+        "time": {
+          "time": 23,
+          "hardware": 1,
+          "ask_claude": 1
+        },
+        "weather": {
+          "weather": 24,
+          "ask_claude": 1
+        },
+        "fetch": {
+          "fetch": 22,
+          "<none>": 2,
+          "ask_claude": 1
+        },
+        "search": {
+          "search": 23,
+          "ask_claude": 1,
+          "shell": 1
+        },
+        "calc": {
+          "calc": 22,
+          "shell": 1,
+          "hardware": 1,
+          "ask_claude": 1
+        },
+        "hardware": {
+          "hardware": 12,
+          "<none>": 8,
+          "search": 4,
+          "time": 1
+        },
+        "see": {
+          "see": 17,
+          "<none>": 5,
+          "search": 2,
+          "shell": 1
+        },
+        "image": {
+          "image": 5,
+          "<none>": 18,
+          "ask_claude": 1,
+          "tool_name": 1
+        },
+        "read": {
+          "read": 24,
+          "<none>": 1
+        },
+        "shell": {
+          "shell": 22,
+          "<none>": 2,
+          "search": 1
+        },
+        "yuki_write": {
+          "yuki_write": 19,
+          "<none>": 3,
+          "fetch": 2,
+          "see": 1
+        },
+        "yuki_read": {
+          "yuki_read": 19,
+          "read": 1,
+          "fetch": 2,
+          "<none>": 2,
+          "tool_name": 1
+        },
+        "yuki_list": {
+          "yuki_list": 13,
+          "<none>": 8,
+          "search": 3,
+          "remember": 1
+        },
+        "yuki_delete": {
+          "yuki_delete": 17,
+          "<none>": 8
+        },
+        "yuki_append": {
+          "yuki_append": 17,
+          "<none>": 1,
+          "search": 2,
+          "fetch": 3,
+          "see": 1,
+          "read": 1
+        },
+        "remember": {
+          "remember": 10,
+          "search": 4,
+          "<none>": 2,
+          "tool_name": 3,
+          "time": 4,
+          "yuki_write": 1,
+          "read": 1
+        },
+        "recall": {
+          "recall": 11,
+          "search": 11,
+          "read": 1,
+          "ask_claude": 1,
+          "fetch": 1
+        },
+        "ask_claude": {
+          "ask_claude": 18,
+          "search": 5,
+          "read": 1,
+          "<none>": 1
+        }
+      },
+      "focus_clusters": {
+        "filesystem": {
+          "tools": [
+            "read",
+            "yuki_read",
+            "shell"
+          ],
+          "error_count": 10,
+          "errors": [
+            {
+              "expected": "read",
+              "actual": "<none>",
+              "count": 1
+            },
+            {
+              "expected": "yuki_read",
+              "actual": "read",
+              "count": 1
+            },
+            {
+              "expected": "yuki_read",
+              "actual": "fetch",
+              "count": 2
+            },
+            {
+              "expected": "yuki_read",
+              "actual": "<none>",
+              "count": 2
+            },
+            {
+              "expected": "yuki_read",
+              "actual": "tool_name",
+              "count": 1
+            },
+            {
+              "expected": "shell",
+              "actual": "<none>",
+              "count": 2
+            },
+            {
+              "expected": "shell",
+              "actual": "search",
+              "count": 1
+            }
+          ]
+        },
+        "information": {
+          "tools": [
+            "weather",
+            "search",
+            "fetch"
+          ],
+          "error_count": 6,
+          "errors": [
+            {
+              "expected": "weather",
+              "actual": "ask_claude",
+              "count": 1
+            },
+            {
+              "expected": "search",
+              "actual": "ask_claude",
+              "count": 1
+            },
+            {
+              "expected": "search",
+              "actual": "shell",
+              "count": 1
+            },
+            {
+              "expected": "fetch",
+              "actual": "<none>",
+              "count": 2
+            },
+            {
+              "expected": "fetch",
+              "actual": "ask_claude",
+              "count": 1
+            }
+          ]
+        },
+        "media": {
+          "tools": [
+            "see",
+            "image"
+          ],
+          "error_count": 28,
+          "errors": [
+            {
+              "expected": "see",
+              "actual": "<none>",
+              "count": 5
+            },
+            {
+              "expected": "see",
+              "actual": "search",
+              "count": 2
+            },
+            {
+              "expected": "see",
+              "actual": "shell",
+              "count": 1
+            },
+            {
+              "expected": "image",
+              "actual": "<none>",
+              "count": 18
+            },
+            {
+              "expected": "image",
+              "actual": "ask_claude",
+              "count": 1
+            },
+            {
+              "expected": "image",
+              "actual": "tool_name",
+              "count": 1
+            }
+          ]
+        },
+        "memory": {
+          "tools": [
+            "remember",
+            "recall"
+          ],
+          "error_count": 29,
+          "errors": [
+            {
+              "expected": "remember",
+              "actual": "search",
+              "count": 4
+            },
+            {
+              "expected": "remember",
+              "actual": "<none>",
+              "count": 2
+            },
+            {
+              "expected": "remember",
+              "actual": "tool_name",
+              "count": 3
+            },
+            {
+              "expected": "remember",
+              "actual": "time",
+              "count": 4
+            },
+            {
+              "expected": "remember",
+              "actual": "yuki_write",
+              "count": 1
+            },
+            {
+              "expected": "remember",
+              "actual": "read",
+              "count": 1
+            },
+            {
+              "expected": "recall",
+              "actual": "search",
+              "count": 11
+            },
+            {
+              "expected": "recall",
+              "actual": "read",
+              "count": 1
+            },
+            {
+              "expected": "recall",
+              "actual": "ask_claude",
+              "count": 1
+            },
+            {
+              "expected": "recall",
+              "actual": "fetch",
+              "count": 1
+            }
+          ]
+        },
+        "yuki_file_mutation": {
+          "tools": [
+            "yuki_write",
+            "yuki_append"
+          ],
+          "error_count": 14,
+          "errors": [
+            {
+              "expected": "yuki_write",
+              "actual": "<none>",
+              "count": 3
+            },
+            {
+              "expected": "yuki_write",
+              "actual": "fetch",
+              "count": 2
+            },
+            {
+              "expected": "yuki_write",
+              "actual": "see",
+              "count": 1
+            },
+            {
+              "expected": "yuki_append",
+              "actual": "<none>",
+              "count": 1
+            },
+            {
+              "expected": "yuki_append",
+              "actual": "search",
+              "count": 2
+            },
+            {
+              "expected": "yuki_append",
+              "actual": "fetch",
+              "count": 3
+            },
+            {
+              "expected": "yuki_append",
+              "actual": "see",
+              "count": 1
+            },
+            {
+              "expected": "yuki_append",
+              "actual": "read",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

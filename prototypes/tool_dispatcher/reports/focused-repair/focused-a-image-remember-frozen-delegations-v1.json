@@ -1,0 +1,4843 @@
+{
+  "configuration": {
+    "experiment": "focused_repair_frozen_stage_a_subset",
+    "main_brain_role": "intended_main_brain",
+    "surrogate": false,
+    "model_label": "Qwen3.8-27B intended main brain via OpenRouter",
+    "model_id": "qwen/qwen3.8-27b",
+    "backend": "openrouter",
+    "generation_ceiling": 160,
+    "delegation_contract_version": "production-delegation-contract-v1.1",
+    "delegation_system_prompt_sha256": "1189b8cb529f8f13592e4952b9e1da31093592dfe2710c96796bc9bedb120cbb",
+    "thinking_disabled": true,
+    "stateless": true,
+    "prompt_cache_policy": "exact shared rendered-token prefix only; no prior request tokens or generations enter the current context",
+    "generation_count_per_case": 1,
+    "tool_execution_capability": false,
+    "external_api_usage": true,
+    "selection": "focused-a-image-remember-regression-50",
+    "derived_dataset_version": "production-delegation-source-v1",
+    "derived_dataset_sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+    "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "total_cases": 50,
+    "model_metadata": {
+      "requested_model": "qwen/qwen3.8-27b",
+      "base_url": "https://openrouter.ai/api/v1",
+      "schema_constraints_requested": true,
+      "thinking_disabled": true,
+      "provider_routing": {
+        "sort": "price",
+        "require_parameters": true
+      },
+      "max_api_cost_usd": 0.5
+    },
+    "load_latency_ms": 0.0,
+    "derived_from_full_stage_a_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa"
+  },
+  "contract": {
+    "fields": [
+      "request",
+      "domain_hint",
+      "verbatim"
+    ],
+    "domain_source": "main-brain-generated domain_hint",
+    "tool_name_from_main_brain": false,
+    "original_request_sent_to_dispatcher": false,
+    "no_tool_case_coverage": 0,
+    "conversation_context_case_coverage": 0
+  },
+  "provenance": {
+    "source": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/production-delegation/stage-a/production-delegation-mainbrain-qwen3.8-27b-openrouter-full450-v1.json",
+    "source_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa",
+    "tools": [
+      "image",
+      "remember"
+    ],
+    "case_ids": [
+      "p2-image-01",
+      "p2-image-02",
+      "p2-image-03",
+      "p2-image-04",
+      "p2-image-05",
+      "p2-image-06",
+      "p2-image-07",
+      "p2-image-08",
+      "p2-image-09",
+      "p2-image-10",
+      "p2-image-11",
+      "p2-image-12",
+      "p2-image-13",
+      "p2-image-14",
+      "p2-image-15",
+      "p2-image-16",
+      "p2-image-17",
+      "p2-image-18",
+      "p2-image-19",
+      "p2-image-20",
+      "p2-image-21",
+      "p2-image-22",
+      "p2-image-23",
+      "p2-image-24",
+      "p2-image-25",
+      "p2-remember-01",
+      "p2-remember-02",
+      "p2-remember-03",
+      "p2-remember-04",
+      "p2-remember-05",
+      "p2-remember-06",
+      "p2-remember-07",
+      "p2-remember-08",
+      "p2-remember-09",
+      "p2-remember-10",
+      "p2-remember-11",
+      "p2-remember-12",
+      "p2-remember-13",
+      "p2-remember-14",
+      "p2-remember-15",
+      "p2-remember-16",
+      "p2-remember-17",
+      "p2-remember-18",
+      "p2-remember-19",
+      "p2-remember-20",
+      "p2-remember-21",
+      "p2-remember-22",
+      "p2-remember-23",
+      "p2-remember-24",
+      "p2-remember-25"
+    ]
+  },
+  "case_results": [
+    {
+      "index": 175,
+      "case_id": "p2-image-01",
+      "request": "Generate an image with this prompt: neon fox beneath a rainy sign",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "neon fox beneath a rainy sign"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "neon fox beneath a rainy sign"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Generate an image from the provided prompt\",\"domain_hint\":\"media\",\"verbatim\":[\"neon fox beneath a rainy sign\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Generate an image from the provided prompt\",\"domain_hint\":\"media\",\"verbatim\":[\"neon fox beneath a rainy sign\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 5185.64,
+        "prompt_tokens": 523,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 5.207,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 176,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002902,
+          "cumulative_api_cost_usd": 0.050588,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Generate an image from the provided prompt",
+          "domain_hint": "media",
+          "verbatim": [
+            "neon fox beneath a rainy sign"
+          ]
+        },
+        "decoded": {
+          "request": "Generate an image from the provided prompt",
+          "domain_hint": "media",
+          "verbatim": [
+            "neon fox beneath a rainy sign"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Generate an image from the provided prompt",
+        "domain_hint": "media",
+        "verbatim": [
+          "neon fox beneath a rainy sign"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 176,
+      "case_id": "p2-image-02",
+      "request": "Create a picture of a watercolor lighthouse at dawn.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "watercolor lighthouse at dawn"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "watercolor lighthouse at dawn"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a watercolor image of a lighthouse at dawn\",\"domain_hint\":\"media\",\"verbatim\":[\"watercolor lighthouse at dawn\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a watercolor image of a lighthouse at dawn\",\"domain_hint\":\"media\",\"verbatim\":[\"watercolor lighthouse at dawn\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 878.128,
+        "prompt_tokens": 522,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 34.164,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 177,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002988,
+          "cumulative_api_cost_usd": 0.0508868,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a watercolor image of a lighthouse at dawn",
+          "domain_hint": "media",
+          "verbatim": [
+            "watercolor lighthouse at dawn"
+          ]
+        },
+        "decoded": {
+          "request": "create a watercolor image of a lighthouse at dawn",
+          "domain_hint": "media",
+          "verbatim": [
+            "watercolor lighthouse at dawn"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a watercolor image of a lighthouse at dawn",
+        "domain_hint": "media",
+        "verbatim": [
+          "watercolor lighthouse at dawn"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 177,
+      "case_id": "p2-image-03",
+      "request": "Make artwork showing a tiny robot watering sunflowers.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "tiny robot watering sunflowers"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "tiny robot watering sunflowers"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Create visual artwork of a tiny robot watering sunflowers\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Create visual artwork of a tiny robot watering sunflowers\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 956.657,
+        "prompt_tokens": 520,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.042,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 178,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000277,
+          "cumulative_api_cost_usd": 0.0511638,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create visual artwork of a tiny robot watering sunflowers",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Create visual artwork of a tiny robot watering sunflowers",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create visual artwork of a tiny robot watering sunflowers",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 178,
+      "case_id": "p2-image-04",
+      "request": "Generate this scene: moonlit anime library",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "moonlit anime library"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "moonlit anime library"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create visual artwork of a moonlit anime library\",\"domain_hint\":\"media\",\"verbatim\":[\"moonlit anime library\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create visual artwork of a moonlit anime library\",\"domain_hint\":\"media\",\"verbatim\":[\"moonlit anime library\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1045.384,
+        "prompt_tokens": 518,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.871,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 179,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002852,
+          "cumulative_api_cost_usd": 0.051449,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create visual artwork of a moonlit anime library",
+          "domain_hint": "media",
+          "verbatim": [
+            "moonlit anime library"
+          ]
+        },
+        "decoded": {
+          "request": "create visual artwork of a moonlit anime library",
+          "domain_hint": "media",
+          "verbatim": [
+            "moonlit anime library"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create visual artwork of a moonlit anime library",
+        "domain_hint": "media",
+        "verbatim": [
+          "moonlit anime library"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 179,
+      "case_id": "p2-image-05",
+      "request": "Create an image of a glass city floating above clouds.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "glass city floating above clouds"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "glass city floating above clouds"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a visual artwork of a glass city floating above clouds\",\"domain_hint\":\"media\",\"verbatim\":[\"a glass city floating above clouds\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a visual artwork of a glass city floating above clouds\",\"domain_hint\":\"media\",\"verbatim\":[\"a glass city floating above clouds\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1100.228,
+        "prompt_tokens": 521,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 27.267,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 180,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002984,
+          "cumulative_api_cost_usd": 0.0517474,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a visual artwork of a glass city floating above clouds",
+          "domain_hint": "media",
+          "verbatim": [
+            "a glass city floating above clouds"
+          ]
+        },
+        "decoded": {
+          "request": "create a visual artwork of a glass city floating above clouds",
+          "domain_hint": "media",
+          "verbatim": [
+            "a glass city floating above clouds"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a visual artwork of a glass city floating above clouds",
+        "domain_hint": "media",
+        "verbatim": [
+          "a glass city floating above clouds"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 180,
+      "case_id": "p2-image-06",
+      "request": "Render a cozy pixel-art kitchen in winter.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "cozy pixel-art kitchen in winter"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "cozy pixel-art kitchen in winter"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a cozy pixel-art kitchen in winter\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a cozy pixel-art kitchen in winter\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1434.218,
+        "prompt_tokens": 519,
+        "generated_tokens": 21,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 14.642,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 181,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002706,
+          "cumulative_api_cost_usd": 0.052018,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a cozy pixel-art kitchen in winter",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "create a cozy pixel-art kitchen in winter",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a cozy pixel-art kitchen in winter",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 181,
+      "case_id": "p2-image-07",
+      "request": "Make a poster of an astronaut playing cello on Mars.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "astronaut playing cello on Mars"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "astronaut playing cello on Mars"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Create a visual poster of an astronaut playing cello on Mars\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Create a visual poster of an astronaut playing cello on Mars\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 2842.871,
+        "prompt_tokens": 522,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 8.794,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 182,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002838,
+          "cumulative_api_cost_usd": 0.0523018,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create a visual poster of an astronaut playing cello on Mars",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "Create a visual poster of an astronaut playing cello on Mars",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create a visual poster of an astronaut playing cello on Mars",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 182,
+      "case_id": "p2-image-08",
+      "request": "Generate a charcoal sketch of an old cedar tree.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "charcoal sketch of an old cedar tree"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "charcoal sketch of an old cedar tree"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Generate a charcoal sketch of an old cedar tree\",\"domain_hint\":\"media\",\"verbatim\":[\"charcoal sketch of an old cedar tree\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Generate a charcoal sketch of an old cedar tree\",\"domain_hint\":\"media\",\"verbatim\":[\"charcoal sketch of an old cedar tree\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1532.369,
+        "prompt_tokens": 520,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 19.578,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 183,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000298,
+          "cumulative_api_cost_usd": 0.0525998,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Generate a charcoal sketch of an old cedar tree",
+          "domain_hint": "media",
+          "verbatim": [
+            "charcoal sketch of an old cedar tree"
+          ]
+        },
+        "decoded": {
+          "request": "Generate a charcoal sketch of an old cedar tree",
+          "domain_hint": "media",
+          "verbatim": [
+            "charcoal sketch of an old cedar tree"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Generate a charcoal sketch of an old cedar tree",
+        "domain_hint": "media",
+        "verbatim": [
+          "charcoal sketch of an old cedar tree"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 183,
+      "case_id": "p2-image-09",
+      "request": "Create a cinematic desert train at sunset.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "cinematic desert train at sunset"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "cinematic desert train at sunset"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a cinematic desert train at sunset\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a cinematic desert train at sunset\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 3036.366,
+        "prompt_tokens": 518,
+        "generated_tokens": 20,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 6.587,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 184,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002672,
+          "cumulative_api_cost_usd": 0.052867,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a cinematic desert train at sunset",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "create a cinematic desert train at sunset",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a cinematic desert train at sunset",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 184,
+      "case_id": "p2-image-10",
+      "request": "Draw a blue dragon curled around a lighthouse.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "blue dragon curled around a lighthouse"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "blue dragon curled around a lighthouse"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a visual artwork of a blue dragon curled around a lighthouse\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a visual artwork of a blue dragon curled around a lighthouse\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1022.137,
+        "prompt_tokens": 520,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.437,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.656,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 185,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000286,
+          "cumulative_api_cost_usd": 0.053153,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a visual artwork of a blue dragon curled around a lighthouse",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "create a visual artwork of a blue dragon curled around a lighthouse",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a visual artwork of a blue dragon curled around a lighthouse",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 185,
+      "case_id": "p2-image-11",
+      "request": "Make an image of bioluminescent jellyfish over a dark reef.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "bioluminescent jellyfish over a dark reef"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "bioluminescent jellyfish over a dark reef"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a visual artwork of bioluminescent jellyfish over a dark reef\",\"domain_hint\":\"media\",\"verbatim\":[\"bioluminescent jellyfish over a dark reef\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a visual artwork of bioluminescent jellyfish over a dark reef\",\"domain_hint\":\"media\",\"verbatim\":[\"bioluminescent jellyfish over a dark reef\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 7816.94,
+        "prompt_tokens": 525,
+        "generated_tokens": 38,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 4.861,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 186,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000324,
+          "cumulative_api_cost_usd": 0.053477,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a visual artwork of bioluminescent jellyfish over a dark reef",
+          "domain_hint": "media",
+          "verbatim": [
+            "bioluminescent jellyfish over a dark reef"
+          ]
+        },
+        "decoded": {
+          "request": "create a visual artwork of bioluminescent jellyfish over a dark reef",
+          "domain_hint": "media",
+          "verbatim": [
+            "bioluminescent jellyfish over a dark reef"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a visual artwork of bioluminescent jellyfish over a dark reef",
+        "domain_hint": "media",
+        "verbatim": [
+          "bioluminescent jellyfish over a dark reef"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 186,
+      "case_id": "p2-image-12",
+      "request": "Could you illustrate a sleepy cat running a ramen shop?",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "sleepy cat running a ramen shop"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "sleepy cat running a ramen shop"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a visual illustration of a sleepy cat running a ramen shop\",\"domain_hint\":\"media\",\"verbatim\":[\"sleepy cat running a ramen shop\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a visual illustration of a sleepy cat running a ramen shop\",\"domain_hint\":\"media\",\"verbatim\":[\"sleepy cat running a ramen shop\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1226.335,
+        "prompt_tokens": 521,
+        "generated_tokens": 32,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.094,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 187,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003044,
+          "cumulative_api_cost_usd": 0.0537814,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a visual illustration of a sleepy cat running a ramen shop",
+          "domain_hint": "media",
+          "verbatim": [
+            "sleepy cat running a ramen shop"
+          ]
+        },
+        "decoded": {
+          "request": "create a visual illustration of a sleepy cat running a ramen shop",
+          "domain_hint": "media",
+          "verbatim": [
+            "sleepy cat running a ramen shop"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a visual illustration of a sleepy cat running a ramen shop",
+        "domain_hint": "media",
+        "verbatim": [
+          "sleepy cat running a ramen shop"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 187,
+      "case_id": "p2-image-13",
+      "request": "I want a visual: paper-cut mountains under a gold moon.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "paper-cut mountains under a gold moon"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "paper-cut mountains under a gold moon"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Create a visual artwork of paper-cut mountains under a gold moon\",\"domain_hint\":\"media\",\"verbatim\":[\"paper-cut mountains under a gold moon\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Create a visual artwork of paper-cut mountains under a gold moon\",\"domain_hint\":\"media\",\"verbatim\":[\"paper-cut mountains under a gold moon\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 3680.033,
+        "prompt_tokens": 523,
+        "generated_tokens": 32,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 8.696,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 188,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003052,
+          "cumulative_api_cost_usd": 0.0540866,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create a visual artwork of paper-cut mountains under a gold moon",
+          "domain_hint": "media",
+          "verbatim": [
+            "paper-cut mountains under a gold moon"
+          ]
+        },
+        "decoded": {
+          "request": "Create a visual artwork of paper-cut mountains under a gold moon",
+          "domain_hint": "media",
+          "verbatim": [
+            "paper-cut mountains under a gold moon"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create a visual artwork of paper-cut mountains under a gold moon",
+        "domain_hint": "media",
+        "verbatim": [
+          "paper-cut mountains under a gold moon"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 188,
+      "case_id": "p2-image-14",
+      "request": "Turn this idea into artwork—retro-futurist bicycle workshop.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "retro-futurist bicycle workshop"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "retro-futurist bicycle workshop"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create visual artwork of a retro-futurist bicycle workshop\",\"domain_hint\":\"media\",\"verbatim\":[\"retro-futurist bicycle workshop\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create visual artwork of a retro-futurist bicycle workshop\",\"domain_hint\":\"media\",\"verbatim\":[\"retro-futurist bicycle workshop\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 6291.14,
+        "prompt_tokens": 525,
+        "generated_tokens": 33,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 5.245,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 189,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000309,
+          "cumulative_api_cost_usd": 0.0543956,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create visual artwork of a retro-futurist bicycle workshop",
+          "domain_hint": "media",
+          "verbatim": [
+            "retro-futurist bicycle workshop"
+          ]
+        },
+        "decoded": {
+          "request": "create visual artwork of a retro-futurist bicycle workshop",
+          "domain_hint": "media",
+          "verbatim": [
+            "retro-futurist bicycle workshop"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create visual artwork of a retro-futurist bicycle workshop",
+        "domain_hint": "media",
+        "verbatim": [
+          "retro-futurist bicycle workshop"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 189,
+      "case_id": "p2-image-15",
+      "request": "Paint, digitally, a storm moving over lavender fields.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "storm moving over lavender fields"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "storm moving over lavender fields"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a digital painting of a storm moving over lavender fields\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a digital painting of a storm moving over lavender fields\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1017.603,
+        "prompt_tokens": 521,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 23.585,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 190,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002804,
+          "cumulative_api_cost_usd": 0.054676,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a digital painting of a storm moving over lavender fields",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "create a digital painting of a storm moving over lavender fields",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a digital painting of a storm moving over lavender fields",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 190,
+      "case_id": "p2-image-16",
+      "request": "picture pls: friendly moss-covered forest giant",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "friendly moss-covered forest giant"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "friendly moss-covered forest giant"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Create a visual artwork of a friendly moss-covered forest giant\",\"domain_hint\":\"media\",\"verbatim\":[\"friendly moss-covered forest giant\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Create a visual artwork of a friendly moss-covered forest giant\",\"domain_hint\":\"media\",\"verbatim\":[\"friendly moss-covered forest giant\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 957.676,
+        "prompt_tokens": 518,
+        "generated_tokens": 29,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 30.282,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 191,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002942,
+          "cumulative_api_cost_usd": 0.0549702,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create a visual artwork of a friendly moss-covered forest giant",
+          "domain_hint": "media",
+          "verbatim": [
+            "friendly moss-covered forest giant"
+          ]
+        },
+        "decoded": {
+          "request": "Create a visual artwork of a friendly moss-covered forest giant",
+          "domain_hint": "media",
+          "verbatim": [
+            "friendly moss-covered forest giant"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create a visual artwork of a friendly moss-covered forest giant",
+        "domain_hint": "media",
+        "verbatim": [
+          "friendly moss-covered forest giant"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 191,
+      "case_id": "p2-image-17",
+      "request": "Visualize an isometric library inside a teacup.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "isometric library inside a teacup"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "isometric library inside a teacup"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"create a visual artwork of an isometric library inside a teacup\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+      "generation": {
+        "raw_text": "{\"request\":\"create a visual artwork of an isometric library inside a teacup\",\"domain_hint\":\"media\",\"verbatim\":[]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1145.697,
+        "prompt_tokens": 522,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 23.566,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 192,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002898,
+          "cumulative_api_cost_usd": 0.05526,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "create a visual artwork of an isometric library inside a teacup",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "decoded": {
+          "request": "create a visual artwork of an isometric library inside a teacup",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "create a visual artwork of an isometric library inside a teacup",
+        "domain_hint": "media",
+        "verbatim": []
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 0,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 192,
+      "case_id": "p2-image-18",
+      "request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "camera-shaped sculpture"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "camera-shaped sculpture"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Generate a visual artwork of a camera-shaped sculpture without using a real camera\",\"domain_hint\":\"media\",\"verbatim\":[\"camera-shaped sculpture\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Generate a visual artwork of a camera-shaped sculpture without using a real camera\",\"domain_hint\":\"media\",\"verbatim\":[\"camera-shaped sculpture\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1033.662,
+        "prompt_tokens": 523,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.023,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 193,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002992,
+          "cumulative_api_cost_usd": 0.0555592,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Generate a visual artwork of a camera-shaped sculpture without using a real camera",
+          "domain_hint": "media",
+          "verbatim": [
+            "camera-shaped sculpture"
+          ]
+        },
+        "decoded": {
+          "request": "Generate a visual artwork of a camera-shaped sculpture without using a real camera",
+          "domain_hint": "media",
+          "verbatim": [
+            "camera-shaped sculpture"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Generate a visual artwork of a camera-shaped sculpture without using a real camera",
+        "domain_hint": "media",
+        "verbatim": [
+          "camera-shaped sculpture"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 193,
+      "case_id": "p2-image-19",
+      "request": "Create an image of Tokyo weather icons, not a weather lookup.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "Tokyo weather icons"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "Tokyo weather icons"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Create a visual artwork of Tokyo weather icons\",\"domain_hint\":\"media\",\"verbatim\":[\"Tokyo weather icons\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Create a visual artwork of Tokyo weather icons\",\"domain_hint\":\"media\",\"verbatim\":[\"Tokyo weather icons\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 785.603,
+        "prompt_tokens": 523,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 31.823,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 194,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002842,
+          "cumulative_api_cost_usd": 0.0558434,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create a visual artwork of Tokyo weather icons",
+          "domain_hint": "media",
+          "verbatim": [
+            "Tokyo weather icons"
+          ]
+        },
+        "decoded": {
+          "request": "Create a visual artwork of Tokyo weather icons",
+          "domain_hint": "media",
+          "verbatim": [
+            "Tokyo weather icons"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create a visual artwork of Tokyo weather icons",
+        "domain_hint": "media",
+        "verbatim": [
+          "Tokyo weather icons"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 194,
+      "case_id": "p2-image-20",
+      "request": "Make poster artwork containing the words notes.md; do not write a file.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "poster artwork containing the words notes.md"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "poster artwork containing the words notes.md"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Create poster artwork containing the words notes.md without writing a file\",\"domain_hint\":\"media\",\"verbatim\":[\"notes.md\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Create poster artwork containing the words notes.md without writing a file\",\"domain_hint\":\"media\",\"verbatim\":[\"notes.md\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1430.701,
+        "prompt_tokens": 525,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 18.872,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.688,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 195,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000291,
+          "cumulative_api_cost_usd": 0.0561344,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create poster artwork containing the words notes.md without writing a file",
+          "domain_hint": "media",
+          "verbatim": [
+            "notes.md"
+          ]
+        },
+        "decoded": {
+          "request": "Create poster artwork containing the words notes.md without writing a file",
+          "domain_hint": "media",
+          "verbatim": [
+            "notes.md"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create poster artwork containing the words notes.md without writing a file",
+        "domain_hint": "media",
+        "verbatim": [
+          "notes.md"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": false,
+        "semantic_action_match": false,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 195,
+      "case_id": "p2-image-21",
+      "request": "Illustrate Claude as a brass automaton; do not ask Claude anything.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "Claude as a brass automaton"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "Claude as a brass automaton"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Create a visual illustration of Claude as a brass automaton\",\"domain_hint\":\"media\",\"verbatim\":[\"Claude as a brass automaton\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Create a visual illustration of Claude as a brass automaton\",\"domain_hint\":\"media\",\"verbatim\":[\"Claude as a brass automaton\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1640.075,
+        "prompt_tokens": 525,
+        "generated_tokens": 30,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 18.292,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.703,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 196,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003,
+          "cumulative_api_cost_usd": 0.0564344,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create a visual illustration of Claude as a brass automaton",
+          "domain_hint": "media",
+          "verbatim": [
+            "Claude as a brass automaton"
+          ]
+        },
+        "decoded": {
+          "request": "Create a visual illustration of Claude as a brass automaton",
+          "domain_hint": "media",
+          "verbatim": [
+            "Claude as a brass automaton"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create a visual illustration of Claude as a brass automaton",
+        "domain_hint": "media",
+        "verbatim": [
+          "Claude as a brass automaton"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 196,
+      "case_id": "p2-image-22",
+      "request": "Use this exact image prompt: RED fox, blue_sky, 35mm—high contrast!",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "RED fox, blue_sky, 35mm—high contrast!"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "RED fox, blue_sky, 35mm—high contrast!"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\n  \"request\": \"Create visual artwork using the provided image prompt\",\n  \"domain_hint\": \"media\",\n  \"verbatim\": [\n    \"RED fox, blue_sky, 35mm—high contrast!\"\n  ]\n}",
+      "generation": {
+        "raw_text": "{\n  \"request\": \"Create visual artwork using the provided image prompt\",\n  \"domain_hint\": \"media\",\n  \"verbatim\": [\n    \"RED fox, blue_sky, 35mm—high contrast!\"\n  ]\n}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1840.756,
+        "prompt_tokens": 531,
+        "generated_tokens": 55,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.879,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.703,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 197,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003774,
+          "cumulative_api_cost_usd": 0.0568118,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create visual artwork using the provided image prompt",
+          "domain_hint": "media",
+          "verbatim": [
+            "RED fox, blue_sky, 35mm—high contrast!"
+          ]
+        },
+        "decoded": {
+          "request": "Create visual artwork using the provided image prompt",
+          "domain_hint": "media",
+          "verbatim": [
+            "RED fox, blue_sky, 35mm—high contrast!"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create visual artwork using the provided image prompt",
+        "domain_hint": "media",
+        "verbatim": [
+          "RED fox, blue_sky, 35mm—high contrast!"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 197,
+      "case_id": "p2-image-23",
+      "request": "Preserve punctuation in the prompt: 'Home, 2:17 a.m.' in rainy cyberpunk style",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "'Home, 2:17 a.m.' in rainy cyberpunk style"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "'Home, 2:17 a.m.' in rainy cyberpunk style"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\n  \"request\": \"Create a visual artwork in rainy cyberpunk style using the exact prompt text\",\n  \"domain_hint\": \"media\",\n  \"verbatim\": [\n    \"Home, 2:17 a.m.\"\n  ]\n}",
+      "generation": {
+        "raw_text": "{\n  \"request\": \"Create a visual artwork in rainy cyberpunk style using the exact prompt text\",\n  \"domain_hint\": \"media\",\n  \"verbatim\": [\n    \"Home, 2:17 a.m.\"\n  ]\n}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1780.924,
+        "prompt_tokens": 533,
+        "generated_tokens": 56,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 31.444,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.703,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 198,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003812,
+          "cumulative_api_cost_usd": 0.057193,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Create a visual artwork in rainy cyberpunk style using the exact prompt text",
+          "domain_hint": "media",
+          "verbatim": [
+            "Home, 2:17 a.m."
+          ]
+        },
+        "decoded": {
+          "request": "Create a visual artwork in rainy cyberpunk style using the exact prompt text",
+          "domain_hint": "media",
+          "verbatim": [
+            "Home, 2:17 a.m."
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Create a visual artwork in rainy cyberpunk style using the exact prompt text",
+        "domain_hint": "media",
+        "verbatim": [
+          "Home, 2:17 a.m."
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 198,
+      "case_id": "p2-image-24",
+      "request": "Generate exactly: café façade; crème-and-teal palette; 4:3 composition",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "café façade; crème-and-teal palette; 4:3 composition"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "café façade; crème-and-teal palette; 4:3 composition"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"Generate visual artwork with the exact prompt\",\"domain_hint\":\"media\",\"verbatim\":[\"café façade; crème-and-teal palette; 4:3 composition\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"Generate visual artwork with the exact prompt\",\"domain_hint\":\"media\",\"verbatim\":[\"café façade; crème-and-teal palette; 4:3 composition\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1600.045,
+        "prompt_tokens": 527,
+        "generated_tokens": 35,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 21.874,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.703,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 199,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003158,
+          "cumulative_api_cost_usd": 0.0575088,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Generate visual artwork with the exact prompt",
+          "domain_hint": "media",
+          "verbatim": [
+            "café façade; crème-and-teal palette; 4:3 composition"
+          ]
+        },
+        "decoded": {
+          "request": "Generate visual artwork with the exact prompt",
+          "domain_hint": "media",
+          "verbatim": [
+            "café façade; crème-and-teal palette; 4:3 composition"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Generate visual artwork with the exact prompt",
+        "domain_hint": "media",
+        "verbatim": [
+          "café façade; crème-and-teal palette; 4:3 composition"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 199,
+      "case_id": "p2-image-25",
+      "request": "uhh make... an image? prompt is: almost-empty white room + one RED chair",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "almost-empty white room + one RED chair"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "image"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "media",
+      "required_verbatim": [
+        "almost-empty white room + one RED chair"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\n  \"request\": \"Generate an image from the provided prompt\",\n  \"domain_hint\": \"media\",\n  \"verbatim\": [\n    \"almost-empty white room + one RED chair\"\n  ]\n}",
+      "generation": {
+        "raw_text": "{\n  \"request\": \"Generate an image from the provided prompt\",\n  \"domain_hint\": \"media\",\n  \"verbatim\": [\n    \"almost-empty white room + one RED chair\"\n  ]\n}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 22766.137,
+        "prompt_tokens": 528,
+        "generated_tokens": 48,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 2.108,
+        "peak_memory_gb": null,
+        "process_rss_mb": 76.703,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 200,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "Reka",
+          "api_cost_usd": 0.0003912,
+          "cumulative_api_cost_usd": 0.0579,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "Generate an image from the provided prompt",
+          "domain_hint": "media",
+          "verbatim": [
+            "almost-empty white room + one RED chair"
+          ]
+        },
+        "decoded": {
+          "request": "Generate an image from the provided prompt",
+          "domain_hint": "media",
+          "verbatim": [
+            "almost-empty white room + one RED chair"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "Generate an image from the provided prompt",
+        "domain_hint": "media",
+        "verbatim": [
+          "almost-empty white room + one RED chair"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 375,
+      "case_id": "p2-remember-01",
+      "request": "Remember exactly this fact: user's dog is named Pixel",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's dog is named Pixel"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's dog is named Pixel"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's dog is named Pixel\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's dog is named Pixel\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 801.714,
+        "prompt_tokens": 521,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 31.183,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.438,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 376,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002834,
+          "cumulative_api_cost_usd": 0.1111274,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's dog is named Pixel"
+          ]
+        },
+        "decoded": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's dog is named Pixel"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store a user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's dog is named Pixel"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 376,
+      "case_id": "p2-remember-02",
+      "request": "Store this fact: user prefers dark mode",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user prefers dark mode"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user prefers dark mode"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user preference fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user prefers dark mode\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user preference fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user prefers dark mode\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 902.393,
+        "prompt_tokens": 518,
+        "generated_tokens": 21,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 23.271,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.438,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 377,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002702,
+          "cumulative_api_cost_usd": 0.1113976,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user preference fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user prefers dark mode"
+          ]
+        },
+        "decoded": {
+          "request": "store user preference fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user prefers dark mode"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user preference fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user prefers dark mode"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 377,
+      "case_id": "p2-remember-03",
+      "request": "Keep in memory: user's favorite tea is jasmine",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's favorite tea is jasmine"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's favorite tea is jasmine"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's favorite tea is jasmine\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's favorite tea is jasmine\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 947.22,
+        "prompt_tokens": 520,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.337,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.453,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 378,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.00028,
+          "cumulative_api_cost_usd": 0.1116776,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's favorite tea is jasmine"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's favorite tea is jasmine"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's favorite tea is jasmine"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 378,
+      "case_id": "p2-remember-04",
+      "request": "Remember this new fact: user works nights",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user works nights"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user works nights"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user works nights\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user works nights\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1291.725,
+        "prompt_tokens": 518,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 17.031,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 379,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002732,
+          "cumulative_api_cost_usd": 0.1119508,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user works nights"
+          ]
+        },
+        "decoded": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user works nights"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store a user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user works nights"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 379,
+      "case_id": "p2-remember-05",
+      "request": "Save the fact: user's bicycle is blue",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's bicycle is blue"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's bicycle is blue"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's bicycle is blue\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's bicycle is blue\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 957.44,
+        "prompt_tokens": 519,
+        "generated_tokens": 21,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 21.933,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 380,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002706,
+          "cumulative_api_cost_usd": 0.1122214,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's bicycle is blue"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's bicycle is blue"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's bicycle is blue"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 380,
+      "case_id": "p2-remember-06",
+      "request": "Remember: user is learning Rust",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user is learning Rust"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user is learning Rust"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user is learning Rust\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user is learning Rust\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 819.952,
+        "prompt_tokens": 516,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.831,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 381,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002724,
+          "cumulative_api_cost_usd": 0.1124938,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user is learning Rust"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user is learning Rust"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user is learning Rust"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 381,
+      "case_id": "p2-remember-07",
+      "request": "Store in memory that user's sister lives in Oran.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's sister lives in Oran"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's sister lives in Oran"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact in memory\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's sister lives in Oran\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact in memory\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's sister lives in Oran\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 944.335,
+        "prompt_tokens": 522,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.474,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 382,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002838,
+          "cumulative_api_cost_usd": 0.1127776,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact in memory",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's sister lives in Oran"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact in memory",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's sister lives in Oran"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact in memory",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's sister lives in Oran"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 382,
+      "case_id": "p2-remember-08",
+      "request": "Remember this preference: user likes concise error messages",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user likes concise error messages"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user likes concise error messages"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user preference for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user likes concise error messages\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user preference for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user likes concise error messages\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 3826.687,
+        "prompt_tokens": 519,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 6.01,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 383,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002766,
+          "cumulative_api_cost_usd": 0.1130542,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user preference for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user likes concise error messages"
+          ]
+        },
+        "decoded": {
+          "request": "store user preference for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user likes concise error messages"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user preference for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user likes concise error messages"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 383,
+      "case_id": "p2-remember-09",
+      "request": "Keep this fact: user's birthday is November 3",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's birthday is November 3"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's birthday is November 3"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's birthday is November 3\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's birthday is November 3\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 886.823,
+        "prompt_tokens": 521,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 28.191,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 384,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002834,
+          "cumulative_api_cost_usd": 0.1133376,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's birthday is November 3"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's birthday is November 3"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's birthday is November 3"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 384,
+      "case_id": "p2-remember-10",
+      "request": "Remember that user calls the server Kumo.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user calls the server Kumo"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user calls the server Kumo"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user calls the server Kumo\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user calls the server Kumo\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 916.787,
+        "prompt_tokens": 519,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.178,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 385,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002796,
+          "cumulative_api_cost_usd": 0.1136172,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user calls the server Kumo"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user calls the server Kumo"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user calls the server Kumo"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 385,
+      "case_id": "p2-remember-11",
+      "request": "Save to memory: user's usual coffee is an oat latte",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's usual coffee is an oat latte"
+      },
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's usual coffee is an oat latte"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "normal",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's usual coffee is an oat latte\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's usual coffee is an oat latte\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 934.904,
+        "prompt_tokens": 522,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 27.81,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 386,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002868,
+          "cumulative_api_cost_usd": 0.113904,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's usual coffee is an oat latte"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's usual coffee is an oat latte"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's usual coffee is an oat latte"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 386,
+      "case_id": "p2-remember-12",
+      "request": "Make a mental note that my cat's name is Nori.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's cat is named Nori"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "my cat's name is Nori"
+      ],
+      "argument_alternatives": {
+        "fact": [
+          "my cat's name is Nori"
+        ]
+      },
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"my cat's name is Nori\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"my cat's name is Nori\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1044.418,
+        "prompt_tokens": 523,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 24.894,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 387,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002872,
+          "cumulative_api_cost_usd": 0.1141912,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my cat's name is Nori"
+          ]
+        },
+        "decoded": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my cat's name is Nori"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store a user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "my cat's name is Nori"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 387,
+      "case_id": "p2-remember-13",
+      "request": "Hang on to this about me: I prefer tabs over spaces.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user prefers tabs over spaces"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "I prefer tabs over spaces"
+      ],
+      "argument_alternatives": {
+        "fact": [
+          "I prefer tabs over spaces"
+        ]
+      },
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store a user preference fact for later retrieval\",\"domain_hint\":\"memory\",\"verbatim\":[\"I prefer tabs over spaces.\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store a user preference fact for later retrieval\",\"domain_hint\":\"memory\",\"verbatim\":[\"I prefer tabs over spaces.\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 5760.272,
+        "prompt_tokens": 523,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 4.687,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 388,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002902,
+          "cumulative_api_cost_usd": 0.1144814,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store a user preference fact for later retrieval",
+          "domain_hint": "memory",
+          "verbatim": [
+            "I prefer tabs over spaces."
+          ]
+        },
+        "decoded": {
+          "request": "store a user preference fact for later retrieval",
+          "domain_hint": "memory",
+          "verbatim": [
+            "I prefer tabs over spaces."
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store a user preference fact for later retrieval",
+        "domain_hint": "memory",
+        "verbatim": [
+          "I prefer tabs over spaces."
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 0,
+        "verbatim_recall": 0.0,
+        "verbatim_precision": 0.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 388,
+      "case_id": "p2-remember-14",
+      "request": "For later, know that my main laptop is an M1 Air.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's main laptop is an M1 Air"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "my main laptop is an M1 Air"
+      ],
+      "argument_alternatives": {
+        "fact": [
+          "my main laptop is an M1 Air"
+        ]
+      },
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"my main laptop is an M1 Air\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"my main laptop is an M1 Air\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1077.159,
+        "prompt_tokens": 524,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 25.066,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 389,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002906,
+          "cumulative_api_cost_usd": 0.114772,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my main laptop is an M1 Air"
+          ]
+        },
+        "decoded": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my main laptop is an M1 Air"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store a user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "my main laptop is an M1 Air"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 389,
+      "case_id": "p2-remember-15",
+      "request": "Don't let me forget that I avoid cilantro.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user avoids cilantro"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "I avoid cilantro"
+      ],
+      "argument_alternatives": {
+        "fact": [
+          "I avoid cilantro"
+        ]
+      },
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"I avoid cilantro\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"I avoid cilantro\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 759.533,
+        "prompt_tokens": 521,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 30.282,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 390,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002774,
+          "cumulative_api_cost_usd": 0.1150494,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "I avoid cilantro"
+          ]
+        },
+        "decoded": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "I avoid cilantro"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store a user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "I avoid cilantro"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 390,
+      "case_id": "p2-remember-16",
+      "request": "Tiny fact for your memory—my desk faces east.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's desk faces east"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "my desk faces east"
+      ],
+      "argument_alternatives": {
+        "fact": [
+          "my desk faces east"
+        ]
+      },
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"my desk faces east\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store a user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"my desk faces east\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 874.012,
+        "prompt_tokens": 521,
+        "generated_tokens": 23,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.315,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 391,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002774,
+          "cumulative_api_cost_usd": 0.1153268,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my desk faces east"
+          ]
+        },
+        "decoded": {
+          "request": "store a user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my desk faces east"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store a user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "my desk faces east"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 391,
+      "case_id": "p2-remember-17",
+      "request": "Please retain: my project codename is Aurora-7.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's project codename is Aurora-7"
+      },
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "my project codename is Aurora-7"
+      ],
+      "argument_alternatives": {
+        "fact": [
+          "my project codename is Aurora-7"
+        ]
+      },
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "paraphrase",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"my project codename is Aurora-7\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"my project codename is Aurora-7\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1085.287,
+        "prompt_tokens": 522,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 23.957,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 392,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002868,
+          "cumulative_api_cost_usd": 0.1156136,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my project codename is Aurora-7"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "my project codename is Aurora-7"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "my project codename is Aurora-7"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 392,
+      "case_id": "p2-remember-18",
+      "request": "Remember user likes rain; do not recall old rain conversations.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user likes rain"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user likes rain"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user preference\",\"domain_hint\":\"memory\",\"verbatim\":[\"user likes rain\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user preference\",\"domain_hint\":\"memory\",\"verbatim\":[\"user likes rain\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1023.685,
+        "prompt_tokens": 522,
+        "generated_tokens": 19,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 18.56,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.469,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 393,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002658,
+          "cumulative_api_cost_usd": 0.1158794,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user preference",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user likes rain"
+          ]
+        },
+        "decoded": {
+          "request": "store user preference",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user likes rain"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user preference",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user likes rain"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 393,
+      "case_id": "p2-remember-19",
+      "request": "Store the fact user's notes live in Markdown; don't write a Yuki file.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's notes live in Markdown"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's notes live in Markdown"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's notes live in Markdown\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's notes live in Markdown\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 4409.75,
+        "prompt_tokens": 528,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 4.989,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.484,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 394,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002772,
+          "cumulative_api_cost_usd": 0.1161566,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's notes live in Markdown"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's notes live in Markdown"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's notes live in Markdown"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 394,
+      "case_id": "p2-remember-20",
+      "request": "Remember user's favorite city is Kyoto, not Kyoto's weather.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's favorite city is Kyoto"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's favorite city is Kyoto"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's favorite city is Kyoto\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's favorite city is Kyoto\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1433.733,
+        "prompt_tokens": 523,
+        "generated_tokens": 22,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 15.345,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.484,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 395,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002752,
+          "cumulative_api_cost_usd": 0.1164318,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's favorite city is Kyoto"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's favorite city is Kyoto"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's favorite city is Kyoto"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 395,
+      "case_id": "p2-remember-21",
+      "request": "Keep user's preferred search engine is Kagi as memory, not a web search.",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's preferred search engine is Kagi"
+      },
+      "tags": [
+        "phase2",
+        "confusion",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's preferred search engine is Kagi"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "confusion",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's preferred search engine is Kagi\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store user fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's preferred search engine is Kagi\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1091.656,
+        "prompt_tokens": 527,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 21.985,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 396,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0002828,
+          "cumulative_api_cost_usd": 0.1167146,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's preferred search engine is Kagi"
+          ]
+        },
+        "decoded": {
+          "request": "store user fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's preferred search engine is Kagi"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store user fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's preferred search engine is Kagi"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 396,
+      "case_id": "p2-remember-22",
+      "request": "Preserve this fact exactly: user's handle is Foo_Bar-17",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's handle is Foo_Bar-17"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's handle is Foo_Bar-17"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store the user's handle as a persistent fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's handle is Foo_Bar-17\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store the user's handle as a persistent fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's handle is Foo_Bar-17\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1355.668,
+        "prompt_tokens": 525,
+        "generated_tokens": 31,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 22.867,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 397,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.000303,
+          "cumulative_api_cost_usd": 0.1170176,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store the user's handle as a persistent fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's handle is Foo_Bar-17"
+          ]
+        },
+        "decoded": {
+          "request": "store the user's handle as a persistent fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's handle is Foo_Bar-17"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store the user's handle as a persistent fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's handle is Foo_Bar-17"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 397,
+      "case_id": "p2-remember-23",
+      "request": "Remember verbatim: user's café order is 'thé, no sugar'",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's café order is 'thé, no sugar'"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's café order is 'thé, no sugar'"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store the user's café order as a verbatim fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's café order is 'thé, no sugar'\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store the user's café order as a verbatim fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's café order is 'thé, no sugar'\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1216.472,
+        "prompt_tokens": 526,
+        "generated_tokens": 36,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 29.594,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 398,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003184,
+          "cumulative_api_cost_usd": 0.117336,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store the user's café order as a verbatim fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's café order is 'thé, no sugar'"
+          ]
+        },
+        "decoded": {
+          "request": "store the user's café order as a verbatim fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's café order is 'thé, no sugar'"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store the user's café order as a verbatim fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's café order is 'thé, no sugar'"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 398,
+      "case_id": "p2-remember-24",
+      "request": "Store exactly: user's backup path is ~/Archive_2026/",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's backup path is ~/Archive_2026/"
+      },
+      "tags": [
+        "phase2",
+        "preservation",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's backup path is ~/Archive_2026/"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": false,
+      "tool_should_be_used": true,
+      "tags_category": "preservation",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store the user's backup path fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's backup path is ~/Archive_2026/\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store the user's backup path fact\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's backup path is ~/Archive_2026/\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1237.94,
+        "prompt_tokens": 526,
+        "generated_tokens": 33,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.657,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 399,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003094,
+          "cumulative_api_cost_usd": 0.1176454,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store the user's backup path fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's backup path is ~/Archive_2026/"
+          ]
+        },
+        "decoded": {
+          "request": "store the user's backup path fact",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's backup path is ~/Archive_2026/"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store the user's backup path fact",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's backup path is ~/Archive_2026/"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    },
+    {
+      "index": 399,
+      "case_id": "p2-remember-25",
+      "request": "Even though this sounds odd, remember: user's maybe-word is `yes?no`",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's maybe-word is `yes?no`"
+      },
+      "tags": [
+        "phase2",
+        "adversarial",
+        "remember"
+      ],
+      "source_dataset": "phase2-450",
+      "source_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+      "expected_domain": "memory",
+      "required_verbatim": [
+        "user's maybe-word is `yes?no`"
+      ],
+      "argument_alternatives": {},
+      "ambiguous_or_adversarial": true,
+      "tool_should_be_used": true,
+      "tags_category": "adversarial",
+      "context": null,
+      "raw_delegation_generation": "{\"request\":\"store the user's maybe-word fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's maybe-word is `yes?no`\"]}",
+      "generation": {
+        "raw_text": "{\"request\":\"store the user's maybe-word fact for later\",\"domain_hint\":\"memory\",\"verbatim\":[\"user's maybe-word is `yes?no`\"]}",
+        "normalized_text": null,
+        "backend": "openrouter",
+        "model_id": "qwen/qwen3.8-27b",
+        "latency_ms": 1196.34,
+        "prompt_tokens": 528,
+        "generated_tokens": 32,
+        "prompt_tokens_per_second": null,
+        "tokens_per_second": 26.748,
+        "peak_memory_gb": null,
+        "process_rss_mb": 77.5,
+        "finish_reason": "stop",
+        "schema_constrained": true,
+        "extra": {
+          "generation_ceiling": 160,
+          "generation_index_after_load": 400,
+          "enable_thinking": false,
+          "reasoning_tokens": 0,
+          "json_root": "object",
+          "requested_model": "qwen/qwen3.8-27b",
+          "returned_model": "qwen/qwen3.8-27b",
+          "provider": "CoreWeave",
+          "api_cost_usd": 0.0003072,
+          "cumulative_api_cost_usd": 0.1179526,
+          "max_api_cost_usd": 0.5
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "delegation": {
+          "request": "store the user's maybe-word fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's maybe-word is `yes?no`"
+          ]
+        },
+        "decoded": {
+          "request": "store the user's maybe-word fact for later",
+          "domain_hint": "memory",
+          "verbatim": [
+            "user's maybe-word is `yes?no`"
+          ]
+        },
+        "errors": []
+      },
+      "delegation": {
+        "request": "store the user's maybe-word fact for later",
+        "domain_hint": "memory",
+        "verbatim": [
+          "user's maybe-word is `yes?no`"
+        ]
+      },
+      "delegation_scores": {
+        "delegation_emitted": true,
+        "malformed_delegation": false,
+        "domain_hint_exact": true,
+        "semantic_request_quality": true,
+        "semantic_action_match": true,
+        "verbatim_required": 1,
+        "verbatim_emitted": 1,
+        "verbatim_hits": 1,
+        "verbatim_recall": 1.0,
+        "verbatim_precision": 1.0,
+        "final_tool_leakage": false,
+        "leaked_tools": [],
+        "tool_should_be_used": true
+      }
+    }
+  ]
+}

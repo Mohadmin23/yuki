@@ -16,30 +16,33 @@ from ms_llama import (
     TOOL_CALL_RE,
     auto_detect_tool,
     run_tool,
-    tool_calc,
-    tool_time,
-    tool_shell,
-    tool_yuki_write,
-    tool_yuki_read,
-    tool_yuki_list,
     _tool_result_injection,
     YUKI_DIR,
     ALLOWED_COMMANDS,
     _normalize_value,
-    _hash_fact,
-    _empty_store,
-    _create_slot,
-    _add_fact_to_slot,
-    _find_candidates,
-    _get_view,
-    _parse_extracted_json,
-    _rule_based_extract,
-    _extract_from_answer,
-    extract_facts,
-    verify_and_advance,
     MEMORY_LIST_CATEGORIES,
     MEMORY_NAME_CATEGORIES,
+    _openrouter_chat_completion,
+    _openrouter_extra_body,
+    _OR_MODELS_REQUIRE_REASONING,
+    _extract_openrouter_reasoning,
 )
+# Tool implementations now live in the tools/ package (moved out of ms_llama).
+from tools.calc.calc import tool_calc
+from tools.time.time import tool_time
+from tools.shell.shell import tool_shell
+from tools.yuki_write.yuki_write import tool_yuki_write
+from tools.yuki_read.yuki_read import tool_yuki_read
+from tools.yuki_list.yuki_list import tool_yuki_list
+
+
+def _patch_yuki_dir(monkeypatch, path):
+    """Point the yuki tools at `path`. Each tool module imported YUKI_DIR by
+    name from tools._helpers, so the bound name must be patched per-module."""
+    for mod in ("tools.yuki_write.yuki_write",
+                "tools.yuki_read.yuki_read",
+                "tools.yuki_list.yuki_list"):
+        monkeypatch.setattr(f"{mod}.YUKI_DIR", path)
 
 
 # ============= Stage cue regex =============
@@ -104,6 +107,85 @@ def test_setup_llm_transformers_fallback():
     assert backend == "transformers"
     mock_model_cls.from_pretrained.assert_called_once()
     mock_tokenizer_cls.from_pretrained.assert_called_once()
+
+
+def test_openrouter_retries_and_caches_mandatory_reasoning():
+    BadRequestError = type("BadRequestError", (Exception,), {})
+    client = MagicMock()
+    response = MagicMock()
+    client.chat.completions.create.side_effect = [
+        BadRequestError("Reasoning is mandatory for this endpoint and cannot be disabled."),
+        response,
+        response,
+    ]
+    model_id = "z-ai/reasoning-required-test"
+    _OR_MODELS_REQUIRE_REASONING.discard(model_id)
+
+    try:
+        result = _openrouter_chat_completion(
+            client,
+            model=model_id,
+            messages=[],
+            extra_body={"reasoning": {"enabled": False, "exclude": True}, "top_k": 50},
+        )
+        assert result is response
+        first, retry = client.chat.completions.create.call_args_list[:2]
+        assert first.kwargs["extra_body"]["reasoning"]["enabled"] is False
+        assert retry.kwargs["extra_body"]["reasoning"] == {
+            "enabled": True, "exclude": False,
+        }
+        assert retry.kwargs["extra_body"]["top_k"] == 50
+
+        _openrouter_chat_completion(
+            client, model=model_id, messages=[],
+            extra_body={"reasoning": {"enabled": False, "exclude": True}},
+        )
+        cached = client.chat.completions.create.call_args_list[2]
+        assert cached.kwargs["extra_body"]["reasoning"]["enabled"] is True
+        assert cached.kwargs["extra_body"]["reasoning"]["exclude"] is False
+    finally:
+        _OR_MODELS_REQUIRE_REASONING.discard(model_id)
+
+
+def test_openrouter_reasoning_modes_preserve_auto_effort_and_off_contracts():
+    assert _openrouter_extra_body("auto", {"top_k": 50}) == {"top_k": 50}
+    assert _openrouter_extra_body("minimal") == {
+        "reasoning": {"effort": "minimal", "exclude": False},
+    }
+    assert _openrouter_extra_body("high") == {
+        "reasoning": {"effort": "high", "exclude": False},
+    }
+    assert _openrouter_extra_body("off") == {
+        "reasoning": {"effort": "none", "exclude": True},
+    }
+
+    client = MagicMock()
+    client.chat.completions.create.return_value = MagicMock()
+    _openrouter_chat_completion(
+        client,
+        model="reasoning-effort-test",
+        messages=[],
+        extra_body=_openrouter_extra_body("medium", {"top_k": 40}),
+    )
+    sent = client.chat.completions.create.call_args.kwargs["extra_body"]
+    assert sent == {
+        "top_k": 40,
+        "reasoning": {"effort": "medium", "exclude": False},
+    }
+
+
+def test_extract_openrouter_reasoning_prefers_readable_fields():
+    message = MagicMock()
+    message.reasoning = None
+    message.reasoning_content = None
+    message.reasoning_details = [
+        {"type": "reasoning.summary", "summary": "Checked the constraints."},
+        {"type": "reasoning.encrypted", "data": "do-not-render"},
+        {"type": "reasoning.text", "text": "Compared the two options."},
+    ]
+    assert _extract_openrouter_reasoning(message) == (
+        "Checked the constraints.\n\nCompared the two options."
+    )
 
 
 # ============= select_model =============
@@ -196,6 +278,105 @@ def test_bot_history_trimming(mock_bot):
         mock_bot.chat(f"message {i}")
 
     assert len(mock_bot.history) <= MAX_HISTORY_TURNS * 2
+    assert len(mock_bot.history) > 20
+
+
+def test_token_budget_evicts_old_turns_into_same_session_continuity(
+    mock_bot,
+    monkeypatch,
+):
+    mock_bot.backend = "gguf"
+    mock_bot.llm_tokenizer = None
+    mock_bot.llm_model = MagicMock()
+    mock_bot.llm_model.create_chat_completion.return_value = {
+        "choices": [{"message": {"content": "short reply"}}]
+    }
+    monkeypatch.setenv("YUKI_HISTORY_TOKEN_BUDGET", "1024")
+
+    for i in range(12):
+        mock_bot.chat(f"continuity-marker-{i} " + ("x" * 600))
+
+    assert len(mock_bot.history) < 24
+    earlier = [
+        event for event in mock_bot._session_continuity
+        if event.get("kind") == "earlier_exchange"
+    ]
+    assert earlier
+    assert earlier[0]["user"].startswith("continuity-marker-0")
+
+
+def test_current_session_continuity_is_injected_as_trusted_context(mock_bot):
+    mock_bot.backend = "gguf"
+    mock_bot.llm_tokenizer = None
+    mock_bot.llm_model = MagicMock()
+    mock_bot.llm_model.create_chat_completion.return_value = {
+        "choices": [{"message": {"content": "I remember that."}}]
+    }
+    mock_bot._remember_session_event({
+        "kind": "verified_tool_outcome",
+        "tool": "yuki_read",
+        "succeeded": True,
+        "result": "The housewarming note says the folder is home.",
+    })
+
+    mock_bot.chat("What did that note say?")
+
+    messages = mock_bot.llm_model.create_chat_completion.call_args.kwargs["messages"]
+    assert "CURRENT-SESSION CONTINUITY" in messages[0]["content"]
+    assert "folder is home" in messages[0]["content"]
+
+
+def test_session_context_can_move_with_model_and_reset_cleanly(mock_bot):
+    mock_bot._remember_session_event({"kind": "marker", "value": "same chat"})
+    with patch("ms_llama.setup_llm") as mock_llm:
+        mock_llm.return_value = (MagicMock(), MagicMock(), "mlx")
+        replacement = VoiceChatBot(model_id="replacement")
+
+    replacement.copy_session_context_from(mock_bot)
+    assert replacement._session_continuity == mock_bot._session_continuity
+
+    replacement.reset_session_context()
+    assert replacement.history == []
+    assert replacement._session_continuity == []
+    assert replacement.drain_session_events() == []
+
+
+def test_autonomous_transcript_and_continuity_persist_without_embeddings(
+    monkeypatch,
+    tmp_path,
+):
+    import episodic
+
+    db_path = tmp_path / "episodic-test.db"
+    monkeypatch.setattr(episodic, "DB_PATH", db_path)
+    embed = MagicMock(side_effect=AssertionError("must not embed autonomous turns"))
+    monkeypatch.setattr(episodic, "_embed", embed)
+
+    episodic.record_transcript(
+        "session-1",
+        "[AUTONOMOUS ACTION: read the note]",
+        "The note is still here.",
+    )
+    episodic.record_session_event(
+        "session-1",
+        {"kind": "verified_tool_outcome", "tool": "yuki_read"},
+    )
+
+    import sqlite3
+
+    with sqlite3.connect(db_path) as db:
+        row = db.execute(
+            "SELECT user_msg, assistant_msg FROM episodes",
+        ).fetchone()
+    assert row == (
+        "[AUTONOMOUS ACTION: read the note]",
+        "The note is still here.",
+    )
+    assert episodic.read_session_events("session-1") == [{
+        "kind": "verified_tool_outcome",
+        "tool": "yuki_read",
+    }]
+    embed.assert_not_called()
 
 
 def test_bot_input_truncation(mock_bot):
@@ -382,7 +563,7 @@ def test_time_returns_string():
 # ============= tool_yuki_write / read / list =============
 
 def test_yuki_write_and_read(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     result = tool_yuki_write("test.txt|hello world")
     assert "Wrote" in result
     assert (tmp_path / "test.txt").read_text() == "hello world"
@@ -392,38 +573,38 @@ def test_yuki_write_and_read(tmp_path, monkeypatch):
 
 
 def test_yuki_write_missing_pipe(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     result = tool_yuki_write("just-a-filename")
     assert "Error" in result
 
 
 def test_yuki_write_strips_slashes(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     tool_yuki_write("../evil|pwn")
     # Slashes and .. are stripped, so filename becomes "..evil"
     assert not (tmp_path.parent / "evil").exists()
 
 
 def test_yuki_write_empty_filename(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     result = tool_yuki_write("/|content")
     assert "Error" in result
 
 
 def test_yuki_read_missing(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     result = tool_yuki_read("nope.txt")
     assert "not found" in result.lower()
 
 
 def test_yuki_list_empty(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     result = tool_yuki_list()
     assert "empty" in result.lower()
 
 
 def test_yuki_list_with_files(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     (tmp_path / "a.txt").write_text("hello")
     (tmp_path / "b.txt").write_text("world")
     result = tool_yuki_list()
@@ -551,14 +732,14 @@ def test_shell_blocks_shell_injection_via_pipe():
 # ============= tool_yuki — broader =============
 
 def test_yuki_write_overwrites(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     tool_yuki_write("a.txt|first")
     tool_yuki_write("a.txt|second")
     assert (tmp_path / "a.txt").read_text() == "second"
 
 
 def test_yuki_read_binary_safe(tmp_path, monkeypatch):
-    monkeypatch.setattr("ms_llama.YUKI_DIR", tmp_path)
+    _patch_yuki_dir(monkeypatch, tmp_path)
     (tmp_path / "b.bin").write_bytes(b"\xff\xfe\xfd")
     # Should not crash — either returns a lossy string or an error message
     result = tool_yuki_read("b.bin")
@@ -582,428 +763,3 @@ def test_normalize_value_empty():
 
 def test_normalize_value_preserves_unicode():
     assert _normalize_value("Pokémon") == "pokémon"
-
-
-# ============= _hash_fact =============
-
-def test_hash_fact_deterministic():
-    assert _hash_fact("names", "jack", "salt1") == _hash_fact("names", "jack", "salt1")
-
-
-def test_hash_fact_category_scoped():
-    # Same value in different categories must not collide.
-    assert _hash_fact("names", "jack", "salt1") != _hash_fact("favorite_character", "jack", "salt1")
-
-
-def test_hash_fact_salt_changes_digest():
-    assert _hash_fact("names", "jack", "saltA") != _hash_fact("names", "jack", "saltB")
-
-
-def test_hash_fact_normalizes_before_hashing():
-    # Trailing whitespace + case should hash to the same value as the normalized form.
-    assert _hash_fact("names", "  Jack ", "s") == _hash_fact("names", "jack", "s")
-
-
-# ============= _empty_store / _create_slot / _add_fact_to_slot =============
-
-def test_empty_store_shape():
-    store = _empty_store()
-    assert "salt" in store
-    assert store["users"] == {}
-    assert isinstance(store["salt"], str) and len(store["salt"]) > 0
-
-
-def test_create_slot_seeds_facts():
-    store = _empty_store()
-    uid = _create_slot(store, [("names", "jack"), ("loves", "pizza")])
-    slot = store["users"][uid]
-    assert slot["names"] == ["jack"]
-    assert slot["loves"] == ["pizza"]
-    # Fact hashes should be populated for both seeded facts.
-    assert len(slot["fact_hashes"]) == 2
-
-
-def test_add_fact_to_slot_list_category_dedupes():
-    store = _empty_store()
-    uid = _create_slot(store, [])
-    assert _add_fact_to_slot(store, uid, "loves", "pizza") is True
-    assert _add_fact_to_slot(store, uid, "loves", "pizza") is False  # dupe
-    assert store["users"][uid]["loves"] == ["pizza"]
-
-
-def test_add_fact_to_slot_dedup_case_insensitive():
-    store = _empty_store()
-    uid = _create_slot(store, [])
-    _add_fact_to_slot(store, uid, "loves", "Pizza")
-    _add_fact_to_slot(store, uid, "loves", "pizza")
-    assert len(store["users"][uid]["loves"]) == 1
-
-
-def test_add_fact_to_slot_unknown_user_returns_false():
-    store = _empty_store()
-    assert _add_fact_to_slot(store, "no-such-uuid", "names", "x") is False
-
-
-def test_add_fact_to_slot_empty_value_returns_false():
-    store = _empty_store()
-    uid = _create_slot(store, [])
-    assert _add_fact_to_slot(store, uid, "names", "") is False
-    assert _add_fact_to_slot(store, uid, "names", "   ") is False
-
-
-# ============= _find_candidates =============
-
-def test_find_candidates_empty_set_returns_all():
-    store = _empty_store()
-    u1 = _create_slot(store, [("names", "a")])
-    u2 = _create_slot(store, [("names", "b")])
-    result = set(_find_candidates(store, set()))
-    assert result == {u1, u2}
-
-
-def test_find_candidates_subset_matching():
-    store = _empty_store()
-    salt = store["salt"]
-    u1 = _create_slot(store, [("names", "jack"), ("loves", "pizza")])
-    u2 = _create_slot(store, [("names", "jack")])
-    u3 = _create_slot(store, [("names", "alen")])
-    seen = {_hash_fact("names", "jack", salt)}
-    result = set(_find_candidates(store, seen))
-    assert result == {u1, u2}
-    assert u3 not in result
-
-
-def test_find_candidates_requires_every_hash():
-    store = _empty_store()
-    salt = store["salt"]
-    u1 = _create_slot(store, [("names", "jack"), ("loves", "pizza")])
-    u2 = _create_slot(store, [("names", "jack")])
-    seen = {_hash_fact("names", "jack", salt), _hash_fact("loves", "pizza", salt)}
-    result = _find_candidates(store, seen)
-    assert result == [u1]
-
-
-def test_get_view_strips_fact_hashes():
-    store = _empty_store()
-    uid = _create_slot(store, [("names", "jack")])
-    view = _get_view(store, uid)
-    assert "fact_hashes" not in view
-    assert view["names"] == ["jack"]
-
-
-# ============= _parse_extracted_json =============
-
-def test_parse_extracted_json_valid():
-    out = _parse_extracted_json('[{"category":"names","value":"jack"}]')
-    assert out == [("names", "jack")]
-
-
-def test_parse_extracted_json_empty_array():
-    assert _parse_extracted_json("[]") == []
-
-
-def test_parse_extracted_json_with_noise():
-    # Model sometimes wraps output in prose despite the instruction.
-    out = _parse_extracted_json('Sure! [{"category":"loves","value":"pizza"}] done.')
-    assert out == [("loves", "pizza")]
-
-
-def test_parse_extracted_json_filters_invalid_category():
-    out = _parse_extracted_json('[{"category":"random","value":"x"},{"category":"names","value":"jack"}]')
-    assert out == [("names", "jack")]
-
-
-def test_parse_extracted_json_normalizes_name_to_names():
-    out = _parse_extracted_json('[{"category":"name","value":"jack"}]')
-    assert out == [("names", "jack")]
-
-
-def test_parse_extracted_json_skips_non_dict_entries():
-    out = _parse_extracted_json('["junk",{"category":"names","value":"jack"},42]')
-    assert out == [("names", "jack")]
-
-
-def test_parse_extracted_json_skips_entries_missing_value():
-    out = _parse_extracted_json('[{"category":"names"},{"category":"loves","value":"x"}]')
-    assert out == [("loves", "x")]
-
-
-def test_parse_extracted_json_garbage_returns_empty():
-    assert _parse_extracted_json("not json at all") == []
-    assert _parse_extracted_json("") == []
-    assert _parse_extracted_json("{not:array}") == []
-
-
-# ============= _rule_based_extract =============
-
-def test_rule_extract_my_name_is():
-    assert _rule_based_extract("my name is jack") == [("names", "jack")]
-
-
-def test_rule_extract_im_x():
-    assert _rule_based_extract("im jack") == [("names", "jack")]
-    assert _rule_based_extract("i'm jack") == [("names", "jack")]
-
-
-def test_rule_extract_its_me_requires_comma():
-    # After the fix: "it's me, X" needs the comma to capture X as a name.
-    assert _rule_based_extract("it's me, jack") == [("names", "jack")]
-    assert _rule_based_extract("its me, alen") == [("names", "alen")]
-
-
-def test_rule_extract_its_me_without_comma_does_not_leak():
-    # Regression for the "hey Yuki its me again" → 'again' leak.
-    assert _rule_based_extract("hey yuki its me again") == []
-    assert _rule_based_extract("its me jack") == []
-
-
-def test_rule_extract_banned_fillers():
-    # Common filler words after "im" must not be captured as names.
-    for phrase in ("im sorry", "im back", "im home", "im tired", "im just thinking",
-                   "im stuck", "im confused", "im trying", "im ready"):
-        assert _rule_based_extract(phrase) == [], f"leaked on: {phrase!r}"
-
-
-def test_rule_extract_my_cat_name_is_not_captured():
-    # Regex structure should miss this because "cat" breaks "my <NAME>".
-    assert _rule_based_extract("my cat name is bred") == []
-    assert _rule_based_extract("my cat's name is bred") == []
-
-
-def test_rule_extract_loves():
-    out = _rule_based_extract("i love pizza")
-    assert ("loves", "pizza") in out
-
-
-def test_rule_extract_hates():
-    out = _rule_based_extract("i hate mondays")
-    assert ("hates", "mondays") in out
-
-
-def test_rule_extract_favorite_character():
-    out = _rule_based_extract("my favorite character is superman")
-    assert ("favorite_character", "superman") in out
-
-
-def test_rule_extract_favorite_series():
-    out = _rule_based_extract("my favorite anime is naruto")
-    assert ("favorite_series", "naruto") in out
-
-
-def test_rule_extract_nothing():
-    assert _rule_based_extract("how are you today") == []
-    assert _rule_based_extract("what's up") == []
-
-
-# ============= _extract_from_answer =============
-
-def test_answer_extractor_favorite_character():
-    out = _extract_from_answer("so, who's your favorite character?", "superman")
-    assert out == [("favorite_character", "superman")]
-
-
-def test_answer_extractor_favorite_series():
-    out = _extract_from_answer("what's your favorite anime?", "naruto")
-    assert out == [("favorite_series", "naruto")]
-
-
-def test_answer_extractor_name_question():
-    out = _extract_from_answer("what's your name?", "jack")
-    assert out == [("names", "jack")]
-
-
-def test_answer_extractor_skips_when_rule_regex_matches():
-    # If the user already phrased it as a sentence, let the rule extractor handle it.
-    out = _extract_from_answer("who's your favorite character?", "my name is jack")
-    assert out == []
-
-
-def test_answer_extractor_long_reply_skipped():
-    long_reply = "x" * 60
-    out = _extract_from_answer("what's your favorite character?", long_reply)
-    assert out == []
-
-
-def test_answer_extractor_no_prior_returns_empty():
-    assert _extract_from_answer("", "jack") == []
-
-
-def test_answer_extractor_unrelated_prior_returns_empty():
-    out = _extract_from_answer("how's the weather?", "jack")
-    assert out == []
-
-
-# ============= extract_facts (integration with mock bot) =============
-
-class _FakeBot:
-    """Minimal stand-in — only the bits extract_facts/verify_and_advance touch."""
-    def __init__(self, raw_output: str = ""):
-        self._raw = raw_output
-        self.unlocked_user_id = None
-        self.session_fact_hashes: set = set()
-        self.candidate_uuids = None
-        self.session_non_name_match = False
-        self.pending_new_user_facts: list = []
-
-    def raw_complete(self, system_prompt: str, user_message: str, max_tokens: int = 200):
-        return self._raw
-
-
-def test_extract_facts_prefers_llm_output():
-    bot = _FakeBot(raw_output='[{"category":"names","value":"jack"}]')
-    assert extract_facts(bot, "hey it's jack") == [("names", "jack")]
-
-
-def test_extract_facts_falls_back_to_regex_when_llm_empty():
-    bot = _FakeBot(raw_output="")
-    assert extract_facts(bot, "my name is alen") == [("names", "alen")]
-
-
-def test_extract_facts_falls_back_to_answer_extractor():
-    bot = _FakeBot(raw_output="")
-    out = extract_facts(bot, "superman", prior_assistant="what's your favorite character?")
-    assert out == [("favorite_character", "superman")]
-
-
-def test_extract_facts_dedupes():
-    bot = _FakeBot(raw_output='[{"category":"names","value":"jack"},{"category":"names","value":"JACK"}]')
-    assert extract_facts(bot, "im jack") == [("names", "jack")]
-
-
-def test_extract_facts_short_message_returns_empty():
-    bot = _FakeBot(raw_output='[{"category":"names","value":"x"}]')
-    assert extract_facts(bot, "") == []
-    assert extract_facts(bot, "a") == []
-
-
-def test_extract_facts_third_person_cat_prompt_regression(monkeypatch):
-    """Regression: the fixed prompt should teach the LLM to return [] for 'my
-    cat name is X'. We can't run the LLM here, but we can confirm that when
-    the LLM *does* return [] (the correct output), no other fallback fires."""
-    bot = _FakeBot(raw_output="[]")
-    assert extract_facts(bot, "yes my cat name is bred") == []
-
-
-# ============= verify_and_advance =============
-# These mutate the memory store, so we point MEMORY_FILE/MEMORY_DIR at tmp.
-
-@pytest.fixture
-def isolated_memory(tmp_path, monkeypatch):
-    """Redirect the memory store to a tmp file so tests don't touch real data."""
-    monkeypatch.setattr("ms_llama.MEMORY_DIR", tmp_path)
-    monkeypatch.setattr("ms_llama.MEMORY_FILE", tmp_path / "memory.json")
-    monkeypatch.setattr("ms_llama.MEMORY_BACKUP_FILE", tmp_path / "memory.json.old")
-    return tmp_path
-
-
-def _seed_store(tmp_path, slots: list[list[tuple[str, str]]]) -> list[str]:
-    """Write a fresh store with the given slots. Returns their UUIDs in order."""
-    import json as _json
-    store = _empty_store()
-    uids = [_create_slot(store, facts) for facts in slots]
-    (tmp_path / "memory.json").write_text(_json.dumps(store, indent=2))
-    return uids
-
-
-def test_verify_empty_message_no_op(isolated_memory):
-    bot = _FakeBot()
-    assert verify_and_advance(bot, "") == []
-    assert bot.unlocked_user_id is None
-
-
-def test_verify_name_only_stays_locked(isolated_memory):
-    # Name-alone must never unlock (2FA floor).
-    _seed_store(isolated_memory, [[("names", "jack"), ("loves", "pizza")]])
-    bot = _FakeBot(raw_output='[{"category":"names","value":"jack"}]')
-    verify_and_advance(bot, "hey yuki its jack")
-    assert bot.unlocked_user_id is None
-
-
-def test_verify_nonname_fact_narrows_to_single_slot_unlocks(isolated_memory):
-    uids = _seed_store(isolated_memory, [
-        [("names", "jack"), ("favorite_character", "superman")],
-        [("names", "alen"), ("favorite_character", "goku")],
-    ])
-    bot = _FakeBot(raw_output='[{"category":"favorite_character","value":"superman"}]')
-    verify_and_advance(bot, "my favorite character is superman")
-    assert bot.unlocked_user_id == uids[0]
-
-
-def test_verify_unknown_nonname_fact_creates_new_slot(isolated_memory):
-    _seed_store(isolated_memory, [
-        [("names", "jack"), ("favorite_character", "superman")],
-    ])
-    bot = _FakeBot(raw_output='[{"category":"loves","value":"durian"}]')
-    verify_and_advance(bot, "i love durian")
-    # Nothing in existing slots matches, non-name match, has pending → new slot.
-    assert bot.unlocked_user_id is not None
-
-
-def test_verify_multiple_candidates_stays_locked_with_narrowing(isolated_memory):
-    # Two slots both named 'jack', only a name offered → multiple candidates.
-    _seed_store(isolated_memory, [
-        [("names", "jack"), ("loves", "pizza")],
-        [("names", "jack"), ("loves", "sushi")],
-    ])
-    bot = _FakeBot(raw_output='[{"category":"names","value":"jack"}]')
-    verify_and_advance(bot, "im jack")
-    assert bot.unlocked_user_id is None
-    assert bot.candidate_uuids is not None and len(bot.candidate_uuids) == 2
-
-
-def test_verify_post_unlock_writes_to_bound_slot(isolated_memory):
-    uids = _seed_store(isolated_memory, [
-        [("names", "jack"), ("favorite_character", "superman")],
-    ])
-    bot = _FakeBot(raw_output='[{"category":"loves","value":"pizza"}]')
-    bot.unlocked_user_id = uids[0]  # already unlocked
-    verify_and_advance(bot, "i love pizza")
-    # Load the store back and check pizza landed in the bound slot.
-    import json as _json
-    store = _json.loads((isolated_memory / "memory.json").read_text())
-    assert "pizza" in store["users"][uids[0]]["loves"]
-
-
-def test_verify_post_unlock_does_not_recompute_candidates(isolated_memory):
-    """Once bound, a fact matching another slot must NOT re-bind the session."""
-    uids = _seed_store(isolated_memory, [
-        [("names", "jack"), ("favorite_character", "superman")],
-        [("names", "alen"), ("favorite_character", "goku")],
-    ])
-    bot = _FakeBot(raw_output='[{"category":"favorite_character","value":"goku"}]')
-    bot.unlocked_user_id = uids[0]  # stuck on jack
-    verify_and_advance(bot, "my favorite character is goku")
-    # Session stays bound to jack, even though goku exists on alen's slot.
-    assert bot.unlocked_user_id == uids[0]
-
-
-def test_verify_bug1_regression_cat_name_not_stored_as_user_name(isolated_memory):
-    """End-to-end regression for Bug #1: even if extraction misfires and says
-    ('names','bred'), the store remains unpolluted when the LLM output is []
-    (the fix we shipped). Simulate the post-fix LLM output."""
-    _seed_store(isolated_memory, [
-        [("names", "alen"), ("favorite_character", "goku")],
-    ])
-    bot = _FakeBot(raw_output="[]")  # patched prompt now returns [] for cat-name phrasing
-    result = verify_and_advance(bot, "yes my cat name is bred")
-    assert result == []
-    # No new slot minted, store untouched.
-    import json as _json
-    store = _json.loads((isolated_memory / "memory.json").read_text())
-    assert len(store["users"]) == 1
-
-
-def test_verify_bug5_regression_its_me_again_no_poison(isolated_memory):
-    """Regression for Bug #5: 'hey yuki its me again' must not create 'again'
-    as a name via the regex fallback."""
-    _seed_store(isolated_memory, [
-        [("names", "alen"), ("favorite_character", "goku")],
-    ])
-    bot = _FakeBot(raw_output="")  # force fallback to regex
-    verify_and_advance(bot, "hey yuki its me again")
-    import json as _json
-    store = _json.loads((isolated_memory / "memory.json").read_text())
-    # Exactly one slot, no 'again' name anywhere.
-    assert len(store["users"]) == 1
-    all_names = [n for slot in store["users"].values() for n in slot.get("names", [])]
-    assert "again" not in all_names

@@ -1,0 +1,113 @@
+{
+  "version": "hammer20-7b-binder-ontology-repair-final-v1",
+  "status": "focused_experiments_complete_full450_rerun_blocked_by_predeclared_gate",
+  "frozen_baseline": {
+    "report": "../direct-native/hammer20-7b-8bit-all18-native-cached-full450-v1.json",
+    "sha256": "97980e3a53d7e105046dda2a4bd6c982682c047c5dace89a55f5d77fd891cb32",
+    "cases": 450,
+    "tool_selections_correct": 412,
+    "strict_exact_calls": 368,
+    "strict_exact_accuracy": 0.8177777777777778,
+    "regenerated": false
+  },
+  "deterministic_binder": {
+    "models_called": false,
+    "predictions_frozen_before_scoring": true,
+    "gold_available_to_binder": false,
+    "literal_annotations_available_to_binder": false,
+    "correct_tool_wrong_argument_cases": 44,
+    "focused_44": {
+      "binder_coverage_cases": 39,
+      "official_repairs": 24,
+      "official_breaks": 0,
+      "literal_reference_cases": 31,
+      "baseline_literal_source_exact": 7,
+      "binder_literal_source_exact": 31
+    },
+    "uniform_full450_application": {
+      "baseline_strict_exact_calls": 368,
+      "binder_strict_exact_calls": 361,
+      "baseline_strict_exact_accuracy": 0.8177777777777778,
+      "binder_strict_exact_accuracy": 0.8022222222222222,
+      "official_repairs": 24,
+      "official_breaks": 31,
+      "binder_abstentions": 29,
+      "literal_reference_cases": 123,
+      "baseline_literal_source_exact": 64,
+      "binder_literal_source_exact": 117,
+      "baseline_literal_source_exact_accuracy": 0.5203252032520326,
+      "binder_literal_source_exact_accuracy": 0.9512195121951219,
+      "source_copy_character_exact_rate": 1.0
+    },
+    "oracle_only_upper_bound_not_a_deployable_metric": {
+      "description": "If code were told by gold which 44 calls had wrong arguments and applied the binder only there, strict exact would become 392/450. A real binder does not have that oracle.",
+      "strict_exact_calls": 392,
+      "strict_exact_accuracy": 0.8711111111111111
+    },
+    "conclusion": "The binder removes literal-copy failures, but uniform literal binding conflicts with official semantic-normalization gold for articles, possessives, and topic phrasing. Exact-sensitive and semantic arguments need distinct binding policies."
+  },
+  "ontology_targeted49": {
+    "model": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+    "schemas_changed_only": [
+      "read",
+      "yuki_read",
+      "yuki_write",
+      "yuki_append"
+    ],
+    "baseline": {
+      "tool_selections_correct": 15,
+      "tool_selection_accuracy": 0.30612244897959184,
+      "strict_exact_calls": 9,
+      "strict_exact_accuracy": 0.1836734693877551,
+      "schema_valid_calls": 29,
+      "schema_valid_rate": 0.5918367346938775,
+      "rejections": 20,
+      "malformed": 0,
+      "primary_confusions": 14
+    },
+    "repaired": {
+      "tool_selections_correct": 28,
+      "tool_selection_accuracy": 0.5714285714285714,
+      "strict_exact_calls": 22,
+      "strict_exact_accuracy": 0.4489795918367347,
+      "schema_valid_calls": 36,
+      "schema_valid_rate": 0.7346938775510204,
+      "rejections": 13,
+      "malformed": 0,
+      "primary_confusions": 8,
+      "new_strict_regressions": 0,
+      "average_latency_ms": 6470.379081632653,
+      "p50_latency_ms": 6690.32,
+      "p95_latency_ms": 8977.213999999993,
+      "average_tokens_per_second": 7.763663018342419,
+      "peak_mlx_memory_gb": 8.91
+    },
+    "confusion_families": {
+      "yuki_read_to_read": {
+        "baseline": 8,
+        "repaired": 5,
+        "fixed": 3
+      },
+      "yuki_write_to_yuki_append": {
+        "baseline": 6,
+        "repaired": 3,
+        "fixed": 3
+      }
+    },
+    "full450_gate": {
+      "required_primary_confusion_reduction": 7,
+      "observed_primary_confusion_reduction": 6,
+      "other_checks_passed": true,
+      "passed": false,
+      "full450_rerun_performed": false
+    }
+  },
+  "safety": {
+    "qwen_called": false,
+    "hammer3_loaded": false,
+    "production_yuki_modified": false,
+    "official_gold_mutated": false,
+    "yuki_tool_execution_capability": false,
+    "yuki_tool_execution_attempts": 0
+  }
+}

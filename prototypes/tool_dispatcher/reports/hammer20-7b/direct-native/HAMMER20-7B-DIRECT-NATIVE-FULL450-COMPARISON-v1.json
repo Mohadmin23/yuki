@@ -1,0 +1,142 @@
+{
+  "version": "hammer20-7b-direct-native-full450-comparison-v1",
+  "date": "2026-08-25",
+  "status": "completed",
+  "scope": {
+    "checkpoint": "MadeAgents/Hammer2.0-7b",
+    "checkpoint_revision": "2e267cc26e2185192e2de6d079f37bb878898640",
+    "runtime_checkpoint": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+    "runtime_format": "MLX 8-bit affine, group size 64",
+    "runtime_checkpoint_size_gb": 7.6,
+    "cases": 450,
+    "tools_exposed_per_case": 18,
+    "native_dialect": "hammer_fenced_tool_call_array",
+    "one_generation_per_case": true,
+    "stateless": true,
+    "yuki_tool_execution": false,
+    "deterministic_binder": false,
+    "static_prefix_cache_tokens": 2048,
+    "static_prefix_build_ms": 28022.438
+  },
+  "artifacts": {
+    "phase2_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "hammer_schema_sha256": "d545fa871c4802dfb08ba4b0fd3d0b82cb5d2c4685e85b636ec769bd460abfe7",
+    "raw_report": "hammer20-7b-8bit-all18-native-cached-full450-v1.json",
+    "raw_report_sha256": "97980e3a53d7e105046dda2a4bd6c982682c047c5dace89a55f5d77fd891cb32",
+    "failures": "hammer20-7b-8bit-all18-native-cached-full450-v1-failures.jsonl",
+    "failures_sha256": "faf32d75070f1b77c4d2ad81f9ccce1d1bca38b994fc8ddfe74268b5d09bffca",
+    "checkpoint_records": "hammer20-7b-8bit-all18-native-cached-full450-v1-checkpoint.jsonl",
+    "checkpoint_records_sha256": "a2c3106f6880541fd1ef1be64f7e500657420159eb8d930ead4524809c6d4356"
+  },
+  "overall": {
+    "hammer20_7b_direct": {
+      "tool_selection": {"correct": 412, "total": 450, "rate": 0.9155555555555556},
+      "strict_arguments": {"correct": 374, "total": 450, "rate": 0.8311111111111111},
+      "execution_equivalent_arguments": {"correct": 374, "total": 450, "rate": 0.8311111111111111},
+      "strict_exact_calls": {"correct": 368, "total": 450, "rate": 0.8177777777777778},
+      "execution_equivalent_exact_calls": {"correct": 368, "total": 450, "rate": 0.8177777777777778},
+      "strict_exact_when_tool_correct": 0.8932038834951457,
+      "schema_valid": {"correct": 430, "total": 450, "rate": 0.9555555555555556},
+      "malformed": {"count": 0, "rate": 0.0},
+      "explicit_rejections": {"count": 20, "rate": 0.044444444444444446},
+      "average_latency_ms_cached": 6236.051902222222,
+      "p50_latency_ms_cached": 6130.279,
+      "p95_latency_ms_cached": 8181.079349999997,
+      "average_generation_tokens_per_second": 7.533088981372959,
+      "peak_mlx_memory_gb": 8.91,
+      "api_cost_usd": 0.0
+    },
+    "gpt_oss_20b_direct": {
+      "tool_selection": {"correct": 427, "total": 450, "rate": 0.9488888888888889},
+      "strict_exact_calls": {"correct": 343, "total": 450, "rate": 0.7622222222222222},
+      "execution_equivalent_exact_calls": {"correct": 350, "total": 450, "rate": 0.7777777777777778},
+      "schema_valid": {"correct": 444, "total": 450, "rate": 0.9866666666666667},
+      "malformed": {"count": 5, "rate": 0.011111111111111112},
+      "average_latency_ms": 741.3217511111111,
+      "p50_latency_ms": 618.2539999999999,
+      "p95_latency_ms": 1402.3702999999994,
+      "average_generation_tokens_per_second": 55.096814666269694,
+      "api_cost_usd": 0.02589181
+    },
+    "qwen38_hammer15_pipeline": {
+      "tool_selection": {"correct": 408, "total": 450, "rate": 0.9066666666666666},
+      "strict_exact_calls": {"correct": 358, "total": 450, "rate": 0.7955555555555556},
+      "execution_equivalent_exact_calls": {"correct": 359, "total": 450, "rate": 0.7977777777777778},
+      "preservation_aware_exact_calls": {"correct": 364, "total": 450, "rate": 0.8088888888888889},
+      "schema_valid": {"correct": 416, "total": 450, "rate": 0.9244444444444444},
+      "malformed": {"count": 2, "rate": 0.0044444444444444444},
+      "average_sequential_latency_ms": 4630.948137777778,
+      "p50_sequential_latency_ms": 3845.5795,
+      "p95_sequential_latency_ms": 9223.823,
+      "hammer_peak_mlx_memory_gb": 3.4731,
+      "qwen_api_cost_usd": 0.13306525
+    }
+  },
+  "percentage_point_differences": {
+    "hammer20_vs_gpt_oss": {
+      "tool_selection": -3.33333333333333,
+      "strict_exact_call": 5.555555555555558,
+      "execution_equivalent_exact_call": 4.0,
+      "schema_valid": -3.1111111111111134
+    },
+    "hammer20_vs_qwen38_hammer15": {
+      "tool_selection": 0.8888888888888942,
+      "strict_exact_call": 2.2222222222222254,
+      "execution_equivalent_exact_call": 2.0,
+      "schema_valid": 3.1111111111111134
+    }
+  },
+  "paired_strict_exact_flips": {
+    "hammer20_vs_gpt_oss": {
+      "both_success": 307,
+      "hammer20_only": 61,
+      "gpt_oss_only": 36,
+      "both_fail": 46
+    },
+    "hammer20_vs_qwen38_hammer15": {
+      "both_success": 324,
+      "hammer20_only": 44,
+      "qwen_hammer_only": 34,
+      "both_fail": 48
+    }
+  },
+  "hammer20_failure_decomposition": {
+    "strict_failures": 82,
+    "explicit_rejections": 20,
+    "wrong_non_reject_tool": 18,
+    "correct_tool_wrong_argument": 44,
+    "malformed": 0,
+    "safe_normalization_only": 0
+  },
+  "per_tool_percent": {
+    "time":         {"hammer20_tool": 96, "hammer20_strict": 96, "gpt_tool": 84, "gpt_strict": 84, "qwen_hammer_tool": 100, "qwen_hammer_strict": 100},
+    "weather":      {"hammer20_tool": 100, "hammer20_strict": 100, "gpt_tool": 100, "gpt_strict": 100, "qwen_hammer_tool": 100, "qwen_hammer_strict": 100},
+    "fetch":        {"hammer20_tool": 100, "hammer20_strict": 100, "gpt_tool": 100, "gpt_strict": 100, "qwen_hammer_tool": 92, "qwen_hammer_strict": 92},
+    "search":       {"hammer20_tool": 88, "hammer20_strict": 64, "gpt_tool": 96, "gpt_strict": 64, "qwen_hammer_tool": 92, "qwen_hammer_strict": 60},
+    "calc":         {"hammer20_tool": 100, "hammer20_strict": 100, "gpt_tool": 96, "gpt_strict": 76, "qwen_hammer_tool": 100, "qwen_hammer_strict": 96},
+    "hardware":     {"hammer20_tool": 96, "hammer20_strict": 96, "gpt_tool": 100, "gpt_strict": 88, "qwen_hammer_tool": 92, "qwen_hammer_strict": 84},
+    "see":          {"hammer20_tool": 88, "hammer20_strict": 72, "gpt_tool": 88, "gpt_strict": 60, "qwen_hammer_tool": 40, "qwen_hammer_strict": 36},
+    "image":        {"hammer20_tool": 100, "hammer20_strict": 60, "gpt_tool": 100, "gpt_strict": 8, "qwen_hammer_tool": 88, "qwen_hammer_strict": 48},
+    "read":         {"hammer20_tool": 88, "hammer20_strict": 88, "gpt_tool": 100, "gpt_strict": 56, "qwen_hammer_tool": 100, "qwen_hammer_strict": 96},
+    "shell":        {"hammer20_tool": 100, "hammer20_strict": 100, "gpt_tool": 100, "gpt_strict": 96, "qwen_hammer_tool": 96, "qwen_hammer_strict": 88},
+    "yuki_write":   {"hammer20_tool": 76, "hammer20_strict": 60, "gpt_tool": 96, "gpt_strict": 92, "qwen_hammer_tool": 92, "qwen_hammer_strict": 80},
+    "yuki_read":    {"hammer20_tool": 60, "hammer20_strict": 60, "gpt_tool": 84, "gpt_strict": 84, "qwen_hammer_tool": 100, "qwen_hammer_strict": 96},
+    "yuki_list":    {"hammer20_tool": 84, "hammer20_strict": 84, "gpt_tool": 96, "gpt_strict": 96, "qwen_hammer_tool": 100, "qwen_hammer_strict": 100},
+    "yuki_delete":  {"hammer20_tool": 92, "hammer20_strict": 92, "gpt_tool": 100, "gpt_strict": 88, "qwen_hammer_tool": 96, "qwen_hammer_strict": 92},
+    "yuki_append":  {"hammer20_tool": 96, "hammer20_strict": 80, "gpt_tool": 76, "gpt_strict": 68, "qwen_hammer_tool": 96, "qwen_hammer_strict": 84},
+    "remember":     {"hammer20_tool": 88, "hammer20_strict": 68, "gpt_tool": 100, "gpt_strict": 92, "qwen_hammer_tool": 100, "qwen_hammer_strict": 76},
+    "recall":       {"hammer20_tool": 100, "hammer20_strict": 88, "gpt_tool": 100, "gpt_strict": 84, "qwen_hammer_tool": 52, "qwen_hammer_strict": 44},
+    "ask_claude":   {"hammer20_tool": 96, "hammer20_strict": 64, "gpt_tool": 92, "gpt_strict": 36, "qwen_hammer_tool": 96, "qwen_hammer_strict": 60}
+  },
+  "conclusion": {
+    "strict_exact_leader_among_compared_arms": "Hammer2.0-7B direct 8-bit",
+    "tool_selection_leader": "GPT-OSS-20B direct native",
+    "remaining_hammer20_bottlenecks": [
+      "20 explicit tool-required request rejections",
+      "normal read versus yuki_read ontology",
+      "yuki_write versus yuki_append ontology",
+      "exact image, search, remember, and ask_claude payload extraction"
+    ],
+    "deployment_interpretation": "Accuracy improves, but the gain over Qwen3.8-Hammer1.5 is only 10 additional strict calls while cached latency is 1.35x higher and local peak memory is 2.57x higher. It is credible for an offline/local accuracy-first configuration, not an obvious default dispatcher for the M1 Air."
+  }
+}

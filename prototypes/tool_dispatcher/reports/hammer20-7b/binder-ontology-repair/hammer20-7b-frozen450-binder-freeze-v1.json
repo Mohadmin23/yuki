@@ -1,0 +1,34 @@
+{
+  "version": "hammer20-7b-frozen450-binder-freeze-v1",
+  "status": "frozen_before_scoring",
+  "frozen_hammer_artifacts": {
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer20-7b/direct-native/hammer20-7b-8bit-all18-native-cached-full450-v1.json": "97980e3a53d7e105046dda2a4bd6c982682c047c5dace89a55f5d77fd891cb32",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/phase2-cases.json": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/deterministic-binding/literal-source-annotations-targeted100-recall25-v1.json": "9c33e6a9a2881bf44379ce1cb1ce7ac9367d25e542a1e203ac052f6f25d647f0"
+  },
+  "binder_input": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer20-7b/binder-ontology-repair/hammer20-7b-frozen450-binder-input-v1.json",
+    "sha256": "8544d258632f8c4ac172e755df9b914a169023ad62da078d5d30362a4d24271f"
+  },
+  "binder_predictions": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer20-7b/binder-ontology-repair/hammer20-7b-frozen450-binder-predictions-v1.json",
+    "sha256": "721229405012a14e2211493ca67b66f857953830ff76e401d7b39dbe5b2c7fe0"
+  },
+  "binder_abstentions": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/hammer20-7b/binder-ontology-repair/hammer20-7b-frozen450-binder-abstentions-v1.jsonl",
+    "sha256": "cbf1e51ea6f9973b9669a885392ddac7950dfa0181ec2c3aef42050327b20f00"
+  },
+  "binder_policy": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/source_span_policy.py",
+    "sha256": "871aa5eb58bda03e3c8eaefa785b3512ed8843a8f64c24bede57dcd2ce02658b"
+  },
+  "safety": {
+    "models_called": false,
+    "hammer_loaded": false,
+    "new_sampling": false,
+    "gold_available_to_binder": false,
+    "literal_annotations_available_to_binder": false,
+    "yuki_tool_execution_capability": false,
+    "yuki_tool_execution_attempts": 0
+  }
+}

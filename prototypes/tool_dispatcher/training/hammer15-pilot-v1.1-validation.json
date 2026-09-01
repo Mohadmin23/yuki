@@ -1,0 +1,665 @@
+{
+  "version": "hammer15-training-validator-v1.1",
+  "dataset": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/training/hammer15-pilot-v1.1.jsonl",
+  "record_count": 150,
+  "passed": true,
+  "failed_record_count": 0,
+  "dataset_errors": [],
+  "category_counts": {
+    "adversarial_edge": 15,
+    "literal_preservation": 35,
+    "ontology_confusion": 60,
+    "ordinary_easy": 15,
+    "semantic_argument": 25
+  },
+  "tool_counts": {
+    "None": 6,
+    "ask_claude": 7,
+    "calc": 6,
+    "fetch": 4,
+    "hardware": 11,
+    "image": 12,
+    "read": 11,
+    "recall": 10,
+    "remember": 10,
+    "search": 12,
+    "see": 11,
+    "shell": 9,
+    "time": 2,
+    "weather": 6,
+    "yuki_append": 9,
+    "yuki_delete": 2,
+    "yuki_list": 2,
+    "yuki_read": 6,
+    "yuki_write": 14
+  },
+  "linguistic_feature_counts": {
+    "casual": 12,
+    "clause_reordering": 11,
+    "contraction": 10,
+    "correction": 2,
+    "distractor_noun": 5,
+    "implicit_intent": 11,
+    "multi_clause": 12,
+    "negative_contrast": 16,
+    "pronoun_context": 13,
+    "punctuation_variation": 24,
+    "shorthand": 15,
+    "terse_fragment": 28,
+    "typo": 14
+  },
+  "ontology_family_counts": {
+    "read-vs-yuki_read": 10,
+    "remember-vs-yuki_write": 10,
+    "search-vs-recall": 10,
+    "see-vs-image": 10,
+    "shell-vs-hardware": 10,
+    "yuki_write-vs-yuki_append": 10
+  },
+  "leakage_status_counts": {
+    "pass": 150
+  },
+  "sacred_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+  "records": {
+    "h15-pilot-v1.1-001": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-002": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-003": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-004": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-005": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-006": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-007": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-008": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-009": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-010": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-011": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-012": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-013": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-014": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-015": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-016": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-017": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-018": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-019": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-020": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-021": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-022": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-023": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-024": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-025": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-026": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-027": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-028": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-029": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-030": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-031": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-032": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-033": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-034": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-035": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-036": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-037": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-038": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-039": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-040": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-041": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-042": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-043": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-044": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-045": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-046": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-047": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-048": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-049": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-050": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-051": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-052": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-053": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-054": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-055": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-056": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-057": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-058": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-059": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-060": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-061": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-062": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-063": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-064": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-065": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-066": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-067": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-068": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-069": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-070": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-071": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-072": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-073": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-074": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-075": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-076": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-077": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-078": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-079": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-080": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-081": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-082": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-083": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-084": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-085": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-086": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-087": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-088": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-089": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-090": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-091": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-092": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-093": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-094": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-095": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-096": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-097": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-098": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-099": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-100": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-101": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-102": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-103": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-104": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-105": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-106": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-107": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-108": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-109": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-110": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-111": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-112": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-113": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-114": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-115": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-116": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-117": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-118": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-119": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-120": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-121": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-122": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-123": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-124": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-125": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-126": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-127": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-128": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-129": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-130": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-131": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-132": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-133": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-134": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-135": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-136": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-137": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-138": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-139": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-140": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-141": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-142": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-143": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-144": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-145": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-146": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-147": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-148": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-149": {
+      "passed": true,
+      "errors": []
+    },
+    "h15-pilot-v1.1-150": {
+      "passed": true,
+      "errors": []
+    }
+  }
+}

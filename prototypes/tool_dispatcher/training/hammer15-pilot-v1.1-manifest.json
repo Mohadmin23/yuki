@@ -1,0 +1,91 @@
+{
+  "version": "hammer15-pilot-manifest-v1.1",
+  "record_format": "hammer15-training-record-v1.1",
+  "parent_pilot": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/training/hammer15-pilot-v1.jsonl",
+  "parent_record_count": 150,
+  "seed": 151825,
+  "record_count": 150,
+  "category_counts": {
+    "adversarial_edge": 15,
+    "literal_preservation": 35,
+    "ontology_confusion": 60,
+    "ordinary_easy": 15,
+    "semantic_argument": 25
+  },
+  "argument_mode_counts": {
+    "literal_source": 86,
+    "no_argument": 4,
+    "reject": 6,
+    "semantic_argument": 54
+  },
+  "tool_counts": {
+    "None": 6,
+    "ask_claude": 7,
+    "calc": 6,
+    "fetch": 4,
+    "hardware": 11,
+    "image": 12,
+    "read": 11,
+    "recall": 10,
+    "remember": 10,
+    "search": 12,
+    "see": 11,
+    "shell": 9,
+    "time": 2,
+    "weather": 6,
+    "yuki_append": 9,
+    "yuki_delete": 2,
+    "yuki_list": 2,
+    "yuki_read": 6,
+    "yuki_write": 14
+  },
+  "confusion_family_counts": {
+    "composite-payload-has-separator": 1,
+    "delimiter-boundary": 1,
+    "missing-required-argument": 4,
+    "multiline-literal": 1,
+    "negated-competing-tool": 3,
+    "pronoun-and-quote-preservation": 1,
+    "punctuation-boundary": 1,
+    "quote-boundary": 1,
+    "read-vs-yuki_read": 10,
+    "remember-vs-yuki_write": 10,
+    "search-vs-recall": 10,
+    "see-vs-image": 10,
+    "shell-vs-hardware": 10,
+    "unsupported-by-offered-subset": 1,
+    "unsupported-capability": 1,
+    "yuki_write-vs-yuki_append": 10
+  },
+  "linguistic_feature_counts": {
+    "casual": 12,
+    "clause_reordering": 11,
+    "contraction": 10,
+    "correction": 2,
+    "distractor_noun": 5,
+    "implicit_intent": 11,
+    "multi_clause": 12,
+    "negative_contrast": 16,
+    "pronoun_context": 13,
+    "punctuation_variation": 24,
+    "shorthand": 15,
+    "terse_fragment": 28,
+    "typo": 14
+  },
+  "structured_composite_count": 23,
+  "offered_tool_count_distribution": {
+    "1": 9,
+    "2": 86,
+    "3": 11,
+    "5": 27,
+    "18": 17
+  },
+  "model_visible_fields": [
+    "prompt",
+    "assistant_target"
+  ],
+  "metadata_excluded_from_training": true,
+  "inference_used": false,
+  "yuki_tools_executed": false,
+  "sacred_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466"
+}

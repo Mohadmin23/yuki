@@ -1,0 +1,2988 @@
+{
+  "version": "literal-boundary-binder-v1-comparison",
+  "status": "completed",
+  "frozen_inputs": {
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-probe/literal-boundary-development-probe-v1.json": "516a1214a68f88be7f4fc2b8fbb2d9711e999cf87a94bf12cf07b1eed2eec560",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-probe/literal-boundary-development-annotations-v1.json": "81ec7dbcf23fa828cb60bb0d0afa5d35ba892ae9bb2c789bee9ce236ee14d7a6",
+    "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-probe/literal-boundary-binder-v1-predictions.json": "3a4cc666acad18d5e2ef684ad56d15d6da2831b15299114ecb940be49c665124"
+  },
+  "configuration": {
+    "models_called": false,
+    "sacred_450_used": false,
+    "tool_execution_capability": false,
+    "tool_execution_attempts": 0,
+    "predictions_frozen_before_scoring": true,
+    "annotations_available_to_binder": false
+  },
+  "overall": {
+    "cases": 64,
+    "exact_successes": 31,
+    "exact_accuracy": 0.484375,
+    "schema_valid_successes": 39,
+    "schema_valid_rate": 0.609375,
+    "coverage_successes": 39,
+    "coverage_rate": 0.609375,
+    "ambiguity_count": 0,
+    "abstention_count": 25,
+    "source_copy_checked_cases": 39,
+    "source_copy_invariant_rate": 1
+  },
+  "by_family": {
+    "ask_scaffolding": {
+      "cases": 17,
+      "exact_successes": 2,
+      "exact_accuracy": 0.11764705882352941,
+      "schema_valid_successes": 4,
+      "schema_valid_rate": 0.23529411764705882,
+      "coverage_successes": 4,
+      "coverage_rate": 0.23529411764705882,
+      "ambiguity_count": 0,
+      "abstention_count": 13,
+      "source_copy_checked_cases": 4,
+      "source_copy_invariant_rate": 1
+    },
+    "ask_to_payload": {
+      "cases": 1,
+      "exact_successes": 1,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 1,
+      "schema_valid_rate": 1,
+      "coverage_successes": 1,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 1,
+      "source_copy_invariant_rate": 1
+    },
+    "command_boundary": {
+      "cases": 2,
+      "exact_successes": 2,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 2,
+      "schema_valid_rate": 1,
+      "coverage_successes": 2,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 2,
+      "source_copy_invariant_rate": 1
+    },
+    "composite_boundary": {
+      "cases": 4,
+      "exact_successes": 3,
+      "exact_accuracy": 0.75,
+      "schema_valid_successes": 4,
+      "schema_valid_rate": 1,
+      "coverage_successes": 4,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 4,
+      "source_copy_invariant_rate": 1
+    },
+    "cross_tool_prefix_text": {
+      "cases": 3,
+      "exact_successes": 3,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 3,
+      "schema_valid_rate": 1,
+      "coverage_successes": 3,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 3,
+      "source_copy_invariant_rate": 1
+    },
+    "filename_boundary": {
+      "cases": 2,
+      "exact_successes": 2,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 2,
+      "schema_valid_rate": 1,
+      "coverage_successes": 2,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 2,
+      "source_copy_invariant_rate": 1
+    },
+    "inner_colon_payload": {
+      "cases": 6,
+      "exact_successes": 3,
+      "exact_accuracy": 0.5,
+      "schema_valid_successes": 4,
+      "schema_valid_rate": 0.6666666666666666,
+      "coverage_successes": 4,
+      "coverage_rate": 0.6666666666666666,
+      "ambiguity_count": 0,
+      "abstention_count": 2,
+      "source_copy_checked_cases": 4,
+      "source_copy_invariant_rate": 1
+    },
+    "inner_quote_payload": {
+      "cases": 5,
+      "exact_successes": 3,
+      "exact_accuracy": 0.6,
+      "schema_valid_successes": 4,
+      "schema_valid_rate": 0.8,
+      "coverage_successes": 4,
+      "coverage_rate": 0.8,
+      "ambiguity_count": 0,
+      "abstention_count": 1,
+      "source_copy_checked_cases": 4,
+      "source_copy_invariant_rate": 1
+    },
+    "negative_instruction_payload": {
+      "cases": 1,
+      "exact_successes": 1,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 1,
+      "schema_valid_rate": 1,
+      "coverage_successes": 1,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 1,
+      "source_copy_invariant_rate": 1
+    },
+    "outer_quote_delimiter": {
+      "cases": 7,
+      "exact_successes": 0,
+      "exact_accuracy": 0,
+      "schema_valid_successes": 2,
+      "schema_valid_rate": 0.2857142857142857,
+      "coverage_successes": 2,
+      "coverage_rate": 0.2857142857142857,
+      "ambiguity_count": 0,
+      "abstention_count": 5,
+      "source_copy_checked_cases": 2,
+      "source_copy_invariant_rate": 1
+    },
+    "path_boundary": {
+      "cases": 4,
+      "exact_successes": 4,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 4,
+      "schema_valid_rate": 1,
+      "coverage_successes": 4,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 4,
+      "source_copy_invariant_rate": 1
+    },
+    "payload_contains_scaffolding": {
+      "cases": 5,
+      "exact_successes": 2,
+      "exact_accuracy": 0.4,
+      "schema_valid_successes": 3,
+      "schema_valid_rate": 0.6,
+      "coverage_successes": 3,
+      "coverage_rate": 0.6,
+      "ambiguity_count": 0,
+      "abstention_count": 2,
+      "source_copy_checked_cases": 3,
+      "source_copy_invariant_rate": 1
+    },
+    "structured_payload": {
+      "cases": 1,
+      "exact_successes": 0,
+      "exact_accuracy": 0,
+      "schema_valid_successes": 0,
+      "schema_valid_rate": 0,
+      "coverage_successes": 0,
+      "coverage_rate": 0,
+      "ambiguity_count": 0,
+      "abstention_count": 1,
+      "source_copy_checked_cases": 0,
+      "source_copy_invariant_rate": null
+    },
+    "terminal_colon_payload": {
+      "cases": 1,
+      "exact_successes": 1,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 1,
+      "schema_valid_rate": 1,
+      "coverage_successes": 1,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 1,
+      "source_copy_invariant_rate": 1
+    },
+    "terminal_question_payload": {
+      "cases": 1,
+      "exact_successes": 1,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 1,
+      "schema_valid_rate": 1,
+      "coverage_successes": 1,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 1,
+      "source_copy_invariant_rate": 1
+    },
+    "url_boundary": {
+      "cases": 2,
+      "exact_successes": 2,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 2,
+      "schema_valid_rate": 1,
+      "coverage_successes": 2,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 2,
+      "source_copy_invariant_rate": 1
+    },
+    "verb_payload": {
+      "cases": 2,
+      "exact_successes": 1,
+      "exact_accuracy": 0.5,
+      "schema_valid_successes": 1,
+      "schema_valid_rate": 0.5,
+      "coverage_successes": 1,
+      "coverage_rate": 0.5,
+      "ambiguity_count": 0,
+      "abstention_count": 1,
+      "source_copy_checked_cases": 1,
+      "source_copy_invariant_rate": 1
+    }
+  },
+  "by_tool": {
+    "ask_claude": {
+      "cases": 40,
+      "exact_successes": 10,
+      "exact_accuracy": 0.25,
+      "schema_valid_successes": 15,
+      "schema_valid_rate": 0.375,
+      "coverage_successes": 15,
+      "coverage_rate": 0.375,
+      "ambiguity_count": 0,
+      "abstention_count": 25,
+      "source_copy_checked_cases": 15,
+      "source_copy_invariant_rate": 1
+    },
+    "fetch": {
+      "cases": 2,
+      "exact_successes": 2,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 2,
+      "schema_valid_rate": 1,
+      "coverage_successes": 2,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 2,
+      "source_copy_invariant_rate": 1
+    },
+    "image": {
+      "cases": 4,
+      "exact_successes": 3,
+      "exact_accuracy": 0.75,
+      "schema_valid_successes": 4,
+      "schema_valid_rate": 1,
+      "coverage_successes": 4,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 4,
+      "source_copy_invariant_rate": 1
+    },
+    "read": {
+      "cases": 4,
+      "exact_successes": 4,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 4,
+      "schema_valid_rate": 1,
+      "coverage_successes": 4,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 4,
+      "source_copy_invariant_rate": 1
+    },
+    "search": {
+      "cases": 6,
+      "exact_successes": 5,
+      "exact_accuracy": 0.8333333333333334,
+      "schema_valid_successes": 6,
+      "schema_valid_rate": 1,
+      "coverage_successes": 6,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 6,
+      "source_copy_invariant_rate": 1
+    },
+    "shell": {
+      "cases": 2,
+      "exact_successes": 2,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 2,
+      "schema_valid_rate": 1,
+      "coverage_successes": 2,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 2,
+      "source_copy_invariant_rate": 1
+    },
+    "yuki_append": {
+      "cases": 2,
+      "exact_successes": 2,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 2,
+      "schema_valid_rate": 1,
+      "coverage_successes": 2,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 2,
+      "source_copy_invariant_rate": 1
+    },
+    "yuki_delete": {
+      "cases": 1,
+      "exact_successes": 1,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 1,
+      "schema_valid_rate": 1,
+      "coverage_successes": 1,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 1,
+      "source_copy_invariant_rate": 1
+    },
+    "yuki_read": {
+      "cases": 1,
+      "exact_successes": 1,
+      "exact_accuracy": 1,
+      "schema_valid_successes": 1,
+      "schema_valid_rate": 1,
+      "coverage_successes": 1,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 1,
+      "source_copy_invariant_rate": 1
+    },
+    "yuki_write": {
+      "cases": 2,
+      "exact_successes": 1,
+      "exact_accuracy": 0.5,
+      "schema_valid_successes": 2,
+      "schema_valid_rate": 1,
+      "coverage_successes": 2,
+      "coverage_rate": 1,
+      "ambiguity_count": 0,
+      "abstention_count": 0,
+      "source_copy_checked_cases": 2,
+      "source_copy_invariant_rate": 1
+    }
+  },
+  "failure_ids": [
+    "boundary-ask-02",
+    "boundary-ask-03",
+    "boundary-ask-04",
+    "boundary-ask-05",
+    "boundary-ask-06",
+    "boundary-ask-07",
+    "boundary-ask-08",
+    "boundary-ask-09",
+    "boundary-ask-10",
+    "boundary-ask-11",
+    "boundary-ask-12",
+    "boundary-ask-14",
+    "boundary-ask-15",
+    "boundary-ask-16",
+    "boundary-ask-17",
+    "boundary-ask-20",
+    "boundary-ask-23",
+    "boundary-ask-24",
+    "boundary-ask-25",
+    "boundary-ask-26",
+    "boundary-ask-27",
+    "boundary-ask-28",
+    "boundary-ask-30",
+    "boundary-ask-31",
+    "boundary-ask-32",
+    "boundary-ask-33",
+    "boundary-ask-34",
+    "boundary-ask-36",
+    "boundary-ask-37",
+    "boundary-ask-38",
+    "boundary-search-02",
+    "boundary-image-01",
+    "boundary-yuki-01"
+  ],
+  "case_results": [
+    {
+      "case_id": "boundary-ask-01",
+      "family": "ask_scaffolding",
+      "request": "Ask Claude: why does this fail?",
+      "annotation": {
+        "case_id": "boundary-ask-01",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "ec7af2d7b55113ec51b7615c6906c79c24fb83dba3a5228a299cb30e4d9d1953",
+        "status": "reference",
+        "span": {
+          "start": 12,
+          "end": 31,
+          "text": "why does this fail?"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 31,
+          "rule": "external_agent_payload",
+          "text": "why does this fail?"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "why does this fail?"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-02",
+      "family": "ask_scaffolding",
+      "request": "Ask Claude this exact question: why does this fail?",
+      "annotation": {
+        "case_id": "boundary-ask-02",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "0c4a72e79d204cae1578267843333e261f95d777ef78e98de8b9e3eb1fadf107",
+        "status": "reference",
+        "span": {
+          "start": 32,
+          "end": 51,
+          "text": "why does this fail?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-03",
+      "family": "ask_scaffolding",
+      "request": "Have Claude answer: why does this fail?",
+      "annotation": {
+        "case_id": "boundary-ask-03",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "649eaa7814d1f7cd308f0222aa5b46073c07144069da28042071c0cfd8256c86",
+        "status": "reference",
+        "span": {
+          "start": 20,
+          "end": 39,
+          "text": "why does this fail?"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 39,
+          "rule": "external_agent_payload",
+          "text": "answer: why does this fail?"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "answer: why does this fail?"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-04",
+      "family": "ask_scaffolding",
+      "request": "Send this to Claude: why does this fail?",
+      "annotation": {
+        "case_id": "boundary-ask-04",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "a90d9cdc66d5e00a2da9a7aaed76b8caad86c58667f04c5a83b9066aae6066be",
+        "status": "reference",
+        "span": {
+          "start": 21,
+          "end": 40,
+          "text": "why does this fail?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-05",
+      "family": "ask_scaffolding",
+      "request": "Claude — check this for me: why does this fail?",
+      "annotation": {
+        "case_id": "boundary-ask-05",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "866ce784fb80e881eccd450ec33c42d2cde96c3fc2325fb801a4f8dd163fa066",
+        "status": "reference",
+        "span": {
+          "start": 9,
+          "end": 47,
+          "text": "check this for me: why does this fail?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-06",
+      "family": "ask_scaffolding",
+      "request": "I need Claude to handle this exact question: why does this fail?",
+      "annotation": {
+        "case_id": "boundary-ask-06",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "c4910418a2de8dd34990f346b18707d460182b1ec7abe8b392be160a5f11d81e",
+        "status": "reference",
+        "span": {
+          "start": 45,
+          "end": 64,
+          "text": "why does this fail?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-07",
+      "family": "ask_scaffolding",
+      "request": "Tell Claude: inspect the retry loop.",
+      "annotation": {
+        "case_id": "boundary-ask-07",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "11b5abe9be33d811f945deae7595f2110ad734eaf2530ee58ebacbaa976dbb45",
+        "status": "reference",
+        "span": {
+          "start": 13,
+          "end": 35,
+          "text": "inspect the retry loop"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-08",
+      "family": "ask_scaffolding",
+      "request": "Delegate to Claude: review the parser boundary.",
+      "annotation": {
+        "case_id": "boundary-ask-08",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "e366f1819e7ad99fb5742ddc8cb2ffaa3106ce230eb337678ea2d7d8442bdd4c",
+        "status": "reference",
+        "span": {
+          "start": 20,
+          "end": 46,
+          "text": "review the parser boundary"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-09",
+      "family": "ask_scaffolding",
+      "request": "Could you ask Claude: does this preserve_case?",
+      "annotation": {
+        "case_id": "boundary-ask-09",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "b41073bee9bc3333dfb6baea72bb822f30e1172374d84a5bca1a7bac10ee65f6",
+        "status": "reference",
+        "span": {
+          "start": 22,
+          "end": 46,
+          "text": "does this preserve_case?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-10",
+      "family": "ask_scaffolding",
+      "request": "Please have Claude answer: is Foo.JSON different from foo.json?",
+      "annotation": {
+        "case_id": "boundary-ask-10",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "99e0576b4e9cf75abd9d73b7c92d52d2c4ee8bd153df1f6c0d835d66b202aef2",
+        "status": "reference",
+        "span": {
+          "start": 27,
+          "end": 63,
+          "text": "is Foo.JSON different from foo.json?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-11",
+      "family": "ask_scaffolding",
+      "request": "Send Claude this question: where did the null come from?",
+      "annotation": {
+        "case_id": "boundary-ask-11",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "300dfc81ce72251e78f2b0c7771db25a44b34ea059737c560e95b85c0c70c96c",
+        "status": "reference",
+        "span": {
+          "start": 27,
+          "end": 56,
+          "text": "where did the null come from?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-12",
+      "family": "ask_scaffolding",
+      "request": "Pass this to Claude: compare foo_bar() with fooBar().",
+      "annotation": {
+        "case_id": "boundary-ask-12",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "76cc4b33d8a628d6a260eee48816e3302168744f0bf6dedfaa5fa7a1bf26348d",
+        "status": "reference",
+        "span": {
+          "start": 21,
+          "end": 52,
+          "text": "compare foo_bar() with fooBar()"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-13",
+      "family": "ask_scaffolding",
+      "request": "Consult Claude: check KeyError: city without rewriting it.",
+      "annotation": {
+        "case_id": "boundary-ask-13",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "f67fdc393346ff88c84761a2daf76c025504e6e50e804f2abde8f484ba687856",
+        "status": "reference",
+        "span": {
+          "start": 16,
+          "end": 57,
+          "text": "check KeyError: city without rewriting it"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 16,
+          "end": 57,
+          "rule": "external_agent_payload",
+          "text": "check KeyError: city without rewriting it"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "check KeyError: city without rewriting it"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-14",
+      "family": "ask_scaffolding",
+      "request": "Claude: explain why x:y stays literal.",
+      "annotation": {
+        "case_id": "boundary-ask-14",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "903f94701022a0824991266f6adb68aea099739e1300f93be70db61a32396252",
+        "status": "reference",
+        "span": {
+          "start": 8,
+          "end": 37,
+          "text": "explain why x:y stays literal"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-15",
+      "family": "ask_scaffolding",
+      "request": "Claude — why did it output {\"tool\": null}?",
+      "annotation": {
+        "case_id": "boundary-ask-15",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "ca3f9d440bceb3d45af1a5cd2e7712f135956cbaab2b52d1b66198250ee5dbbd",
+        "status": "reference",
+        "span": {
+          "start": 9,
+          "end": 42,
+          "text": "why did it output {\"tool\": null}?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-16",
+      "family": "ask_scaffolding",
+      "request": "I want Claude to review: A_B-17 vs a_b-17.",
+      "annotation": {
+        "case_id": "boundary-ask-16",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "a4a9810c49500dd1e16bf181e4f66ed602e4533dbe0b2f68ad7d5e5b954cc003",
+        "status": "reference",
+        "span": {
+          "start": 25,
+          "end": 41,
+          "text": "A_B-17 vs a_b-17"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-17",
+      "family": "ask_scaffolding",
+      "request": "Have Claude inspect: /tmp/Foo Bar.txt",
+      "annotation": {
+        "case_id": "boundary-ask-17",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "10f5cb95157dddac9531dc7203198ba69e182565367c61762627c73b589299f5",
+        "status": "reference",
+        "span": {
+          "start": 21,
+          "end": 37,
+          "text": "/tmp/Foo Bar.txt"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 37,
+          "rule": "external_agent_payload",
+          "text": "inspect: /tmp/Foo Bar.txt"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "inspect: /tmp/Foo Bar.txt"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-18",
+      "family": "ask_to_payload",
+      "request": "Ask Claude to check the race condition.",
+      "annotation": {
+        "case_id": "boundary-ask-18",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "02b3500e5d8a693067583ee28771281093bf9d8c50581738701c9161b2419c90",
+        "status": "reference",
+        "span": {
+          "start": 14,
+          "end": 38,
+          "text": "check the race condition"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 14,
+          "end": 38,
+          "rule": "external_agent_payload",
+          "text": "check the race condition"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "check the race condition"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-19",
+      "family": "verb_payload",
+      "request": "Have Claude review the schema adapter.",
+      "annotation": {
+        "case_id": "boundary-ask-19",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "2d724e70dffbcc9d141e52a80293a1dfc9c1e8b4199c9fe6584238991aaa22fa",
+        "status": "reference",
+        "span": {
+          "start": 12,
+          "end": 37,
+          "text": "review the schema adapter"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 37,
+          "rule": "external_agent_payload",
+          "text": "review the schema adapter"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "review the schema adapter"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-20",
+      "family": "verb_payload",
+      "request": "Tell Claude to inspect traceback line 42.",
+      "annotation": {
+        "case_id": "boundary-ask-20",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "e44ac881c753cf74774aacd35d16c8d24267fe21c4300e72fda49d95ae7e7c52",
+        "status": "reference",
+        "span": {
+          "start": 15,
+          "end": 40,
+          "text": "inspect traceback line 42"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-21",
+      "family": "payload_contains_scaffolding",
+      "request": "Ask Claude: handle this exact question: why does this fail?",
+      "annotation": {
+        "case_id": "boundary-ask-21",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "c49e67046ff9bed8480a5073b8225e4ff8e73234681f0c2963476c2e9054d2f6",
+        "status": "reference",
+        "span": {
+          "start": 12,
+          "end": 59,
+          "text": "handle this exact question: why does this fail?"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 59,
+          "rule": "external_agent_payload",
+          "text": "handle this exact question: why does this fail?"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "handle this exact question: why does this fail?"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-22",
+      "family": "payload_contains_scaffolding",
+      "request": "Ask Claude: Ask Claude to retry after five seconds.",
+      "annotation": {
+        "case_id": "boundary-ask-22",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "c522bd14ed6599db2c1ed1d55233c610e4a97a9fc6567ddc885ff35171e53cdc",
+        "status": "reference",
+        "span": {
+          "start": 12,
+          "end": 50,
+          "text": "Ask Claude to retry after five seconds"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 50,
+          "rule": "external_agent_payload",
+          "text": "Ask Claude to retry after five seconds"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "Ask Claude to retry after five seconds"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-23",
+      "family": "payload_contains_scaffolding",
+      "request": "Send this to Claude: Send this to Claude: preserve both copies.",
+      "annotation": {
+        "case_id": "boundary-ask-23",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "583e91fc5fa8bb1f9936456ae5d5151c8bd82d1180efe0cd1b79be8ead6e0922",
+        "status": "reference",
+        "span": {
+          "start": 21,
+          "end": 62,
+          "text": "Send this to Claude: preserve both copies"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-24",
+      "family": "payload_contains_scaffolding",
+      "request": "Claude — I need Claude to handle this exact question: why now?",
+      "annotation": {
+        "case_id": "boundary-ask-24",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "62e9e43d77807c0d8417b14456cb276559bf9d6c9fd16095d066ccdc65c7f8eb",
+        "status": "reference",
+        "span": {
+          "start": 9,
+          "end": 62,
+          "text": "I need Claude to handle this exact question: why now?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-25",
+      "family": "payload_contains_scaffolding",
+      "request": "Have Claude answer: Have Claude answer: nested text.",
+      "annotation": {
+        "case_id": "boundary-ask-25",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "3af3a8c5265e7bcbacfe539b2d34f99b5da07b6a3f47d77264e8ce5e549444c6",
+        "status": "reference",
+        "span": {
+          "start": 20,
+          "end": 51,
+          "text": "Have Claude answer: nested text"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 51,
+          "rule": "external_agent_payload",
+          "text": "answer: Have Claude answer: nested text"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "answer: Have Claude answer: nested text"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-26",
+      "family": "outer_quote_delimiter",
+      "request": "Ask Claude this exact question: \"handle this exact question: why?\"",
+      "annotation": {
+        "case_id": "boundary-ask-26",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "2c0be3dd351ab1c0c21f76b0ddd59690fd18d0c715bdacb314395321e8a98c99",
+        "status": "reference",
+        "span": {
+          "start": 33,
+          "end": 65,
+          "text": "handle this exact question: why?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-27",
+      "family": "outer_quote_delimiter",
+      "request": "Send this to Claude: 'Ask Claude: keep this colon.'",
+      "annotation": {
+        "case_id": "boundary-ask-27",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "0227b1134e7d2055afb4c5e2f530b09fa82f4ba4a3de374e71cbe5f62278a852",
+        "status": "reference",
+        "span": {
+          "start": 22,
+          "end": 50,
+          "text": "Ask Claude: keep this colon."
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-28",
+      "family": "outer_quote_delimiter",
+      "request": "Delegate to Claude: `Have Claude answer: yes?`",
+      "annotation": {
+        "case_id": "boundary-ask-28",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "439326d61a3924ca4f336f219c0f964d3e6fb55ae48519820067cabf58dc268f",
+        "status": "reference",
+        "span": {
+          "start": 21,
+          "end": 45,
+          "text": "Have Claude answer: yes?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-29",
+      "family": "inner_quote_payload",
+      "request": "Ask Claude: explain the phrase \"handle this exact question:\" literally.",
+      "annotation": {
+        "case_id": "boundary-ask-29",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "76c4b405222d79c62ff265816c367040057515ab16574609cbadc7f593594d14",
+        "status": "reference",
+        "span": {
+          "start": 12,
+          "end": 70,
+          "text": "explain the phrase \"handle this exact question:\" literally"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 70,
+          "rule": "external_agent_payload",
+          "text": "explain the phrase \"handle this exact question:\" literally"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "explain the phrase \"handle this exact question:\" literally"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-30",
+      "family": "inner_quote_payload",
+      "request": "Claude — check this for me: keep the words \"check this for me:\" intact.",
+      "annotation": {
+        "case_id": "boundary-ask-30",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "82105f2d12c233ff7c4dcd4b3b7ff74ac41808f0747b47ee7848bba87203ab08",
+        "status": "reference",
+        "span": {
+          "start": 9,
+          "end": 70,
+          "text": "check this for me: keep the words \"check this for me:\" intact"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-31",
+      "family": "inner_colon_payload",
+      "request": "Ask Claude this exact question: why: does this fail?",
+      "annotation": {
+        "case_id": "boundary-ask-31",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "4a4d7dd2262f104eba900ff09ebb3e717f53130edb3c46d1bc6c4617b4d4c9a4",
+        "status": "reference",
+        "span": {
+          "start": 32,
+          "end": 52,
+          "text": "why: does this fail?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-32",
+      "family": "inner_colon_payload",
+      "request": "Have Claude answer: first: second: third",
+      "annotation": {
+        "case_id": "boundary-ask-32",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "6a30a199e6e553168c4ade889a9e95aba2d00ceba708c65e978613934c35a291",
+        "status": "reference",
+        "span": {
+          "start": 20,
+          "end": 40,
+          "text": "first: second: third"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 40,
+          "rule": "external_agent_payload",
+          "text": "answer: first: second: third"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "answer: first: second: third"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-33",
+      "family": "structured_payload",
+      "request": "Send this to Claude: JSON {\"message\":\"Ask Claude: hi\"}",
+      "annotation": {
+        "case_id": "boundary-ask-33",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "b5ee246bf432c72e66860245e9d7b269d5e30aa225d697f6c615eb9ff45b174a",
+        "status": "reference",
+        "span": {
+          "start": 21,
+          "end": 54,
+          "text": "JSON {\"message\":\"Ask Claude: hi\"}"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-34",
+      "family": "inner_colon_payload",
+      "request": "I need Claude to handle this exact question: compare A:B with A::B.",
+      "annotation": {
+        "case_id": "boundary-ask-34",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "58f7ac42d1d071f594b43a3ecc22823225a5a05af3c7baceee5c859b5053782a",
+        "status": "reference",
+        "span": {
+          "start": 45,
+          "end": 66,
+          "text": "compare A:B with A::B"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-35",
+      "family": "negative_instruction_payload",
+      "request": "Ask Claude: Do not strip \"Ask Claude:\" from this payload.",
+      "annotation": {
+        "case_id": "boundary-ask-35",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "62253c31e9a091d810b98eb6235d578d1724491f5cdb6f31ad6912c0888e64e3",
+        "status": "reference",
+        "span": {
+          "start": 12,
+          "end": 56,
+          "text": "Do not strip \"Ask Claude:\" from this payload"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 56,
+          "rule": "external_agent_payload",
+          "text": "Do not strip \"Ask Claude:\" from this payload"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "Do not strip \"Ask Claude:\" from this payload"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-36",
+      "family": "outer_quote_delimiter",
+      "request": "Claude — \"Ask Claude: why?\"",
+      "annotation": {
+        "case_id": "boundary-ask-36",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "0f9a08618d8494933f26e59bdb46a476f09e807cf93e0642782a2cc1ce53eba8",
+        "status": "reference",
+        "span": {
+          "start": 10,
+          "end": 26,
+          "text": "Ask Claude: why?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-37",
+      "family": "outer_quote_delimiter",
+      "request": "Send this to Claude: `why does foo_bar() fail?`",
+      "annotation": {
+        "case_id": "boundary-ask-37",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "c894c5d9cf787d35e09b7d786f2cba03dd17a5ba5fa59b4024b12a69e9b0c786",
+        "status": "reference",
+        "span": {
+          "start": 22,
+          "end": 46,
+          "text": "why does foo_bar() fail?"
+        }
+      },
+      "binder_status": "unbound",
+      "binder_candidates": [],
+      "bound_call": null,
+      "source_copy_valid": null,
+      "schema_valid": false,
+      "validation": {
+        "passed": false,
+        "errors": [
+          "Binder abstained."
+        ]
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-38",
+      "family": "inner_quote_payload",
+      "request": "Have Claude answer: \"why does this fail?\" exactly as written.",
+      "annotation": {
+        "case_id": "boundary-ask-38",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "6ac14f36cdd712ef1f84328ade89e9dea5f81684589768fb120bf80777c91e5f",
+        "status": "reference",
+        "span": {
+          "start": 20,
+          "end": 60,
+          "text": "\"why does this fail?\" exactly as written"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 60,
+          "rule": "external_agent_payload",
+          "text": "answer: \"why does this fail?\" exactly as written"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "answer: \"why does this fail?\" exactly as written"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-39",
+      "family": "terminal_colon_payload",
+      "request": "Ask Claude: colon at end -> value:",
+      "annotation": {
+        "case_id": "boundary-ask-39",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "c70c41198611c1e08b8c29939c8afa44067071ef2d01cee9fe8744ad4d494446",
+        "status": "reference",
+        "span": {
+          "start": 12,
+          "end": 34,
+          "text": "colon at end -> value:"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 34,
+          "rule": "external_agent_payload",
+          "text": "colon at end -> value:"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "colon at end -> value:"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-ask-40",
+      "family": "terminal_question_payload",
+      "request": "Ask Claude: question mark stays?",
+      "annotation": {
+        "case_id": "boundary-ask-40",
+        "tool": "ask_claude",
+        "argument_name": "question",
+        "raw_request_sha256": "0acc46eb75e68a65de58de6a8d96d3d85852f6901c705f63a5631f6f9ef296c5",
+        "status": "reference",
+        "span": {
+          "start": 12,
+          "end": 32,
+          "text": "question mark stays?"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 12,
+          "end": 32,
+          "rule": "external_agent_payload",
+          "text": "question mark stays?"
+        }
+      ],
+      "bound_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "question mark stays?"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-01",
+      "family": "cross_tool_prefix_text",
+      "request": "Search for handle this exact question: parser behavior.",
+      "annotation": {
+        "case_id": "boundary-search-01",
+        "tool": "search",
+        "argument_name": "query",
+        "raw_request_sha256": "94d7c67206bd71faa065ac63eea00ef696c84dec3d446fd29abaa4b55d5e06c9",
+        "status": "reference",
+        "span": {
+          "start": 11,
+          "end": 54,
+          "text": "handle this exact question: parser behavior"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 11,
+          "end": 54,
+          "rule": "search_payload",
+          "text": "handle this exact question: parser behavior"
+        }
+      ],
+      "bound_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "handle this exact question: parser behavior"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-02",
+      "family": "outer_quote_delimiter",
+      "request": "Search the web for \"Ask Claude: why?\"",
+      "annotation": {
+        "case_id": "boundary-search-02",
+        "tool": "search",
+        "argument_name": "query",
+        "raw_request_sha256": "2b4671cb83bf0bf83003f60873c7c79a64911dd398eae2aed7e4ea0b66508172",
+        "status": "reference",
+        "span": {
+          "start": 20,
+          "end": 36,
+          "text": "Ask Claude: why?"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 19,
+          "end": 37,
+          "rule": "search_payload",
+          "text": "\"Ask Claude: why?\""
+        }
+      ],
+      "bound_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "\"Ask Claude: why?\""
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-03",
+      "family": "inner_quote_payload",
+      "request": "Search query: site:example.com \"exact phrase\"",
+      "annotation": {
+        "case_id": "boundary-search-03",
+        "tool": "search",
+        "argument_name": "query",
+        "raw_request_sha256": "be42069ae9c94cf30f95d61e65f9f3c20769dad22c280c62be17c0bbdd833ff6",
+        "status": "reference",
+        "span": {
+          "start": 14,
+          "end": 45,
+          "text": "site:example.com \"exact phrase\""
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 14,
+          "end": 45,
+          "rule": "search_payload",
+          "text": "site:example.com \"exact phrase\""
+        }
+      ],
+      "bound_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "site:example.com \"exact phrase\""
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-04",
+      "family": "inner_colon_payload",
+      "request": "Look up why:path handling differs.",
+      "annotation": {
+        "case_id": "boundary-search-04",
+        "tool": "search",
+        "argument_name": "query",
+        "raw_request_sha256": "37fc3cc77b52c0d0112267b0927e59561171ab35885728f64aefd514213d73f2",
+        "status": "reference",
+        "span": {
+          "start": 8,
+          "end": 33,
+          "text": "why:path handling differs"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 8,
+          "end": 33,
+          "rule": "search_payload",
+          "text": "why:path handling differs"
+        }
+      ],
+      "bound_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "why:path handling differs"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-05",
+      "family": "cross_tool_prefix_text",
+      "request": "Find information online about Send this to Claude: conventions.",
+      "annotation": {
+        "case_id": "boundary-search-05",
+        "tool": "search",
+        "argument_name": "query",
+        "raw_request_sha256": "11bcfaf4c2fd447b516272f2e82a157d1107cdfcf77f14f0ce5bf46d8927dc84",
+        "status": "reference",
+        "span": {
+          "start": 30,
+          "end": 62,
+          "text": "Send this to Claude: conventions"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 30,
+          "end": 62,
+          "rule": "search_payload",
+          "text": "Send this to Claude: conventions"
+        }
+      ],
+      "bound_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "Send this to Claude: conventions"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-search-06",
+      "family": "inner_colon_payload",
+      "request": "Search for C++ A::B vs A:B.",
+      "annotation": {
+        "case_id": "boundary-search-06",
+        "tool": "search",
+        "argument_name": "query",
+        "raw_request_sha256": "d26b7c9567de1927e747461e952941f514dc8724f5843cec170c904c4c379879",
+        "status": "reference",
+        "span": {
+          "start": 11,
+          "end": 26,
+          "text": "C++ A::B vs A:B"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 11,
+          "end": 26,
+          "rule": "search_payload",
+          "text": "C++ A::B vs A:B"
+        }
+      ],
+      "bound_call": {
+        "tool": "search",
+        "arguments": {
+          "query": "C++ A::B vs A:B"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-image-01",
+      "family": "outer_quote_delimiter",
+      "request": "Generate an image with this exact prompt: \"Claude — neon rain\"",
+      "annotation": {
+        "case_id": "boundary-image-01",
+        "tool": "image",
+        "argument_name": "prompt",
+        "raw_request_sha256": "2abaa20541af312e5b648db00fae9949f9583ab29f61562089a7c34dd926c897",
+        "status": "reference",
+        "span": {
+          "start": 43,
+          "end": 61,
+          "text": "Claude — neon rain"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 42,
+          "end": 62,
+          "rule": "image_payload",
+          "text": "\"Claude — neon rain\""
+        }
+      ],
+      "bound_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "\"Claude — neon rain\""
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-image-02",
+      "family": "cross_tool_prefix_text",
+      "request": "Create a picture using exactly: handle this exact question: a red fox",
+      "annotation": {
+        "case_id": "boundary-image-02",
+        "tool": "image",
+        "argument_name": "prompt",
+        "raw_request_sha256": "f3981d42aec37e04f4162acd61dd1b5f8357f95c258f6475b1c55883efff233c",
+        "status": "reference",
+        "span": {
+          "start": 32,
+          "end": 69,
+          "text": "handle this exact question: a red fox"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 32,
+          "end": 69,
+          "rule": "image_payload",
+          "text": "handle this exact question: a red fox"
+        }
+      ],
+      "bound_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "handle this exact question: a red fox"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-image-03",
+      "family": "inner_quote_payload",
+      "request": "Use the image tool with this exact prompt: text reading \"Ask Claude:\" in neon",
+      "annotation": {
+        "case_id": "boundary-image-03",
+        "tool": "image",
+        "argument_name": "prompt",
+        "raw_request_sha256": "b26348098acdc22b993e7b27157ed7c6e20f085f49fc2ec478798ab7c87dec65",
+        "status": "reference",
+        "span": {
+          "start": 43,
+          "end": 77,
+          "text": "text reading \"Ask Claude:\" in neon"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 43,
+          "end": 77,
+          "rule": "image_payload",
+          "text": "text reading \"Ask Claude:\" in neon"
+        }
+      ],
+      "bound_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "text reading \"Ask Claude:\" in neon"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-image-04",
+      "family": "inner_colon_payload",
+      "request": "Make artwork from this exact prompt, not a text file: A:B — C::D",
+      "annotation": {
+        "case_id": "boundary-image-04",
+        "tool": "image",
+        "argument_name": "prompt",
+        "raw_request_sha256": "9720c115e7442d88ae6f177cbcf3ea53c0a209415cf6da307d6cd6f85b096834",
+        "status": "reference",
+        "span": {
+          "start": 54,
+          "end": 64,
+          "text": "A:B — C::D"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 54,
+          "end": 64,
+          "rule": "image_payload",
+          "text": "A:B — C::D"
+        }
+      ],
+      "bound_call": {
+        "tool": "image",
+        "arguments": {
+          "prompt": "A:B — C::D"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-read-01",
+      "family": "path_boundary",
+      "request": "Read exactly /tmp/handle this exact question.txt.",
+      "annotation": {
+        "case_id": "boundary-read-01",
+        "tool": "read",
+        "argument_name": "filepath",
+        "raw_request_sha256": "eeb203772709b1136996b3e3556fbed4ea670b7130e706c833c0573d7c16acfe",
+        "status": "reference",
+        "span": {
+          "start": 13,
+          "end": 48,
+          "text": "/tmp/handle this exact question.txt"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 13,
+          "end": 48,
+          "rule": "filesystem_path",
+          "text": "/tmp/handle this exact question.txt"
+        }
+      ],
+      "bound_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "/tmp/handle this exact question.txt"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-read-02",
+      "family": "path_boundary",
+      "request": "Read /Users/me/Send this to Claude/Plan.md from the computer.",
+      "annotation": {
+        "case_id": "boundary-read-02",
+        "tool": "read",
+        "argument_name": "filepath",
+        "raw_request_sha256": "754a1db24d7b6d73906bb397e38a2dbf69785eee2c7ae176811ac640d03a571f",
+        "status": "reference",
+        "span": {
+          "start": 5,
+          "end": 42,
+          "text": "/Users/me/Send this to Claude/Plan.md"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 5,
+          "end": 42,
+          "rule": "filesystem_path",
+          "text": "/Users/me/Send this to Claude/Plan.md"
+        }
+      ],
+      "bound_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "/Users/me/Send this to Claude/Plan.md"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-read-03",
+      "family": "path_boundary",
+      "request": "Open the local file ~/Claude — notes.md.",
+      "annotation": {
+        "case_id": "boundary-read-03",
+        "tool": "read",
+        "argument_name": "filepath",
+        "raw_request_sha256": "a1f99bf9dacc4a63d024b57876b94f2923a5ae5120736b132c84169e9f67acee",
+        "status": "reference",
+        "span": {
+          "start": 20,
+          "end": 39,
+          "text": "~/Claude — notes.md"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 20,
+          "end": 39,
+          "rule": "filesystem_path",
+          "text": "~/Claude — notes.md"
+        }
+      ],
+      "bound_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "~/Claude — notes.md"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-read-04",
+      "family": "path_boundary",
+      "request": "Read ./HandleThisExactQuestion.JSON.",
+      "annotation": {
+        "case_id": "boundary-read-04",
+        "tool": "read",
+        "argument_name": "filepath",
+        "raw_request_sha256": "b963b3f6eb33f1e19fdc740a3ad312b6b5c1a0818613606c92f36908b6b19306",
+        "status": "reference",
+        "span": {
+          "start": 5,
+          "end": 35,
+          "text": "./HandleThisExactQuestion.JSON"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 5,
+          "end": 35,
+          "rule": "filesystem_path",
+          "text": "./HandleThisExactQuestion.JSON"
+        }
+      ],
+      "bound_call": {
+        "tool": "read",
+        "arguments": {
+          "filepath": "./HandleThisExactQuestion.JSON"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-fetch-01",
+      "family": "url_boundary",
+      "request": "Fetch this exact URL: https://example.com/Ask-Claude:why?x=A:B.",
+      "annotation": {
+        "case_id": "boundary-fetch-01",
+        "tool": "fetch",
+        "argument_name": "url",
+        "raw_request_sha256": "e94ff76acc028a52b1284bbbcb2864611b6786925dafc5b99f71bb33d1a651b1",
+        "status": "reference",
+        "span": {
+          "start": 22,
+          "end": 62,
+          "text": "https://example.com/Ask-Claude:why?x=A:B"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 22,
+          "end": 62,
+          "rule": "url_token",
+          "text": "https://example.com/Ask-Claude:why?x=A:B"
+        }
+      ],
+      "bound_call": {
+        "tool": "fetch",
+        "arguments": {
+          "url": "https://example.com/Ask-Claude:why?x=A:B"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-fetch-02",
+      "family": "url_boundary",
+      "request": "Open contents of https://example.org/path?q=handle+this+exact+question.",
+      "annotation": {
+        "case_id": "boundary-fetch-02",
+        "tool": "fetch",
+        "argument_name": "url",
+        "raw_request_sha256": "a4dd5afaaad7819c2ceac0ae4b30852bc6525ecd001a53d5c2a9a7fe26ebbab9",
+        "status": "reference",
+        "span": {
+          "start": 17,
+          "end": 70,
+          "text": "https://example.org/path?q=handle+this+exact+question"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 17,
+          "end": 70,
+          "rule": "url_token",
+          "text": "https://example.org/path?q=handle+this+exact+question"
+        }
+      ],
+      "bound_call": {
+        "tool": "fetch",
+        "arguments": {
+          "url": "https://example.org/path?q=handle+this+exact+question"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-shell-01",
+      "family": "command_boundary",
+      "request": "Run this allowed shell command: printf 'Ask Claude: %s' test",
+      "annotation": {
+        "case_id": "boundary-shell-01",
+        "tool": "shell",
+        "argument_name": "command",
+        "raw_request_sha256": "ef8c3e3b597f29459f9fda4553a3ca7266bb97efb43cbb0a8a08168490373c4e",
+        "status": "reference",
+        "span": {
+          "start": 32,
+          "end": 60,
+          "text": "printf 'Ask Claude: %s' test"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 32,
+          "end": 60,
+          "rule": "shell_command",
+          "text": "printf 'Ask Claude: %s' test"
+        }
+      ],
+      "bound_call": {
+        "tool": "shell",
+        "arguments": {
+          "command": "printf 'Ask Claude: %s' test"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-shell-02",
+      "family": "command_boundary",
+      "request": "Execute echo 'handle this exact question:' in the shell.",
+      "annotation": {
+        "case_id": "boundary-shell-02",
+        "tool": "shell",
+        "argument_name": "command",
+        "raw_request_sha256": "1ce6b41fc3251493908bba30b3e9483ee82f3cec27be67ec3d83e379726b76ad",
+        "status": "reference",
+        "span": {
+          "start": 8,
+          "end": 42,
+          "text": "echo 'handle this exact question:'"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 8,
+          "end": 42,
+          "rule": "shell_command",
+          "text": "echo 'handle this exact question:'"
+        }
+      ],
+      "bound_call": {
+        "tool": "shell",
+        "arguments": {
+          "command": "echo 'handle this exact question:'"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-01",
+      "family": "composite_boundary",
+      "request": "Write exactly claude.txt|Ask Claude: why? into Yuki's files.",
+      "annotation": {
+        "case_id": "boundary-yuki-01",
+        "tool": "yuki_write",
+        "argument_name": "filename_and_content",
+        "raw_request_sha256": "41a62a48209f7434c51707cd92b4e6436ac847f15dac264d88b2f2daf013a8d6",
+        "status": "reference",
+        "span": {
+          "start": 14,
+          "end": 41,
+          "text": "claude.txt|Ask Claude: why?"
+        }
+      },
+      "binder_status": "bound_composite",
+      "binder_candidates": [
+        {
+          "start": 14,
+          "end": 40,
+          "rule": "literal_filename_pipe_content",
+          "text": "claude.txt|Ask Claude: why"
+        }
+      ],
+      "bound_call": {
+        "tool": "yuki_write",
+        "arguments": {
+          "filename_and_content": "claude.txt|Ask Claude: why"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": false,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-02",
+      "family": "composite_boundary",
+      "request": "Append exactly notes.txt|handle this exact question: later to Yuki's file.",
+      "annotation": {
+        "case_id": "boundary-yuki-02",
+        "tool": "yuki_append",
+        "argument_name": "filename_and_content",
+        "raw_request_sha256": "2858bb20dc6e741f622fa6ff534ec5f9eb3c60c12ba4a7e53c342baf1683958a",
+        "status": "reference",
+        "span": {
+          "start": 15,
+          "end": 58,
+          "text": "notes.txt|handle this exact question: later"
+        }
+      },
+      "binder_status": "bound_composite",
+      "binder_candidates": [
+        {
+          "start": 15,
+          "end": 58,
+          "rule": "literal_filename_pipe_content",
+          "text": "notes.txt|handle this exact question: later"
+        }
+      ],
+      "bound_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "notes.txt|handle this exact question: later"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-03",
+      "family": "filename_boundary",
+      "request": "Read my Yuki notes file Ask Claude notes.txt.",
+      "annotation": {
+        "case_id": "boundary-yuki-03",
+        "tool": "yuki_read",
+        "argument_name": "filename",
+        "raw_request_sha256": "298afc74dfbf5aca59cd724f6d16f00e5cb228b27cba8fce934829593994c3ae",
+        "status": "reference",
+        "span": {
+          "start": 24,
+          "end": 44,
+          "text": "Ask Claude notes.txt"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 24,
+          "end": 44,
+          "rule": "yuki_filename",
+          "text": "Ask Claude notes.txt"
+        }
+      ],
+      "bound_call": {
+        "tool": "yuki_read",
+        "arguments": {
+          "filename": "Ask Claude notes.txt"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-04",
+      "family": "filename_boundary",
+      "request": "Delete Handle This Exact Question.md from Yuki's folder.",
+      "annotation": {
+        "case_id": "boundary-yuki-04",
+        "tool": "yuki_delete",
+        "argument_name": "filename",
+        "raw_request_sha256": "e4019c7aef6ca6aa66d0fb1542e30356726c2339a006b640e8a785e84a96787c",
+        "status": "reference",
+        "span": {
+          "start": 7,
+          "end": 36,
+          "text": "Handle This Exact Question.md"
+        }
+      },
+      "binder_status": "bound",
+      "binder_candidates": [
+        {
+          "start": 7,
+          "end": 36,
+          "rule": "yuki_filename",
+          "text": "Handle This Exact Question.md"
+        }
+      ],
+      "bound_call": {
+        "tool": "yuki_delete",
+        "arguments": {
+          "filename": "Handle This Exact Question.md"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-05",
+      "family": "composite_boundary",
+      "request": "Create Yuki file task.txt with this exact payload: task.txt|Claude: review A:B",
+      "annotation": {
+        "case_id": "boundary-yuki-05",
+        "tool": "yuki_write",
+        "argument_name": "filename_and_content",
+        "raw_request_sha256": "9fb51a8e09b71665aa3ba8fcf9d25fd6421853d1517bb1dd2c013fe7d1300708",
+        "status": "reference",
+        "span": {
+          "start": 51,
+          "end": 78,
+          "text": "task.txt|Claude: review A:B"
+        }
+      },
+      "binder_status": "bound_composite",
+      "binder_candidates": [
+        {
+          "start": 51,
+          "end": 78,
+          "rule": "literal_filename_pipe_content",
+          "text": "task.txt|Claude: review A:B"
+        }
+      ],
+      "bound_call": {
+        "tool": "yuki_write",
+        "arguments": {
+          "filename_and_content": "task.txt|Claude: review A:B"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    },
+    {
+      "case_id": "boundary-yuki-06",
+      "family": "composite_boundary",
+      "request": "Add this exact payload to a Yuki file: log.txt|Claude — keep this",
+      "annotation": {
+        "case_id": "boundary-yuki-06",
+        "tool": "yuki_append",
+        "argument_name": "filename_and_content",
+        "raw_request_sha256": "f6c2f9e60a66785bcbf4af96af7c7fbe16144259d44daecb8932a43be638d680",
+        "status": "reference",
+        "span": {
+          "start": 39,
+          "end": 65,
+          "text": "log.txt|Claude — keep this"
+        }
+      },
+      "binder_status": "bound_composite",
+      "binder_candidates": [
+        {
+          "start": 39,
+          "end": 65,
+          "rule": "literal_filename_pipe_content",
+          "text": "log.txt|Claude — keep this"
+        }
+      ],
+      "bound_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "log.txt|Claude — keep this"
+        }
+      },
+      "source_copy_valid": true,
+      "schema_valid": true,
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "literal_exact": true,
+      "execution": {
+        "capability": false,
+        "executed": false,
+        "status": "not_available"
+      }
+    }
+  ]
+}

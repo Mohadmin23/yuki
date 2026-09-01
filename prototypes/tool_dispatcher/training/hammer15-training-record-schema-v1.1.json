@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.yuki/hammer15-training-record-schema-v1.1.json",
+  "title": "Yuki Hammer 1.5B training record v1.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_version", "model_visible", "metadata"],
+  "properties": {
+    "record_version": {"const": "hammer15-training-record-v1.1"},
+    "model_visible": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt", "assistant_target"],
+      "properties": {
+        "prompt": {"type": "string", "minLength": 1},
+        "assistant_target": {"type": "string", "pattern": "^```\\n\\["}
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_id",
+        "raw_user_request",
+        "expected_tool",
+        "expected_arguments",
+        "runtime_arguments",
+        "argument_contract_version",
+        "argument_mode",
+        "training_argument_profile",
+        "category",
+        "confusion_family",
+        "linguistic_features",
+        "offered_tools",
+        "literal_source",
+        "semantic_target",
+        "difficulty",
+        "prompt_profile",
+        "prompt_schema_sha256",
+        "generation_provenance",
+        "leakage_check",
+        "validation"
+      ],
+      "properties": {
+        "record_id": {"type": "string", "pattern": "^h15-pilot-v1\\.1-[0-9]{3}$"},
+        "raw_user_request": {"type": "string", "minLength": 1},
+        "expected_tool": {"type": ["string", "null"]},
+        "expected_arguments": {"type": "object"},
+        "runtime_arguments": {"type": "object"},
+        "argument_contract_version": {"const": "yuki-argument-contract-v1"},
+        "argument_mode": {
+          "enum": ["literal_source", "semantic_argument", "no_argument", "reject"]
+        },
+        "training_argument_profile": {"const": "structured-yuki-file-content-v1"},
+        "category": {
+          "enum": [
+            "ontology_confusion",
+            "literal_preservation",
+            "semantic_argument",
+            "ordinary_easy",
+            "adversarial_edge"
+          ]
+        },
+        "confusion_family": {"type": ["string", "null"]},
+        "linguistic_features": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "terse_fragment",
+              "pronoun_context",
+              "correction",
+              "clause_reordering",
+              "implicit_intent",
+              "casual",
+              "typo",
+              "punctuation_variation",
+              "multi_clause",
+              "distractor_noun",
+              "negative_contrast",
+              "shorthand",
+              "contraction"
+            ]
+          }
+        },
+        "offered_tools": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        },
+        "literal_source": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/literalSource"}
+          ]
+        },
+        "semantic_target": {
+          "oneOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/semanticTarget"}
+          ]
+        },
+        "difficulty": {"enum": ["easy", "medium", "hard"]},
+        "prompt_profile": {"const": "hammer21-yuki-typed-a1-ontology-structured-files-v1.1"},
+        "prompt_schema_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "generation_provenance": {"$ref": "#/$defs/provenance"},
+        "leakage_check": {"$ref": "#/$defs/leakage"},
+        "validation": {"$ref": "#/$defs/validation"}
+      }
+    }
+  },
+  "$defs": {
+    "span": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["component", "start", "end", "text"],
+      "properties": {
+        "component": {"type": "string"},
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 1},
+        "text": {"type": "string"}
+      }
+    },
+    "literalSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "spans", "deterministic_separator", "reconstructed_value"],
+      "properties": {
+        "field": {"type": "string"},
+        "spans": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/span"}
+        },
+        "deterministic_separator": {"type": ["string", "null"]},
+        "reconstructed_value": {"type": "string"}
+      }
+    },
+    "semanticTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "canonical_value", "accepted_alternatives"],
+      "properties": {
+        "field": {"type": "string"},
+        "canonical_value": {"type": "string"},
+        "accepted_alternatives": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generator", "seed", "source_id", "parent_record_version", "template_family", "authorship"],
+      "properties": {
+        "generator": {"const": "hammer15-pilot-builder-v1.1"},
+        "seed": {"type": "integer"},
+        "source_id": {"type": "string"},
+        "parent_record_version": {"const": "hammer15-training-record-v1"},
+        "template_family": {"type": "string"},
+        "authorship": {"const": "hand-authored-scenario-catalog"}
+      }
+    },
+    "leakage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["checker_version", "status", "flags", "closest_case_id", "signals"],
+      "properties": {
+        "checker_version": {"const": "sacred450-leakage-v1"},
+        "status": {"enum": ["pass", "review", "reject"]},
+        "flags": {"type": "array", "items": {"type": "string"}},
+        "closest_case_id": {"type": ["string", "null"]},
+        "signals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "normalized_exact",
+            "character_similarity",
+            "token_jaccard",
+            "trigram_jaccard",
+            "same_tool_literal_payload_match",
+            "same_tool_literal_payload_similarity"
+          ],
+          "properties": {
+            "normalized_exact": {"type": "boolean"},
+            "character_similarity": {"type": "number"},
+            "token_jaccard": {"type": "number"},
+            "trigram_jaccard": {"type": "number"},
+            "same_tool_literal_payload_match": {"type": "boolean"},
+            "same_tool_literal_payload_similarity": {"type": "number"}
+          }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["validator_version", "passed", "errors"],
+      "properties": {
+        "validator_version": {"const": "hammer15-training-validator-v1.1"},
+        "passed": {"type": "boolean"},
+        "errors": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

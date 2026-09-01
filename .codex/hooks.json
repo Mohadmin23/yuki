@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash '/Users/mohamedlaminemennane/llama-voice-assist/.codex/hooks/ruff-check.sh'",
+            "timeout": 60,
+            "statusMessage": "Linting edited file with ruff..."
+          }
+        ]
+      }
+    ]
+  }
+}

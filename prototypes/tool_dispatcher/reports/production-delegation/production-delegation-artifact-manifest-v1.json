@@ -1,0 +1,112 @@
+{
+  "version": "production-delegation-artifact-manifest-v1",
+  "main_brain_is_temporary_surrogate": true,
+  "main_brain_label": "Qwen3-14B-MLX-4bit temporary main-brain surrogate",
+  "files": {
+    "derived_dataset": {
+      "path": "production-delegation-source-v1.json",
+      "sha256": "ea6711ce0548d3771166f8f2f9a5e59ebd73acb14a9ddf7ecbf2f6589f1744c3",
+      "bytes": 309701
+    },
+    "stage_a": {
+      "path": "reports/production-delegation/stage-a/production-delegation-mainbrain-qwen3-14b-surrogate-fallback180-v1.json",
+      "sha256": "ebd4260d372e238960a2afea993bd149b8ad264bd486d633ec1c4283e5936569",
+      "bytes": 577561
+    },
+    "hammer_1_5b": {
+      "path": "reports/production-delegation/stage-b/production-delegation-hammer1.5b-qwen3-14b-surrogate-fallback180-v1.json",
+      "sha256": "68b7219cfb7bcd8538dc42724d1d4536e09862bebf1b6213e51e0b1644f78b1c",
+      "bytes": 1146912
+    },
+    "hammer_3b": {
+      "path": "reports/production-delegation/stage-b/production-delegation-hammer3b-qwen3-14b-surrogate-fallback180-v1.json",
+      "sha256": "1b1407c1a78e34f74c0a032d93149192fa02b14c4cacfe809bd477ed7b07ca0f",
+      "bytes": 1147084
+    },
+    "no_verbatim": {
+      "path": "reports/production-delegation/ablations/hammer1.5b-no-verbatim-fallback180-v1.json",
+      "sha256": "d8991f1f462258a8f47aff4033fd20ed2cf153875aefe41d7d253764c9e2a958",
+      "bytes": 1176403
+    },
+    "raw_generated": {
+      "path": "reports/production-delegation/ablations/hammer1.5b-raw-user-generated-domain-fallback180-v1.json",
+      "sha256": "b89431070754aa8b7ecb3c35eba977d69b67e3ec981cd72448ba17e6df347225",
+      "bytes": 1169187
+    },
+    "raw_gold": {
+      "path": "reports/production-delegation/ablations/hammer1.5b-raw-user-gold-domain-fallback180-v1.json",
+      "sha256": "ffc437860dc2ffa51187881ddbd3d9625abe764b5224aecc358ef01007367d69",
+      "bytes": 1206327
+    },
+    "phase2_hammer_3b": {
+      "path": "reports/phase2/hammer3b-phase2.json",
+      "sha256": "ac97c2b51be690e7e318a30370102bf352daa5c74ed255d220c48d4ffcb85ae3",
+      "bytes": 2039700
+    },
+    "oracle": {
+      "path": "reports/oracle/hammer21-targeted-oracle-comparison.json",
+      "sha256": "c98a3c89ef29f9ab69754928cd4c2b2788de3d83241e66e7c7a1438dddc0e25b",
+      "bytes": 48154
+    },
+    "comparison": {
+      "path": "reports/production-delegation/production-delegation-comparison-v1.json",
+      "sha256": "8323134162bd2385c16a896f2a81340a2bee18bdb5bb43505fe727e49b96a348",
+      "bytes": 104864
+    },
+    "human_report": {
+      "path": "reports/production-delegation/PRODUCTION-DELEGATION-REPORT.md",
+      "sha256": "e7fb05737322b5cf58e1ad7b4a1d0fba2f0336ac9664541e1b6cbe2db462c1ad",
+      "bytes": 12126
+    },
+    "source_delegation_contract": {
+      "path": "delegation_contract.py",
+      "sha256": "54b4a30ade092e23bcccbc6ec5c9a68015b9b33419d76af46e5a175cbf5bea18",
+      "bytes": 8493
+    },
+    "source_mainbrain_runner": {
+      "path": "delegation_mainbrain.py",
+      "sha256": "4c9fc2ceb6d965ddbac62da3ba9e89aef8e16cf4762f8637aec343d508609bb3",
+      "bytes": 19095
+    },
+    "source_validation_dispatcher": {
+      "path": "delegation_dispatcher.py",
+      "sha256": "e31b19778996eda0fe1bd153d3e30778b742e60d8c60a1982f98d3aecd6fa322",
+      "bytes": 22220
+    },
+    "source_dataset_builder": {
+      "path": "build_production_delegation_dataset.py",
+      "sha256": "ca982a799d0027fff64cbd59123cbc7fedf5c813e8e10b8c85ba4e12b2fc329d",
+      "bytes": 6628
+    },
+    "tests": {
+      "path": "tests/test_production_delegation.py",
+      "sha256": "b73aff5cd88dc6112d742ae6dc064b5b849992be28692f12e00ad8d238510f60",
+      "bytes": 10411
+    },
+    "failures_production-delegation-hammer1.5b-qwen3-14b-surrogate-fallback180-v1-failures": {
+      "path": "reports/production-delegation/stage-b/production-delegation-hammer1.5b-qwen3-14b-surrogate-fallback180-v1-failures.jsonl",
+      "sha256": "c556769bd8ae89caa74870016f6cdc3b674476f1b22a7f11fbc6f2e06b1c5dc7",
+      "bytes": 195560
+    },
+    "failures_production-delegation-hammer3b-qwen3-14b-surrogate-fallback180-v1-failures": {
+      "path": "reports/production-delegation/stage-b/production-delegation-hammer3b-qwen3-14b-surrogate-fallback180-v1-failures.jsonl",
+      "sha256": "05066efdbeaafc1fd2e450e734ff228b85da98135c4ade9f1ceda620b02facc2",
+      "bytes": 203922
+    },
+    "failures_hammer1.5b-no-verbatim-fallback180-v1-failures": {
+      "path": "reports/production-delegation/ablations/hammer1.5b-no-verbatim-fallback180-v1-failures.jsonl",
+      "sha256": "1c9fd1a2a377b3ed2fa41621f68f24fe177b5dbb409b6875e45216f1d1ec9220",
+      "bytes": 607243
+    },
+    "failures_hammer1.5b-raw-user-generated-domain-fallback180-v1-failures": {
+      "path": "reports/production-delegation/ablations/hammer1.5b-raw-user-generated-domain-fallback180-v1-failures.jsonl",
+      "sha256": "51096a6b67dfc019de074a2e5b5a90bbd2e39b5d7f2b0c226744bbdab2e5cd60",
+      "bytes": 276493
+    },
+    "failures_hammer1.5b-raw-user-gold-domain-fallback180-v1-failures": {
+      "path": "reports/production-delegation/ablations/hammer1.5b-raw-user-gold-domain-fallback180-v1-failures.jsonl",
+      "sha256": "d9ef32d0818eb5fdb652b8cca554b248776c8c6d475a16bc7f350cc214976fed",
+      "bytes": 225221
+    }
+  }
+}

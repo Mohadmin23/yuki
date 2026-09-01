@@ -1,0 +1,2577 @@
+{
+  "version": "qwen38-verbatim-repair-old-vs-new-v1",
+  "status": "completed_negative_result",
+  "model": "qwen/qwen3.8-27b",
+  "old_delegations_sha256": "2a4771e9adc5c84d94b704b01a320e147dce361b8d9b98eb4487733e2475901d",
+  "new_delegations_sha256": "46a0144eaffd33a077d73b2fc3f755c364226717ced005f3b4de32981019c756",
+  "old": {
+    "metrics": {
+      "cases": 75,
+      "valid_json_rate": 1,
+      "domain_accuracy": 0.9866666666666667,
+      "verbatim_recall": 0.6133333333333333,
+      "verbatim_precision": 0.6133333333333333,
+      "exact_character_preservation_rate": 0.6133333333333333,
+      "final_tool_leakage_rate": 0,
+      "average_latency_ms": 2696.78648,
+      "average_generated_tokens": 31.30666666666667,
+      "api_cost_usd": 0.02279565
+    },
+    "by_tool": {
+      "search": {
+        "cases": 25,
+        "valid_json_rate": 1,
+        "domain_accuracy": 0.96,
+        "verbatim_recall": 0.6,
+        "verbatim_precision": 0.6,
+        "exact_character_preservation_rate": 0.6,
+        "final_tool_leakage_rate": 0,
+        "average_latency_ms": 2082.17948,
+        "average_generated_tokens": 27.6,
+        "api_cost_usd": 0.0072832
+      },
+      "image": {
+        "cases": 25,
+        "valid_json_rate": 1,
+        "domain_accuracy": 1,
+        "verbatim_recall": 0.6,
+        "verbatim_precision": 0.6,
+        "exact_character_preservation_rate": 0.6,
+        "final_tool_leakage_rate": 0,
+        "average_latency_ms": 2961.893,
+        "average_generated_tokens": 31.16,
+        "api_cost_usd": 0.0076022
+      },
+      "ask_claude": {
+        "cases": 25,
+        "valid_json_rate": 1,
+        "domain_accuracy": 1,
+        "verbatim_recall": 0.64,
+        "verbatim_precision": 0.64,
+        "exact_character_preservation_rate": 0.64,
+        "final_tool_leakage_rate": 0,
+        "average_latency_ms": 3046.28696,
+        "average_generated_tokens": 35.16,
+        "api_cost_usd": 0.00791025
+      }
+    },
+    "failure_count": 29,
+    "classification_is_nonexclusive": true,
+    "classification_counts": {
+      "exact_payload_appears_only_in_request": 16,
+      "partially_copied": 15,
+      "omitted_from_verbatim": 12,
+      "punctuation_changed": 2,
+      "quotes_removed_or_changed": 6,
+      "single_payload_incorrectly_split": 3,
+      "paraphrased": 2,
+      "normalized": 1
+    },
+    "failures": [
+      {
+        "case_id": "p2-search-01",
+        "expected_tool": "search",
+        "raw_user_request": "Search the web for the latest MLX documentation.",
+        "required_verbatim": [
+          "latest MLX documentation"
+        ],
+        "delegation": {
+          "request": "Search the web for the latest MLX documentation",
+          "domain_hint": "information",
+          "verbatim": [
+            "MLX documentation"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-search-03",
+        "expected_tool": "search",
+        "raw_user_request": "Search for current Python 3.14 release notes.",
+        "required_verbatim": [
+          "current Python 3.14 release notes"
+        ],
+        "delegation": {
+          "request": "Search the web for the current Python 3.14 release notes",
+          "domain_hint": "information",
+          "verbatim": [
+            "Python 3.14 release notes"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-search-06",
+        "expected_tool": "search",
+        "raw_user_request": "Find recent articles about JSON schema decoding.",
+        "required_verbatim": [
+          "recent articles about JSON schema decoding"
+        ],
+        "delegation": {
+          "request": "Find recent articles about JSON schema decoding",
+          "domain_hint": "information",
+          "verbatim": [
+            "JSON schema decoding"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-search-08",
+        "expected_tool": "search",
+        "raw_user_request": "Look up how APFS handles case-sensitive paths.",
+        "required_verbatim": [
+          "how APFS handles case-sensitive paths"
+        ],
+        "delegation": {
+          "request": "Find web information about how APFS handles case-sensitive paths",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-10",
+        "expected_tool": "search",
+        "raw_user_request": "Find the official Rust async book.",
+        "required_verbatim": [
+          "official Rust async book"
+        ],
+        "delegation": {
+          "request": "Find the official Rust async book",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-12",
+        "expected_tool": "search",
+        "raw_user_request": "Can you dig up recent notes on MLX-LM streaming?",
+        "required_verbatim": [
+          "recent notes on MLX-LM streaming"
+        ],
+        "delegation": {
+          "request": "retrieve recent stored notes about MLX-LM streaming",
+          "domain_hint": "memory",
+          "verbatim": [
+            "MLX-LM streaming"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-search-16",
+        "expected_tool": "search",
+        "raw_user_request": "Could you research deterministic JSON generation locally?",
+        "required_verbatim": [
+          "deterministic JSON generation locally"
+        ],
+        "delegation": {
+          "request": "research deterministic JSON generation locally",
+          "domain_hint": "information",
+          "verbatim": [
+            "deterministic JSON generation"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-search-19",
+        "expected_tool": "search",
+        "raw_user_request": "Find a website explaining URL fragments; there is no exact URL to fetch.",
+        "required_verbatim": [
+          "website explaining URL fragments"
+        ],
+        "delegation": {
+          "request": "Search the web for a website explaining URL fragments",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-23",
+        "expected_tool": "search",
+        "raw_user_request": "Keep this query intact: site:huggingface.co \"Hammer2.1-3b\" function calling",
+        "required_verbatim": [
+          "site:huggingface.co \"Hammer2.1-3b\" function calling"
+        ],
+        "delegation": {
+          "request": "Search the web for the exact query about Hammer2.1-3b function calling on Hugging Face",
+          "domain_hint": "information",
+          "verbatim": [
+            "site:huggingface.co",
+            "Hammer2.1-3b",
+            "function calling"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "punctuation_changed",
+          "quotes_removed_or_changed",
+          "single_payload_incorrectly_split"
+        ]
+      },
+      {
+        "case_id": "p2-search-24",
+        "expected_tool": "search",
+        "raw_user_request": "Use the exact query foo_bar() \"KeyError: x-y\"",
+        "required_verbatim": [
+          "foo_bar() \"KeyError: x-y\""
+        ],
+        "delegation": {
+          "request": "search for the exact query",
+          "domain_hint": "information",
+          "verbatim": [
+            "foo_bar()",
+            "KeyError: x-y"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "punctuation_changed",
+          "quotes_removed_or_changed",
+          "single_payload_incorrectly_split"
+        ]
+      },
+      {
+        "case_id": "p2-image-03",
+        "expected_tool": "image",
+        "raw_user_request": "Make artwork showing a tiny robot watering sunflowers.",
+        "required_verbatim": [
+          "tiny robot watering sunflowers"
+        ],
+        "delegation": {
+          "request": "Create visual artwork of a tiny robot watering sunflowers",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-image-05",
+        "expected_tool": "image",
+        "raw_user_request": "Create an image of a glass city floating above clouds.",
+        "required_verbatim": [
+          "glass city floating above clouds"
+        ],
+        "delegation": {
+          "request": "create a visual artwork of a glass city floating above clouds",
+          "domain_hint": "media",
+          "verbatim": [
+            "a glass city floating above clouds"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-06",
+        "expected_tool": "image",
+        "raw_user_request": "Render a cozy pixel-art kitchen in winter.",
+        "required_verbatim": [
+          "cozy pixel-art kitchen in winter"
+        ],
+        "delegation": {
+          "request": "create a cozy pixel-art kitchen in winter",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-image-07",
+        "expected_tool": "image",
+        "raw_user_request": "Make a poster of an astronaut playing cello on Mars.",
+        "required_verbatim": [
+          "astronaut playing cello on Mars"
+        ],
+        "delegation": {
+          "request": "Create a visual poster of an astronaut playing cello on Mars",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-image-09",
+        "expected_tool": "image",
+        "raw_user_request": "Create a cinematic desert train at sunset.",
+        "required_verbatim": [
+          "cinematic desert train at sunset"
+        ],
+        "delegation": {
+          "request": "create a cinematic desert train at sunset",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-image-10",
+        "expected_tool": "image",
+        "raw_user_request": "Draw a blue dragon curled around a lighthouse.",
+        "required_verbatim": [
+          "blue dragon curled around a lighthouse"
+        ],
+        "delegation": {
+          "request": "create a visual artwork of a blue dragon curled around a lighthouse",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-image-15",
+        "expected_tool": "image",
+        "raw_user_request": "Paint, digitally, a storm moving over lavender fields.",
+        "required_verbatim": [
+          "storm moving over lavender fields"
+        ],
+        "delegation": {
+          "request": "create a digital painting of a storm moving over lavender fields",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-image-17",
+        "expected_tool": "image",
+        "raw_user_request": "Visualize an isometric library inside a teacup.",
+        "required_verbatim": [
+          "isometric library inside a teacup"
+        ],
+        "delegation": {
+          "request": "create a visual artwork of an isometric library inside a teacup",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-image-20",
+        "expected_tool": "image",
+        "raw_user_request": "Make poster artwork containing the words notes.md; do not write a file.",
+        "required_verbatim": [
+          "poster artwork containing the words notes.md"
+        ],
+        "delegation": {
+          "request": "Create poster artwork containing the words notes.md without writing a file",
+          "domain_hint": "media",
+          "verbatim": [
+            "notes.md"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-23",
+        "expected_tool": "image",
+        "raw_user_request": "Preserve punctuation in the prompt: 'Home, 2:17 a.m.' in rainy cyberpunk style",
+        "required_verbatim": [
+          "'Home, 2:17 a.m.' in rainy cyberpunk style"
+        ],
+        "delegation": {
+          "request": "Create a visual artwork in rainy cyberpunk style using the exact prompt text",
+          "domain_hint": "media",
+          "verbatim": [
+            "Home, 2:17 a.m."
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "quotes_removed_or_changed"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-03",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask Claude to inspect this error: KeyError in build_prompt",
+        "required_verbatim": [
+          "inspect this error: KeyError in build_prompt"
+        ],
+        "delegation": {
+          "request": "Delegate an error inspection task to Claude",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "KeyError in build_prompt"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-05",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Have Claude review this idea: cache schemas by domain",
+        "required_verbatim": [
+          "review this idea: cache schemas by domain"
+        ],
+        "delegation": {
+          "request": "Ask Claude to review the idea: cache schemas by domain",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "cache schemas by domain"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-08",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask the other Claude to analyze why the model emitted two calls.",
+        "required_verbatim": [
+          "analyze why the model emitted two calls"
+        ],
+        "delegation": {
+          "request": "delegate analysis of why the model emitted two calls to external Claude",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "why the model emitted two calls"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-10",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Tell Claude to check whether my regex is too broad.",
+        "required_verbatim": [
+          "check whether my regex is too broad"
+        ],
+        "delegation": {
+          "request": "Ask the external agent to check whether the user's regex is too broad",
+          "domain_hint": "external_agent",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-14",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "I want Claude's take on whether these schemas overlap too much.",
+        "required_verbatim": [
+          "whether these schemas overlap too much"
+        ],
+        "delegation": {
+          "request": "Ask Claude whether the provided schemas overlap too much",
+          "domain_hint": "external_agent",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-18",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+        "required_verbatim": [
+          "about Tokyo weather routing; do not use weather directly"
+        ],
+        "delegation": {
+          "request": "Delegate a question about Tokyo weather routing to Claude",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "about Tokyo weather routing"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-20",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Send Claude the shell-review task: is `cat \"/tmp/a b\"` safe? Do not execute it.",
+        "required_verbatim": [
+          "is `cat \"/tmp/a b\"` safe? Do not execute it."
+        ],
+        "delegation": {
+          "request": "Delegate a shell-review question to Claude asking whether the command is safe, without executing it",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "is `cat /tmp/a b` safe?"
+          ]
+        },
+        "classification_flags": [
+          "paraphrased",
+          "quotes_removed_or_changed"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-21",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask Claude to discuss notes.md versus Yuki files; don't read either file.",
+        "required_verbatim": [
+          "discuss notes.md versus Yuki files; don't read either file"
+        ],
+        "delegation": {
+          "request": "Delegate a discussion comparing notes.md and Yuki files to an external agent without reading either file",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "notes.md",
+            "Yuki files"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "quotes_removed_or_changed",
+          "single_payload_incorrectly_split"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-25",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "delegate... maybe to Claude? exact payload: Why did it output {\"tool\":null}?",
+        "required_verbatim": [
+          "Why did it output {\"tool\":null}?"
+        ],
+        "delegation": {
+          "request": "Delegate the exact question to an external reasoning agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "Why did it output {&quot;tool&quot;:null}?"
+          ]
+        },
+        "classification_flags": [
+          "paraphrased",
+          "quotes_removed_or_changed",
+          "normalized"
+        ]
+      }
+    ]
+  },
+  "new": {
+    "metrics": {
+      "cases": 75,
+      "valid_json_rate": 1,
+      "domain_accuracy": 0.9733333333333334,
+      "verbatim_recall": 0.5333333333333333,
+      "verbatim_precision": 0.5266666666666666,
+      "exact_character_preservation_rate": 0.5333333333333333,
+      "final_tool_leakage_rate": 0,
+      "average_latency_ms": 1321.52632,
+      "average_generated_tokens": 30.08,
+      "api_cost_usd": 0.0219556
+    },
+    "by_tool": {
+      "search": {
+        "cases": 25,
+        "valid_json_rate": 1,
+        "domain_accuracy": 0.92,
+        "verbatim_recall": 0.48,
+        "verbatim_precision": 0.48,
+        "exact_character_preservation_rate": 0.48,
+        "final_tool_leakage_rate": 0,
+        "average_latency_ms": 966.70932,
+        "average_generated_tokens": 27,
+        "api_cost_usd": 0.0057662
+      },
+      "image": {
+        "cases": 25,
+        "valid_json_rate": 1,
+        "domain_accuracy": 1,
+        "verbatim_recall": 0.52,
+        "verbatim_precision": 0.5,
+        "exact_character_preservation_rate": 0.52,
+        "final_tool_leakage_rate": 0,
+        "average_latency_ms": 1101.10568,
+        "average_generated_tokens": 28.6,
+        "api_cost_usd": 0.0064902
+      },
+      "ask_claude": {
+        "cases": 25,
+        "valid_json_rate": 1,
+        "domain_accuracy": 1,
+        "verbatim_recall": 0.6,
+        "verbatim_precision": 0.6,
+        "exact_character_preservation_rate": 0.6,
+        "final_tool_leakage_rate": 0,
+        "average_latency_ms": 1896.76396,
+        "average_generated_tokens": 34.64,
+        "api_cost_usd": 0.0096992
+      }
+    },
+    "failure_count": 36,
+    "classification_is_nonexclusive": true,
+    "classification_counts": {
+      "omitted_from_verbatim": 11,
+      "exact_payload_appears_only_in_request": 11,
+      "partially_copied": 22,
+      "punctuation_changed": 7,
+      "quotes_removed_or_changed": 4,
+      "single_payload_incorrectly_split": 2,
+      "unnecessary_material_in_verbatim": 1,
+      "paraphrased": 2,
+      "normalized": 1
+    },
+    "failures": [
+      {
+        "case_id": "p2-search-01",
+        "expected_tool": "search",
+        "raw_user_request": "Search the web for the latest MLX documentation.",
+        "required_verbatim": [
+          "latest MLX documentation"
+        ],
+        "delegation": {
+          "request": "Search the web for the latest MLX documentation",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-02",
+        "expected_tool": "search",
+        "raw_user_request": "Find information about Apple Silicon unified memory.",
+        "required_verbatim": [
+          "Apple Silicon unified memory"
+        ],
+        "delegation": {
+          "request": "Find web information about Apple Silicon unified memory",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-03",
+        "expected_tool": "search",
+        "raw_user_request": "Search for current Python 3.14 release notes.",
+        "required_verbatim": [
+          "current Python 3.14 release notes"
+        ],
+        "delegation": {
+          "request": "Search the web for the current Python 3.14 release notes",
+          "domain_hint": "information",
+          "verbatim": [
+            "Python 3.14 release notes"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-search-06",
+        "expected_tool": "search",
+        "raw_user_request": "Find recent articles about JSON schema decoding.",
+        "required_verbatim": [
+          "recent articles about JSON schema decoding"
+        ],
+        "delegation": {
+          "request": "Search the web for recent articles about JSON schema decoding",
+          "domain_hint": "information",
+          "verbatim": [
+            "JSON schema decoding"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-search-08",
+        "expected_tool": "search",
+        "raw_user_request": "Look up how APFS handles case-sensitive paths.",
+        "required_verbatim": [
+          "how APFS handles case-sensitive paths"
+        ],
+        "delegation": {
+          "request": "Find web information about how APFS handles case-sensitive paths",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-09",
+        "expected_tool": "search",
+        "raw_user_request": "Search for open-source tool-calling datasets.",
+        "required_verbatim": [
+          "open-source tool-calling datasets"
+        ],
+        "delegation": {
+          "request": "Search the web for open-source tool-calling datasets",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-10",
+        "expected_tool": "search",
+        "raw_user_request": "Find the official Rust async book.",
+        "required_verbatim": [
+          "official Rust async book"
+        ],
+        "delegation": {
+          "request": "Find the official Rust async book",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-12",
+        "expected_tool": "search",
+        "raw_user_request": "Can you dig up recent notes on MLX-LM streaming?",
+        "required_verbatim": [
+          "recent notes on MLX-LM streaming"
+        ],
+        "delegation": {
+          "request": "retrieve previously stored user notes about MLX-LM streaming",
+          "domain_hint": "memory",
+          "verbatim": [
+            "MLX-LM streaming"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-search-16",
+        "expected_tool": "search",
+        "raw_user_request": "Could you research deterministic JSON generation locally?",
+        "required_verbatim": [
+          "deterministic JSON generation locally"
+        ],
+        "delegation": {
+          "request": "Research deterministic JSON generation using local resources",
+          "domain_hint": "computer",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim"
+        ]
+      },
+      {
+        "case_id": "p2-search-19",
+        "expected_tool": "search",
+        "raw_user_request": "Find a website explaining URL fragments; there is no exact URL to fetch.",
+        "required_verbatim": [
+          "website explaining URL fragments"
+        ],
+        "delegation": {
+          "request": "Search the web for a website explaining URL fragments",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-21",
+        "expected_tool": "search",
+        "raw_user_request": "Look up Claude tool-use documentation; do not delegate to Claude.",
+        "required_verbatim": [
+          "Claude tool-use documentation"
+        ],
+        "delegation": {
+          "request": "Find web information about Claude tool-use documentation",
+          "domain_hint": "information",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim",
+          "exact_payload_appears_only_in_request"
+        ]
+      },
+      {
+        "case_id": "p2-search-23",
+        "expected_tool": "search",
+        "raw_user_request": "Keep this query intact: site:huggingface.co \"Hammer2.1-3b\" function calling",
+        "required_verbatim": [
+          "site:huggingface.co \"Hammer2.1-3b\" function calling"
+        ],
+        "delegation": {
+          "request": "Search the web using the supplied query",
+          "domain_hint": "information",
+          "verbatim": [
+            "site:huggingface.co",
+            "Hammer2.1-3b",
+            "function calling"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "punctuation_changed",
+          "quotes_removed_or_changed",
+          "single_payload_incorrectly_split"
+        ]
+      },
+      {
+        "case_id": "p2-search-24",
+        "expected_tool": "search",
+        "raw_user_request": "Use the exact query foo_bar() \"KeyError: x-y\"",
+        "required_verbatim": [
+          "foo_bar() \"KeyError: x-y\""
+        ],
+        "delegation": {
+          "request": "Search using the supplied exact query",
+          "domain_hint": "information",
+          "verbatim": [
+            "foo_bar()",
+            "KeyError: x-y"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "punctuation_changed",
+          "quotes_removed_or_changed",
+          "single_payload_incorrectly_split"
+        ]
+      },
+      {
+        "case_id": "p2-image-02",
+        "expected_tool": "image",
+        "raw_user_request": "Create a picture of a watercolor lighthouse at dawn.",
+        "required_verbatim": [
+          "watercolor lighthouse at dawn"
+        ],
+        "delegation": {
+          "request": "Generate an image with the supplied description",
+          "domain_hint": "media",
+          "verbatim": [
+            "a watercolor lighthouse at dawn"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-03",
+        "expected_tool": "image",
+        "raw_user_request": "Make artwork showing a tiny robot watering sunflowers.",
+        "required_verbatim": [
+          "tiny robot watering sunflowers"
+        ],
+        "delegation": {
+          "request": "Generate visual artwork with the supplied description",
+          "domain_hint": "media",
+          "verbatim": [
+            "a tiny robot watering sunflowers"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-05",
+        "expected_tool": "image",
+        "raw_user_request": "Create an image of a glass city floating above clouds.",
+        "required_verbatim": [
+          "glass city floating above clouds"
+        ],
+        "delegation": {
+          "request": "Generate an image with the supplied description",
+          "domain_hint": "media",
+          "verbatim": [
+            "a glass city floating above clouds"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-06",
+        "expected_tool": "image",
+        "raw_user_request": "Render a cozy pixel-art kitchen in winter.",
+        "required_verbatim": [
+          "cozy pixel-art kitchen in winter"
+        ],
+        "delegation": {
+          "request": "Generate an image with the supplied description",
+          "domain_hint": "media",
+          "verbatim": [
+            "a cozy pixel-art kitchen in winter"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-07",
+        "expected_tool": "image",
+        "raw_user_request": "Make a poster of an astronaut playing cello on Mars.",
+        "required_verbatim": [
+          "astronaut playing cello on Mars"
+        ],
+        "delegation": {
+          "request": "generate a poster image with the supplied description",
+          "domain_hint": "media",
+          "verbatim": [
+            "an astronaut playing cello on Mars"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-08",
+        "expected_tool": "image",
+        "raw_user_request": "Generate a charcoal sketch of an old cedar tree.",
+        "required_verbatim": [
+          "charcoal sketch of an old cedar tree"
+        ],
+        "delegation": {
+          "request": "Generate a charcoal sketch image using the supplied description",
+          "domain_hint": "media",
+          "verbatim": [
+            "an old cedar tree"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-09",
+        "expected_tool": "image",
+        "raw_user_request": "Create a cinematic desert train at sunset.",
+        "required_verbatim": [
+          "cinematic desert train at sunset"
+        ],
+        "delegation": {
+          "request": "Generate a cinematic image of a desert train at sunset",
+          "domain_hint": "media",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim"
+        ]
+      },
+      {
+        "case_id": "p2-image-10",
+        "expected_tool": "image",
+        "raw_user_request": "Draw a blue dragon curled around a lighthouse.",
+        "required_verbatim": [
+          "blue dragon curled around a lighthouse"
+        ],
+        "delegation": {
+          "request": "generate an image with the supplied description",
+          "domain_hint": "media",
+          "verbatim": [
+            "a blue dragon curled around a lighthouse"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-12",
+        "expected_tool": "image",
+        "raw_user_request": "Could you illustrate a sleepy cat running a ramen shop?",
+        "required_verbatim": [
+          "sleepy cat running a ramen shop"
+        ],
+        "delegation": {
+          "request": "generate an image with the supplied description",
+          "domain_hint": "media",
+          "verbatim": [
+            "a sleepy cat running a ramen shop"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-15",
+        "expected_tool": "image",
+        "raw_user_request": "Paint, digitally, a storm moving over lavender fields.",
+        "required_verbatim": [
+          "storm moving over lavender fields"
+        ],
+        "delegation": {
+          "request": "Generate a digital painting of a storm moving over lavender fields",
+          "domain_hint": "media",
+          "verbatim": [
+            "a storm moving over lavender fields"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-17",
+        "expected_tool": "image",
+        "raw_user_request": "Visualize an isometric library inside a teacup.",
+        "required_verbatim": [
+          "isometric library inside a teacup"
+        ],
+        "delegation": {
+          "request": "Generate an image of an isometric library inside a teacup",
+          "domain_hint": "media",
+          "verbatim": [
+            "an isometric library inside a teacup"
+          ]
+        },
+        "classification_flags": [
+          "exact_payload_appears_only_in_request",
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-image-18",
+        "expected_tool": "image",
+        "raw_user_request": "Generate a camera-shaped sculpture; don't use the real camera.",
+        "required_verbatim": [
+          "camera-shaped sculpture"
+        ],
+        "delegation": {
+          "request": "Generate a visual artwork of a camera-shaped sculpture, explicitly avoiding a real camera",
+          "domain_hint": "media",
+          "verbatim": [
+            "camera-shaped sculpture",
+            "don't use the real camera"
+          ]
+        },
+        "classification_flags": [
+          "unnecessary_material_in_verbatim"
+        ]
+      },
+      {
+        "case_id": "p2-image-20",
+        "expected_tool": "image",
+        "raw_user_request": "Make poster artwork containing the words notes.md; do not write a file.",
+        "required_verbatim": [
+          "poster artwork containing the words notes.md"
+        ],
+        "delegation": {
+          "request": "Generate poster artwork containing the supplied words",
+          "domain_hint": "media",
+          "verbatim": [
+            "notes.md"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-03",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask Claude to inspect this error: KeyError in build_prompt",
+        "required_verbatim": [
+          "inspect this error: KeyError in build_prompt"
+        ],
+        "delegation": {
+          "request": "Send the supplied error description to the external agent for inspection",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "KeyError in build_prompt"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-05",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Have Claude review this idea: cache schemas by domain",
+        "required_verbatim": [
+          "review this idea: cache schemas by domain"
+        ],
+        "delegation": {
+          "request": "Send the supplied idea to the external agent for review",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "cache schemas by domain"
+          ]
+        },
+        "classification_flags": [
+          "partially_copied"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-06",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask Claude whether this test has a race condition.",
+        "required_verbatim": [
+          "whether this test has a race condition"
+        ],
+        "delegation": {
+          "request": "Send the supplied question to the external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "whether this test has a race condition."
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "punctuation_changed"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-08",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask the other Claude to analyze why the model emitted two calls.",
+        "required_verbatim": [
+          "analyze why the model emitted two calls"
+        ],
+        "delegation": {
+          "request": "Send the supplied question to the external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "analyze why the model emitted two calls."
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "punctuation_changed"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-10",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Tell Claude to check whether my regex is too broad.",
+        "required_verbatim": [
+          "check whether my regex is too broad"
+        ],
+        "delegation": {
+          "request": "Send the user's request to the external agent to check whether their regex is too broad",
+          "domain_hint": "external_agent",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-14",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "I want Claude's take on whether these schemas overlap too much.",
+        "required_verbatim": [
+          "whether these schemas overlap too much"
+        ],
+        "delegation": {
+          "request": "Ask the external agent whether the supplied schemas overlap too much.",
+          "domain_hint": "external_agent",
+          "verbatim": []
+        },
+        "classification_flags": [
+          "omitted_from_verbatim"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-18",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+        "required_verbatim": [
+          "about Tokyo weather routing; do not use weather directly"
+        ],
+        "delegation": {
+          "request": "Send the supplied question to the external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "about Tokyo weather routing; do not use weather directly."
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "punctuation_changed"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-20",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Send Claude the shell-review task: is `cat \"/tmp/a b\"` safe? Do not execute it.",
+        "required_verbatim": [
+          "is `cat \"/tmp/a b\"` safe? Do not execute it."
+        ],
+        "delegation": {
+          "request": "Send the supplied shell-review question to the external agent without executing the command",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "is `cat /tmp/a b` safe? Do not execute it."
+          ]
+        },
+        "classification_flags": [
+          "paraphrased",
+          "punctuation_changed",
+          "quotes_removed_or_changed"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-21",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "Ask Claude to discuss notes.md versus Yuki files; don't read either file.",
+        "required_verbatim": [
+          "discuss notes.md versus Yuki files; don't read either file"
+        ],
+        "delegation": {
+          "request": "Send the supplied question to the external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "discuss notes.md versus Yuki files; don't read either file."
+          ]
+        },
+        "classification_flags": [
+          "partially_copied",
+          "punctuation_changed"
+        ]
+      },
+      {
+        "case_id": "p2-ask_claude-25",
+        "expected_tool": "ask_claude",
+        "raw_user_request": "delegate... maybe to Claude? exact payload: Why did it output {\"tool\":null}?",
+        "required_verbatim": [
+          "Why did it output {\"tool\":null}?"
+        ],
+        "delegation": {
+          "request": "Send the supplied question to the external agent",
+          "domain_hint": "external_agent",
+          "verbatim": [
+            "Why did it output {&quot;tool&quot;:null}?"
+          ]
+        },
+        "classification_flags": [
+          "paraphrased",
+          "quotes_removed_or_changed",
+          "normalized"
+        ]
+      }
+    ]
+  },
+  "change_percentage_points": {
+    "valid_json_rate": 0,
+    "domain_accuracy": -1.3333333333333308,
+    "verbatim_recall": -7.9999999999999964,
+    "verbatim_precision": -8.666666666666668,
+    "exact_character_preservation_rate": -7.9999999999999964,
+    "final_tool_leakage_rate": 0
+  },
+  "paired_cases": [
+    {
+      "case_id": "p2-search-01",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "MLX documentation"
+      ],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "latest MLX documentation"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-02",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "Apple Silicon unified memory"
+      ],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "Apple Silicon unified memory"
+      ],
+      "old_exact": true,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-03",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "Python 3.14 release notes"
+      ],
+      "new_verbatim": [
+        "Python 3.14 release notes"
+      ],
+      "required_verbatim": [
+        "current Python 3.14 release notes"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-04",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "Hammer 2.1 function calling results"
+      ],
+      "new_verbatim": [
+        "Hammer 2.1 function calling results"
+      ],
+      "required_verbatim": [
+        "Hammer 2.1 function calling results"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-05",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "best local speech synthesis models"
+      ],
+      "new_verbatim": [
+        "best local speech synthesis models"
+      ],
+      "required_verbatim": [
+        "best local speech synthesis models"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-06",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "JSON schema decoding"
+      ],
+      "new_verbatim": [
+        "JSON schema decoding"
+      ],
+      "required_verbatim": [
+        "recent articles about JSON schema decoding"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-07",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "M1 memory pressure benchmarks"
+      ],
+      "new_verbatim": [
+        "M1 memory pressure benchmarks"
+      ],
+      "required_verbatim": [
+        "M1 memory pressure benchmarks"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-08",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "how APFS handles case-sensitive paths"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-09",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "open-source tool-calling datasets"
+      ],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "open-source tool-calling datasets"
+      ],
+      "old_exact": true,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-10",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "official Rust async book"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-11",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "local LLM routing research"
+      ],
+      "new_verbatim": [
+        "local LLM routing research"
+      ],
+      "required_verbatim": [
+        "local LLM routing research"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-12",
+      "expected_tool": "search",
+      "old_domain": "memory",
+      "new_domain": "memory",
+      "old_verbatim": [
+        "MLX-LM streaming"
+      ],
+      "new_verbatim": [
+        "MLX-LM streaming"
+      ],
+      "required_verbatim": [
+        "recent notes on MLX-LM streaming"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-13",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "compact function-calling models"
+      ],
+      "new_verbatim": [
+        "compact function-calling models"
+      ],
+      "required_verbatim": [
+        "compact function-calling models"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-14",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "Metal GPU utilization"
+      ],
+      "new_verbatim": [
+        "Metal GPU utilization"
+      ],
+      "required_verbatim": [
+        "Metal GPU utilization"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-15",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "Python pathlib expanduser"
+      ],
+      "new_verbatim": [
+        "Python pathlib expanduser"
+      ],
+      "required_verbatim": [
+        "Python pathlib expanduser"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-16",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "computer",
+      "old_verbatim": [
+        "deterministic JSON generation"
+      ],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "deterministic JSON generation locally"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-17",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "macOS unified memory swap behavior"
+      ],
+      "new_verbatim": [
+        "macOS unified memory swap behavior"
+      ],
+      "required_verbatim": [
+        "macOS unified memory swap behavior"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-18",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "Tokyo weather APIs"
+      ],
+      "new_verbatim": [
+        "Tokyo weather APIs"
+      ],
+      "required_verbatim": [
+        "Tokyo weather APIs"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-19",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "website explaining URL fragments"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-20",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "camera calibration guides"
+      ],
+      "new_verbatim": [
+        "camera calibration guides"
+      ],
+      "required_verbatim": [
+        "camera calibration guides"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-21",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "Claude tool-use documentation"
+      ],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "Claude tool-use documentation"
+      ],
+      "old_exact": true,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-22",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "C++ std::filesystem path case-sensitivity"
+      ],
+      "new_verbatim": [
+        "C++ std::filesystem path case-sensitivity"
+      ],
+      "required_verbatim": [
+        "C++ std::filesystem path case-sensitivity"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-search-23",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "site:huggingface.co",
+        "Hammer2.1-3b",
+        "function calling"
+      ],
+      "new_verbatim": [
+        "site:huggingface.co",
+        "Hammer2.1-3b",
+        "function calling"
+      ],
+      "required_verbatim": [
+        "site:huggingface.co \"Hammer2.1-3b\" function calling"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-24",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "foo_bar()",
+        "KeyError: x-y"
+      ],
+      "new_verbatim": [
+        "foo_bar()",
+        "KeyError: x-y"
+      ],
+      "required_verbatim": [
+        "foo_bar() \"KeyError: x-y\""
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-search-25",
+      "expected_tool": "search",
+      "old_domain": "information",
+      "new_domain": "information",
+      "old_verbatim": [
+        "??? macOS swap usage M1 -- 2026"
+      ],
+      "new_verbatim": [
+        "??? macOS swap usage M1 -- 2026"
+      ],
+      "required_verbatim": [
+        "??? macOS swap usage M1 -- 2026"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-01",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "neon fox beneath a rainy sign"
+      ],
+      "new_verbatim": [
+        "neon fox beneath a rainy sign"
+      ],
+      "required_verbatim": [
+        "neon fox beneath a rainy sign"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-02",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "watercolor lighthouse at dawn"
+      ],
+      "new_verbatim": [
+        "a watercolor lighthouse at dawn"
+      ],
+      "required_verbatim": [
+        "watercolor lighthouse at dawn"
+      ],
+      "old_exact": true,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-03",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [],
+      "new_verbatim": [
+        "a tiny robot watering sunflowers"
+      ],
+      "required_verbatim": [
+        "tiny robot watering sunflowers"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-04",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "moonlit anime library"
+      ],
+      "new_verbatim": [
+        "moonlit anime library"
+      ],
+      "required_verbatim": [
+        "moonlit anime library"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-05",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "a glass city floating above clouds"
+      ],
+      "new_verbatim": [
+        "a glass city floating above clouds"
+      ],
+      "required_verbatim": [
+        "glass city floating above clouds"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-06",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [],
+      "new_verbatim": [
+        "a cozy pixel-art kitchen in winter"
+      ],
+      "required_verbatim": [
+        "cozy pixel-art kitchen in winter"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-07",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [],
+      "new_verbatim": [
+        "an astronaut playing cello on Mars"
+      ],
+      "required_verbatim": [
+        "astronaut playing cello on Mars"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-08",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "charcoal sketch of an old cedar tree"
+      ],
+      "new_verbatim": [
+        "an old cedar tree"
+      ],
+      "required_verbatim": [
+        "charcoal sketch of an old cedar tree"
+      ],
+      "old_exact": true,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-09",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "cinematic desert train at sunset"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-10",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [],
+      "new_verbatim": [
+        "a blue dragon curled around a lighthouse"
+      ],
+      "required_verbatim": [
+        "blue dragon curled around a lighthouse"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-11",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "bioluminescent jellyfish over a dark reef"
+      ],
+      "new_verbatim": [
+        "bioluminescent jellyfish over a dark reef"
+      ],
+      "required_verbatim": [
+        "bioluminescent jellyfish over a dark reef"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-12",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "sleepy cat running a ramen shop"
+      ],
+      "new_verbatim": [
+        "a sleepy cat running a ramen shop"
+      ],
+      "required_verbatim": [
+        "sleepy cat running a ramen shop"
+      ],
+      "old_exact": true,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-13",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "paper-cut mountains under a gold moon"
+      ],
+      "new_verbatim": [
+        "paper-cut mountains under a gold moon"
+      ],
+      "required_verbatim": [
+        "paper-cut mountains under a gold moon"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-14",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "retro-futurist bicycle workshop"
+      ],
+      "new_verbatim": [
+        "retro-futurist bicycle workshop"
+      ],
+      "required_verbatim": [
+        "retro-futurist bicycle workshop"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-15",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [],
+      "new_verbatim": [
+        "a storm moving over lavender fields"
+      ],
+      "required_verbatim": [
+        "storm moving over lavender fields"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-16",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "friendly moss-covered forest giant"
+      ],
+      "new_verbatim": [
+        "friendly moss-covered forest giant"
+      ],
+      "required_verbatim": [
+        "friendly moss-covered forest giant"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-17",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [],
+      "new_verbatim": [
+        "an isometric library inside a teacup"
+      ],
+      "required_verbatim": [
+        "isometric library inside a teacup"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-18",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "camera-shaped sculpture"
+      ],
+      "new_verbatim": [
+        "camera-shaped sculpture",
+        "don't use the real camera"
+      ],
+      "required_verbatim": [
+        "camera-shaped sculpture"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-19",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "Tokyo weather icons"
+      ],
+      "new_verbatim": [
+        "Tokyo weather icons"
+      ],
+      "required_verbatim": [
+        "Tokyo weather icons"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-20",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "notes.md"
+      ],
+      "new_verbatim": [
+        "notes.md"
+      ],
+      "required_verbatim": [
+        "poster artwork containing the words notes.md"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-image-21",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "Claude as a brass automaton"
+      ],
+      "new_verbatim": [
+        "Claude as a brass automaton"
+      ],
+      "required_verbatim": [
+        "Claude as a brass automaton"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-22",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "RED fox, blue_sky, 35mm—high contrast!"
+      ],
+      "new_verbatim": [
+        "RED fox, blue_sky, 35mm—high contrast!"
+      ],
+      "required_verbatim": [
+        "RED fox, blue_sky, 35mm—high contrast!"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-23",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "Home, 2:17 a.m."
+      ],
+      "new_verbatim": [
+        "'Home, 2:17 a.m.' in rainy cyberpunk style"
+      ],
+      "required_verbatim": [
+        "'Home, 2:17 a.m.' in rainy cyberpunk style"
+      ],
+      "old_exact": false,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-24",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "café façade; crème-and-teal palette; 4:3 composition"
+      ],
+      "new_verbatim": [
+        "café façade; crème-and-teal palette; 4:3 composition"
+      ],
+      "required_verbatim": [
+        "café façade; crème-and-teal palette; 4:3 composition"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-image-25",
+      "expected_tool": "image",
+      "old_domain": "media",
+      "new_domain": "media",
+      "old_verbatim": [
+        "almost-empty white room + one RED chair"
+      ],
+      "new_verbatim": [
+        "almost-empty white room + one RED chair"
+      ],
+      "required_verbatim": [
+        "almost-empty white room + one RED chair"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-01",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "why does this asyncio task never finish?"
+      ],
+      "new_verbatim": [
+        "why does this asyncio task never finish?"
+      ],
+      "required_verbatim": [
+        "why does this asyncio task never finish?"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-02",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "can you review my parser design?"
+      ],
+      "new_verbatim": [
+        "can you review my parser design?"
+      ],
+      "required_verbatim": [
+        "can you review my parser design?"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-03",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "KeyError in build_prompt"
+      ],
+      "new_verbatim": [
+        "KeyError in build_prompt"
+      ],
+      "required_verbatim": [
+        "inspect this error: KeyError in build_prompt"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-04",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "explain the tradeoffs of a two-stage router"
+      ],
+      "new_verbatim": [
+        "explain the tradeoffs of a two-stage router"
+      ],
+      "required_verbatim": [
+        "explain the tradeoffs of a two-stage router"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-05",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "cache schemas by domain"
+      ],
+      "new_verbatim": [
+        "cache schemas by domain"
+      ],
+      "required_verbatim": [
+        "review this idea: cache schemas by domain"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-06",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "whether this test has a race condition"
+      ],
+      "new_verbatim": [
+        "whether this test has a race condition."
+      ],
+      "required_verbatim": [
+        "whether this test has a race condition"
+      ],
+      "old_exact": true,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-07",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "propose edge cases for JSON early stopping"
+      ],
+      "new_verbatim": [
+        "propose edge cases for JSON early stopping"
+      ],
+      "required_verbatim": [
+        "propose edge cases for JSON early stopping"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-08",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "why the model emitted two calls"
+      ],
+      "new_verbatim": [
+        "analyze why the model emitted two calls."
+      ],
+      "required_verbatim": [
+        "analyze why the model emitted two calls"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-09",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "critique the benchmark methodology"
+      ],
+      "new_verbatim": [
+        "critique the benchmark methodology"
+      ],
+      "required_verbatim": [
+        "critique the benchmark methodology"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-10",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "check whether my regex is too broad"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-11",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "what could make MLX latency measurements noisy?"
+      ],
+      "new_verbatim": [
+        "what could make MLX latency measurements noisy?"
+      ],
+      "required_verbatim": [
+        "what could make MLX latency measurements noisy?"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-12",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "is the adapter stateless?"
+      ],
+      "new_verbatim": [
+        "is the adapter stateless?"
+      ],
+      "required_verbatim": [
+        "is the adapter stateless?"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-13",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "find the flaw in my confidence-interval code"
+      ],
+      "new_verbatim": [
+        "find the flaw in my confidence-interval code"
+      ],
+      "required_verbatim": [
+        "find the flaw in my confidence-interval code"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-14",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [],
+      "new_verbatim": [],
+      "required_verbatim": [
+        "whether these schemas overlap too much"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-15",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "model chooses image when I mean see"
+      ],
+      "new_verbatim": [
+        "model chooses image when I mean see"
+      ],
+      "required_verbatim": [
+        "model chooses image when I mean see"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-16",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "how should paired errors be grouped?"
+      ],
+      "new_verbatim": [
+        "how should paired errors be grouped?"
+      ],
+      "required_verbatim": [
+        "how should paired errors be grouped?"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-17",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "should p95 include selector time?"
+      ],
+      "new_verbatim": [
+        "should p95 include selector time?"
+      ],
+      "required_verbatim": [
+        "should p95 include selector time?"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-18",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "about Tokyo weather routing"
+      ],
+      "new_verbatim": [
+        "about Tokyo weather routing; do not use weather directly."
+      ],
+      "required_verbatim": [
+        "about Tokyo weather routing; do not use weather directly"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-19",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "how should queries be normalized?"
+      ],
+      "new_verbatim": [
+        "how should queries be normalized?"
+      ],
+      "required_verbatim": [
+        "how should queries be normalized?"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-20",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "is `cat /tmp/a b` safe?"
+      ],
+      "new_verbatim": [
+        "is `cat /tmp/a b` safe? Do not execute it."
+      ],
+      "required_verbatim": [
+        "is `cat \"/tmp/a b\"` safe? Do not execute it."
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-21",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "notes.md",
+        "Yuki files"
+      ],
+      "new_verbatim": [
+        "discuss notes.md versus Yuki files; don't read either file."
+      ],
+      "required_verbatim": [
+        "discuss notes.md versus Yuki files; don't read either file"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    },
+    {
+      "case_id": "p2-ask_claude-22",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "check why foo_bar() crashes"
+      ],
+      "new_verbatim": [
+        "check why foo_bar() crashes"
+      ],
+      "required_verbatim": [
+        "check why foo_bar() crashes"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-23",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "Does `A_B-17` differ from `a_b-17` on APFS?"
+      ],
+      "new_verbatim": [
+        "Does `A_B-17` differ from `a_b-17` on APFS?"
+      ],
+      "required_verbatim": [
+        "Does `A_B-17` differ from `a_b-17` on APFS?"
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-24",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "Review path ~/My Notes/Foo.JSON — keep case + spaces."
+      ],
+      "new_verbatim": [
+        "Review path ~/My Notes/Foo.JSON — keep case + spaces."
+      ],
+      "required_verbatim": [
+        "Review path ~/My Notes/Foo.JSON — keep case + spaces."
+      ],
+      "old_exact": true,
+      "new_exact": true
+    },
+    {
+      "case_id": "p2-ask_claude-25",
+      "expected_tool": "ask_claude",
+      "old_domain": "external_agent",
+      "new_domain": "external_agent",
+      "old_verbatim": [
+        "Why did it output {&quot;tool&quot;:null}?"
+      ],
+      "new_verbatim": [
+        "Why did it output {&quot;tool&quot;:null}?"
+      ],
+      "required_verbatim": [
+        "Why did it output {\"tool\":null}?"
+      ],
+      "old_exact": false,
+      "new_exact": false
+    }
+  ],
+  "decision": "Reject the lossless-verbatim prompt candidate. It reduced exact preservation and domain accuracy; do not iterate on the frozen test set.",
+  "safety": {
+    "yuki_tool_execution_capability": false,
+    "yuki_tool_execution_attempts": 0
+  }
+}

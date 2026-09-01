@@ -1,0 +1,2568 @@
+{
+  "configuration": {
+    "router_mode": "model_only",
+    "output_mode": "native",
+    "native_dialect": "hammer_fenced_tool_call_array",
+    "backend": "mlx",
+    "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+    "group": "all",
+    "available_tools": [
+      "time",
+      "weather",
+      "fetch",
+      "search",
+      "calc",
+      "hardware",
+      "see",
+      "image",
+      "read",
+      "shell",
+      "yuki_write",
+      "yuki_read",
+      "yuki_list",
+      "yuki_delete",
+      "yuki_append",
+      "remember",
+      "recall",
+      "ask_claude"
+    ],
+    "oracle_profile": null,
+    "oracle_subsets": {},
+    "execute": false,
+    "phase": "phase_1_smoke",
+    "experiment": "hammer20_7b_direct_all_18_native_tools",
+    "selection": "smoke-18",
+    "exposure_condition": "all_18_real_yuki_schemas",
+    "schema_profile": "live_registry_hammer_native_validation_adapter",
+    "schema_sha256": "d545fa871c4802dfb08ba4b0fd3d0b82cb5d2c4685e85b636ec769bd460abfe7",
+    "phase2_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "native_hammer_format": true,
+    "generation_count_per_case": 1,
+    "stateless": true,
+    "execution_capability": false,
+    "yuki_tool_execution_attempts": 0,
+    "binder_used": false,
+    "qwen_used": false,
+    "regex_router_used": false
+  },
+  "metrics": {
+    "total_cases": 18,
+    "model_invocations": 18,
+    "tool_selection_accuracy": 1.0,
+    "argument_accuracy": 0.8888888888888888,
+    "strict_argument_accuracy": 0.8888888888888888,
+    "execution_equivalent_argument_accuracy": 0.8888888888888888,
+    "exact_call_accuracy": 0.8888888888888888,
+    "execution_equivalent_call_accuracy": 0.8888888888888888,
+    "schema_valid_output_rate": 1.0,
+    "malformed_output_rate": 0.0,
+    "average_inference_latency_ms": 34829.733222222225,
+    "p50_inference_latency_ms": 34992.1495,
+    "p95_inference_latency_ms": 37936.15435,
+    "average_tokens_per_second": 7.441687788233313,
+    "mean_backend_reported_tokens_per_second": 7.496222222222222,
+    "median_backend_reported_tokens_per_second": 7.465,
+    "end_to_end_generated_tokens_per_second": 0.5774121490623341,
+    "execution_attempts": 0,
+    "execution_passes": 0
+  },
+  "failures_by_expected_tool": {
+    "yuki_append": {
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1
+    },
+    "ask_claude": {
+      "wrong_arguments": 1,
+      "execution_non_equivalent_arguments": 1
+    }
+  },
+  "confusion_matrix": {
+    "time": {
+      "time": 1
+    },
+    "weather": {
+      "weather": 1
+    },
+    "fetch": {
+      "fetch": 1
+    },
+    "search": {
+      "search": 1
+    },
+    "calc": {
+      "calc": 1
+    },
+    "hardware": {
+      "hardware": 1
+    },
+    "see": {
+      "see": 1
+    },
+    "image": {
+      "image": 1
+    },
+    "read": {
+      "read": 1
+    },
+    "shell": {
+      "shell": 1
+    },
+    "yuki_write": {
+      "yuki_write": 1
+    },
+    "yuki_read": {
+      "yuki_read": 1
+    },
+    "yuki_list": {
+      "yuki_list": 1
+    },
+    "yuki_delete": {
+      "yuki_delete": 1
+    },
+    "yuki_append": {
+      "yuki_append": 1
+    },
+    "remember": {
+      "remember": 1
+    },
+    "recall": {
+      "recall": 1
+    },
+    "ask_claude": {
+      "ask_claude": 1
+    }
+  },
+  "case_results": [
+    {
+      "index": 0,
+      "case_id": "p2-time-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "time"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "What time is it right now?",
+      "expected_tool": "time",
+      "expected_arguments": {},
+      "actual_tool": "time",
+      "actual_arguments": {},
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "no_arguments",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {}
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"time\",\"arguments\":{}}]",
+        "normalized_text": "[{\"name\":\"time\",\"arguments\":{}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 32277.062,
+        "prompt_tokens": 2206,
+        "generated_tokens": 13,
+        "prompt_tokens_per_second": 72.14,
+        "tokens_per_second": 8.303,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 1150.719,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 1,
+          "run_kind": "first_after_load",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "time",
+            "arguments": {}
+          }
+        ],
+        "canonical_call": {
+          "tool": "time",
+          "arguments": {}
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 1,
+      "case_id": "p2-weather-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "weather"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Is it jacket weather in Glasgow right now?",
+      "expected_tool": "weather",
+      "expected_arguments": {
+        "city": "Glasgow"
+      },
+      "actual_tool": "weather",
+      "actual_arguments": {
+        "city": "Glasgow"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "city": {
+            "expected": "Glasgow",
+            "actual": "Glasgow",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"weather\",\"arguments\":{\"city\":\"Glasgow\"}}]",
+        "normalized_text": "[{\"name\":\"weather\",\"arguments\":{\"city\":\"Glasgow\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 31441.538,
+        "prompt_tokens": 2208,
+        "generated_tokens": 17,
+        "prompt_tokens_per_second": 75.62,
+        "tokens_per_second": 8.145,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 1151.516,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 2,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "weather",
+            "arguments": {
+              "city": "Glasgow"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "weather",
+          "arguments": {
+            "city": "Glasgow"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 2,
+      "case_id": "p2-fetch-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "fetch"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Fetch this exact URL; do not search for it: https://example.com/guide",
+      "expected_tool": "fetch",
+      "expected_arguments": {
+        "url": "https://example.com/guide"
+      },
+      "actual_tool": "fetch",
+      "actual_arguments": {
+        "url": "https://example.com/guide"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "url": {
+            "expected": "https://example.com/guide",
+            "actual": "https://example.com/guide",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"fetch\", \"arguments\": {\"url\": \"https://example.com/guide\"}}]",
+        "normalized_text": "[{\"name\": \"fetch\", \"arguments\": {\"url\": \"https://example.com/guide\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 32689.692,
+        "prompt_tokens": 2217,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": 75.062,
+        "tokens_per_second": 7.995,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 1150.938,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 3,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "fetch",
+            "arguments": {
+              "url": "https://example.com/guide"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "fetch",
+          "arguments": {
+            "url": "https://example.com/guide"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 3,
+      "case_id": "p2-search-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "search"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Search exactly for: C++ std::filesystem path case-sensitivity",
+      "expected_tool": "search",
+      "expected_arguments": {
+        "query": "C++ std::filesystem path case-sensitivity"
+      },
+      "actual_tool": "search",
+      "actual_arguments": {
+        "query": "C++ std::filesystem path case-sensitivity"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "query": {
+            "expected": "C++ std::filesystem path case-sensitivity",
+            "actual": "C++ std::filesystem path case-sensitivity",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\": \"search\", \"arguments\": {\"query\": \"C++ std::filesystem path case-sensitivity\"}}]",
+        "normalized_text": "[{\"name\": \"search\", \"arguments\": {\"query\": \"C++ std::filesystem path case-sensitivity\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 33209.835,
+        "prompt_tokens": 2213,
+        "generated_tokens": 27,
+        "prompt_tokens_per_second": 74.663,
+        "tokens_per_second": 7.907,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 1151.141,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 4,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "search",
+            "arguments": {
+              "query": "C++ std::filesystem path case-sensitivity"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "search",
+          "arguments": {
+            "query": "C++ std::filesystem path case-sensitivity"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 4,
+      "case_id": "p2-calc-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "calc"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "tool delegation is messy, but the arithmetic is ((1+2)*(3+4))%5",
+      "expected_tool": "calc",
+      "expected_arguments": {
+        "expression": "((1+2)*(3+4))%5"
+      },
+      "actual_tool": "calc",
+      "actual_arguments": {
+        "expression": "((1+2)*(3+4))%5"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "calc_ast",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "expression": {
+            "expected": "((1+2)*(3+4))%5",
+            "actual": "((1+2)*(3+4))%5",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"calc\",\"arguments\":{\"expression\":\"((1+2)*(3+4))%5\"}}]",
+        "normalized_text": "[{\"name\":\"calc\",\"arguments\":{\"expression\":\"((1+2)*(3+4))%5\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 32918.216,
+        "prompt_tokens": 2220,
+        "generated_tokens": 25,
+        "prompt_tokens_per_second": 75.094,
+        "tokens_per_second": 7.817,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 791.062,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 5,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "calc",
+            "arguments": {
+              "expression": "((1+2)*(3+4))%5"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "calc",
+          "arguments": {
+            "expression": "((1+2)*(3+4))%5"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 5,
+      "case_id": "p2-hardware-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "hardware"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "How much RAM is this Mac using?",
+      "expected_tool": "hardware",
+      "expected_arguments": {
+        "metric": "ram"
+      },
+      "actual_tool": "hardware",
+      "actual_arguments": {
+        "metric": "ram"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "metric": {
+            "expected": "ram",
+            "actual": "ram",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"hardware\",\"arguments\":{\"metric\":\"ram\"}}]",
+        "normalized_text": "[{\"name\":\"hardware\",\"arguments\":{\"metric\":\"ram\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 31671.773,
+        "prompt_tokens": 2207,
+        "generated_tokens": 15,
+        "prompt_tokens_per_second": 74.455,
+        "tokens_per_second": 8.023,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 844.859,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 6,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "hardware",
+            "arguments": {
+              "metric": "ram"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "hardware",
+          "arguments": {
+            "metric": "ram"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 6,
+      "case_id": "p2-see-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "see"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Use your eyes and track down my earbuds.",
+      "expected_tool": "see",
+      "expected_arguments": {
+        "target": "earbuds"
+      },
+      "actual_tool": "see",
+      "actual_arguments": {
+        "target": "earbuds"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "target": {
+            "expected": "earbuds",
+            "actual": "earbuds",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"see\",\"arguments\":{\"target\":\"earbuds\"}}]",
+        "normalized_text": "[{\"name\":\"see\",\"arguments\":{\"target\":\"earbuds\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 32995.809,
+        "prompt_tokens": 2210,
+        "generated_tokens": 17,
+        "prompt_tokens_per_second": 72.001,
+        "tokens_per_second": 7.937,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 845.297,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 7,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "see",
+            "arguments": {
+              "target": "earbuds"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "see",
+          "arguments": {
+            "target": "earbuds"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 7,
+      "case_id": "p2-image-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "image"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Generate a camera-shaped sculpture; don't use the real camera.",
+      "expected_tool": "image",
+      "expected_arguments": {
+        "prompt": "camera-shaped sculpture"
+      },
+      "actual_tool": "image",
+      "actual_arguments": {
+        "prompt": "camera-shaped sculpture"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "prompt": {
+            "expected": "camera-shaped sculpture",
+            "actual": "camera-shaped sculpture",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"image\",\"arguments\":{\"prompt\":\"camera-shaped sculpture\"}}]",
+        "normalized_text": "[{\"name\":\"image\",\"arguments\":{\"prompt\":\"camera-shaped sculpture\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 33410.986,
+        "prompt_tokens": 2212,
+        "generated_tokens": 17,
+        "prompt_tokens_per_second": 71.278,
+        "tokens_per_second": 7.684,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 844.828,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 8,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "image",
+            "arguments": {
+              "prompt": "camera-shaped sculpture"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "image",
+          "arguments": {
+            "prompt": "camera-shaped sculpture"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 8,
+      "case_id": "p2-read-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "read"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Preserve case exactly when reading /tmp/FooBar.JSON.",
+      "expected_tool": "read",
+      "expected_arguments": {
+        "filepath": "/tmp/FooBar.JSON"
+      },
+      "actual_tool": "read",
+      "actual_arguments": {
+        "filepath": "/tmp/FooBar.JSON"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "filepath": {
+            "expected": "/tmp/FooBar.JSON",
+            "actual": "/tmp/FooBar.JSON",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"read\",\"arguments\":{\"filepath\":\"/tmp/FooBar.JSON\"}}]",
+        "normalized_text": "[{\"name\":\"read\",\"arguments\":{\"filepath\":\"/tmp/FooBar.JSON\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 34476.852,
+        "prompt_tokens": 2212,
+        "generated_tokens": 19,
+        "prompt_tokens_per_second": 69.504,
+        "tokens_per_second": 7.635,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 845.25,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 9,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "read",
+            "arguments": {
+              "filepath": "/tmp/FooBar.JSON"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "read",
+          "arguments": {
+            "filepath": "/tmp/FooBar.JSON"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 9,
+      "case_id": "p2-shell-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "shell"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "The delegation is noisy [shell??], but run: ls -la /tmp/does-not-exist",
+      "expected_tool": "shell",
+      "expected_arguments": {
+        "command": "ls -la /tmp/does-not-exist"
+      },
+      "actual_tool": "shell",
+      "actual_arguments": {
+        "command": "ls -la /tmp/does-not-exist"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "command": {
+            "expected": "ls -la /tmp/does-not-exist",
+            "actual": "ls -la /tmp/does-not-exist",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"shell\",\"arguments\":{\"command\":\"ls -la /tmp/does-not-exist\"}}]",
+        "normalized_text": "[{\"name\":\"shell\",\"arguments\":{\"command\":\"ls -la /tmp/does-not-exist\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 35507.447,
+        "prompt_tokens": 2221,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": 69.285,
+        "tokens_per_second": 7.295,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 843.766,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 10,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "shell",
+            "arguments": {
+              "command": "ls -la /tmp/does-not-exist"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "shell",
+          "arguments": {
+            "command": "ls -la /tmp/does-not-exist"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 10,
+      "case_id": "p2-yuki_write-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "yuki_write"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Write this into Yuki's file: todo.txt|buy oat milk",
+      "expected_tool": "yuki_write",
+      "expected_arguments": {
+        "filename_and_content": "todo.txt|buy oat milk"
+      },
+      "actual_tool": "yuki_write",
+      "actual_arguments": {
+        "filename_and_content": "todo.txt|buy oat milk"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "filename_and_content": {
+            "expected": "todo.txt|buy oat milk",
+            "actual": "todo.txt|buy oat milk",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"yuki_write\",\"arguments\":{\"filename_and_content\":\"todo.txt|buy oat milk\"}}]",
+        "normalized_text": "[{\"name\":\"yuki_write\",\"arguments\":{\"filename_and_content\":\"todo.txt|buy oat milk\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 36216.415,
+        "prompt_tokens": 2214,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": 67.857,
+        "tokens_per_second": 7.177,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 795.281,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 11,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_write",
+            "arguments": {
+              "filename_and_content": "todo.txt|buy oat milk"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_write",
+          "arguments": {
+            "filename_and_content": "todo.txt|buy oat milk"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 11,
+      "case_id": "p2-yuki_read-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "yuki_read"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Pull up your own little file called snack.txt.",
+      "expected_tool": "yuki_read",
+      "expected_arguments": {
+        "filename": "snack.txt"
+      },
+      "actual_tool": "yuki_read",
+      "actual_arguments": {
+        "filename": "snack.txt"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "filename": {
+            "expected": "snack.txt",
+            "actual": "snack.txt",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"yuki_read\",\"arguments\":{\"filename\":\"snack.txt\"}}]",
+        "normalized_text": "[{\"name\":\"yuki_read\",\"arguments\":{\"filename\":\"snack.txt\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 35662.254,
+        "prompt_tokens": 2209,
+        "generated_tokens": 19,
+        "prompt_tokens_per_second": 67.408,
+        "tokens_per_second": 6.998,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 735.312,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 12,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_read",
+            "arguments": {
+              "filename": "snack.txt"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_read",
+          "arguments": {
+            "filename": "snack.txt"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 12,
+      "case_id": "p2-yuki_list-21",
+      "tags": [
+        "phase2",
+        "confusion",
+        "yuki_list"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Use Yuki file listing, not shell `ls`.",
+      "expected_tool": "yuki_list",
+      "expected_arguments": {},
+      "actual_tool": "yuki_list",
+      "actual_arguments": {},
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "no_arguments",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {}
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"yuki_list\",\"arguments\":{}}]",
+        "normalized_text": "[{\"name\":\"yuki_list\",\"arguments\":{}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 36307.416,
+        "prompt_tokens": 2210,
+        "generated_tokens": 15,
+        "prompt_tokens_per_second": 64.883,
+        "tokens_per_second": 7.243,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 793.5,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 13,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_list",
+            "arguments": {}
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_list",
+          "arguments": {}
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 13,
+      "case_id": "p2-yuki_delete-22",
+      "tags": [
+        "phase2",
+        "preservation",
+        "yuki_delete"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Delete filename exactly `OldNotes.MD` from Yuki.",
+      "expected_tool": "yuki_delete",
+      "expected_arguments": {
+        "filename": "OldNotes.MD"
+      },
+      "actual_tool": "yuki_delete",
+      "actual_arguments": {
+        "filename": "OldNotes.MD"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "filename": {
+            "expected": "OldNotes.MD",
+            "actual": "OldNotes.MD",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"yuki_delete\",\"arguments\":{\"filename\":\"OldNotes.MD\"}}]",
+        "normalized_text": "[{\"name\":\"yuki_delete\",\"arguments\":{\"filename\":\"OldNotes.MD\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 37135.494,
+        "prompt_tokens": 2212,
+        "generated_tokens": 20,
+        "prompt_tokens_per_second": 64.887,
+        "tokens_per_second": 6.978,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 794.344,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 14,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_delete",
+            "arguments": {
+              "filename": "OldNotes.MD"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_delete",
+          "arguments": {
+            "filename": "OldNotes.MD"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 14,
+      "case_id": "p2-yuki_append-25",
+      "tags": [
+        "phase2",
+        "adversarial",
+        "yuki_append"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "append-ish request... odd name.txt gets `? value_2`",
+      "expected_tool": "yuki_append",
+      "expected_arguments": {
+        "filename_and_content": "odd name.txt|? value_2"
+      },
+      "actual_tool": "yuki_append",
+      "actual_arguments": {
+        "filename_and_content": "name.txt? value_2"
+      },
+      "tool_correct": true,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "At least one argument differs under the tool policy.",
+        "fields": {
+          "filename_and_content": {
+            "expected": "odd name.txt|? value_2",
+            "actual": "name.txt? value_2",
+            "equivalent": false
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"yuki_append\",\"arguments\":{\"filename_and_content\":\"name.txt? value_2\"}}]",
+        "normalized_text": "[{\"name\":\"yuki_append\",\"arguments\":{\"filename_and_content\":\"name.txt? value_2\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 37771.684,
+        "prompt_tokens": 2213,
+        "generated_tokens": 24,
+        "prompt_tokens_per_second": 64.843,
+        "tokens_per_second": 6.925,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 794.891,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 15,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "yuki_append",
+            "arguments": {
+              "filename_and_content": "name.txt? value_2"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "yuki_append",
+          "arguments": {
+            "filename_and_content": "name.txt? value_2"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 15,
+      "case_id": "p2-remember-01",
+      "tags": [
+        "phase2",
+        "normal",
+        "remember"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Remember exactly this fact: user's dog is named Pixel",
+      "expected_tool": "remember",
+      "expected_arguments": {
+        "fact": "user's dog is named Pixel"
+      },
+      "actual_tool": "remember",
+      "actual_arguments": {
+        "fact": "user's dog is named Pixel"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "fact": {
+            "expected": "user's dog is named Pixel",
+            "actual": "user's dog is named Pixel",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"remember\",\"arguments\":{\"fact\":\"user's dog is named Pixel\"}}]",
+        "normalized_text": "[{\"name\":\"remember\",\"arguments\":{\"fact\":\"user's dog is named Pixel\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 37419.646,
+        "prompt_tokens": 2211,
+        "generated_tokens": 20,
+        "prompt_tokens_per_second": 64.297,
+        "tokens_per_second": 7.013,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 795.062,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 16,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "remember",
+            "arguments": {
+              "fact": "user's dog is named Pixel"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "remember",
+          "arguments": {
+            "fact": "user's dog is named Pixel"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 16,
+      "case_id": "p2-recall-12",
+      "tags": [
+        "phase2",
+        "paraphrase",
+        "recall"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Can you dig into our shared past for the database migration topic?",
+      "expected_tool": "recall",
+      "expected_arguments": {
+        "topic": "database migration"
+      },
+      "actual_tool": "recall",
+      "actual_arguments": {
+        "topic": "database migration"
+      },
+      "tool_correct": true,
+      "arguments_correct": true,
+      "strict_arguments_correct": true,
+      "execution_equivalent_arguments_correct": true,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": true,
+        "execution_equivalent": true,
+        "reason": "Arguments are execution-equivalent under the tool policy.",
+        "fields": {
+          "topic": {
+            "expected": "database migration",
+            "actual": "database migration",
+            "equivalent": true
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": true,
+      "execution_equivalent_call": true,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"recall\",\"arguments\":{\"topic\":\"database migration\"}}]",
+        "normalized_text": "[{\"name\":\"recall\",\"arguments\":{\"topic\":\"database migration\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 36954.926,
+        "prompt_tokens": 2212,
+        "generated_tokens": 16,
+        "prompt_tokens_per_second": 64.151,
+        "tokens_per_second": 6.925,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 795.438,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 17,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "recall",
+            "arguments": {
+              "topic": "database migration"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "recall",
+          "arguments": {
+            "topic": "database migration"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    },
+    {
+      "index": 17,
+      "case_id": "p2-ask_claude-18",
+      "tags": [
+        "phase2",
+        "confusion",
+        "ask_claude"
+      ],
+      "oracle_subset": null,
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "expected_tool": "ask_claude",
+      "expected_arguments": {
+        "question": "about Tokyo weather routing; do not use weather directly"
+      },
+      "actual_tool": "ask_claude",
+      "actual_arguments": {
+        "question": "What is the weather routing like in Tokyo?"
+      },
+      "tool_correct": true,
+      "arguments_correct": false,
+      "strict_arguments_correct": false,
+      "execution_equivalent_arguments_correct": false,
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "At least one argument differs under the tool policy.",
+        "fields": {
+          "question": {
+            "expected": "about Tokyo weather routing; do not use weather directly",
+            "actual": "What is the weather routing like in Tokyo?",
+            "equivalent": false
+          }
+        }
+      },
+      "schema_valid": true,
+      "malformed": false,
+      "exact_call": false,
+      "execution_equivalent_call": false,
+      "router_path": "model_only",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "generation": {
+        "raw_text": "```\n[{\"name\":\"ask_claude\",\"arguments\":{\"question\":\"What is the weather routing like in Tokyo?\"}}]",
+        "normalized_text": "[{\"name\":\"ask_claude\",\"arguments\":{\"question\":\"What is the weather routing like in Tokyo?\"}}]",
+        "backend": "mlx",
+        "model_id": "/Volumes/madisk/yuki-tool-dispatcher/Hammer2.0-7b-8bit",
+        "latency_ms": 38868.153,
+        "prompt_tokens": 2212,
+        "generated_tokens": 26,
+        "prompt_tokens_per_second": 63.318,
+        "tokens_per_second": 6.932,
+        "peak_memory_gb": 8.91,
+        "process_rss_mb": 795.516,
+        "finish_reason": "json_complete",
+        "schema_constrained": false,
+        "extra": {
+          "generation_ceiling": 256,
+          "generation_index_after_load": 18,
+          "run_kind": "warm",
+          "json_root": "array"
+        }
+      },
+      "parse": {
+        "passed": true,
+        "malformed": false,
+        "rejected": false,
+        "decoded": [
+          {
+            "name": "ask_claude",
+            "arguments": {
+              "question": "What is the weather routing like in Tokyo?"
+            }
+          }
+        ],
+        "canonical_call": {
+          "tool": "ask_claude",
+          "arguments": {
+            "question": "What is the weather routing like in Tokyo?"
+          }
+        },
+        "errors": []
+      },
+      "validation": {
+        "passed": true,
+        "errors": []
+      },
+      "execution": {
+        "status": "not_requested",
+        "passed": false,
+        "executed": false,
+        "errors": [],
+        "raw_output": null,
+        "raw_output_repr": null,
+        "latency_ms": null
+      }
+    }
+  ],
+  "fine_tuning_examples": [
+    {
+      "case_id": "p2-yuki_append-25",
+      "request": "append-ish request... odd name.txt gets `? value_2`",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "expected_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "odd name.txt|? value_2"
+        }
+      },
+      "raw_generation": "```\n[{\"name\":\"yuki_append\",\"arguments\":{\"filename_and_content\":\"name.txt? value_2\"}}]",
+      "actual_call": {
+        "tool": "yuki_append",
+        "arguments": {
+          "filename_and_content": "name.txt? value_2"
+        }
+      },
+      "argument_scoring": {
+        "rule": "exact",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "At least one argument differs under the tool policy.",
+        "fields": {
+          "filename_and_content": {
+            "expected": "odd name.txt|? value_2",
+            "actual": "name.txt? value_2",
+            "equivalent": false
+          }
+        }
+      },
+      "failure_types": [
+        "wrong_arguments",
+        "execution_non_equivalent_arguments"
+      ]
+    },
+    {
+      "case_id": "p2-ask_claude-18",
+      "request": "Ask Claude about Tokyo weather routing; do not use weather directly.",
+      "offered_tools": [
+        "time",
+        "weather",
+        "fetch",
+        "search",
+        "calc",
+        "hardware",
+        "see",
+        "image",
+        "read",
+        "shell",
+        "yuki_write",
+        "yuki_read",
+        "yuki_list",
+        "yuki_delete",
+        "yuki_append",
+        "remember",
+        "recall",
+        "ask_claude"
+      ],
+      "output_mode": "native",
+      "native_dialect": "hammer_fenced_tool_call_array",
+      "expected_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "about Tokyo weather routing; do not use weather directly"
+        }
+      },
+      "raw_generation": "```\n[{\"name\":\"ask_claude\",\"arguments\":{\"question\":\"What is the weather routing like in Tokyo?\"}}]",
+      "actual_call": {
+        "tool": "ask_claude",
+        "arguments": {
+          "question": "What is the weather routing like in Tokyo?"
+        }
+      },
+      "argument_scoring": {
+        "rule": "normalized_text",
+        "strict": false,
+        "execution_equivalent": false,
+        "reason": "At least one argument differs under the tool policy.",
+        "fields": {
+          "question": {
+            "expected": "about Tokyo weather routing; do not use weather directly",
+            "actual": "What is the weather routing like in Tokyo?",
+            "equivalent": false
+          }
+        }
+      },
+      "failure_types": [
+        "wrong_arguments",
+        "execution_non_equivalent_arguments"
+      ]
+    }
+  ],
+  "by_expected_tool": {
+    "ask_claude": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "calc": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "fetch": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "hardware": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "image": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "read": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "recall": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "remember": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "search": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "see": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "shell": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "time": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "weather": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_append": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 0,
+      "execution_equivalent_argument_accuracy": 0,
+      "strict_exact_call_accuracy": 0,
+      "execution_equivalent_exact_call_accuracy": 0,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_delete": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_list": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_read": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "yuki_write": {
+      "cases": 1,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    }
+  },
+  "by_dataset_category": {
+    "adversarial": {
+      "cases": 3,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 0.6666666666666666,
+      "execution_equivalent_argument_accuracy": 0.6666666666666666,
+      "strict_exact_call_accuracy": 0.6666666666666666,
+      "execution_equivalent_exact_call_accuracy": 0.6666666666666666,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "confusion": {
+      "cases": 4,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 0.75,
+      "execution_equivalent_argument_accuracy": 0.75,
+      "strict_exact_call_accuracy": 0.75,
+      "execution_equivalent_exact_call_accuracy": 0.75,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "normal": {
+      "cases": 4,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "paraphrase": {
+      "cases": 4,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    },
+    "preservation": {
+      "cases": 3,
+      "tool_selection_accuracy": 1,
+      "strict_argument_accuracy": 1,
+      "execution_equivalent_argument_accuracy": 1,
+      "strict_exact_call_accuracy": 1,
+      "execution_equivalent_exact_call_accuracy": 1,
+      "schema_valid_rate": 1,
+      "malformed_rate": 0,
+      "rejection_rate": 0
+    }
+  }
+}

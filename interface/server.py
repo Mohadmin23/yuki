@@ -19,20 +19,15 @@ from granian import Granian
 
 sys.path.append(str(Path(__file__).parent.parent))
 from ms_llama import (
-    VoiceChatBot, TTS_MAX_CHARS, MAX_INPUT_CHARS, _STAGE_CUE_RE,
-    OPENROUTER_MODELS, TOOLS, run_tool,
-    select_model, select_persona, select_tts,
+    VoiceChatBot, TTS_MAX_CHARS, MAX_INPUT_CHARS, _STAGE_CUE_RE, is_thinking_model,
+    TOOLS, run_tool,
+    select_model, select_tts,
     list_models, list_personas, list_tts_engines,
     load_persona_by_name, init_tts,
-    _load_users, _save_users, _get_view, _find_candidates,
-    _add_fact_to_slot, _create_slot, _hash_fact, _default_user_id,
-    MEMORY_NAME_CATEGORIES, MEMORY_LIST_CATEGORIES,
-    MULTI_USER_MODE,
-    verify_and_advance,
+    _load_facts, _save_facts, _add_fact,
+    MEMORY_LIST_CATEGORIES,
 )
 import episodic
-
-EPISODIC_MARKER = "\n[EPISODIC MEMORY"
 
 IMAGES_DIR = Path(__file__).parent.parent / "yuki" / "images"
 _IMG_PATH_RE = re.compile(r"yuki/images/([\w\-.]+\.(?:png|jpg|jpeg|webp|gif))", re.IGNORECASE)
@@ -51,7 +46,7 @@ async def lifespan(app: FastAPI):
     if not headless:
         # Interactive terminal selection (original behavior)
         model_id = select_model()
-        persona = select_persona()
+        persona = load_persona_by_name("yuki")
         tts = select_tts()
         bot = VoiceChatBot(model_id=model_id, system_prompt=persona, tts=tts)
         last_interaction_time = time.time()
@@ -107,54 +102,39 @@ current_chat_id: str | None = None
 def _ensure_dirs():
     CHATS_DIR.mkdir(parents=True, exist_ok=True)
 
-MEMORY_MARKER = "\n\n[Stored facts about a previously-known user"
-
-
-def _flatten_view(view: dict, salt: str) -> list[dict]:
-    """Turn a plaintext slot view into [{id, category, content}] for the sidebar.
-    IDs are the first 8 hex chars of the fact's hash so delete-by-id can
-    reconstruct the (category, value) pair."""
-    items = []
-    for category, val in view.items():
-        if category in ("created_at", "last_seen", "fact_hashes"):
-            continue
-        values = val if isinstance(val, list) else ([val] if val else [])
-        for v in values:
-            if not v:
-                continue
-            h = _hash_fact(category, v, salt)
-            items.append({"id": h[:12], "category": category, "content": v})
-    return items
+MEMORY_MARKER = "\n\n[Stored facts about the user"
 
 
 def _load_memory() -> list[dict]:
-    """Legacy-shape list for the /api/memory endpoints and sidebar: items from
-    the currently-unlocked slot only. Returns [] when no session is bound."""
-    if bot is None or bot.unlocked_user_id is None:
-        return []
-    store = _load_users()
-    view = _get_view(store, bot.unlocked_user_id)
-    if not view:
-        return []
-    return _flatten_view(view, store["salt"])
+    """Flat [{id, category, content}] list for the sidebar.
+
+    ID format is 'category:N' where N is the index inside that category's
+    list — gives the DELETE endpoint a stable, no-hash-needed key."""
+    facts = _load_facts()
+    items = []
+    for category, values in facts.items():
+        if not isinstance(values, list):
+            continue
+        for i, v in enumerate(values):
+            if not v:
+                continue
+            items.append({"id": f"{category}:{i}", "category": category, "content": v})
+    return items
 
 
 def _memory_as_prompt(items: list[dict]) -> str:
-    """Render the bound slot as a compact block for the system prompt.
-    Header text differs between simple mode and multi-user mode; the body
-    is the same list of facts in both.
+    """Render stored facts as a compact block for the system prompt.
 
-    Anti-confabulation guardrail is included in BOTH headers — Yuki must only
-    reference facts that are actually listed below, never invent shared history
+    Anti-confabulation guardrail in the header — Yuki must only reference
+    facts that are actually listed below, never invent shared history
     (past meetings, haikus, inside jokes) that aren't in the list."""
     if not items:
-        header = (
+        return (
             f"{MEMORY_MARKER} — you have no stored facts about this user yet. "
             "Do NOT invent or imply any past shared history, prior conversations, "
             "inside jokes, or things you remember — there is nothing to remember. "
             "Meet them with warm first-time energy.]"
         )
-        return header
     grouped: dict[str, list[str]] = {}
     for it in items:
         grouped.setdefault(it["category"], []).append(it["content"])
@@ -165,17 +145,8 @@ def _memory_as_prompt(items: list[dict]) -> str:
         else:
             lines.append(f"- {cat}: {', '.join(vals)}")
     body = "\n".join(lines)
-    if MULTI_USER_MODE:
-        prelude = (
-            f"{MEMORY_MARKER} — this person has passed the vibe check this session. "
-            "The facts below are BACKGROUND KNOWLEDGE about them."
-        )
-    else:
-        prelude = (
-            f"{MEMORY_MARKER} — BACKGROUND KNOWLEDGE about the person you're chatting with."
-        )
     header = (
-        f"{prelude}\n"
+        f"{MEMORY_MARKER} — BACKGROUND KNOWLEDGE about the person you're chatting with.\n"
         "USER-INITIATION RULE: do NOT introduce these topics into the "
         "conversation yourself. Only reference a fact if the USER mentions it "
         "in their CURRENT message or the IMMEDIATELY PRECEDING message. "
@@ -219,58 +190,19 @@ def _memory_as_prompt(items: list[dict]) -> str:
     )
     return f"{header}\n{body}"
 
-
-def _locked_stub(store: dict) -> str:
-    """System-prompt snippet shown when no user is unlocked.
-    Never names or quotes any stored user — tells Yuki only that memory exists."""
-    n = len(store.get("users", {}))
-    if n == 0:
-        return (
-            f"{MEMORY_MARKER} — no one is stored yet. Treat whoever is talking to you "
-            "as a brand-new friend. If they share details you'd normally want to remember, "
-            "use the remember tool — it'll be routed to them automatically.]"
-        )
-    return (
-        f"{MEMORY_MARKER} — you have {n} known user(s) on file, but you CANNOT see who, "
-        "and you CANNOT see their facts until this session verifies them. Follow the "
-        "RECOGNIZING THE USER rules in your persona: warm first-meeting energy, do the "
-        "vibe-check yourself, never volunteer details, never confirm on name alone. "
-        "If the system injects a NARROW hint, phrase the ask in your own voice.]"
-    )
-
-
-def _narrowing_hint(candidate_count: int) -> str:
-    """Injected when candidates > 1. Yuki phrases the ask herself; this is just the signal."""
-    return (
-        f"{MEMORY_MARKER} NARROW — {candidate_count} possible people match what's been said "
-        "so far, which isn't enough to be sure. Ask in your own voice for another detail "
-        "(favorite character, favorite thing, anything specific). Do not name candidates, "
-        "do not say 'multiple matches' out loud. Just be playfully uncertain.]"
-    )
-
 def _save_chat(chat_id: str, title: str, messages: list[dict]):
     _ensure_dirs()
     path = CHATS_DIR / f"{chat_id}.json"
-    # Preserve any existing owner; otherwise stamp the currently-unlocked user
-    # so chats started before vibe-check become claimed on first post-unlock save.
-    existing = _load_chat_raw(chat_id)
-    if existing and existing.get("user_id"):
-        owner = existing["user_id"]
-    elif bot is not None and bot.unlocked_user_id is not None:
-        owner = bot.unlocked_user_id
-    else:
-        owner = None
     data = {
         "id": chat_id,
         "title": title,
         "updated": time.time(),
-        "user_id": owner,
         "messages": messages,
     }
     path.write_text(json.dumps(data, indent=2))
 
 def _load_chat_raw(chat_id: str) -> dict | None:
-    """Read a chat file with no access checks. Internal use only."""
+    """Read a chat file. Single-user mode — no access checks."""
     path = CHATS_DIR / f"{chat_id}.json"
     if path.exists():
         try:
@@ -279,43 +211,15 @@ def _load_chat_raw(chat_id: str) -> dict | None:
             pass
     return None
 
-def _chat_accessible(data: dict) -> bool:
-    """A chat is accessible iff: it's owned by the currently-unlocked user, or
-    it's unowned AND is the active session chat (the pending pre-vibe-check one).
-
-    In simple mode (MULTI_USER_MODE=False), every chat is accessible — the
-    ownership gate is off so all chats show in the sidebar regardless of user_id."""
-    if not MULTI_USER_MODE:
-        return True
-    owner = data.get("user_id")
-    if owner is None:
-        return data.get("id") == current_chat_id
-    return bot is not None and bot.unlocked_user_id == owner
-
-def _load_chat(chat_id: str) -> dict | None:
-    """Access-checked read. Returns None for missing *or* inaccessible chats so
-    the API can't distinguish 'not yours' from 'doesn't exist'."""
-    data = _load_chat_raw(chat_id)
-    if data is None or not _chat_accessible(data):
-        return None
-    return data
+# In single-user mode every chat is accessible; _load_chat is just _load_chat_raw.
+_load_chat = _load_chat_raw
 
 def _list_chats() -> list[dict]:
     _ensure_dirs()
-    # Simple mode: no ownership filter, every chat is visible.
-    # Multi-user mode: locked session sees nothing, unlocked sees only its own chats.
-    if MULTI_USER_MODE:
-        if bot is None or bot.unlocked_user_id is None:
-            return []
-        uid = bot.unlocked_user_id
-    else:
-        uid = None  # sentinel: return everything
     chats = []
     for f in CHATS_DIR.glob("*.json"):
         try:
             data = json.loads(f.read_text())
-            if uid is not None and data.get("user_id") != uid:
-                continue
             chats.append({"id": data["id"], "title": data["title"], "updated": data["updated"]})
         except Exception:
             pass
@@ -438,7 +342,12 @@ async def favicon():
 
 @app.get("/api/status")
 async def api_status():
-    return JSONResponse({"ready": bot is not None})
+    model_id = getattr(bot, "model_id", None) if bot is not None else None
+    return JSONResponse({
+        "ready": bot is not None,
+        "model_id": model_id,
+        "thinking": is_thinking_model(model_id),
+    })
 
 @app.get("/api/models")
 async def api_models():
@@ -567,9 +476,8 @@ async def api_apikey_status():
 async def api_init(req: InitRequest):
     global bot, last_interaction_time, autonomous_enabled
     try:
-        persona_text = None
-        if req.persona:
-            persona_text = await asyncio.to_thread(load_persona_by_name, req.persona)
+        persona_name = req.persona or "yuki"
+        persona_text = await asyncio.to_thread(load_persona_by_name, persona_name)
         tts = await asyncio.to_thread(init_tts, req.tts_key) if req.tts_key else None
         bot = await asyncio.to_thread(
             lambda: VoiceChatBot(
@@ -627,6 +535,7 @@ async def api_chats_new():
     chat_id = uuid.uuid4().hex[:12]
     current_chat_id = chat_id
     if bot is not None:
+        await asyncio.to_thread(_rotate_session, bot)
         bot.history = []
         _reset_session_lock(bot)
         _inject_memory(bot)
@@ -648,6 +557,7 @@ async def api_chats_load(chat_id: str):
         return JSONResponse({"error": "Chat not found"}, status_code=404)
     current_chat_id = chat_id
     if bot is not None:
+        await asyncio.to_thread(_rotate_session, bot)
         bot.history = data.get("messages", [])
         # Loaded chat history is just text — not proof of identity. Start locked
         # and let the verification hook re-unlock as the user continues talking.
@@ -679,21 +589,16 @@ async def api_chats_rename(chat_id: str, req: ChatRenameRequest):
     _save_chat(chat_id, data["title"], data["messages"])
     return JSONResponse({"ok": True})
 
-# ── Memory endpoints ──
-# All operations target the currently-unlocked slot. When the session is
-# locked, GET returns empty and writes are rejected — the sidebar cannot
-# touch memory it hasn't been verified into.
+# ── Memory endpoints (single-user flat store) ──
 
 @app.get("/api/memory")
 async def api_memory_get():
-    locked = (bot is None or bot.unlocked_user_id is None)
-    return JSONResponse({"items": _load_memory(), "locked": locked})
+    # `locked` is kept in the response for frontend backward-compat — always false now.
+    return JSONResponse({"items": _load_memory(), "locked": False})
 
 
 @app.post("/api/memory")
 async def api_memory_add(req: MemoryItemRequest):
-    if bot is None or bot.unlocked_user_id is None:
-        return JSONResponse({"ok": False, "error": "Memory is locked — no verified user in this session."}, status_code=403)
     raw = (req.content or "").strip()[:500]
     if not raw:
         return JSONResponse({"ok": False, "error": "Empty content"}, status_code=400)
@@ -706,146 +611,81 @@ async def api_memory_add(req: MemoryItemRequest):
             category, value = "notes", raw
     else:
         category, value = "notes", raw
-    store = _load_users()
-    added = _add_fact_to_slot(store, bot.unlocked_user_id, category, value)
-    if added:
-        _save_users(store)
-    _inject_memory(bot)
-    item_id = _hash_fact(category, value, store["salt"])[:12]
-    return JSONResponse({"ok": True, "item": {"id": item_id, "category": category, "content": value}})
+    facts = _load_facts()
+    if _add_fact(facts, category, value):
+        _save_facts(facts)
+    if bot is not None:
+        _inject_memory(bot)
+    # ID for the sidebar uses the newly-appended index.
+    idx = max(0, len(facts.get(category, [])) - 1)
+    return JSONResponse({"ok": True, "item": {"id": f"{category}:{idx}", "category": category, "content": value}})
 
 
 @app.delete("/api/memory/{item_id}")
 async def api_memory_delete(item_id: str):
-    if bot is None or bot.unlocked_user_id is None:
-        return JSONResponse({"ok": False, "error": "Memory is locked."}, status_code=403)
-    store = _load_users()
-    slot = store["users"].get(bot.unlocked_user_id)
-    if slot is None:
-        return JSONResponse({"ok": True})
-    # Find the (category, value) whose hash prefix matches item_id and remove it
-    # from both the plaintext list and fact_hashes.
-    salt = store["salt"]
-    removed = False
-    for category, val in list(slot.items()):
-        if category in ("created_at", "last_seen", "fact_hashes"):
-            continue
-        values = val if isinstance(val, list) else ([val] if val else [])
-        for v in list(values):
-            h = _hash_fact(category, v, salt)
-            if h.startswith(item_id):
-                if isinstance(val, list):
-                    val.remove(v)
-                else:
-                    slot[category] = ""
-                if h in slot.get("fact_hashes", []):
-                    slot["fact_hashes"].remove(h)
-                removed = True
-                break
-        if removed:
-            break
-    if removed:
-        _save_users(store)
-    _inject_memory(bot)
-    return JSONResponse({"ok": True, "removed": removed})
-
-
-# ── Debug-only manual unlock (Phase 2 testing before auto-verify lands) ──
-
-@app.post("/api/debug/unlock/{uuid_prefix}")
-async def api_debug_unlock(uuid_prefix: str):
-    """Force-unlock a slot by UUID prefix. Used for Phase 2 testing only.
-    Verification hook (Phase 3) will supersede this in normal flow."""
-    if bot is None:
-        return JSONResponse({"ok": False, "error": "No model loaded"}, status_code=400)
-    store = _load_users()
-    matches = [uid for uid in store["users"] if uid.startswith(uuid_prefix)]
-    if len(matches) == 0:
-        return JSONResponse({"ok": False, "error": "No slot with that prefix"}, status_code=404)
-    if len(matches) > 1:
-        return JSONResponse({"ok": False, "error": f"Ambiguous prefix matches {len(matches)} slots"}, status_code=400)
-    bot.unlocked_user_id = matches[0]
-    bot.candidate_uuids = [matches[0]]
-    bot.session_non_name_match = True
-    _inject_memory(bot)
-    logger.warning("DEBUG unlock: session bound to %s", matches[0])
-    return JSONResponse({"ok": True, "user_id": matches[0]})
-
-
-@app.post("/api/debug/relock")
-async def api_debug_relock():
-    """Clear the session binding so you can test another user without restarting."""
-    if bot is None:
-        return JSONResponse({"ok": False, "error": "No model loaded"}, status_code=400)
-    _reset_session_lock(bot)
-    _inject_memory(bot)
-    return JSONResponse({"ok": True})
+    # item_id format: "<category>:<index>"
+    if ":" not in item_id:
+        return JSONResponse({"ok": False, "error": "Bad item id"}, status_code=400)
+    category, _, idx_s = item_id.partition(":")
+    try:
+        idx = int(idx_s)
+    except ValueError:
+        return JSONResponse({"ok": False, "error": "Bad index"}, status_code=400)
+    facts = _load_facts()
+    bucket = facts.get(category)
+    if not isinstance(bucket, list) or idx < 0 or idx >= len(bucket):
+        return JSONResponse({"ok": True, "removed": False})
+    bucket.pop(idx)
+    _save_facts(facts)
+    if bot is not None:
+        _inject_memory(bot)
+    return JSONResponse({"ok": True, "removed": True})
 
 
 def _reset_session_lock(b: VoiceChatBot) -> None:
-    """Clear all per-session lock state. Called on /api/chats/new and on relock.
-    In simple mode, re-bind to the default user instead of leaving locked."""
-    b.session_fact_hashes = set()
-    b.candidate_uuids = None
-    b.session_non_name_match = False
-    b.pending_new_user_facts = []
-    if MULTI_USER_MODE:
-        b.unlocked_user_id = None
-    else:
-        store = _load_users()
-        b.unlocked_user_id = _default_user_id(store)
+    """No-op in single-user mode — kept as a name so older call sites still
+    work. Was where vibe-check state got cleared per-session."""
+    return
 
 
 def _inject_memory(b: VoiceChatBot):
-    """Rebuild the system prompt's memory block based on current lock state.
-    Locked + no candidates narrowed → locked stub.
-    Locked + narrowing (2+ candidates) → narrowing hint.
-    Unlocked → plaintext slot view.
-    Always strips any previous block first so it never stacks."""
+    """Rebuild the memory block on the system prompt from the flat fact store.
+
+    Strips any previous MEMORY_MARKER block first so it never stacks."""
     base = b.system_prompt or ""
     idx = base.find(MEMORY_MARKER)
     if idx != -1:
         base = base[:idx]
-
-    if b.unlocked_user_id is not None:
-        items = _load_memory()
-        b.system_prompt = base + _memory_as_prompt(items)
-        return
-
-    store = _load_users()
-    cand = b.candidate_uuids
-    if cand is not None and len(cand) >= 2:
-        b.system_prompt = base + _narrowing_hint(len(cand))
-    else:
-        b.system_prompt = base + _locked_stub(store)
+    items = _load_memory()
+    b.system_prompt = base + _memory_as_prompt(items)
 
 
-def _attach_episodic(b: VoiceChatBot, query: str) -> None:
-    """Strip any prior episodic block and append a fresh one for this turn.
-
-    Vector memory is per-turn (depends on the current query), unlike the
-    fact block which only rebuilds on lock-state change."""
-    if b.unlocked_user_id is None:
-        return
-    base = b.system_prompt or ""
-    idx = base.find(EPISODIC_MARKER)
-    if idx != -1:
-        base = base[:idx]
-    try:
-        block = episodic.recall_block(b.unlocked_user_id, query)
-    except Exception as e:  # noqa: BLE001
-        logger.warning("episodic.recall failed: %s", e)
-        block = ""
-    b.system_prompt = base + block
-
-
-def _record_episode(slot_id: str | None, user_msg: str, assistant_msg: str) -> None:
-    if not slot_id:
+def _record_episode(
+    session_uuid: str | None, user_msg: str, assistant_msg: str
+) -> None:
+    if not session_uuid:
         return
     try:
-        episodic.record(slot_id, user_msg, assistant_msg)
+        episodic.record(session_uuid, user_msg, assistant_msg)
     except Exception as e:  # noqa: BLE001
         logger.warning("episodic.record failed: %s", e)
+
+
+def _rotate_session(b: VoiceChatBot) -> None:
+    """Summarize the outgoing session, then mint a fresh uuid on the bot.
+
+    Called on /api/chats/new and /api/chats/{id}/load — both signal a chat
+    boundary, so the outgoing session should become a recallable summary
+    before we lose its identity."""
+    if b is None:
+        return
+    old_session = getattr(b, "session_uuid", None)
+    if old_session:
+        try:
+            episodic.summarize_session(old_session)
+        except Exception as e:  # noqa: BLE001
+            logger.warning("episodic.summarize_session failed: %s", e)
+    b.session_uuid = uuid.uuid4().hex
 
 
 def _run_slash_command(message: str) -> str | None:
@@ -891,31 +731,9 @@ async def chat(req: ChatRequest):
             bot.history.append({"role": "assistant", "content": slash_reply})
             response = slash_reply
         else:
-            # Memory verification hook — runs before the LLM turn so the
-            # injected memory block reflects any lock state change this
-            # message triggers (unlock, narrowing update, new-user commit).
-            prev_unlocked = bot.unlocked_user_id
-            prev_candidates = bot.candidate_uuids
-            prior_assistant = ""
-            for turn in reversed(bot.history):
-                if turn.get("role") == "assistant":
-                    prior_assistant = turn.get("content", "") or ""
-                    break
-            extracted = await asyncio.to_thread(
-                verify_and_advance, bot, req.message, prior_assistant
-            )
-            print(
-                f"[verify] unlocked={bot.unlocked_user_id} "
-                f"candidates={bot.candidate_uuids} "
-                f"extracted={extracted}",
-                flush=True,
-            )
-            if bot.unlocked_user_id != prev_unlocked or bot.candidate_uuids != prev_candidates:
-                _inject_memory(bot)
-            await asyncio.to_thread(_attach_episodic, bot, req.message)
             response = await asyncio.to_thread(bot.react_chat, req.message)
             await asyncio.to_thread(
-                _record_episode, bot.unlocked_user_id, req.message, response
+                _record_episode, bot.session_uuid, req.message, response
             )
 
         audio_b64 = await asyncio.to_thread(_synthesize_audio, response)
@@ -955,7 +773,7 @@ async def autonomous_poll():
         last_interaction_time = time.time()
         stats = bot.last_stats if bot.last_stats else None
         return JSONResponse({"text": response, "audio": audio_b64, "stats": stats})
-    except Exception as e:
+    except Exception:
         logger.exception("Error in /autonomous")
         return JSONResponse({"text": "", "audio": ""})
 

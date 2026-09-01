@@ -1,0 +1,317 @@
+{
+  "version": "focused-repair-comparison-v1",
+  "date": "2026-08-21",
+  "status": "completed",
+  "scope": {
+    "full_450_rerun": false,
+    "hammer_3b_loaded": false,
+    "production_yuki_modified": false,
+    "yuki_tool_execution_capability": false,
+    "yuki_tool_execution_attempts": 0,
+    "models_used_one_at_a_time": true
+  },
+  "frozen_inputs": {
+    "full_qwen_delegations_sha256": "ee68fa403cc3a6d211aa0ffad99a474794378e5bb94f0cbb70b8f94c363be5fa",
+    "full_hammer_baseline_sha256": "84b619922e3b24c0080b17b91a5963114f024647112e467a6099ae9fab425f8a",
+    "full_failures_sha256": "7d82ec2c4f5721ba56db781d903237ac37d84691638f2cecee97387a6e162de1",
+    "phase2_dataset_sha256": "5b26b9a493ccc58de7b606a829b14487251df3a068a0bcfd1f69c3ae1f966466",
+    "a_target_50_sha256": "13018fdc482ebf9d1617b7f6ec5b53c384b317b78ca4cc20094a9e86b48fda44",
+    "a_regression_50_sha256": "6bd03df36b4b2859c66dc146eea73b8c24a3a36d52e2d2b8725de1ca710920ad",
+    "b_old_75_sha256": "2a4771e9adc5c84d94b704b01a320e147dce361b8d9b98eb4487733e2475901d"
+  },
+  "experiment_a": {
+    "model": "MadeAgents/Hammer2.1-1.5b FP16",
+    "selected_variant": "schema_descriptions_only",
+    "rejection_instruction_selected": false,
+    "see": {
+      "baseline": {
+        "tool_selection_accuracy": 0.4,
+        "strict_argument_accuracy": 0.36,
+        "preservation_aware_argument_accuracy": 0.36,
+        "strict_exact_call_accuracy": 0.36,
+        "preservation_aware_exact_call_accuracy": 0.36,
+        "schema_valid_rate": 0.48,
+        "rejections": 13,
+        "malformed": 0,
+        "average_latency_ms": 1527.3532,
+        "p50_latency_ms": 1166.649,
+        "p95_latency_ms": 2139.3096,
+        "tokens_per_second": 23.4076,
+        "peak_mlx_memory_gb": 3.4611
+      },
+      "schema_repair": {
+        "tool_selection_accuracy": 0.68,
+        "strict_argument_accuracy": 0.56,
+        "preservation_aware_argument_accuracy": 0.56,
+        "strict_exact_call_accuracy": 0.56,
+        "preservation_aware_exact_call_accuracy": 0.56,
+        "schema_valid_rate": 0.76,
+        "rejections": 6,
+        "malformed": 0,
+        "average_latency_ms": 1754.73304,
+        "p50_latency_ms": 1959.624,
+        "p95_latency_ms": 2249.8953999999994,
+        "tokens_per_second": 21.77672,
+        "peak_mlx_memory_gb": 3.4589
+      },
+      "schema_plus_rejection_clarification": {
+        "tool_selection_accuracy": 0.68,
+        "strict_exact_call_accuracy": 0.56,
+        "schema_valid_rate": 0.72,
+        "rejections": 7,
+        "malformed": 0,
+        "average_latency_ms": 1713.04608,
+        "p50_latency_ms": 1964.869,
+        "p95_latency_ms": 2192.9592,
+        "tokens_per_second": 22.08776,
+        "peak_mlx_memory_gb": 3.4726
+      }
+    },
+    "recall": {
+      "baseline": {
+        "tool_selection_accuracy": 0.52,
+        "strict_argument_accuracy": 0.44,
+        "preservation_aware_argument_accuracy": 0.44,
+        "strict_exact_call_accuracy": 0.44,
+        "preservation_aware_exact_call_accuracy": 0.44,
+        "schema_valid_rate": 0.56,
+        "rejections": 11,
+        "malformed": 0,
+        "average_latency_ms": 2341.36752,
+        "p50_latency_ms": 2541.226,
+        "p95_latency_ms": 3128.589,
+        "tokens_per_second": 20.79692,
+        "peak_mlx_memory_gb": 3.4489
+      },
+      "schema_repair": {
+        "tool_selection_accuracy": 0.96,
+        "strict_argument_accuracy": 0.76,
+        "preservation_aware_argument_accuracy": 0.8,
+        "strict_exact_call_accuracy": 0.76,
+        "preservation_aware_exact_call_accuracy": 0.8,
+        "schema_valid_rate": 1.0,
+        "rejections": 0,
+        "malformed": 0,
+        "average_latency_ms": 2049.99368,
+        "p50_latency_ms": 2029.482,
+        "p95_latency_ms": 2240.8983999999996,
+        "tokens_per_second": 19.55824,
+        "peak_mlx_memory_gb": 3.3514
+      },
+      "schema_plus_rejection_clarification": {
+        "tool_selection_accuracy": 0.96,
+        "strict_exact_call_accuracy": 0.76,
+        "preservation_aware_exact_call_accuracy": 0.8,
+        "schema_valid_rate": 1.0,
+        "rejections": 0,
+        "malformed": 0,
+        "average_latency_ms": 2059.24816,
+        "p50_latency_ms": 2034.168,
+        "p95_latency_ms": 2249.4071999999996,
+        "tokens_per_second": 19.5234,
+        "peak_mlx_memory_gb": 3.3446
+      }
+    },
+    "regression_checks": {
+      "image": {
+        "baseline_tool_selection_accuracy": 0.88,
+        "repaired_tool_selection_accuracy": 1.0,
+        "baseline_strict_exact_call_accuracy": 0.48,
+        "repaired_strict_exact_call_accuracy": 0.56,
+        "baseline_schema_valid_rate": 0.88,
+        "repaired_schema_valid_rate": 1.0,
+        "repaired_rejections": 0,
+        "repaired_malformed": 0
+      },
+      "remember": {
+        "baseline_tool_selection_accuracy": 1.0,
+        "repaired_tool_selection_accuracy": 1.0,
+        "baseline_strict_exact_call_accuracy": 0.76,
+        "repaired_strict_exact_call_accuracy": 0.76,
+        "baseline_preservation_aware_exact_call_accuracy": 0.96,
+        "repaired_preservation_aware_exact_call_accuracy": 0.96,
+        "repaired_schema_valid_rate": 1.0,
+        "repaired_rejections": 0,
+        "repaired_malformed": 0
+      }
+    }
+  },
+  "experiment_b_stage_a": {
+    "model": "qwen/qwen3.8-27b",
+    "old": {
+      "valid_json_rate": 1.0,
+      "domain_accuracy": 0.9866666666666667,
+      "verbatim_recall": 0.6133333333333333,
+      "verbatim_precision": 0.6133333333333333,
+      "exact_character_preservation_rate": 0.6133333333333333,
+      "final_tool_leakage_rate": 0.0
+    },
+    "new": {
+      "valid_json_rate": 1.0,
+      "domain_accuracy": 0.9733333333333334,
+      "verbatim_recall": 0.5333333333333333,
+      "verbatim_precision": 0.5266666666666666,
+      "exact_character_preservation_rate": 0.5333333333333333,
+      "final_tool_leakage_rate": 0.0,
+      "average_latency_ms": 1321.52632,
+      "average_generated_tokens": 30.08,
+      "api_cost_usd": 0.0219556,
+      "reasoning_tokens": 0,
+      "returned_model_exact": true,
+      "schema_constrained_all": true
+    },
+    "change_percentage_points": {
+      "domain_accuracy": -1.3333333333333308,
+      "verbatim_recall": -7.9999999999999964,
+      "verbatim_precision": -8.666666666666668,
+      "exact_character_preservation": -7.9999999999999964
+    },
+    "exact_preservation_by_tool": {
+      "search": {
+        "old": 0.6,
+        "new": 0.48
+      },
+      "image": {
+        "old": 0.6,
+        "new": 0.52
+      },
+      "ask_claude": {
+        "old": 0.64,
+        "new": 0.6
+      }
+    },
+    "gold_boundary_diagnostic": {
+      "official_scoring_unchanged": true,
+      "cases_where_new_output_is_an_exact_raw_source_span_but_differs_from_gold_only_by_leading_article_or_terminal_period": 13,
+      "leading_article_cases": 9,
+      "terminal_period_cases": 4,
+      "interpretation": "The frozen gold span boundary is not fully aligned with a literal source-copy contract for these cases. This is reported as a diagnostic, not used to change official scores."
+    },
+    "decision": "reject_new_qwen_prompt"
+  },
+  "experiment_b_downstream": {
+    "dispatcher_variant_for_both_arms": "experiment_a_schema_descriptions_only",
+    "overall": {
+      "old_qwen": {
+        "tool_selection_accuracy": 0.96,
+        "strict_argument_accuracy": 0.5866666666666667,
+        "preservation_aware_argument_accuracy": 0.5866666666666667,
+        "strict_exact_call_accuracy": 0.5866666666666667,
+        "preservation_aware_exact_call_accuracy": 0.5866666666666667,
+        "schema_valid_rate": 0.9866666666666667,
+        "rejections": 1,
+        "malformed": 0,
+        "average_latency_ms": 2419.5933066666666,
+        "p50_latency_ms": 2382.4,
+        "p95_latency_ms": 2949.6046999999994,
+        "tokens_per_second": 19.15236,
+        "peak_mlx_memory_gb": 3.4699
+      },
+      "new_qwen": {
+        "tool_selection_accuracy": 0.9466666666666667,
+        "strict_argument_accuracy": 0.5466666666666666,
+        "preservation_aware_argument_accuracy": 0.5466666666666666,
+        "strict_exact_call_accuracy": 0.5466666666666666,
+        "preservation_aware_exact_call_accuracy": 0.5466666666666666,
+        "schema_valid_rate": 0.9733333333333334,
+        "rejections": 1,
+        "malformed": 1,
+        "average_latency_ms": 2506.1122533333332,
+        "p50_latency_ms": 2456.886,
+        "p95_latency_ms": 3072.6086999999998,
+        "tokens_per_second": 18.52732,
+        "peak_mlx_memory_gb": 3.4638
+      }
+    },
+    "by_tool": {
+      "search": {
+        "old_strict_exact": 0.6,
+        "new_strict_exact": 0.64,
+        "old_tool_selection": 0.92,
+        "new_tool_selection": 0.84,
+        "old_schema_valid_rate": 1.0,
+        "new_schema_valid_rate": 0.92,
+        "old_rejections": 0,
+        "new_rejections": 1,
+        "old_malformed": 0,
+        "new_malformed": 1,
+        "failure_to_success": 1,
+        "success_to_failure": 0
+      },
+      "image": {
+        "old_strict_exact": 0.56,
+        "new_strict_exact": 0.48,
+        "old_tool_selection": 1.0,
+        "new_tool_selection": 1.0,
+        "old_schema_valid_rate": 1.0,
+        "new_schema_valid_rate": 1.0,
+        "old_rejections": 0,
+        "new_rejections": 0,
+        "old_malformed": 0,
+        "new_malformed": 0,
+        "failure_to_success": 1,
+        "success_to_failure": 3
+      },
+      "ask_claude": {
+        "old_strict_exact": 0.6,
+        "new_strict_exact": 0.52,
+        "old_tool_selection": 0.96,
+        "new_tool_selection": 1.0,
+        "old_schema_valid_rate": 0.96,
+        "new_schema_valid_rate": 1.0,
+        "old_rejections": 1,
+        "new_rejections": 0,
+        "old_malformed": 0,
+        "new_malformed": 0,
+        "failure_to_success": 0,
+        "success_to_failure": 2
+      }
+    },
+    "old_strict_failure_association_with_qwen_verbatim_loss": {
+      "search": {
+        "associated_failures": 8,
+        "strict_failures": 10,
+        "fraction": 0.8
+      },
+      "image": {
+        "associated_failures": 10,
+        "strict_failures": 11,
+        "fraction": 0.9090909090909091
+      },
+      "ask_claude": {
+        "associated_failures": 9,
+        "strict_failures": 10,
+        "fraction": 0.9
+      },
+      "combined": {
+        "associated_failures": 27,
+        "strict_failures": 31,
+        "fraction": 0.8709677419354839,
+        "causality_note": "Association is not proof of sole causation because the priority-ordered failure taxonomy can mask downstream errors."
+      }
+    }
+  },
+  "selected_focused_configuration": {
+    "qwen_contract": "retain_frozen_original_contract",
+    "hammer_schema_variant": "schema_descriptions_only",
+    "targeted_strict_exact_accuracy": {
+      "see": 0.56,
+      "recall": 0.76,
+      "search": 0.6,
+      "image": 0.56,
+      "ask_claude": 0.6
+    }
+  },
+  "conclusions": {
+    "why_see_rejected": "Dispatcher-facing ontology and capability wording were a major cause, amplified by Hammer uncertainty about external visual state. Description repair removed 7 of 13 rejections, but 6 remained.",
+    "why_recall_rejected": "The old description depended on current-chat state and assistant reply behavior instead of directly exposing persistent-memory retrieval. Description repair removed all 11 rejections.",
+    "schema_repair_effective": true,
+    "rejection_clarification_helped_independently": false,
+    "image_or_remember_regressed": false,
+    "qwen_lossless_contract_improved_official_exact_preservation": false,
+    "qwen_improvement_survived_hammer": false,
+    "hammer_1_5b_worth_continuing": true,
+    "hammer_3b_evidence": "No broad 3B run is justified. A future 25-case see-only capacity probe would be scientifically reasonable, but it should not precede resolution of the upstream payload-span contract and benchmark-boundary ambiguity.",
+    "full_450_rerun_recommended": false
+  }
+}

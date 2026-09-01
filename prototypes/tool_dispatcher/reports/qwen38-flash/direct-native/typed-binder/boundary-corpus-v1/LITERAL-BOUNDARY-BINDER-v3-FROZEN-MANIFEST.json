@@ -1,0 +1,28 @@
+{
+  "version": "literal-boundary-binder-v3-frozen-manifest",
+  "status": "binder_v3_frozen_before_holdout_unlock",
+  "binder_v3": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/typed_literal_binder_v3.py",
+    "sha256": "ea35d2e686b94800cae2651c9b8b868553cd8ac7d479fb2fccf7be518b31c39c"
+  },
+  "development_comparison": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-corpus-v1/literal-boundary-dev-comparison-v3.json",
+    "sha256": "17a13edd0f13c0a86c73a7098df105ffe954a915867c805705df54bb1aa4b849",
+    "gate_passed": true
+  },
+  "corpus_manifest": {
+    "path": "/Users/mohamedlaminemennane/llama-voice-assist/prototypes/tool_dispatcher/reports/qwen38-flash/direct-native/typed-binder/boundary-corpus-v1/LITERAL-BOUNDARY-CORPUS-v1-FROZEN-MANIFEST.json",
+    "sha256": "e11282f91b61a5ae752b5a02e0f649ad2835c3dfc3fa5abada9f5d6cb44c8bf9"
+  },
+  "sealed_holdout": {
+    "input_sha256": "1b5f4347f70d072564e60bc992c6f3533e58dac21f35961dee57ce8fc0579c2b",
+    "annotations_sha256": "36b390e9ca35c7a0153a067e8bbb2ca936c13f801893e651f23c706edabdba3d",
+    "read_by_dev_runner": false,
+    "scored_before_binder_freeze": false
+  },
+  "safety": {
+    "models_called": false,
+    "sacred_450_used": false,
+    "yuki_tools_executed": false
+  }
+}
