@@ -1,5 +1,11 @@
 # Textual TUI UX handoff for ChatGPT
 
+> **Historical pre-redesign audit:** this report records the TUI before the
+> retro-workspace UX redesign. Many recommendations below are now implemented,
+> including labeled focusable controls, a unified activity state, a model
+> manager, session drawer, explicit reasoning controls, and responsive reflow.
+> Keep it as design rationale, not as a description of the current screen.
+
 Inspection date: 2026-08-22
 
 ## Scope

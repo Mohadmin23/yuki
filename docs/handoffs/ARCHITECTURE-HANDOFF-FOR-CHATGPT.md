@@ -1,5 +1,11 @@
 # llama-voice-assist architecture handoff
 
+> **Historical snapshot:** this report describes the repository as inspected on
+> 2026-08-22. The Textual redesign, strict production routing boundary,
+> dedicated-dispatcher integration, reasoning controls, and later continuity
+> fixes changed several conclusions below. Use the main `README.md` and
+> `docs/TOOL-ROUTING-ARCHITECTURES.md` for current behavior.
+
 Inspection date: 2026-08-22
 
 This report is based on a read-only inspection of the current working tree. No model was loaded, no service was started, no Yuki tool was executed, and no existing project file was changed. The working tree contains a large, coherent but uncommitted refactor, so this describes the code that is present now—not necessarily the last Git commit. The only new file produced by the inspection is this report.
@@ -426,8 +432,8 @@ The largest integration risk is not the front end; it is having multiple dispatc
 ## 8. Old, unused, duplicate, or confusing architecture
 
 - The current tree is a large uncommitted refactor. `ms_llama.py`, the server, episodic memory, tests, and tools differ substantially from the last committed baseline. Any integration should remain separable and must not reset these changes.
-- `docs/TODO-function-calling.md` says native function calling is deferred and all tools use regex. That is outdated: OpenRouter and GGUF native loops now exist, while MLX/Transformers still need the documented work.
-- `docs/TODO-memory-security.md` has a correct stale banner, but most of the document describes deleted multi-user slots, hashes, 2FA, and unlock behavior.
+- `docs/archive/TODO-function-calling.md` says native function calling is deferred and all tools use regex. That is outdated: OpenRouter and GGUF native loops now exist, while MLX/Transformers still need the documented work.
+- `docs/archive/TODO-memory-security.md` has a correct stale banner, but most of the document describes deleted multi-user slots, hashes, 2FA, and unlock behavior.
 - `personas/yuki.txt` still contains old locked/multi-user “vibe check” instructions even though runtime memory is single-user.
 - Comments above flat memory in `ms_llama.py` still describe UUID-keyed, hashed per-user facts. The implementation directly below them is flat and single-user.
 - `_reset_session_lock` in the server is a compatibility no-op. Calls and comments around it can mislead readers into thinking identity locking remains active.
@@ -442,7 +448,7 @@ The largest integration risk is not the front end; it is having multiple dispatc
 - The active test file is mostly mock-oriented and does not provide broad protection for the newer native-call path. The apparent shell-injection test does not establish that shell operators are blocked.
 - `prototypes/tool_dispatcher/` is intentionally extensive and report-heavy, but it is a separate research system. Its executor and strict schemas should not be mistaken for production protections.
 - `subprojects/finetune`, `image_gen`, `img2img`, and `Fine-tune-Dataset-Quality-Scorer` have their own runtimes/dependency assumptions. They are not alternate production agent loops.
-- `docs/system-note.txt` is a useful prompt inventory, but it is generated documentation and may drift from runtime code.
+- `docs/archive/system-note-legacy.txt` is a useful prompt inventory, but it is generated documentation and may drift from runtime code.
 
 ## Current architecture in one diagram
 
@@ -542,5 +548,4 @@ Suggested order:
 9. `prototypes/tool_dispatcher/registry.py`, `prompting.py`, `backends.py`, `parsing.py`, and `delegation_dispatcher.py` — strict stateless Hammer path.
 10. `prototypes/tool_dispatcher/delegation_contract.py`, `delegation_mainbrain.py`, and `source_span_policy.py` — Qwen semantic delegation and deterministic source binding.
 11. `prototypes/tool_dispatcher/README.md` and its focused reports — experimental results and safety invariants, not production code.
-12. `docs/TODO-function-calling.md` and `docs/TODO-memory-security.md` — useful history only after accounting for their stale sections.
-
+12. `docs/archive/TODO-function-calling.md` and `docs/archive/TODO-memory-security.md` — useful history only after accounting for their stale sections.

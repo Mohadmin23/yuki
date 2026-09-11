@@ -3,6 +3,11 @@
  Generated for review. Assembled from ms_llama.py + personas/yuki.txt
 ===============================================================================
 
+ ARCHIVED SNAPSHOT: this generated inventory predates the strict direct/
+ dispatcher routing architecture and later persona/continuity changes. It is
+ preserved for historical debugging only. Read the runtime code for current
+ prompt assembly.
+
 This file lists, IN ORDER, every string the Python code injects into the model's
 context. Some appear always, some only in specific situations (tool calls, etc).
 

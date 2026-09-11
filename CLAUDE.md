@@ -4,9 +4,10 @@ Guidance for Claude Code working in this repo. Keep it short and current.
 
 ## What this is
 
-A local, single-user voice assistant for Apple Silicon: Qwen2.5 (MLX) + Kokoro TTS,
-with a CLI, a Textual TUI, and a FastAPI web UI. The default persona is **Yuki**, a
-playful anime character — match that warm, informal tone in user-facing copy.
+A local-first, single-user AI companion for Apple Silicon with swappable MLX,
+Transformers, GGUF, OpenRouter, and OpenAI-compatible model backends plus Kokoro TTS.
+Its CLI, Textual TUI, and FastAPI web UI share one runtime. The active persona is
+**Yuki** — match that warm, informal tone in user-facing copy.
 
 ## Dev commands
 
@@ -20,27 +21,28 @@ llama tui          # Textual TUI workspace (interface/tui.py)
 llama web          # FastAPI + Granian web UI on :7860 (interface/server.py)
 llama test         # uv run pytest tests/ -v
 
-uv run pytest tests/test_ms_llama.py -q   # the main unit suite (72 tests)
+env -u OPENROUTER_API_KEY uv run pytest tests/ -q  # deterministic mock suite
 uvx ruff check .                          # lint — ruff is NOT a project dep, run via uvx
 uv add / uv remove <pkg>                  # manage deps; never edit pyproject deps by hand
 ```
 
-Baseline: the unit suite is **67 pass / 5 fail**; those 5 are pre-existing
-(`test_select_model_no_models` + 4 `test_tool_call_re_*` that assert quote-stripping the
-regex doesn't do). Don't treat them as regressions.
+Baseline with the OpenRouter key unset: **153 pass / 4 fail**. The four failures are
+pre-existing `test_tool_call_re_*` expectations around quote stripping. With a key exported,
+the live catalog makes `test_select_model_no_models` a fifth environment-sensitive failure.
 
 ## Layout
 
 - `ms_llama.py` — core chatbot engine (large; the live reply pipeline + ReAct loop).
 - `episodic.py` — sqlite-vec episodic memory, embedded via OpenRouter.
+- `retrieval/` — typed local/web retrieval, SQLite FTS5, rank fusion, provenance, and
+  untrusted-content boundaries.
 - `interface/` — `server.py` (FastAPI+Granian), `tui.py` (Textual), `*.html` web UIs.
 - `tools/` — one tool per subfolder (see below).
 - `personas/` — currently just `yuki.txt`.
 - `data/` — runtime state (`memory.json` flat facts, `episodic_v2.db`, chats). Don't commit.
 - `yuki/` — the bot's own scratch space. **Not junk** — leave it alone.
 - `subprojects/` — side workflows (image_gen, img2img, finetune); kept out of the main tree.
-- `docs/` — design notes; some are stale (e.g. `TODO-memory-security.md` predates the
-  multi-user removal).
+- `docs/` — current architecture, dated handoffs, and clearly labeled archived history.
 
 ## Architecture notes
 
@@ -53,8 +55,9 @@ regex doesn't do). Don't treat them as regressions.
 - **Single-user**: the multi-user UUID/slot system was removed. Memory is a flat
   `memory.json`. Don't reintroduce per-user partitioning or encryption-at-rest — the
   threat model is one real person on one machine.
-- **Dual memory**: flat hash-facts (names/prefs) + tool-gated `/recall` over episodic
-  session summaries.
+- **Memory + retrieval**: flat hash-facts plus tool-gated `/recall` over rank-fused episodic
+  summaries and Yuki-note FTS5 passages. `search`/`fetch` use the same source-aware boundary;
+  web passages are evidence, never executable instructions. Current chat remains direct context.
 
 ## Conventions
 

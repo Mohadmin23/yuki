@@ -11,10 +11,11 @@ Read this first. It's the handoff doc — kept short, blunt, and current.
 
 ## 1. What this is
 
-A **local, single-user voice assistant for Apple Silicon**: Qwen2.5 (MLX) + Kokoro TTS,
-with three front-ends — a CLI, a Textual TUI, and a FastAPI web UI. The default persona is
-**Yuki**, a playful anime character. **Match that warm, informal tone in any user-facing
-copy** (prompts, errors, help text). Corporate voice is wrong here.
+A **local-first, single-user AI companion for Apple Silicon** with swappable MLX,
+Transformers, GGUF, OpenRouter, and OpenAI-compatible model backends plus Kokoro TTS. It has
+three front-ends — a CLI, a Textual TUI, and a FastAPI web UI — backed by one shared runtime.
+The active persona is **Yuki**, a playful anime character. **Match that warm, informal tone in
+any user-facing copy** (prompts, errors, help text). Corporate voice is wrong here.
 
 It is *single-user by design*. The threat model is one real person on one machine. Don't
 reintroduce per-user accounts, UUID slots, partitioning, or encryption-at-rest — that whole
@@ -24,23 +25,18 @@ system was deliberately deleted (see §9).
 
 ## 2. ⚠️ State of the tree right now (READ THIS BEFORE YOU TOUCH ANYTHING)
 
-The working tree has a **large in-flight refactor that is NOT committed**. As of the handoff:
-
-- `ms_llama.py` — ~1150 net lines changed (a near-rewrite of the reply pipeline + ReAct loop).
-- `interface/server.py`, `episodic.py`, `tests/test_ms_llama.py` — substantially modified.
-- Untracked new work: `interface/tui.py`, `tools/see/`, three `tests/_smoke_*.py` scripts,
-  `docs/TODO-function-calling.md`.
-- Deleted: `personas/coder.txt`, `personas/therapist.txt` (intentional — Yuki is the only persona now).
+The formerly uncommitted runtime/TUI refactor was checkpointed and pushed to `main`. It now
+includes the redesigned Textual workspace, reasoning controls, direct and dedicated-dispatcher
+tool routing, a strict canonical call boundary, autonomous continuity, and session persistence.
 
 **What this means for you:**
-- This diff is the previous owner's unfinished work. **Don't blow it away, don't `git checkout`
-  it, don't "clean it up" by reverting.** If you need a clean base, `git stash` (don't discard).
-- The suite is green at the documented baseline *with this diff applied* (see §8), so the
-  refactor is coherent, not broken.
-- Before starting your own feature, decide with the user whether to commit this refactor first.
-  Tangling new work into this diff makes it un-reviewable.
-- Keep your own edits separable from it. The filesystem/lint cleanup that produced this very
-  file was deliberately kept tiny and out of the big modified files for that reason.
+- Always inspect `git status` before editing. Existing changes belong to the user or another
+  agent; preserve them and work on a `codex/` feature branch when starting from `main`.
+- Do not treat `prototypes/tool_dispatcher/` as wholly disposable: production `tool_routing/`
+  currently reuses several of its tested dialect, schema, parser, prompt, and backend modules.
+- Runtime state under `data/`, `yuki/`, and `output/` remains real user data and is gitignored.
+- Keep changes reviewable. Documentation cleanup, runtime refactors, and research-artifact
+  reorganization should remain separate changes.
 
 ---
 
@@ -90,10 +86,11 @@ If you run `python`/`pytest` directly you'll regenerate stray `__pycache__/` —
 ## 5. Layout
 
 ```
-llama-voice-assist/
+yuki/
 ├── llama                # bash launcher (symlinked to ~/.local/bin)
 ├── ms_llama.py          # core engine: model load, reply pipeline, ReAct loop, CLI entry (large)
 ├── episodic.py          # sqlite-vec episodic memory, embedded via OpenRouter
+├── retrieval/           # typed local/web retrieval, RRF, FTS5, provenance/safety envelope
 ├── interface/
 │   ├── server.py        # FastAPI + Granian backend (port 7860)
 │   ├── tui.py           # Textual TUI workspace (untracked WIP)
@@ -165,11 +162,14 @@ their failure as a bug to "fix" — they need the surrounding setup:
 
 ## 8. Tests & baseline
 
-- Unit suite: `tests/test_ms_llama.py`, **mock-based — no network, safe to run freely.**
-- **Baseline is 67 pass / 5 fail.** The 5 failures are **pre-existing and expected, not
-  regressions**: `test_select_model_no_models` (1) + four `test_tool_call_re_*` that assert the
-  regex strips quotes when it doesn't. Don't chase them unless you're deliberately reworking
-  that regex.
+- The normal suite is mock-based, but unset `OPENROUTER_API_KEY` when running it so the model
+  selector cannot discover the live OpenRouter catalog.
+- Current command: `env -u OPENROUTER_API_KEY uv run pytest tests/ -q`.
+- **Baseline is 153 pass / 4 fail.** The four failures are pre-existing
+  `test_tool_call_re_*` expectations that the legacy regex strips quotes when it does not. If an
+  OpenRouter key is left exported, `test_select_model_no_models` becomes a fifth
+  environment-sensitive failure because cloud models exist. Do not chase those failures unless
+  deliberately reworking the legacy regex/test fixture.
 - `tests/_smoke_*.py` are **manual scripts**, not collected by pytest (the `_` prefix keeps them
   out of discovery). They make real API calls — the owner caps spend per smoke run, so **don't
   re-run or broaden them without asking.**
@@ -177,21 +177,33 @@ their failure as a bug to "fix" — they need the surrounding setup:
   still call the deleted `bot.unlocked_user_id`, `episodic.count_for(slot)`, and the old 4-arg
   `_cli_record_episode`. They were written pre single-user-collapse and never updated. Fix or
   delete them; don't trust them as examples of the current API.
+- Full-tree Ruff currently reports a pre-existing backlog. Do not run `--fix` across the tool
+  packages, and do not expand that backlog in changed Python files.
 
 ---
 
-## 9. Memory architecture (current, real)
+## 9. Memory and retrieval architecture (current, real)
 
-Dual memory, single-user:
+Single-user memory with a shared retrieval boundary:
 1. **Flat fact memory** — `data/memory.json`, simple hash-keyed facts (names, prefs). Written by
    the `remember` tool / extraction path.
 2. **Episodic memory** — `episodic.py`, sqlite-vec over `data/episodic_v2.db`. Every
-   user+assistant exchange is embedded (OpenRouter `text-embedding-3-small`); the `recall` tool
-   does semantic search and returns *session summaries* (summarized by `EPISODIC_SUMMARY_MODEL`,
-   default `openai/gpt-4.1-nano`). Public API: `record`, `summarize_session(session_uuid)`,
-   `recall_sessions(query)`, `count_episodes()` — all **single-arg / no-slot**.
+   user+assistant exchange is embedded (OpenRouter `text-embedding-3-small`) and retrieved as
+   session summaries (summarized by `EPISODIC_SUMMARY_MODEL`, default `openai/gpt-4.1-nano`).
+3. **Yuki-note retrieval** — `retrieval/local.py`, incremental SQLite FTS5 passages over
+   text-like files in `yuki/`, stored in `data/retrieval.db`.
+4. **Live web retrieval** — `retrieval/web.py`, DuckDuckGo candidates plus bounded public-page
+   enrichment. Web passages are untrusted evidence with source URLs, never instructions.
 
-**Do not** reintroduce the multi-user system. `docs/TODO-memory-security.md` describes
+`recall` rank-fuses episodic and Yuki-note results. `search` and `fetch` render through the same
+typed provenance/safety envelope. Exact `read`/`yuki_read` behavior and all action tools remain
+separate. The current chat stays direct model context; RAG does not replace live continuity.
+
+Episodic public API: `record`, `summarize_session(session_uuid)`, `recall_sessions(query)`,
+`count_episodes()` — all **single-arg / no-slot**. Current RAG details and limits are in
+`docs/RAG-PHASE1.md`.
+
+**Do not** reintroduce the multi-user system. `docs/archive/TODO-memory-security.md` describes
 `MULTI_USER_MODE`, `verify_and_advance`, slots, 2FA unlock, a "122/127 tests" count — **all of
 that was deleted 2026-05-15 and no longer exists.** That doc now carries a STALE banner; it's
 kept only for design rationale. Don't go looking for symbols it names.
@@ -200,14 +212,15 @@ kept only for design rationale. Don't go looking for symbols it names.
 
 ## 10. Open TODOs (with pointers)
 
-- **Native function-calling refactor** — `docs/TODO-function-calling.md`. Replace the
-  `[TOOL: name("arg")]` text protocol (regex-parsed, leaks on weak models) with backends' native
-  `tool_calls`. Groundwork is done: `OPENAI_TOOL_SCHEMAS` is already built from `META` in
-  `tools/__init__.py`. Start with the OpenRouter backend.
+- **Production/research boundary** — `tool_routing/` still imports tested components from
+  `prototypes/tool_dispatcher/`. Move runtime-worthy dialect, schema, prompt, parser, and backend
+  code into a production package before reorganizing the research lab.
+- **Retrieval Phase 2** — build a frozen human-labeled retrieval eval before adding dense Yuki-file
+  embeddings, rerankers, more document types, or tuning chunk/fusion settings.
 - **Stored facts leak into new chats** — known memory-isolation bug; the owner has their own fix
   idea. Don't band-aid it; coordinate first.
-- **Stale docs** — `docs/TODO-memory-security.md` is historical-only (banner added). `README.md`
-  still says "Qwen2.5-1.5B" specifically; the engine is more general now.
+- **Historical docs** — superseded memory, prompt, and free-text function-calling notes live in
+  `docs/archive/`. Use `docs/README.md` to distinguish current architecture from history.
 
 ---
 
@@ -224,7 +237,7 @@ kept only for design rationale. Don't go looking for symbols it names.
 ## 12. A note from the last agent
 
 A personal note about working with this owner — what they value, how they collaborate, and how to
-not step on their toes — lives in **`NOTE-FROM-CLAUDE.md`** at the repo root. Worth a read before
+not step on their toes — lives in **`docs/handoffs/NOTE-FROM-CLAUDE.md`**. Worth a read before
 your first real change; it'll save you friction. Short version: real collaborator, high craft bar,
 usually has their own fix in mind (ask first), respects cost, and the playfulness is the point.
 
