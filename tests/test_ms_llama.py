@@ -660,6 +660,57 @@ def test_tool_result_injection_format():
     assert "no guessing" in msg.lower()
 
 
+def test_completed_tool_response_uses_result_without_executing_again(monkeypatch):
+    bot = VoiceChatBot.__new__(VoiceChatBot)
+    bot.history = [{"role": "assistant", "content": "Earlier context."}]
+    bot.last_reasoning = "stale trace"
+    bot._last_user_input = ""
+    bot._suspend_history_trim = 0
+    bot._trim_history = lambda: None
+    bot._run_tool_with_spinner = MagicMock(
+        side_effect=AssertionError("completed-tool response must not execute tools"),
+    )
+    seen_messages = []
+
+    def fake_chat(user_input, max_tokens=None):
+        assert user_input == ""
+        assert max_tokens == 512
+        seen_messages.extend(dict(message) for message in bot.history)
+        bot.history.append({
+            "role": "assistant",
+            "content": "I found it—the lighthouse code is 7319~",
+        })
+        return "I found it—the lighthouse code is 7319~"
+
+    bot.chat = fake_chat
+    monkeypatch.setattr("ms_llama._drive_eye_emotion", lambda *_args: None)
+
+    response = bot.respond_to_completed_tool(
+        "/recall cobalt lighthouse",
+        "/recall",
+        "[SOURCE 1]\nThe cobalt lighthouse code is 7319.\n[/SOURCE 1]",
+        max_tokens=512,
+    )
+
+    assert response == "I found it—the lighthouse code is 7319~"
+    assert bot.last_reasoning == ""
+    assert bot._last_user_input == "/recall cobalt lighthouse"
+    assert bot._run_tool_with_spinner.call_count == 0
+    assert any(
+        "[TOOL_RESULT: recall]" in str(message.get("content", ""))
+        and "retrieved memory candidates" in str(message.get("content", ""))
+        for message in seen_messages
+    )
+    assert bot.history == [
+        {"role": "assistant", "content": "Earlier context."},
+        {"role": "user", "content": "/recall cobalt lighthouse"},
+        {
+            "role": "assistant",
+            "content": "I found it—the lighthouse code is 7319~",
+        },
+    ]
+
+
 # ============= Stage cue regex — broader =============
 
 def test_stage_cue_multiple_consecutive():
@@ -721,12 +772,10 @@ def test_shell_allowed_pwd():
 
 
 def test_shell_blocks_shell_injection_via_pipe():
-    # Even if echo is allowed, piping into another command should still be caught
-    result = tool_shell("echo hi; rm -rf /")
-    # The whole command string must match an allowed prefix; semicolon breaks that
-    assert "not allowed" in result or "hi" not in result.lower() or "hi" in result.lower()
-    # The real guarantee: nothing dangerous actually ran
-    assert "/ removed" not in result
+    with patch("tools.shell.shell.subprocess.run") as runner:
+        result = tool_shell("echo hi | cat")
+    assert "not allowed" in result
+    runner.assert_not_called()
 
 
 # ============= tool_yuki — broader =============

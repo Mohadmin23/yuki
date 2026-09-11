@@ -1,9 +1,17 @@
 """Tool-routing checks with no model loads and no Yuki tool execution."""
 
 import json
+from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
-from ms_llama import VoiceChatBot
+import pytest
+
+from ms_llama import (
+    VoiceChatBot,
+    fetch_openrouter_models,
+    openrouter_supported_parameters,
+    supports_native_tools,
+)
 from prototypes.tool_dispatcher.backends import FixtureBackend
 from tool_routing import DedicatedDispatcherClient, RoutingRegistry
 from tool_routing.core import (
@@ -31,31 +39,397 @@ def test_registry_remains_live_and_repairs_dispatcher_facing_boundaries():
     assert "filename_and_content" not in write_schema["properties"]
 
 
-def test_conservative_binder_accepts_source_spans_and_rejects_rewrites():
+def test_search_contract_accepts_ordinary_semantic_rewrite():
     registry = RoutingRegistry()
-    raw = 'Search for "RTX 3060 12GB used Columbus"'
-
-    accepted = registry.prepare_call(
+    prepared = registry.prepare_call(
         {
             "tool": "search",
-            "arguments": {"query": "RTX 3060 12GB used Columbus"},
+            "arguments": {"query": "recent sqlite-vec changes"},
         },
-        raw_request=raw,
-        available_names=registry.names,
-    )
-    rejected = registry.prepare_call(
-        {
-            "tool": "search",
-            "arguments": {"query": "used RTX 3060 graphics cards in Columbus"},
-        },
-        raw_request=raw,
+        raw_request="What changed in sqlite-vec recently?",
         available_names=registry.names,
     )
 
-    assert accepted["passed"]
-    assert accepted["binding"]["source_copy_valid"] is True
-    assert not rejected["passed"]
-    assert "No tool ran" in rejected["errors"][0]
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == "recent sqlite-vec changes"
+    assert prepared["model_call"]["arguments"]["query"] == (
+        "recent sqlite-vec changes"
+    )
+    assert prepared["binding"]["mode"] == "semantic_argument"
+
+
+def test_search_contract_accepts_conversational_nvlink_rewrite():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {
+            "tool": "search",
+            "arguments": {"query": "latest NVLink news"},
+        },
+        raw_request="can you also look for some news about NVlink",
+        available_names=registry.names,
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == "latest NVLink news"
+    assert prepared["binding"]["mode"] == "semantic_argument"
+
+
+def test_search_contract_restores_explicit_exact_operator_query_from_raw():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {
+            "tool": "search",
+            "arguments": {"query": "normalized qwen stable release"},
+        },
+        raw_request=(
+            'Search exactly for: site:example.com "Qwen 3.8" -beta OR stable?'
+        ),
+        available_names=registry.names,
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == (
+        'site:example.com "Qwen 3.8" -beta OR stable?'
+    )
+    assert prepared["binding"]["mode"] == "deterministic_source_span"
+    assert prepared["binding"]["source_copy_valid"] is True
+    assert prepared["proposed_call"]["arguments"]["query"] == (
+        "normalized qwen stable release"
+    )
+
+
+def test_search_contract_rejects_exact_intent_without_bindable_payload():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "invented query"}},
+        raw_request="Search exactly for:",
+        available_names=registry.names,
+    )
+
+    assert not prepared["passed"]
+    assert prepared["runtime_argument"] is None
+    assert "No tool ran" in prepared["errors"][0]
+
+
+def test_search_pronoun_repeat_uses_latest_trusted_successful_search():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "it"}},
+        raw_request="Search it",
+        available_names=registry.names,
+        trusted_context=[
+            {
+                "kind": "verified_tool_outcome",
+                "tool": "search",
+                "arguments": {"query": "older SQLite query"},
+                "succeeded": True,
+            },
+            {
+                "kind": "verified_tool_outcome",
+                "tool": "search",
+                "arguments": {"query": "failed search query"},
+                "succeeded": False,
+            },
+            {
+                "kind": "verified_tool_outcome",
+                "tool": "search",
+                "arguments": {"query": "latest NVLink query"},
+                "succeeded": True,
+            },
+        ],
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == "latest NVLink query"
+    assert prepared["binding"]["mode"] == "contextual_semantic_resolution"
+    assert prepared["binding"]["binder"] == "trusted_recent_search_v1"
+
+
+def test_search_pronoun_without_trusted_successful_search_rejects():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "it"}},
+        raw_request="Search it",
+        available_names=registry.names,
+        trusted_context=[
+            {
+                "kind": "verified_tool_outcome",
+                "tool": "search",
+                "arguments": {"query": "failed search query"},
+                "succeeded": False,
+            },
+            {
+                "kind": "verified_tool_outcome",
+                "tool": "recall",
+                "arguments": {"topic": "NVLink"},
+                "succeeded": True,
+            },
+        ],
+    )
+
+    assert not prepared["passed"]
+    assert prepared["runtime_argument"] is None
+    assert "No tool ran" in prepared["errors"][0]
+
+
+def test_search_pronoun_cannot_choose_between_untrusted_history_topics():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "that"}},
+        raw_request="Search that",
+        available_names=registry.names,
+        literal_sources=[
+            {
+                "source_kind": "referenced_previous_user",
+                "content": "We discussed SQLite releases.",
+            },
+            {
+                "source_kind": "referenced_previous_user",
+                "content": "We also discussed NVLink releases.",
+            },
+        ],
+        trusted_context=[],
+    )
+
+    assert not prepared["passed"]
+    assert prepared["runtime_argument"] is None
+
+
+def test_resolved_current_topic_is_not_overwritten_by_older_search_ledger():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "latest NVLink news"}},
+        raw_request="Search it",
+        available_names=registry.names,
+        literal_sources=[{
+            "source_kind": "referenced_previous_user",
+            "content": "I want to know what changed with NVLink.",
+        }],
+        trusted_context=[{
+            "kind": "verified_tool_outcome",
+            "tool": "search",
+            "arguments": {"query": "SQLite release notes"},
+            "succeeded": True,
+        }],
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == "latest NVLink news"
+    assert prepared["binding"]["mode"] == "semantic_argument"
+
+
+def test_unresolved_repeat_prefers_nearest_user_search_over_old_ledger():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "it"}},
+        raw_request="Search it",
+        available_names=registry.names,
+        literal_sources=[
+            {
+                "source_kind": "referenced_previous_user",
+                "content": "Search the web for the newest NVLink announcements.",
+            },
+            {
+                "source_kind": "referenced_previous_user",
+                "content": "Search the web for SQLite release notes.",
+            },
+        ],
+        trusted_context=[{
+            "kind": "verified_tool_outcome",
+            "tool": "search",
+            "arguments": {"query": "SQLite release notes"},
+            "succeeded": True,
+        }],
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == "the newest NVLink announcements"
+    assert prepared["binding"]["binder"] == (
+        "referenced_previous_user_search_v1"
+    )
+
+
+def test_unresolved_newer_topic_never_falls_back_to_old_search_ledger():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "it"}},
+        raw_request="Search it",
+        available_names=registry.names,
+        literal_sources=[{
+            "source_kind": "referenced_previous_user",
+            "content": "I want to know what changed with NVLink.",
+        }],
+        trusted_context=[{
+            "kind": "verified_tool_outcome",
+            "tool": "search",
+            "arguments": {"query": "SQLite release notes"},
+            "succeeded": True,
+        }],
+    )
+
+    assert not prepared["passed"]
+    assert prepared["runtime_argument"] is None
+
+
+def test_modified_search_reference_keeps_modifier_and_resolves_referent():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "recent news on that"}},
+        raw_request="Could you search for more news about it?",
+        available_names=registry.names,
+        trusted_context=[{
+            "kind": "verified_tool_outcome",
+            "tool": "search",
+            "arguments": {"query": "NVLink"},
+            "succeeded": True,
+        }],
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == "recent news on NVLink"
+    assert prepared["binding"]["mode"] == "contextual_semantic_resolution"
+
+
+def test_modified_search_reference_without_context_rejects():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "updates for them"}},
+        raw_request="Search for updates about them",
+        available_names=registry.names,
+    )
+
+    assert not prepared["passed"]
+    assert prepared["runtime_argument"] is None
+
+
+@pytest.mark.parametrize(
+    "raw_request",
+    [
+        "Can you look at the image?",
+        "Can you look for my phone with the camera?",
+    ],
+)
+def test_visual_request_cannot_be_salvaged_as_search(raw_request):
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "my phone"}},
+        raw_request=raw_request,
+        available_names=registry.names,
+    )
+
+    assert not prepared["passed"]
+    assert prepared["runtime_argument"] is None
+
+
+def test_search_schema_describes_hybrid_query_boundaries():
+    registry = RoutingRegistry()
+    description = registry.description_for("search").casefold()
+    parameter = (
+        registry.argument_schema_for("search")["properties"]["query"]
+        ["description"].casefold()
+    )
+    combined = f"{description}\n{parameter}"
+
+    assert "self-contained" in combined
+    assert "recent" in combined and "context" in combined
+    assert "exact" in combined and "quoted" in combined
+    assert "operator" in combined
+    assert "camera" in combined or "see" in combined
+
+
+def test_search_exact_word_in_topic_does_not_trigger_literal_transport():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "meaning of exact"}},
+        raw_request="Search what the word exact means",
+        available_names=registry.names,
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == "meaning of exact"
+    assert prepared["binding"]["mode"] == "semantic_argument"
+
+
+def test_natural_question_with_quoted_name_remains_semantic():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {
+            "tool": "search",
+            "arguments": {"query": 'recent changes to "sqlite-vec"'},
+        },
+        raw_request='What changed in "sqlite-vec" recently?',
+        available_names=registry.names,
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == 'recent changes to "sqlite-vec"'
+    assert prepared["binding"]["mode"] == "semantic_argument"
+
+
+def test_web_image_search_is_not_mistaken_for_visual_inspection():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "Apollo mission photos"}},
+        raw_request="Search the web for images from the Apollo missions",
+        available_names=registry.names,
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == "Apollo mission photos"
+
+
+def test_look_for_images_can_remain_an_ordinary_web_search():
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": "cat images"}},
+        raw_request="Look for images of cats",
+        available_names=registry.names,
+    )
+
+    assert prepared["passed"]
+    assert prepared["binding"]["mode"] == "semantic_argument"
+
+
+@pytest.mark.parametrize(
+    ("raw_request", "query"),
+    [
+        ("Check image compression benchmarks online", "image compression benchmarks"),
+        ("Check the latest camera news", "latest camera news"),
+        ("Describe image-generation model trends", "image generation model trends"),
+    ],
+)
+def test_media_words_in_web_research_do_not_trigger_visual_guard(
+    raw_request, query,
+):
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": query}},
+        raw_request=raw_request,
+        available_names=registry.names,
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == query
+
+
+@pytest.mark.parametrize(
+    ("raw_request", "query"),
+    [
+        ("Search for ways to keep the query fast", "fast search query design"),
+        ("Which is better, AMD OR Intel?", "AMD versus Intel comparison"),
+    ],
+)
+def test_search_topic_words_do_not_false_trigger_exact_mode(raw_request, query):
+    registry = RoutingRegistry()
+    prepared = registry.prepare_call(
+        {"tool": "search", "arguments": {"query": query}},
+        raw_request=raw_request,
+        available_names=registry.names,
+    )
+
+    assert prepared["passed"]
+    assert prepared["runtime_argument"] == query
+    assert prepared["binding"]["mode"] == "semantic_argument"
 
 
 def test_structured_yuki_content_can_contain_pipe_before_runtime_adaptation():
@@ -339,6 +713,35 @@ def test_dedicated_dispatcher_is_one_shot_validation_only():
     assert not hasattr(client, "execute")
 
 
+def test_dedicated_dispatcher_threads_trusted_search_context():
+    generation = '[{"name":"search","arguments":{"query":"it"}}]'
+
+    def backend_factory(_model_id, _output_mode):
+        return FixtureBackend(generation, "MadeAgents/Hammer2.1-1.5b")
+
+    client = DedicatedDispatcherClient(
+        "MadeAgents/Hammer2.1-1.5b",
+        backend_factory=backend_factory,
+    )
+    result = client.route(
+        semantic_request="Repeat the referenced web search.",
+        domain_hint="information",
+        raw_request="Search it",
+        trusted_context=[{
+            "kind": "verified_tool_outcome",
+            "tool": "search",
+            "arguments": {"query": "latest NVLink news"},
+            "succeeded": True,
+        }],
+    )
+
+    assert result["passed"]
+    assert result["prepared"]["runtime_argument"] == "latest NVLink news"
+    assert result["prepared"]["binding"]["binder"] == (
+        "trusted_recent_search_v1"
+    )
+
+
 def test_dedicated_dispatcher_can_bind_authorized_previous_reply_payload():
     previous = "Right now I feel warm, awake, and happy you showed up."
     generation = json.dumps([{
@@ -424,13 +827,13 @@ def test_direct_canonical_can_write_exact_previous_reply_with_current_filename()
         {"role": "user", "content": "How do you feel?"},
         {"role": "assistant", "content": previous},
     ]
-    bot.raw_structured_complete = MagicMock(return_value=json.dumps({
+    bot.raw_structured_complete = MagicMock(side_effect=[json.dumps({
         "tool": "yuki_write",
         "arguments": {
             "filename": "feelings.txt",
             "content": previous,
         },
-    }))
+    }), json.dumps({"mode": "literal", "tool": "yuki_write", "filename": "feelings.txt", "content": previous})])
     bot._run_tool_with_spinner = MagicMock(return_value=("file written", False))
     _install_final_chat(bot, "Saved it~")
 
@@ -441,7 +844,7 @@ def test_direct_canonical_can_write_exact_previous_reply_with_current_filename()
         "yuki_write",
         f"feelings.txt|{previous}",
     )
-    router_prompt = bot.raw_structured_complete.call_args.args[1]
+    router_prompt = bot.raw_structured_complete.call_args_list[0].args[1]
     assert "AUTHORIZED REFERENCED LITERAL SOURCES" in router_prompt
     assert previous in router_prompt
 
@@ -482,31 +885,419 @@ def test_missing_cross_turn_filename_rejects_call_and_blocks_fake_call_text():
     assert bot.last_tool_routing["passed"] is False
 
 
-def test_direct_canonical_malformed_route_safely_becomes_no_tool_chat():
+def test_direct_canonical_malformed_route_is_visible_routing_failure():
     bot = _fixture_bot(
         tool_routing_mode="direct",
         tool_routing_protocol="canonical",
     )
     bot.raw_structured_complete = MagicMock(return_value="Sure, I'll do that")
     bot._run_tool_with_spinner = MagicMock()
-    _install_final_chat(bot, "ordinary reply")
+    def explain_failure(user_input, max_tokens=None, tool_context=None):
+        del user_input, max_tokens, tool_context
+        assert "No tool ran" in bot.history[-1]["content"]
+        return "The internal tool route failed validation."
+
+    bot.chat = explain_failure
 
     response = bot.react_chat("hello there")
 
-    assert response == "ordinary reply"
+    assert response == "The internal tool route failed validation."
     bot._run_tool_with_spinner.assert_not_called()
-    assert bot.last_tool_routing["respond"] is True
+    assert bot.last_tool_routing["respond"] is False
     assert not bot.last_tool_routing["parse"]["passed"]
 
 
-def test_rewritten_literal_is_blocked_and_never_uses_success_fallback():
+def test_dispatcher_stage_a_malformed_route_is_visible_routing_failure():
+    bot = _fixture_bot(
+        tool_routing_mode="dispatcher",
+        tool_routing_protocol="native",
+        dispatcher_model_id="fixture-dispatcher",
+    )
+    bot.raw_structured_complete = MagicMock(return_value="not json")
+    bot._last_structured_error = "BadRequestError: provider rejected schema"
+    bot._dispatcher_client = MagicMock()
+    bot._run_tool_with_spinner = MagicMock()
+
+    def explain_failure(user_input, max_tokens=None, tool_context=None):
+        del user_input, max_tokens, tool_context
+        assert "No tool ran" in bot.history[-1]["content"]
+        return "My semantic delegation failed, so nothing ran."
+
+    bot.chat = explain_failure
+    response = bot.react_chat("Search for sqlite-vec changes")
+
+    assert response == "My semantic delegation failed, so nothing ran."
+    assert bot.last_tool_routing["passed"] is False
+    assert bot.last_tool_routing["respond"] is False
+    assert "provider rejected schema" in bot.last_tool_routing["errors"][0]
+    bot._dispatcher_client.route.assert_not_called()
+    bot._run_tool_with_spinner.assert_not_called()
+
+
+def test_openrouter_catalog_capabilities_override_name_guessing():
+    with patch.dict(
+        "ms_llama._OR_MODEL_SUPPORTED_PARAMETERS",
+        {
+            "z-ai/glm-5.3-flash": frozenset({"tools", "tool_choice"}),
+            "qwen/qwen3.8-27b": frozenset({"tools", "response_format"}),
+            "qwen/qwen3-no-tools": frozenset({"response_format"}),
+        },
+        clear=True,
+    ):
+        assert supports_native_tools(
+            "openrouter/z-ai/glm-5.3-flash",
+            "openrouter",
+        )
+        assert supports_native_tools(
+            "openrouter/qwen/qwen3.8-27b",
+            "openrouter",
+        )
+        assert not supports_native_tools(
+            "openrouter/qwen/qwen3-no-tools",
+            "openrouter",
+        )
+        assert supports_native_tools(
+            "openrouter/z-ai/glm-5.3-flash:free",
+            "openrouter",
+        )
+
+
+def test_openrouter_catalog_records_supported_parameters():
+    response = MagicMock()
+    response.__enter__.return_value.read.return_value = json.dumps({
+        "data": [{
+            "id": "z-ai/glm-5.3-flash",
+            "name": "GLM 5.3 Flash",
+            "supported_parameters": ["tools", "tool_choice", "response_format"],
+            "pricing": {"prompt": "0.15"},
+        }],
+    }).encode()
+
+    with (
+        patch("ms_llama.urlopen", return_value=response),
+        patch.dict(
+            "ms_llama._or_cache",
+            {"models": None, "ts": 0, "failure_ts": 0},
+            clear=True,
+        ),
+        patch.dict(
+            "ms_llama._OR_MODEL_SUPPORTED_PARAMETERS",
+            {"stale/model": frozenset({"tools"})},
+            clear=True,
+        ),
+    ):
+        models = fetch_openrouter_models()
+        assert models[0]["supported_parameters"] == [
+            "tools",
+            "tool_choice",
+            "response_format",
+        ]
+        assert supports_native_tools(
+            "openrouter/z-ai/glm-5.3-flash",
+            "openrouter",
+        )
+        assert openrouter_supported_parameters("stale/model") is None
+
+
+def test_openrouter_catalog_failure_has_short_retry_backoff():
+    with (
+        patch("ms_llama.urlopen", side_effect=OSError("offline")) as request,
+        patch.dict(
+            "ms_llama._or_cache",
+            {"models": None, "ts": 0, "failure_ts": 0},
+            clear=True,
+        ),
+    ):
+        first = fetch_openrouter_models()
+        second = fetch_openrouter_models()
+
+    assert first == second
+    assert request.call_count == 1
+
+
+def test_direct_auto_uses_native_tools_for_catalog_capable_glm():
+    bot = _fixture_bot(
+        tool_routing_mode="direct",
+        tool_routing_protocol="auto",
+    )
+    bot.backend = "openrouter"
+    bot.model_id = "openrouter/z-ai/glm-5.3-flash"
+    bot._react_chat_native = MagicMock(return_value="native reply")
+    bot._react_chat_canonical = MagicMock(
+        side_effect=AssertionError("catalog-capable GLM must not use canonical routing"),
+    )
+
+    with patch.dict(
+        "ms_llama._OR_MODEL_SUPPORTED_PARAMETERS",
+        {"z-ai/glm-5.3-flash": frozenset({"tools", "tool_choice"})},
+        clear=True,
+    ):
+        response = bot.react_chat("Search the web for sqlite-vec changes")
+
+    assert response == "native reply"
+    bot._react_chat_native.assert_called_once_with(
+        "Search the web for sqlite-vec changes",
+        max_tokens=1024,
+        max_steps=3,
+    )
+    bot._react_chat_canonical.assert_not_called()
+
+
+def test_openrouter_native_request_keeps_tools_and_omits_redundant_tool_choice():
+    bot = _fixture_bot(
+        tool_routing_mode="direct",
+        tool_routing_protocol="native",
+    )
+    bot.backend = "openrouter"
+    bot.llm_model = MagicMock()
+    bot.llm_model._or_model = "qwen/qwen3.8-27b"
+    message = SimpleNamespace(
+        content="ordinary answer",
+        tool_calls=[],
+        reasoning="",
+        reasoning_content="",
+        reasoning_details=[],
+    )
+    bot.llm_model.chat.completions.create.return_value = SimpleNamespace(
+        usage=None,
+        choices=[SimpleNamespace(message=message)],
+    )
+    schemas = bot._routing_registry.strict_openai_schemas(
+        bot._routing_registry.names,
+    )
+
+    response = bot._chat_with_tools([], schemas, 256, 0.2)
+
+    assert response["content"] == "ordinary answer"
+    call = bot.llm_model.chat.completions.create.call_args.kwargs
+    assert call["tools"] is schemas
+    assert "tool_choice" not in call
+
+
+def test_openrouter_native_failure_never_retries_as_tool_free_chat():
+    class NotFoundError(Exception):
+        pass
+
+    bot = _fixture_bot(
+        tool_routing_mode="direct",
+        tool_routing_protocol="native",
+    )
+    bot.backend = "openrouter"
+    bot.llm_model = MagicMock()
+    bot.llm_model._or_model = "z-ai/glm-5.3-flash"
+    error = NotFoundError(
+        "No endpoints found that support the provided 'tools' value."
+    )
+    bot.llm_model.chat.completions.create.side_effect = error
+    schemas = bot._routing_registry.strict_openai_schemas(
+        bot._routing_registry.names,
+    )
+
+    with pytest.raises(NotFoundError):
+        bot._chat_with_tools([], schemas, 256, 0.2)
+
+    assert bot.llm_model.chat.completions.create.call_count == 1
+    call = bot.llm_model.chat.completions.create.call_args.kwargs
+    assert call["tools"] is schemas
+    assert "tool_choice" not in call
+
+
+def test_native_provider_tool_failure_is_visible_and_records_failed_route():
+    class NotFoundError(Exception):
+        pass
+
+    bot = _fixture_bot(
+        tool_routing_mode="direct",
+        tool_routing_protocol="native",
+    )
+    bot.backend = "openrouter"
+    bot._chat_with_tools = MagicMock(side_effect=NotFoundError(
+        "No endpoints found that support the provided 'tools' value."
+    ))
+    bot._run_tool_with_spinner = MagicMock()
+
+    response = bot.react_chat("Search the web for sqlite-vec changes")
+
+    assert "no tool ran" in response.lower()
+    assert "Dispatcher routing" in response
+    assert bot.last_tool_routing["passed"] is False
+    assert bot.last_tool_routing["protocol"] == "native"
+    bot._run_tool_with_spinner.assert_not_called()
+
+
+def test_native_followup_failure_never_denies_completed_tool_execution():
+    class APIConnectionError(Exception):
+        pass
+
+    bot = _fixture_bot(
+        tool_routing_mode="direct",
+        tool_routing_protocol="native",
+    )
+    bot.backend = "openrouter"
+    bot._chat_with_tools = MagicMock(side_effect=[
+        {
+            "content": "",
+            "tool_calls": [{
+                "id": "call-1",
+                "name": "search",
+                "arg_raw": '{"query":"sqlite-vec changes"}',
+            }],
+            "reasoning": "",
+        },
+        APIConnectionError("connection dropped after tool result"),
+    ])
+    bot._run_tool_with_spinner = MagicMock(return_value=(
+        "Search completed with 3 sources.",
+        False,
+    ))
+    bot._remember_tool_outcome = MagicMock()
+
+    response = bot.react_chat("Search for sqlite-vec changes")
+
+    assert "Search completed with 3 sources." in response
+    assert "tool already ran" in response
+    assert "no tool ran" not in response.lower()
+    bot._run_tool_with_spinner.assert_called_once_with(
+        "search",
+        "sqlite-vec changes",
+    )
+    assert bot.last_tool_routing["passed"] is True
+    assert bot.last_tool_routing["execution_completed"] is True
+    assert "APIConnectionError" in bot.last_tool_routing["final_response_error"]
+
+
+def test_native_ordinary_search_uses_self_contained_semantic_rewrite():
+    bot = _fixture_bot(
+        tool_routing_mode="direct",
+        tool_routing_protocol="native",
+    )
+    bot.backend = "openrouter"
+    bot._chat_with_tools = MagicMock(side_effect=[
+        {
+            "content": "",
+            "tool_calls": [{
+                "id": "call-1",
+                "name": "search",
+                "arg_raw": '{"query":"latest changes to sqlite-vec"}',
+            }],
+            "reasoning": "",
+        },
+        {
+            "content": "Here are the fresh sqlite-vec changes.",
+            "tool_calls": [],
+            "reasoning": "",
+        },
+    ])
+    bot._run_tool_with_spinner = MagicMock(return_value=(
+        "Search completed with 3 sources.",
+        False,
+    ))
+    bot._remember_tool_outcome = MagicMock()
+
+    response = bot.react_chat(
+        "Search the web for the latest sqlite-vec changes."
+    )
+
+    assert response == "Here are the fresh sqlite-vec changes."
+    bot._run_tool_with_spinner.assert_called_once_with(
+        "search",
+        "latest changes to sqlite-vec",
+    )
+    prepared = bot.last_tool_routing["prepared"]
+    assert prepared["binding"]["mode"] == "semantic_argument"
+    assert prepared["model_call"]["arguments"]["query"] == (
+        "latest changes to sqlite-vec"
+    )
+    assert bot._remember_tool_outcome.call_args.kwargs["arguments"] == {
+        "query": "latest changes to sqlite-vec",
+    }
+
+
+def test_native_pronoun_search_uses_persisted_verified_query():
+    bot = _fixture_bot(
+        tool_routing_mode="direct",
+        tool_routing_protocol="native",
+    )
+    bot.backend = "openrouter"
+    bot.load_session_events([{
+        "kind": "verified_tool_outcome",
+        "tool": "search",
+        "arguments": {"query": "latest NVLink news"},
+        "succeeded": True,
+        "result": "Earlier source-backed results.",
+    }])
+    bot._chat_with_tools = MagicMock(side_effect=[
+        {
+            "content": "",
+            "tool_calls": [{
+                "id": "call-2",
+                "name": "search",
+                "arg_raw": '{"query":"it"}',
+            }],
+            "reasoning": "",
+        },
+        {
+            "content": "I checked that search again.",
+            "tool_calls": [],
+            "reasoning": "",
+        },
+    ])
+    bot._run_tool_with_spinner = MagicMock(return_value=(
+        "Fresh source-backed results.",
+        False,
+    ))
+    bot._remember_tool_outcome = MagicMock()
+
+    response = bot.react_chat("Search it")
+
+    assert response == "I checked that search again."
+    bot._run_tool_with_spinner.assert_called_once_with(
+        "search",
+        "latest NVLink news",
+    )
+    prepared = bot.last_tool_routing["prepared"]
+    assert prepared["binding"]["mode"] == "contextual_semantic_resolution"
+    assert prepared["proposed_call"]["arguments"]["query"] == "it"
+    assert prepared["model_call"]["arguments"]["query"] == "latest NVLink news"
+
+
+def test_canonical_followup_failure_never_hides_completed_tool_execution():
+    class BadRequestError(Exception):
+        pass
+
     bot = _fixture_bot(
         tool_routing_mode="direct",
         tool_routing_protocol="canonical",
     )
     bot.raw_structured_complete = MagicMock(return_value=json.dumps({
         "tool": "search",
-        "arguments": {"query": "normalized qwen query"},
+        "arguments": {"query": "sqlite-vec changes"},
+    }))
+    bot._run_tool_with_spinner = MagicMock(return_value=(
+        "Search completed with 3 sources.",
+        False,
+    ))
+    bot.chat = MagicMock(side_effect=BadRequestError("follow-up rejected"))
+
+    response = bot.react_chat("Search for sqlite-vec changes")
+
+    assert "Search completed with 3 sources." in response
+    assert "tool already ran" in response
+    assert "no tool ran" not in response.lower()
+    bot._run_tool_with_spinner.assert_called_once_with(
+        "search",
+        "sqlite-vec changes",
+    )
+
+
+def test_failed_exact_search_binding_never_uses_success_fallback():
+    bot = _fixture_bot(
+        tool_routing_mode="direct",
+        tool_routing_protocol="canonical",
+    )
+    bot.raw_structured_complete = MagicMock(return_value=json.dumps({
+        "tool": "search",
+        "arguments": {"query": "invented exact query"},
     }))
     bot._run_tool_with_spinner = MagicMock()
     bot._chat_with_tool_fallback = MagicMock(
@@ -519,7 +1310,7 @@ def test_rewritten_literal_is_blocked_and_never_uses_success_fallback():
         return "I couldn't validate that exact request."
 
     bot.chat = explain_rejection
-    response = bot.react_chat("Search for QWEN Query")
+    response = bot.react_chat("Search exactly for:")
 
     assert response == "I couldn't validate that exact request."
     bot._run_tool_with_spinner.assert_not_called()
@@ -680,6 +1471,9 @@ def test_native_path_can_bind_previous_reply_but_not_invent_filename():
     ])
     bot._run_tool_with_spinner = MagicMock(return_value=("file written", False))
 
+    bot.raw_structured_complete = MagicMock(return_value=json.dumps({
+        "mode": "literal", "tool": "yuki_write", "filename": "feelings.txt", "content": previous,
+    }))
     response = bot.react_chat("Put that in feelings.txt")
 
     assert response == "Saved it~"
@@ -773,9 +1567,10 @@ def test_autonomous_direct_action_uses_canonical_boundary_and_allows_tools():
         "search", "bioluminescent deep-sea animals", autonomous=True,
     )
     assert bot.last_tool_routing["autonomous"] is True
-    assert bot.last_tool_routing["prepared"]["binding"]["source_kind"] == (
-        "autonomous_action"
+    assert bot.last_tool_routing["prepared"]["binding"]["mode"] == (
+        "semantic_argument"
     )
+    assert bot.last_tool_routing["prepared"]["binding"]["source_kind"] is None
     assert bot._autonomous_actions[-1]["tool"] == "search"
     event = bot._session_continuity[-1]
     assert event["kind"] == "verified_tool_outcome"
@@ -845,6 +1640,7 @@ def test_autonomous_dispatcher_uses_selected_client_and_autonomous_source():
         domain_hint="yuki_files",
         raw_request="Read field-notes.md from Yuki's own file store.",
         source_kind="autonomous_action",
+        trusted_context=[],
     )
     bot._run_tool_with_spinner.assert_called_once_with(
         "yuki_read", "field-notes.md", autonomous=True,

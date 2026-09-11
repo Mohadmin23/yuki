@@ -25,6 +25,7 @@ from ms_llama import (
     list_models, list_personas, list_tts_engines,
     load_persona_by_name, init_tts,
     _load_facts, _save_facts, _add_fact,
+    _cli_persist_session_events,
     MEMORY_LIST_CATEGORIES,
 )
 import episodic
@@ -242,7 +243,7 @@ def _friendly_error(exc: Exception) -> str:
             provider = f" ({meta.get('provider_name', '')})" if meta.get("provider_name") else ""
         except Exception:
             pass
-        return f"Rate-limited upstream{provider}. This free model is busy — retry in a moment or switch models."
+        return f"Rate-limited upstream{provider}. The service is limiting requests — retry in a moment or choose another provider."
     if name == "AuthenticationError":
         return "OpenRouter API key rejected. Check your key in settings."
     if name in ("APIConnectionError", "APITimeoutError"):
@@ -536,7 +537,6 @@ async def api_chats_new():
     current_chat_id = chat_id
     if bot is not None:
         await asyncio.to_thread(_rotate_session, bot)
-        bot.history = []
         _reset_session_lock(bot)
         _inject_memory(bot)
     _save_chat(chat_id, "New Chat", [])
@@ -577,7 +577,7 @@ async def api_chats_delete(chat_id: str):
     if current_chat_id == chat_id:
         current_chat_id = None
         if bot is not None:
-            bot.history = []
+            bot.reset_session_context()
     return JSONResponse({"ok": True})
 
 @app.post("/api/chats/{chat_id}/rename")
@@ -679,12 +679,14 @@ def _rotate_session(b: VoiceChatBot) -> None:
     before we lose its identity."""
     if b is None:
         return
+    _cli_persist_session_events(b)
     old_session = getattr(b, "session_uuid", None)
     if old_session:
         try:
             episodic.summarize_session(old_session)
         except Exception as e:  # noqa: BLE001
             logger.warning("episodic.summarize_session failed: %s", e)
+    b.reset_session_context()
     b.session_uuid = uuid.uuid4().hex
 
 

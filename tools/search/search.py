@@ -1,26 +1,40 @@
-"""Web search via DuckDuckGo (ddgs/duckduckgo_search package)."""
+"""Source-aware live web retrieval via DuckDuckGo and selected public pages."""
+
 from __future__ import annotations
+
+import os
 
 
 def tool_search(query):
-    """Search the web. Returns (summary, links)."""
+    """Search and retrieve relevant web passages. Returns (context, links)."""
+    query = (query or "").strip()
+    if not query:
+        return "Error: empty web search query", ""
     try:
-        from ddgs import DDGS  # type: ignore
+        from retrieval import render_retrieval_context
+        from retrieval.web import retrieve_web
+
+        configured = os.environ.get("YUKI_WEB_RAG_FETCH_PAGES", "2").strip()
+        fetch_pages = int(configured) if configured.isdigit() else 2
+        hits, warnings = retrieve_web(
+            query,
+            max_results=5,
+            fetch_pages=max(0, min(fetch_pages, 3)),
+        )
     except ImportError:
-        try:
-            from duckduckgo_search import DDGS  # type: ignore
-        except ImportError:
-            return "Web search unavailable. Install: pip install ddgs", ""
-    try:
-        results = list(DDGS().text(query, max_results=3))
-        if not results:
-            return "No results found.", ""
-        lines = []
-        links = []
-        for r in results:
-            lines.append(f"- {r['title']}: {r['body']}")
-            if r.get("href"):
-                links.append(f"  🔗 {r['href']}")
-        return "\n".join(lines), "\n".join(links)
-    except Exception as e:
-        return f"Search error: {e}", ""
+        return "Web search unavailable. Run `llama setup` to install ddgs.", ""
+    except Exception as exc:  # noqa: BLE001
+        return f"Search error: {exc}", ""
+
+    if not hits:
+        return "No results found.", ""
+
+    context = render_retrieval_context(
+        query,
+        hits,
+        label="LIVE WEB",
+        warnings=warnings,
+    )
+    # URLs are already carried inside every SOURCE block. Keep the historical
+    # tuple shape for CLI/web compatibility without duplicating them.
+    return context, ""

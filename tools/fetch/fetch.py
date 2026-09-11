@@ -3,13 +3,14 @@
 Designed for "summarize this URL" use cases — search returns DDG snippets,
 which don't contain page contents. This tool downloads the actual HTML and
 extracts a plain-text version the model can summarize from."""
+
 from __future__ import annotations
 
 import re
 from urllib.request import Request, urlopen
 
-MAX_BYTES = 400_000       # hard cap on bytes pulled from the wire
-MAX_RETURN_CHARS = 8000   # what we hand back to the model
+MAX_BYTES = 400_000  # hard cap on bytes pulled from the wire
+MAX_RETURN_CHARS = 8000  # what we hand back to the model
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Macintosh; Apple Silicon) "
@@ -62,7 +63,8 @@ def tool_fetch(url):
     # Already plain text? Just clean whitespace.
     if "text/plain" in ctype or "json" in ctype or "markdown" in ctype:
         cleaned = _WS_RE.sub(" ", body).strip()
-        return cleaned[:MAX_RETURN_CHARS] if cleaned else "(empty page)"
+        text = cleaned[:MAX_RETURN_CHARS] if cleaned else "(empty page)"
+        return _render_page(url, text)
 
     # HTML path: strip script/style blocks, then tags, then collapse whitespace.
     cleaned = _BLOCK_TAGS_RE.sub(" ", body)
@@ -70,5 +72,21 @@ def tool_fetch(url):
     cleaned = _WS_RE.sub(" ", cleaned).strip()
 
     if not cleaned:
-        return "(page had no readable text after stripping HTML)"
-    return cleaned[:MAX_RETURN_CHARS]
+        return _render_page(url, "(page had no readable text after stripping HTML)")
+    return _render_page(url, cleaned[:MAX_RETURN_CHARS])
+
+
+def _render_page(url: str, text: str) -> str:
+    """Put exact-page retrieval behind the same provenance/safety boundary."""
+    from retrieval import RetrievalHit, render_retrieval_context
+
+    hit = RetrievalHit(
+        id=url,
+        source_type="web_page",
+        title=url,
+        text=text,
+        uri=url,
+        rank=1,
+        untrusted=True,
+    )
+    return render_retrieval_context(url, [hit], label="EXACT WEB PAGE")

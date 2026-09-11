@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import json
 import re
-import shlex
 from collections.abc import Iterable
 from copy import deepcopy
 from typing import Any
@@ -24,7 +23,8 @@ from prototypes.tool_dispatcher.dialects import (
     XLAM_V1_ENVELOPE,
 )
 from prototypes.tool_dispatcher.registry import ToolRegistry
-from tools._helpers import ALLOWED_COMMANDS
+from prototypes.tool_dispatcher.source_span_policy import bind_source_argument
+from tools._helpers import validate_strict_shell
 
 ROUTING_MODES = ("direct", "dispatcher")
 ROUTING_PROTOCOLS = ("auto", "canonical", "native")
@@ -46,7 +46,6 @@ DELEGATION_DOMAINS = tuple(DOMAIN_TO_GROUP)
 NO_ARGUMENT_TOOLS = {"time", "yuki_list"}
 LITERAL_FIELDS: dict[str, tuple[str, ...]] = {
     "fetch": ("url",),
-    "search": ("query",),
     "image": ("prompt",),
     "read": ("filepath",),
     "shell": ("command",),
@@ -56,6 +55,228 @@ LITERAL_FIELDS: dict[str, tuple[str, ...]] = {
     "yuki_append": ("filename", "content"),
     "ask_claude": ("question",),
 }
+
+# Search is deliberately different from paths, commands, filenames, content,
+# and external-agent messages.  A useful web query is normally a semantic,
+# self-contained rewrite of the user's intent.  It becomes literal transport
+# only when the user explicitly asks to preserve query syntax/text.
+SEARCH_QUERY_MAX_CHARS = 1000
+
+_SEARCH_EXACT_CONTRACT_RE = re.compile(
+    r"(?:"
+    r"\bsearch\s+exactly(?:\s+for)?\b|"
+    r"\b(?:exact|verbatim)\s+(?:search\s+)?query\b|"
+    r"\b(?:use|run|submit|copy)\s+(?:this\s+|the\s+)?exact\s+query\b|"
+    r"\b(?:keep|preserve)\s+(?:this\s+|the\s+)?"
+    r"(?:query|search\s+text|wording)\s+"
+    r"(?:exactly|verbatim|unchanged|intact|as\s+written)\b|"
+    r"\b(?:keep|preserve)\s+(?:this\s+|the\s+)?"
+    r"(?:punctuation|capitalization|casing|operators?|quotes?)\b|"
+    r"\b(?:do\s+not|don['’]t)\s+"
+    r"(?:change|rewrite|normalize|paraphrase|correct)\b[^.!?\n]{0,64}"
+    r"\b(?:query|search\s+text|wording|punctuation|capitalization|casing|"
+    r"operators?|quotes?)\b|"
+    r"\bcharacter[- ]for[- ]character\b|"
+    r"\bpunctuation\s+and\s+all\b"
+    r")",
+    re.IGNORECASE,
+)
+_SEARCH_QUOTED_QUERY_RE = re.compile(
+    r"\b(?:search(?:\s+(?:the\s+)?(?:web|internet|online))?(?:\s+for)?|"
+    r"look\s+up|web\s+query)\b[^\n]{0,120}"
+    r'(?:"[^"\n]+"|“[^”\n]+”|`[^`\n]+`)',
+    re.IGNORECASE,
+)
+_SEARCH_FIELD_OPERATOR_RE = re.compile(
+    r"(?:\b(?:site|filetype|intitle|inurl|before|after):\S+|"
+    r"(?:^|\s)-[^\s-]+)",
+    re.IGNORECASE,
+)
+_SEARCH_BOOLEAN_OPERATOR_RE = re.compile(r"\b(?:AND|OR)\b")
+_SEARCH_PAYLOAD_ENVELOPE_RE = re.compile(
+    r"^\s*(?:(?:hey|okay|ok)[,!]?\s+)?"
+    r"(?:(?:can|could|would|will)\s+you\s+)?"
+    r"(?:(?:please|also)\s+){0,2}"
+    r"(?:search(?:\s+(?:the\s+)?(?:web|internet|online))?(?:\s+for)?|"
+    r"look\s+up|web\s+search\s*:|web\s+query\s*:)",
+    re.IGNORECASE,
+)
+_SEARCH_REFERENCE_REQUEST_RE = re.compile(
+    r"(?:"
+    r"\b(?:search|look\s+up|look\s+for|find|research)\b[^.!?\n]{0,80}"
+    r"\b(?:it|that|this|them|those|these|same|previous|last)\b|"
+    r"\b(?:more|updates?|news|information|details)\s+"
+    r"(?:on|about)\s+(?:it|that|this)\b"
+    r")",
+    re.IGNORECASE,
+)
+_UNRESOLVED_SEARCH_QUERIES = {
+    "it",
+    "that",
+    "this",
+    "them",
+    "those",
+    "these",
+    "it again",
+    "that again",
+    "this again",
+    "the same",
+    "same thing",
+    "the same thing",
+    "same query",
+    "the same query",
+    "previous query",
+    "the previous query",
+    "last query",
+    "the last query",
+    "that topic",
+    "this topic",
+    "the topic",
+}
+_UNRESOLVED_SEARCH_QUERY_RE = re.compile(
+    r"^\s*(?:(?:more|recent|latest|new)\s+)*"
+    r"(?:(?:news|updates?|details|information|results?)\s+)?"
+    r"(?:(?:about|on|for|regarding)\s+)?"
+    r"(?:it|that|this|them|those|these)"
+    r"(?:\s+again)?\s*[?.!]*\s*$",
+    re.IGNORECASE,
+)
+_EXPLICIT_WEB_SEARCH_RE = re.compile(
+    r"\b(?:web\s+search|search\s+(?:the\s+)?(?:web|internet|online)|"
+    r"look\s+up\s+online|find\s+(?:online|on\s+the\s+web)|"
+    r"internet\s+results?|web\s+results?)\b",
+    re.IGNORECASE,
+)
+_EXISTING_VISUAL_REQUEST_RE = re.compile(
+    r"(?:"
+    r"\blook\s+at\b[^.!?\n]{0,90}"
+    r"\b(?:camera|webcam|screen|display|screenshot|image|photo|picture|scene|"
+    r"room)\b|"
+    r"\b(?:inspect|check|view|observe|describe|see)\b[^.!?\n]{0,70}"
+    r"\b(?:this|that|the|my|your|attached|uploaded|current)\s+"
+    r"(?:camera(?:\s+feed)?|webcam(?:\s+feed)?|screen|display|screenshot|"
+    r"image|photo|picture|scene|room)\b|"
+    r"\b(?:look\s+for|find|spot)\b[^.!?\n]{0,90}"
+    r"\b(?:with|using|through|in|on)\s+(?:the\s+)?"
+    r"(?:camera|webcam|screen|display|screenshot|existing\s+image|image|"
+    r"photo|picture|room)\b|"
+    r"\b(?:camera|webcam|screen|display)\s+feed\b[^.!?\n]{0,90}"
+    r"\b(?:see|show|find|spot|look|visible)\b"
+    r"|\bwhat\s+(?:do|can)\s+you\s+see\b"
+    r")",
+    re.IGNORECASE,
+)
+
+
+def search_query_requires_literal_source(raw_request: str) -> bool:
+    """Return true only when web-query text/syntax is explicitly exact-sensitive."""
+
+    text = raw_request or ""
+    return bool(
+        _SEARCH_EXACT_CONTRACT_RE.search(text)
+        or _SEARCH_QUOTED_QUERY_RE.search(text)
+        or _SEARCH_FIELD_OPERATOR_RE.search(text)
+        or (
+            _SEARCH_PAYLOAD_ENVELOPE_RE.search(text)
+            and _SEARCH_BOOLEAN_OPERATOR_RE.search(text)
+        )
+    )
+
+
+def _is_unresolved_search_query(query: str) -> bool:
+    normalized = re.sub(r"\s+", " ", query.strip(" \t\r\n.,!?;:'\"`“”‘’"))
+    return bool(
+        normalized.casefold() in _UNRESOLVED_SEARCH_QUERIES
+        or _UNRESOLVED_SEARCH_QUERY_RE.fullmatch(query)
+    )
+
+
+def _contextualize_search_query(query: str, referent: str) -> str:
+    """Replace one unresolved deictic while retaining useful search modifiers."""
+
+    stripped = query.strip()
+    if stripped.strip(".,!?;:'\"`“”‘’").casefold() in _UNRESOLVED_SEARCH_QUERIES:
+        return referent
+    return re.sub(
+        r"\b(?:it|that|this|them|those|these)\b",
+        referent,
+        stripped,
+        count=1,
+        flags=re.IGNORECASE,
+    )
+
+
+def _nearest_referenced_user_search_query(
+    sources: Iterable[dict[str, str]],
+    selected_call: dict[str, Any],
+) -> str | None:
+    """Recover only the nearest user-authored search; never scan past it."""
+
+    for source in sources:
+        if source.get("source_kind") != "referenced_previous_user":
+            continue
+        candidate = bind_source_argument(
+            raw_request=source["content"],
+            selected_call=selected_call,
+            semantic_request="",
+            verbatim=[],
+        )
+        rebound = candidate.get("final_call")
+        rule = candidate.get("source_span", {}).get("rule")
+        query = (
+            rebound.get("arguments", {}).get("query")
+            if isinstance(rebound, dict)
+            else None
+        )
+        if (
+            candidate.get("status") == "bound"
+            and candidate.get("source_copy_valid") is True
+            and rule in {"search_prefix", "search_label", "search_exact_label"}
+            and isinstance(query, str)
+            and query.strip()
+            and not _is_unresolved_search_query(query)
+            and len(query) <= SEARCH_QUERY_MAX_CHARS
+            and not any(ord(char) < 32 for char in query)
+        ):
+            return query
+        # The first previous-user source is the nearest semantic context.
+        # If it is not a recognizable search request, an older one is unsafe.
+        return None
+    return None
+
+
+def _latest_verified_search_query(
+    trusted_context: Iterable[dict[str, Any]] | None,
+) -> str | None:
+    """Read only canonical query arguments from successful runtime-ledger events."""
+
+    for event in reversed(list(trusted_context or [])):
+        if (
+            not isinstance(event, dict)
+            or event.get("kind") != "verified_tool_outcome"
+            or event.get("tool") != "search"
+            or event.get("succeeded") is not True
+        ):
+            continue
+        arguments = event.get("arguments")
+        query = arguments.get("query") if isinstance(arguments, dict) else None
+        if (
+            isinstance(query, str)
+            and query.strip()
+            and len(query) <= SEARCH_QUERY_MAX_CHARS
+            and not any(ord(char) < 32 for char in query)
+        ):
+            return query
+    return None
+
+
+def _search_selection_conflicts_with_visual_intent(raw_request: str) -> bool:
+    """Keep an erroneous search selection from consuming a vision request."""
+
+    return bool(
+        _EXISTING_VISUAL_REQUEST_RE.search(raw_request or "")
+        and not _EXPLICIT_WEB_SEARCH_RE.search(raw_request or "")
+    )
 
 # These payload-like fields may safely refer to exact text from Yuki's immediately
 # preceding visible reply. User-authored referenced sources are separately allowed
@@ -414,7 +635,7 @@ class RoutingRegistry(ToolRegistry):
                 },
                 "content": {
                     "type": "string",
-                    "description": "Exact content supplied by the user; may contain |.",
+                    "description": "File contents. An empty placeholder is allowed; the main model prepares contents before execution.",
                 },
             },
             "required": ["filename", "content"],
@@ -427,7 +648,19 @@ class RoutingRegistry(ToolRegistry):
         spec = self.get(name)
         if spec is None:
             raise KeyError(name)
-        return deepcopy(spec.argument_schema)
+        schema = deepcopy(spec.argument_schema)
+        if name == "search":
+            schema["properties"]["query"].update({
+                "description": (
+                    "A self-contained web-search query grounded in the current request "
+                    "or its explicitly referenced recent context. Resolve pronouns before "
+                    "calling. Ordinary queries may be concise semantic rewrites. Preserve "
+                    "explicitly exact, quoted, or operator-sensitive query text "
+                    "character-for-character."
+                ),
+                "maxLength": SEARCH_QUERY_MAX_CHARS,
+            })
+        return schema
 
     def description_for(self, name: str) -> str:
         spec = self.get(name)
@@ -560,6 +793,14 @@ class RoutingRegistry(ToolRegistry):
             errors.extend(self._validate_arguments(
                 self.argument_schema_for(name), arguments,
             ))
+            if name == "search" and isinstance(arguments.get("query"), str):
+                query = arguments["query"]
+                if len(query) > SEARCH_QUERY_MAX_CHARS:
+                    errors.append(
+                        f"Argument 'query' must be at most {SEARCH_QUERY_MAX_CHARS} characters."
+                    )
+                if any(ord(char) < 32 for char in query):
+                    errors.append("Argument 'query' must not contain control characters.")
         return {"passed": not errors, "errors": errors}
 
     def prepare_call(
@@ -570,8 +811,9 @@ class RoutingRegistry(ToolRegistry):
         available_names: Iterable[str],
         source_kind: str = "raw_user_request",
         literal_sources: Iterable[dict[str, str]] | None = None,
+        trusted_context: Iterable[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
-        """Validate, bind exact fields, and adapt to the live one-string API."""
+        """Validate, apply typed transport, and adapt to the live one-string API."""
 
         available = tuple(available_names)
         validation = self.validate_call(call, available)
@@ -583,15 +825,134 @@ class RoutingRegistry(ToolRegistry):
                 "canonical_call": None,
                 "runtime_argument": None,
             }
+        proposed_call = deepcopy(call)
         name = call["tool"]
         arguments = call["arguments"]
-        fields = LITERAL_FIELDS.get(name, ())
+        if name == "search" and _search_selection_conflicts_with_visual_intent(
+            raw_request
+        ):
+            return {
+                "passed": False,
+                "errors": [
+                    (
+                        "The selected search tool cannot inspect an existing image, camera, "
+                        "screen, or scene. Select the visual-inspection capability instead. "
+                        "No tool ran."
+                    )
+                ],
+                "binding": None,
+                "canonical_call": None,
+                "runtime_argument": None,
+            }
+
+        exact_search = (
+            name == "search" and search_query_requires_literal_source(raw_request)
+        )
         authorized_sources = [
             source for source in (literal_sources or [])
             if isinstance(source, dict)
             and isinstance(source.get("content"), str)
         ]
-        field_provenance = {}
+        contextual_search_query = None
+        contextual_search_binder = None
+        contextual_search_source_kind = None
+        if name == "search" and _is_unresolved_search_query(arguments["query"]):
+            referent = None
+            if _SEARCH_REFERENCE_REQUEST_RE.search(raw_request or ""):
+                referent = _nearest_referenced_user_search_query(
+                    authorized_sources,
+                    call,
+                )
+                if referent is not None:
+                    contextual_search_binder = "referenced_previous_user_search_v1"
+                    contextual_search_source_kind = "referenced_previous_user"
+                elif not any(
+                    source.get("source_kind") == "referenced_previous_user"
+                    for source in authorized_sources
+                ):
+                    referent = _latest_verified_search_query(trusted_context)
+                    if referent is not None:
+                        contextual_search_binder = "trusted_recent_search_v1"
+                        contextual_search_source_kind = "verified_tool_outcome"
+            if referent is None:
+                return {
+                    "passed": False,
+                    "errors": [
+                        (
+                            "The web-search query contains an unresolved reference and no "
+                            "single trusted recent search query can resolve it. No tool ran."
+                        )
+                    ],
+                    "binding": {
+                        "mode": "contextual_semantic_resolution",
+                        "source_copy_valid": None,
+                        "source_kind": None,
+                        "fields": ["query"],
+                    },
+                    "canonical_call": None,
+                    "runtime_argument": None,
+                }
+            contextual_search_query = _contextualize_search_query(
+                arguments["query"],
+                referent,
+            )
+            call = {
+                "tool": "search",
+                "arguments": {"query": contextual_search_query},
+            }
+            arguments = call["arguments"]
+
+        fields = (
+            ("query",)
+            if exact_search
+            else LITERAL_FIELDS.get(name, ())
+        )
+        field_provenance = (
+            {"query": contextual_search_source_kind}
+            if contextual_search_query is not None and exact_search
+            else {}
+        )
+        deterministic_binding = None
+        deterministic_binder = None
+        # Exact-sensitive web queries keep the proven frozen source binder.
+        # Ordinary searches never enter this path: the model may generate a
+        # concise, self-contained semantic query from the visible conversation.
+        if name == "search" and exact_search and contextual_search_query is None:
+            candidate = bind_source_argument(
+                raw_request=raw_request,
+                selected_call=call,
+                semantic_request="",
+                verbatim=[],
+            )
+            rebound_call = candidate.get("final_call")
+            rebound_validation = (
+                self.validate_call(rebound_call, available)
+                if isinstance(rebound_call, dict)
+                else {"passed": False}
+            )
+            if (
+                candidate.get("status") == "bound"
+                and candidate.get("source_copy_valid") is True
+                and rebound_validation["passed"]
+            ):
+                call = rebound_call
+                arguments = call["arguments"]
+                deterministic_binding = candidate
+                deterministic_binder = "frozen_source_span_v1_search"
+
+        if name in {"yuki_write", "yuki_append"}:
+            contracts = [source for source in authorized_sources
+                         if source.get("source_kind") == "file_content_intent"]
+            for contract in contracts:
+                if (contract.get("request") != raw_request
+                        or contract.get("mode") not in {"compose", "literal"}
+                        or contract.get("tool") != name
+                        or contract.get("filename") != arguments.get("filename")
+                        or contract.get("content") != arguments.get("content")):
+                    return {"passed": False, "errors": [
+                        contract.get("error") or "The proposed write conflicts with the current file-content intent.",
+                    ], "binding": None, "canonical_call": None, "runtime_argument": None}
+
         for field in fields:
             value = arguments.get(field)
             if not isinstance(value, str):
@@ -600,6 +961,20 @@ class RoutingRegistry(ToolRegistry):
                 field_provenance[field] = source_kind
                 continue
             for source in authorized_sources:
+                if source.get("source_kind") == "file_content_intent":
+                    if (
+                        name in {"yuki_write", "yuki_append"} and field == "content"
+                        and source.get("mode") == "compose"
+                        and source.get("request") == raw_request
+                        and source.get("tool") == name
+                        and source.get("filename") == arguments.get("filename")
+                        and value == source["content"]
+                    ):
+                        field_provenance[field] = "model_composed_content"
+                        break
+                    continue
+                if source.get("source_kind") not in {"referenced_previous_user", "referenced_previous_assistant"}:
+                    continue
                 referenced_user = (
                     source.get("source_kind") == "referenced_previous_user"
                 )
@@ -675,48 +1050,52 @@ class RoutingRegistry(ToolRegistry):
             "passed": True,
             "errors": [],
             "binding": {
-                "mode": "literal_source" if fields else "typed_passthrough",
-                "source_copy_valid": True if fields else None,
+                "mode": (
+                    "deterministic_source_span"
+                    if deterministic_binding is not None
+                    else "contextual_semantic_resolution"
+                    if contextual_search_binder is not None
+                    else "literal_source"
+                    if fields
+                    else "semantic_argument"
+                    if name == "search"
+                    else "typed_passthrough"
+                ),
+                "source_copy_valid": (
+                    True if fields and contextual_search_binder is None else None
+                ),
                 "source_kind": (
-                    source_kind
+                    contextual_search_source_kind
+                    if contextual_search_binder is not None
+                    else source_kind
                     if fields and set(field_provenance.values()) == {source_kind}
                     else "mixed_authorized_sources" if fields else None
                 ),
-                "fields": list(fields),
-                "field_provenance": field_provenance if fields else None,
+                "fields": ["query"] if name == "search" else list(fields),
+                "field_provenance": (
+                    {"query": contextual_search_source_kind}
+                    if contextual_search_binder is not None
+                    else field_provenance if fields
+                    else {"query": "model_semantic"} if name == "search"
+                    else None
+                ),
+                "binder": (
+                    (contextual_search_binder or deterministic_binder)
+                    if deterministic_binding is not None
+                    or contextual_search_binder is not None
+                    else None
+                ),
+                "source_span": (
+                    deterministic_binding.get("source_span")
+                    if deterministic_binding is not None
+                    else None
+                ),
             },
             "canonical_call": live_call,
             "model_call": deepcopy(call),
+            "proposed_call": proposed_call,
             "runtime_argument": runtime_argument,
         }
-
-
-_STRICT_SHELL_CHARS = re.compile(r"^[A-Za-z0-9_./:=,@%+\-\s]+$")
-
-
-def validate_strict_shell(command: str) -> list[str]:
-    """Prototype-proven shell boundary; reject operators before live execution."""
-
-    errors: list[str] = []
-    if any(ord(char) < 32 for char in command):
-        errors.append("Control characters and newlines are forbidden in shell calls.")
-    if not _STRICT_SHELL_CHARS.fullmatch(command):
-        errors.append(
-            "Shell operators, substitutions, quotes, escapes, and globs are forbidden."
-        )
-    try:
-        parts = shlex.split(command)
-    except ValueError as exc:
-        errors.append(f"Invalid shell tokenization: {exc}")
-        parts = []
-    if not parts:
-        errors.append("Shell command must not be empty.")
-    elif parts[0] not in ALLOWED_COMMANDS:
-        errors.append(
-            f"Command {parts[0]!r} is not allowed; expected one of "
-            f"{sorted(ALLOWED_COMMANDS)}."
-        )
-    return errors
 
 
 def parse_canonical_call(raw_text: str) -> dict[str, Any]:

@@ -16,11 +16,13 @@ Storage:    sqlite-vec, data/episodic_v2.db
 from __future__ import annotations
 
 import json
+import logging
 import math
 import os
 import sqlite3
 import struct
 import time
+from contextlib import closing
 from pathlib import Path
 
 DB_PATH = Path(__file__).parent / "data" / "episodic_v2.db"
@@ -30,7 +32,7 @@ SUMMARY_MODEL = os.environ.get("EPISODIC_SUMMARY_MODEL", "openai/gpt-4.1-nano")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 _client = None
-_db: sqlite3.Connection | None = None
+logger = logging.getLogger(__name__)
 
 
 def _get_client():
@@ -55,48 +57,23 @@ def _embed(text: str) -> bytes:
 
 
 def _get_db() -> sqlite3.Connection:
-    global _db
-    if _db is not None:
-        return _db
+    """Open a vector-enabled connection owned and closed by the caller."""
     import sqlite_vec  # type: ignore
-    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-    db = sqlite3.connect(str(DB_PATH))
-    db.enable_load_extension(True)
-    sqlite_vec.load(db)
-    db.enable_load_extension(False)
-    db.execute(
-        "CREATE TABLE IF NOT EXISTS episodes ("
-        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-        "session_uuid TEXT NOT NULL, "
-        "ts REAL NOT NULL, "
-        "user_msg TEXT NOT NULL, "
-        "assistant_msg TEXT NOT NULL)"
-    )
-    db.execute("CREATE INDEX IF NOT EXISTS idx_episodes_session ON episodes(session_uuid)")
-    db.execute(
-        "CREATE TABLE IF NOT EXISTS session_summaries ("
-        "session_uuid TEXT PRIMARY KEY, "
-        "ts_start REAL NOT NULL, "
-        "ts_end REAL NOT NULL, "
-        "summary TEXT NOT NULL)"
-    )
-    db.execute(
-        "CREATE TABLE IF NOT EXISTS session_events ("
-        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-        "session_uuid TEXT NOT NULL, "
-        "ts REAL NOT NULL, "
-        "payload TEXT NOT NULL)"
-    )
-    db.execute(
-        "CREATE INDEX IF NOT EXISTS idx_session_events_session "
-        "ON session_events(session_uuid)"
-    )
-    db.execute(
-        f"CREATE VIRTUAL TABLE IF NOT EXISTS vec_episodes "
-        f"USING vec0(embedding float[{EMBED_DIM}])"
-    )
-    _db = db
-    return db
+    db = _open_local_transcript_db()
+    try:
+        db.enable_load_extension(True)
+        try:
+            sqlite_vec.load(db)
+        finally:
+            db.enable_load_extension(False)
+        db.execute(
+            f"CREATE VIRTUAL TABLE IF NOT EXISTS vec_episodes "
+            f"USING vec0(embedding float[{EMBED_DIM}])"
+        )
+        return db
+    except Exception:
+        db.close()
+        raise
 
 
 def _open_local_transcript_db() -> sqlite3.Connection:
@@ -125,34 +102,36 @@ def _open_local_transcript_db() -> sqlite3.Connection:
         "CREATE INDEX IF NOT EXISTS idx_session_events_session "
         "ON session_events(session_uuid)"
     )
+    db.execute(
+        "CREATE TABLE IF NOT EXISTS session_summaries ("
+        "session_uuid TEXT PRIMARY KEY, ts_start REAL NOT NULL, "
+        "ts_end REAL NOT NULL, summary TEXT NOT NULL)"
+    )
     return db
 
 
 def record(session_uuid: str, user_msg: str, assistant_msg: str) -> None:
-    """Embed and store one user+assistant exchange under a session."""
+    """Save locally first; optional embedding failure must not lose the turn."""
     if not session_uuid or not user_msg or not assistant_msg:
         return
-    text = f"User: {user_msg}\nYuki: {assistant_msg}"
-    embedding = _embed(text)
-    db = _get_db()
-    cur = db.execute(
-        "INSERT INTO episodes (session_uuid, ts, user_msg, assistant_msg) "
-        "VALUES (?, ?, ?, ?)",
-        (session_uuid, time.time(), user_msg, assistant_msg),
-    )
-    rowid = cur.lastrowid
-    db.execute(
-        "INSERT INTO vec_episodes (rowid, embedding) VALUES (?, ?)",
-        (rowid, embedding),
-    )
-    db.commit()
+    rowid = record_transcript(session_uuid, user_msg, assistant_msg)
+    try:
+        embedding = _embed(f"User: {user_msg}\nYuki: {assistant_msg}")
+        with closing(_get_db()) as db:
+            db.execute(
+                "INSERT INTO vec_episodes (rowid, embedding) VALUES (?, ?)",
+                (rowid, embedding),
+            )
+            db.commit()
+    except Exception as exc:  # noqa: BLE001
+        logger.warning("Chat saved locally; semantic indexing unavailable: %s", exc)
 
 
 def record_transcript(
     session_uuid: str,
     user_msg: str,
     assistant_msg: str,
-) -> None:
+) -> int | None:
     """Store a resumable turn without paying for an embedding.
 
     Autonomous turns use this path. They remain part of the session transcript
@@ -163,12 +142,13 @@ def record_transcript(
         return
     db = _open_local_transcript_db()
     try:
-        db.execute(
+        cur = db.execute(
             "INSERT INTO episodes (session_uuid, ts, user_msg, assistant_msg) "
             "VALUES (?, ?, ?, ?)",
             (session_uuid, time.time(), user_msg, assistant_msg),
         )
         db.commit()
+        return cur.lastrowid
     finally:
         db.close()
 
@@ -217,12 +197,12 @@ def summarize_session(session_uuid: str) -> str:
     """Generate (or refresh) a summary for one session. Idempotent."""
     if not session_uuid:
         return ""
-    db = _get_db()
-    rows = db.execute(
-        "SELECT ts, user_msg, assistant_msg FROM episodes "
-        "WHERE session_uuid = ? ORDER BY ts",
-        (session_uuid,),
-    ).fetchall()
+    with closing(_open_local_transcript_db()) as db:
+        rows = db.execute(
+            "SELECT ts, user_msg, assistant_msg FROM episodes "
+            "WHERE session_uuid = ? ORDER BY ts, id",
+            (session_uuid,),
+        ).fetchall()
     if not rows:
         return ""
 
@@ -250,14 +230,15 @@ def summarize_session(session_uuid: str) -> str:
 
     ts_start = rows[0][0]
     ts_end = rows[-1][0]
-    db.execute(
-        "INSERT INTO session_summaries (session_uuid, ts_start, ts_end, summary) "
-        "VALUES (?, ?, ?, ?) "
-        "ON CONFLICT(session_uuid) DO UPDATE SET "
-        "ts_end=excluded.ts_end, summary=excluded.summary",
-        (session_uuid, ts_start, ts_end, summary),
-    )
-    db.commit()
+    with closing(_open_local_transcript_db()) as db:
+        db.execute(
+            "INSERT INTO session_summaries (session_uuid, ts_start, ts_end, summary) "
+            "VALUES (?, ?, ?, ?) "
+            "ON CONFLICT(session_uuid) DO UPDATE SET "
+            "ts_end=excluded.ts_end, summary=excluded.summary",
+            (session_uuid, ts_start, ts_end, summary),
+        )
+        db.commit()
     return summary
 
 
@@ -275,15 +256,15 @@ def recall_sessions(
     if not query:
         return []
     embedding = _embed(query)
-    db = _get_db()
-    rows = db.execute(
-        "SELECT e.session_uuid, e.ts, v.distance "
-        "FROM vec_episodes v "
-        "JOIN episodes e ON e.id = v.rowid "
-        "WHERE v.embedding MATCH ? AND k = ? "
-        "ORDER BY v.distance",
-        (embedding, k * 8),
-    ).fetchall()
+    with closing(_get_db()) as db:
+        rows = db.execute(
+            "SELECT e.session_uuid, e.ts, v.distance "
+            "FROM vec_episodes v "
+            "JOIN episodes e ON e.id = v.rowid "
+            "WHERE v.embedding MATCH ? AND k = ? "
+            "ORDER BY v.distance",
+            (embedding, k * 8),
+        ).fetchall()
 
     best_by_session: dict[str, tuple[float, float]] = {}  # uuid -> (distance, ts)
     for session_uuid, ts, distance in rows:
@@ -317,11 +298,11 @@ def recall_sessions(
 
 def _get_or_build_summary(session_uuid: str) -> str:
     """Return the stored summary for a session, or build one on the fly."""
-    db = _get_db()
-    row = db.execute(
-        "SELECT summary FROM session_summaries WHERE session_uuid = ?",
-        (session_uuid,),
-    ).fetchone()
+    with closing(_open_local_transcript_db()) as db:
+        row = db.execute(
+            "SELECT summary FROM session_summaries WHERE session_uuid = ?",
+            (session_uuid,),
+        ).fetchone()
     if row and row[0]:
         return row[0]
     return summarize_session(session_uuid)
@@ -344,6 +325,6 @@ def fuzzy_when(age_seconds: float) -> str:
 
 def count_episodes() -> int:
     """Total episode count — handy for smoke tests."""
-    db = _get_db()
-    row = db.execute("SELECT COUNT(*) FROM episodes").fetchone()
+    with closing(_open_local_transcript_db()) as db:
+        row = db.execute("SELECT COUNT(*) FROM episodes").fetchone()
     return int(row[0]) if row else 0

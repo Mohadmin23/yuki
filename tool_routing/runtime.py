@@ -30,7 +30,11 @@ Use the semantic action to choose the operation. For literal fields, copy charac
 the immutable raw request exactly. An AUTHORIZED REFERENCED LITERAL SOURCE marked
 referenced_previous_user may supply any exact literal field. A source marked
 referenced_previous_assistant may supply payload-like text only—never paths, filenames,
-commands, or URLs. Do not normalize, paraphrase, translate, or correct literal text.
+commands, or URLs. Do not normalize, paraphrase, translate, or correct literal text. A normal
+search.query is semantic: make it self-contained and resolve conversational references from the
+delegated action. Preserve characters only for explicitly exact, quoted, or operator-sensitive
+search text.
+For yuki_write or yuki_append, select the tool and copy the target filename. Use an empty content placeholder if needed; the main Yuki model interprets and prepares file contents before execution. Do not reject a creative write just because its content is not supplied verbatim.
 Never answer, explain, greet, summarize, or emit anything outside the required structured call.
 Reject only when none of the listed capabilities can perform the action or a required argument
 cannot be identified. Stop immediately after one complete structured call."""
@@ -129,6 +133,7 @@ class DedicatedDispatcherClient:
         raw_request: str,
         source_kind: str = "raw_user_request",
         literal_sources: list[dict[str, str]] | None = None,
+        trusted_context: list[dict[str, Any]] | None = None,
     ) -> dict[str, Any]:
         if domain_hint not in DOMAIN_TO_GROUP:
             return self._failed("Main brain produced an unknown tool domain.")
@@ -203,6 +208,7 @@ class DedicatedDispatcherClient:
             available_names=names,
             source_kind=source_kind,
             literal_sources=authorized_sources,
+            trusted_context=trusted_context,
         )
         return {
             "passed": prepared["passed"],

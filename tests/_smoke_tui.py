@@ -21,7 +21,6 @@ class StubBot:
 
     def __init__(self):
         self.history = []
-        self.patience = 100
         self.last_stats = None
         self.session_uuid = "smoke-session"
         self.tts = None

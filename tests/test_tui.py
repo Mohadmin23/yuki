@@ -1,8 +1,28 @@
 """Headless TUI checks: no model loading, tool execution, TTS, or services."""
 import asyncio
 import sqlite3
+from unittest.mock import patch
+
+import pytest
 
 from interface import tui
+
+
+@pytest.fixture(autouse=True)
+def offline_provider_catalog(monkeypatch):
+    monkeypatch.setattr(tui, "fetch_model_providers", lambda _: [])
+
+
+async def choose_automatic_provider(app, pilot):
+    for _ in range(20):
+        await pilot.pause()
+        if isinstance(app.screen, tui.ChoiceScreen):
+            break
+    assert isinstance(app.screen, tui.ChoiceScreen)
+    choices = app.screen.query_one("#choice-list", tui.ListView)
+    choices.index = 0
+    choices.action_select_cursor()
+    await pilot.pause()
 
 
 def test_recent_sessions_include_saved_transcripts_without_summaries(
@@ -56,7 +76,6 @@ class StubBot:
 
     def __init__(self):
         self.history = []
-        self.patience = 100
         self.last_stats = None
         self.last_reasoning = ""
         self.session_uuid = "stub-session"
@@ -82,6 +101,27 @@ class AutonomousStubBot(StubBot):
 
     def end_autonomy(self):
         self.autonomy_events.append("end")
+
+
+class DirectToolStubBot(StubBot):
+    def __init__(self):
+        super().__init__()
+        self.completed_tool_calls = []
+        self.tool_outcomes = []
+        self._session_continuity = []
+        self._pending_session_events = []
+
+    def _remember_tool_outcome(self, **outcome):
+        self.tool_outcomes.append(outcome)
+
+    def respond_to_completed_tool(self, request, tool_name, result):
+        self.completed_tool_calls.append((request, tool_name, result))
+        response = "Found it—the lighthouse code is 7319, exactly where we left it~"
+        self.history.extend([
+            {"role": "user", "content": request},
+            {"role": "assistant", "content": response},
+        ])
+        return response
 
 
 def test_no_model_rejection_preserves_draft(monkeypatch):
@@ -281,6 +321,50 @@ def test_tool_routing_settings_switch_architecture_protocol_and_dispatcher(monke
     asyncio.run(scenario())
 
 
+def test_routing_status_shows_auto_resolved_to_native(monkeypatch):
+    monkeypatch.setattr(tui, "read_recent_sessions", list)
+    monkeypatch.setattr(tui, "load_settings", lambda: {
+        "tool_routing_mode": "direct",
+        "tool_routing_protocol": "auto",
+    })
+    bot = StubBot()
+    bot.model_id = "openrouter/z-ai/glm-5.3-flash"
+    bot.backend = "openrouter"
+
+    with patch.dict(
+        "ms_llama._OR_MODEL_SUPPORTED_PARAMETERS",
+        {"z-ai/glm-5.3-flash": frozenset({"tools", "tool_choice"})},
+        clear=True,
+    ):
+        app = tui.YukiTUI(
+            bot,
+            model_label="GLM 5.3 Flash",
+            persona_text="stub",
+            autonomy_interval=0,
+        )
+        assert app._routing_label() == "DIRECT · AUTO→NATIVE"
+
+
+def test_routing_status_discloses_native_fallback_on_local_backend(monkeypatch):
+    monkeypatch.setattr(tui, "read_recent_sessions", list)
+    monkeypatch.setattr(tui, "load_settings", lambda: {
+        "tool_routing_mode": "direct",
+        "tool_routing_protocol": "native",
+    })
+    bot = StubBot()
+    bot.model_id = "MadeAgents/Hammer2.1-1.5b"
+    bot.backend = "mlx"
+
+    app = tui.YukiTUI(
+        bot,
+        model_label="Hammer 1.5B",
+        persona_text="stub",
+        autonomy_interval=0,
+    )
+
+    assert app._routing_label() == "DIRECT · NATIVE→CANONICAL"
+
+
 def test_new_session_waits_for_chat_removal_before_remounting_hero(monkeypatch):
     monkeypatch.setattr(tui, "read_recent_sessions", list)
     monkeypatch.setattr(tui.episodic, "summarize_session", lambda _uuid: "")
@@ -416,6 +500,7 @@ def test_settings_mouse_flow_keeps_model_manager_result_callback(monkeypatch):
             await pilot.click("#manager-load-filtered")
             await pilot.pause()
 
+            await choose_automatic_provider(app, pilot)
             assert requested == [
                 ("openrouter/z-ai/glm-5", "GLM 5", "openrouter")
             ]
@@ -539,6 +624,7 @@ def test_model_filter_enter_uses_new_filter_before_list_render_finishes(monkeypa
             await pilot.click("#manager-load-filtered")
             await pilot.pause()
 
+            await choose_automatic_provider(app, pilot)
             assert requested == [
                 ("openrouter/z-ai/glm-5", "GLM 5", "openrouter")
             ]
@@ -579,6 +665,7 @@ def test_model_list_enter_uses_filtered_snapshot_not_stale_row(monkeypatch):
             results.action_select_cursor()
             await pilot.pause()
 
+            await choose_automatic_provider(app, pilot)
             assert requested == [
                 ("openrouter/z-ai/glm-5", "GLM 5", "openrouter")
             ]
@@ -621,6 +708,7 @@ def test_model_manager_keyboard_arrows_focus_results_and_enter_loads(monkeypatch
 
             await pilot.press("down", "enter")
             await pilot.pause()
+            await choose_automatic_provider(app, pilot)
             assert requested == [
                 ("openrouter/z-ai/glm-5", "GLM 5", "openrouter")
             ]
@@ -650,6 +738,60 @@ def test_accepted_message_clears_only_after_runtime_accepts(monkeypatch):
             assert len(app.query(".row.user")) == 1
             assert len(app.query(".bot-md")) == 1
             assert app._session_title == "hello yuki"
+
+    asyncio.run(scenario())
+
+
+def test_direct_tool_command_keeps_raw_card_and_adds_yuki_reply(monkeypatch):
+    monkeypatch.setattr(tui, "read_recent_sessions", list)
+    monkeypatch.setattr(tui, "_cli_record_episode", lambda *_args, **_kwargs: None)
+    monkeypatch.setattr(
+        tui,
+        "_cli_persist_session_events",
+        lambda *_args, **_kwargs: None,
+    )
+    monkeypatch.setattr(
+        tui,
+        "run_tool",
+        lambda _text: (
+            "[SOURCE 1]\nThe cobalt lighthouse code is 7319.\n[/SOURCE 1]",
+            "/recall",
+            [],
+        ),
+    )
+
+    async def scenario():
+        bot = DirectToolStubBot()
+        app = tui.YukiTUI(
+            bot,
+            model_label="stub-model",
+            persona_text="stub",
+            autonomy_interval=0,
+        )
+        async with app.run_test(size=(120, 38)) as pilot:
+            await pilot.pause()
+            composer = app.query_one("#composer", tui.Composer)
+            composer.value = "/recall cobalt lighthouse"
+            await pilot.press("enter")
+            for _ in range(40):
+                await pilot.pause(0.02)
+                if not app.activity.blocks_input:
+                    break
+
+            card = app.query_one(tui.ToolActivityCard)
+            assert card.status == "SUCCESS"
+            assert "The cobalt lighthouse code is 7319." in card.arguments
+            assert bot.completed_tool_calls == [(
+                "/recall cobalt lighthouse",
+                "recall",
+                "[SOURCE 1]\nThe cobalt lighthouse code is 7319.\n[/SOURCE 1]",
+            )]
+            assert len(bot.tool_outcomes) == 1
+            assert bot.tool_outcomes[0]["tool"] == "recall"
+            assert len(app.query(".bot-md")) == 1
+            assert app.query_one(".bot-md", tui.Markdown).source == (
+                "Found it—the lighthouse code is 7319, exactly where we left it~"
+            )
 
     asyncio.run(scenario())
 

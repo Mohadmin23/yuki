@@ -37,6 +37,7 @@ from ms_llama import (
     _cli_persist_session_events,
     _cli_record_episode,
     _cli_record_local_episode,
+    _is_tool_error,
     _load_facts,
     fetch_openrouter_models,
     init_tts,
@@ -47,7 +48,9 @@ from ms_llama import (
     normalize_reasoning_mode,
     openrouter_reasoning_is_mandatory,
     run_tool,
+    supports_native_tools,
 )
+from openrouter_providers import fetch_model_providers, provider_label
 from tool_routing import (
     DEFAULT_DISPATCHER_MODEL,
     ROUTING_MODES,
@@ -847,11 +850,48 @@ class ModelManagerScreen(ModalScreen[dict | None]):
         event.stop()
 
     def _finish(self, model_id: str) -> None:
+        if getattr(self, "_provider_loading", False):
+            return
         label = next((label for value, label in self._options if value == model_id), model_id)
-        self.dismiss({
+        result = {
             "id": model_id, "label": label, "source": self._source,
             "config": self._config_snapshot(),
-        })
+        }
+        if model_id.startswith("openrouter/") and self.purpose == "main":
+            self._provider_loading = True
+            self.query_one("#manager-state", Static).update("Checking available providers…")
+            self.run_worker(lambda: self._fetch_providers(result), thread=True)
+        else:
+            self.dismiss(result)
+
+    def _fetch_providers(self, result: dict) -> None:
+        try:
+            providers = fetch_model_providers(result["id"])
+            error = ""
+        except Exception as exc:  # noqa: BLE001
+            providers, error = [], str(exc)
+        self.app.call_from_thread(self._show_providers, result, providers, error)
+
+    def _show_providers(self, result: dict, providers: list[dict], error: str) -> None:
+        self._provider_loading = False
+        if not self.is_mounted:
+            return
+        saved = self._settings.get("openrouter_providers", {}).get(result["id"], "")
+        options = [("", "Automatic · OpenRouter chooses the provider")]
+        options.extend((row["id"], provider_label(row)) for row in providers)
+        if saved and not any(value == saved for value, _ in options):
+            options.append((saved, f"{saved} · saved choice, availability unverified"))
+        title = f"PROVIDER // {result['label']} · current: {saved or 'Automatic'}"
+        if error:
+            title += f"\nCouldn't fetch providers: {error}"
+        elif not providers:
+            title += "\nNo provider details available."
+
+        def selected(provider: str | None) -> None:
+            if provider is not None:
+                self.dismiss({**result, "provider": provider})
+
+        self.app.push_screen(ChoiceScreen(title, options), selected)
 
     def _focus_result(self, *, last: bool) -> None:
         """Move keyboard focus from the filter into the visible result list."""
@@ -1295,20 +1335,45 @@ class YukiTUI(App):
             send.label = "SEND"
         self.query_one("#chat-title", Static).update(self._session_title)
         self.query_one("#current-session", RetroButton).label = f"● {self._session_title}"
-        patience = f" · ♥ {self.bot.patience}%" if self.bot is not None else ""
         speech = " · SPEAKING" if self._speaking else ""
         self.query_one("#sidebar-state", Static).update(
             f"STATE // {self.activity.label}{speech}\n"
-            f"TOOLS // {self._routing_label()}\nAUTO // {auto}{patience}"
+            f"TOOLS // {self._routing_label()}\nAUTO // {auto}"
         )
 
     def _routing_label(self) -> str:
         if self.tool_routing_mode == "direct":
-            return f"DIRECT · {self.tool_routing_protocol.upper()}"
+            protocol = self.tool_routing_protocol.upper()
+            if self.tool_routing_protocol == "auto" and self.bot is not None:
+                effective = (
+                    "NATIVE"
+                    if supports_native_tools(
+                        getattr(self.bot, "model_id", None),
+                        getattr(self.bot, "backend", None),
+                    )
+                    else "CANONICAL"
+                )
+                protocol = f"AUTO→{effective}"
+            elif (
+                self.tool_routing_protocol == "native"
+                and self.bot is not None
+                and getattr(self.bot, "backend", None) not in {"openrouter", "gguf"}
+            ):
+                protocol = "NATIVE→CANONICAL"
+            return f"DIRECT · {protocol}"
         label = self.dispatcher_model_label or "SELECT"
         return f"DISPATCHER · {label} · {self.tool_routing_protocol.upper()}"
 
+    def _apply_model_provider(self, bot) -> None:
+        if str(getattr(bot, "model_id", "")).startswith("openrouter/"):
+            client = getattr(bot, "llm_model", None)
+            if client is not None:
+                client._yuki_openrouter_provider = self._settings.get(
+                    "openrouter_providers", {},
+                ).get(bot.model_id, "")
+
     def _apply_tool_routing_to_bot(self) -> None:
+        self._apply_model_provider(self.bot)
         if self.bot is None or not hasattr(self.bot, "configure_tool_routing"):
             return
         self.bot.configure_tool_routing(
@@ -1321,7 +1386,9 @@ class YukiTUI(App):
         if self._pending_model_label:
             return f"[ NEURAL LINK SWITCHING · {self._pending_model_label} ]"
         if self.bot is not None:
-            return f"[ NEURAL LINK ONLINE · {self.model_label} ]"
+            provider = self._settings.get("openrouter_providers", {}).get(self.bot.model_id, "")
+            suffix = f" · provider: {provider or 'Automatic'}" if self.bot.model_id.startswith("openrouter/") else ""
+            return f"[ NEURAL LINK ONLINE · {self.model_label}{suffix} ]"
         return "[ NEURAL LINK OFFLINE · SELECT MODEL ]"
 
     def _start_activity(self, kind: str, label: str, *, cancellable: bool) -> int:
@@ -1480,12 +1547,13 @@ class YukiTUI(App):
 
     def _apply_tool_progress(self, line: str) -> None:
         clean = line.strip()
-        done = "— done" in clean
-        clean = clean.replace("🔧", "").replace("✅", "").strip()
+        failed = "— failed" in clean
+        done = "— done" in clean or failed
+        clean = clean.replace("🔧", "").replace("✅", "").replace("⚠️", "").strip()
         tool_name = clean.split("—", 1)[0].rstrip("… ").strip() or "tool"
         if done:
             if self._active_tool_card is not None:
-                self._active_tool_card.finish("SUCCESS")
+                self._active_tool_card.finish("FAILURE" if failed else "SUCCESS")
             self._transition_activity("generating", "GENERATING // FINALIZING")
             self._show_thinking("Yuki is finishing the reply")
         else:
@@ -1667,7 +1735,7 @@ class YukiTUI(App):
         facts, sessions, episodes = read_memory_counts()
         text = f"{facts} remembered facts · {sessions} summarized chats · {episodes} stored moments"
         if self.bot is not None:
-            text += f"\nPatience {self.bot.patience}% · {len(self.bot.history)} messages in context"
+            text += f"\n{len(self.bot.history)} messages in context"
         self._mount_chat(StatusCard("MEMORY // STATUS", text))
 
     @on(Input.Submitted, "#composer")
@@ -1725,7 +1793,6 @@ class YukiTUI(App):
 
     def _chat_work(self, text: str, token: int) -> None:
         old_history = list(self.bot.history)
-        old_patience = self.bot.patience
         old_continuity = [
             dict(event)
             for event in getattr(self.bot, "_session_continuity", [])
@@ -1743,9 +1810,13 @@ class YukiTUI(App):
                 error = response
             if self._is_cancelled(token):
                 self.bot.history = old_history
-                self.bot.patience = old_patience
-                self.bot._session_continuity = old_continuity
-                self.bot._pending_session_events = old_pending_events
+                completed = [
+                    event for event in self.bot._pending_session_events[len(old_pending_events):]
+                    if event.get("kind") == "verified_tool_outcome"
+                ]
+                self.bot._session_continuity = old_continuity + completed
+                self.bot._pending_session_events = old_pending_events + completed
+                _cli_persist_session_events(self.bot)
                 self.call_from_thread(self._finish_cancelled, token)
                 return
             if not error:
@@ -1753,7 +1824,7 @@ class YukiTUI(App):
                     # A new human turn becomes the fresh durable goal/context.
                     self.bot.begin_autonomy()
                 _cli_record_episode(self.bot.session_uuid, text, response)
-                _cli_persist_session_events(self.bot)
+            _cli_persist_session_events(self.bot)
         self.call_from_thread(self._finish_reply, response, token, error)
 
     def _finish_reply(self, response: str, token: int, error: str | None = None) -> None:
@@ -1790,33 +1861,129 @@ class YukiTUI(App):
         self._cancelled_tokens.discard(token)
 
     def _direct_tool_work(self, text: str, token: int) -> None:
-        error: str | None = None
+        tool_error: str | None = None
         try:
             result, name, links = run_tool(text)
         except Exception as exc:  # noqa: BLE001
             result, name, links = f"tool error: {exc}", "tool", []
-            error = str(exc)
-        if self.bot is not None and hasattr(self.bot, "_remember_tool_outcome"):
-            self.bot._remember_tool_outcome(
-                source="human_direct_command",
-                request=text,
-                tool=(name or "tool").lstrip("/"),
-                arguments=text.partition(" ")[2],
-                result="" if result is None else str(result),
-                succeeded=error is None,
-            )
-            _cli_persist_session_events(self.bot)
-        self.call_from_thread(
-            self._finish_direct_tool, token, name or "tool",
-            "" if result is None else str(result), links or [], error,
-        )
+            tool_error = str(exc)
 
-    def _finish_direct_tool(
-        self, token: int, name: str, result: str, links: list, error: str | None,
-    ) -> None:
+        name = name or "tool"
+        result = result if isinstance(result, str) else "" if result is None else str(result)
+        links = links or []
         details = result
         if links:
             details += "\n" + "\n".join(str(link) for link in links)
+        if tool_error is None and _is_tool_error(result):
+            tool_error = result.splitlines()[0] if result else "Tool failed."
+
+        if self.bot is not None:
+            with self._bot_lock:
+                if hasattr(self.bot, "_remember_tool_outcome"):
+                    self.bot._remember_tool_outcome(
+                        source="human_direct_command",
+                        request=text,
+                        tool=name.lstrip("/"),
+                        arguments=text.partition(" ")[2],
+                        result=result,
+                        succeeded=tool_error is None,
+                    )
+                    _cli_persist_session_events(self.bot)
+
+        if self.bot is None or self._is_cancelled(token):
+            self.call_from_thread(
+                self._finish_direct_tool,
+                token,
+                name,
+                details,
+                tool_error,
+            )
+            return
+
+        self.call_from_thread(
+            self._prepare_direct_tool_reply,
+            token,
+            name,
+            details,
+            tool_error,
+        )
+        if self._is_cancelled(token):
+            self.call_from_thread(self._finish_cancelled, token)
+            return
+
+        response_error: str | None = None
+        with self._bot_lock:
+            old_history = list(self.bot.history)
+            old_continuity = [
+                dict(event)
+                for event in getattr(self.bot, "_session_continuity", [])
+            ]
+            old_pending_events = [
+                dict(event)
+                for event in getattr(self.bot, "_pending_session_events", [])
+            ]
+            try:
+                response = self.bot.respond_to_completed_tool(
+                    text,
+                    name.lstrip("/"),
+                    details,
+                )
+            except Exception as exc:  # noqa: BLE001
+                response = _cli_friendly_error(exc)
+                response_error = response
+
+            if self._is_cancelled(token):
+                self.bot.history = old_history
+                self.bot._session_continuity = old_continuity
+                self.bot._pending_session_events = old_pending_events
+                self.call_from_thread(self._finish_cancelled, token)
+                return
+
+            if response_error is None:
+                _cli_record_episode(self.bot.session_uuid, text, response)
+                _cli_persist_session_events(self.bot)
+
+        self.call_from_thread(
+            self._finish_direct_tool_reply,
+            token,
+            response,
+            response_error,
+        )
+
+    def _prepare_direct_tool_reply(
+        self,
+        token: int,
+        name: str,
+        details: str,
+        tool_error: str | None,
+    ) -> None:
+        if token != self.activity.token or self._is_cancelled(token):
+            return
+        if self._active_tool_card is not None:
+            self._active_tool_card.tool_name = name
+            self._active_tool_card.finish(
+                "FAILURE" if tool_error else "SUCCESS",
+                details,
+            )
+        self._transition_activity("generating", "GENERATING // TOOL RESPONSE")
+        self._show_thinking("Yuki is reading the tool result")
+
+    def _finish_direct_tool_reply(
+        self,
+        token: int,
+        response: str,
+        error: str | None,
+    ) -> None:
+        self._finish_reply(response, token, error)
+        self._cancelled_tokens.discard(token)
+
+    def _finish_direct_tool(
+        self,
+        token: int,
+        name: str,
+        details: str,
+        error: str | None,
+    ) -> None:
         canceled = self._is_cancelled(token)
         if self._active_tool_card is not None:
             self._active_tool_card.tool_name = name
@@ -1985,6 +2152,7 @@ class YukiTUI(App):
             try:
                 response = self.bot.autonomous_tick(idle)
             except Exception as exc:  # noqa: BLE001
+                _cli_persist_session_events(self.bot)
                 self.call_from_thread(self._finish_activity, token, error=str(exc))
                 return
             if response:
@@ -2471,10 +2639,14 @@ class YukiTUI(App):
             else:
                 os.environ.pop("REMOTE_LLM_API_KEY", None)
                 self._settings.pop("remote_api_key", None)
+        if "provider" in result and result["id"].startswith("openrouter/"):
+            self._settings.setdefault("openrouter_providers", {})[result["id"]] = result["provider"]
         save_settings(self._settings)
         requested_label = result.get("label") or result["id"]
         if self.bot is not None and self.bot.model_id == result["id"]:
-            self.notify(f"{requested_label} is already the active neural link.")
+            self._apply_model_provider(self.bot)
+            self._refresh_chrome()
+            self.notify(f"{requested_label} · provider: {result.get('provider') or 'Automatic'}")
             self._mount_chat(StatusCard(
                 "MODEL // ALREADY ACTIVE",
                 requested_label,
@@ -2513,6 +2685,7 @@ class YukiTUI(App):
             except Exception as exc:  # noqa: BLE001
                 self.call_from_thread(self._model_load_failed, token, exc)
                 return
+            self._apply_model_provider(new)
             new.reasoning_mode = self.reasoning_mode
             if hasattr(new, "configure_tool_routing"):
                 new.configure_tool_routing(
@@ -2531,7 +2704,6 @@ class YukiTUI(App):
             if old is not None:
                 new.history = old.history
                 new.session_uuid = old.session_uuid
-                new.patience = old.patience
                 if hasattr(new, "copy_session_context_from"):
                     new.copy_session_context_from(old)
             elif self.tts_pref:
@@ -2628,7 +2800,6 @@ class YukiTUI(App):
         else:
             self.bot.history = []
         self.bot.session_uuid = uuid.uuid4().hex
-        self.bot.patience = 100
         if self.autonomous_on and hasattr(self.bot, "begin_autonomy"):
             self.bot.begin_autonomy()
         self._session_title = "New chat"

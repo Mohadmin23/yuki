@@ -1,16 +1,16 @@
-"""Recall summaries of past sessions semantically similar to a query."""
-from __future__ import annotations
+"""Retrieve related past sessions and Yuki-owned notes."""
 
-import time
+from __future__ import annotations
 
 
 def tool_recall(query):
-    """Look up summaries of similar past sessions.
+    """Look up related long-term conversational memory and internal notes.
 
     The current session is excluded — it's already in the bot's live history.
     """
     import ms_llama  # lazy
-    import episodic
+    from retrieval import render_retrieval_context
+    from retrieval.local import retrieve_local_memory
 
     query = (query or "").strip()
     if not query:
@@ -20,20 +20,17 @@ def tool_recall(query):
     if bot is None:
         return "Recall error: no active session."
 
-    try:
-        sessions = episodic.recall_sessions(
-            query,
-            exclude_session=getattr(bot, "session_uuid", None),
-        )
-    except Exception as e:  # noqa: BLE001
-        return f"Recall error: {e}"
-
-    if not sessions:
-        return "Nothing matching in past sessions."
-
-    now = time.time()
-    lines = []
-    for s in sessions:
-        when = episodic.fuzzy_when(now - s["ts"])
-        lines.append(f"• {when}: {s['summary']}")
-    return "\n".join(lines)
+    hits, warnings = retrieve_local_memory(
+        query,
+        exclude_session=getattr(bot, "session_uuid", None),
+    )
+    if not hits:
+        if warnings:
+            return "Recall error: " + "; ".join(warnings)
+        return "Nothing matching in past sessions or Yuki notes."
+    return render_retrieval_context(
+        query,
+        hits,
+        label="YUKI MEMORY",
+        warnings=warnings,
+    )
